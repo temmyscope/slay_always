@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+/*
+use App\Http\Livewire\Admin\{
+  Cart, Favorite, Profile, EditProfile, OrderHistory,
+  Order, Invoice, Notification, Chat, Search, Home, AddProduct, ProductsList, Product
+};
+*/
 
 Route::prefix('admin')->group(function () {
   
