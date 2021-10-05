@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Newsletter extends Migration
+class PushTokens extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class Newsletter extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('push_tokens', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id');
+            $table->text('token');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class Newsletter extends Migration
      */
     public function down()
     {
-        //
+        //Schema::dropIfExists('push_tokens');
     }
 }

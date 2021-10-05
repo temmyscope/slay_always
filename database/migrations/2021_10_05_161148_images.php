@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Product extends Migration
+class Images extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,16 @@ class Product extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->enum('imageableType', [ 'chat', 'product', 'profile' ]);
+            $table->bigInteger('imageableId');
+            $table->string('img_link');
+            $table->timestamps();
+        });
+        /**
+         * 
+         */
     }
 
     /**

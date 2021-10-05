@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Chat extends Migration
+class Favorites extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class Chat extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('favorites', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('product_id');
+            $table->timestamps();
+        });
     }
 
     /**
