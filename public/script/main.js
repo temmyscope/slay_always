@@ -73,18 +73,18 @@ setTimeout(showSlides, 2000); // Change image every 2 seconds
 showSlides();
 
 // dropdown
-const hover = document.querySelector('#drop-down')
-const content = document.querySelector('#content')
+const dropDown = document.querySelector('#drop-down')
+const dropDownContent = document.querySelector('#content')
 
-hover.addEventListener('click', ()=> {
-  if (content.style.display) {
-    content.style.display = null
+dropDown.addEventListener('click', ()=> {
+  if (dropDownContent.style.display) {
+    dropDownContent.style.display = null
   } else {
-    content.style.display = `block`
+    dropDownContent.style.display = `block`
   }
 })
 
-content.onmouseleave = function (e) {
-  e.content
-  content.style.display = null
+dropDownContent.onmouseleave = function (e) {
+  e.dropDownContent
+  dropDownContent.style.display = null
 }
