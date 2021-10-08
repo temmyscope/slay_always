@@ -50,10 +50,7 @@
       return window.localStorage.getItem('sentToServer') === '1';
     }
     function saveToken(currentToken){
-      var endpoint = 'https://api-x5hdheh42.qlover.org';
-        $.post(endpoint+'/push_token/save', { 'push_token': currentToken },
-            (data) => { console.log(currentToken) }
-        ).fail( (xhr, ajaxOptions, thrownError) => { alert(thrownError) });
+      localStorage.setItem('pushToken', currentToken);
     }
     messaging.onMessage(function(payload){
       var notification= new Notification(payload.data.title, {body: payload.data.body, icon: "/logo.png"});
@@ -77,4 +74,3 @@
   </body>
 
 </html>
-
