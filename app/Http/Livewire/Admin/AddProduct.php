@@ -21,6 +21,6 @@ class AddProduct extends Component
 
     public function render()
     {
-        return view('livewire.admin.add-product');
+        return view('livewire.admin.add-product')->extends('layouts.admin.master');
     }
 }

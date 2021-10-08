@@ -3,7 +3,7 @@
         <a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="{{asset('assets/images/dashboard/1.png')}}" alt="" />
         <div class="badge-bottom"><span class="badge badge-primary">New</span></div>
         <a href="user-profile"> <h6 class="mt-3 f-14 f-w-600">Emay Walter</h6></a>
-        <p class="mb-0 font-roboto">{Admin}</p>
+        <p class="mb-0 font-roboto">Admin</p>
     </div>
     <nav>
         <div class="main-navbar">
@@ -19,35 +19,46 @@
                         </div>
                     </li>
                     <li class="dropdown">
+                        <a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="edit"></i><span>General</span></a>
+                        <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/blog') }};">
                         <li><a href="{{route('index')}}" class="{{routeActive('index')}}">Dashboard</a></li>
-                        <a class="nav-link menu-title {{ prefixActive('/project') }}" href="javascript:void(0)"><i data-feather="box"></i><span>Project</span></a>
-                        <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/project') }};">
-                            <li><a href="{{ route('projectcreate') }}" class="{{routeActive('projectcreate')}}">Add new Product</a></li>
-                        </ul>
-                        <li><a href="{{ route('simple-MDE') }}" class="{{routeActive('simple-MDE')}}">MDE editor</a></li>
-                        <a class="nav-link menu-title link-nav {{routeActive('file-manager')}}" href="{{ route('file-manager') }}"><i data-feather="git-pull-request"></i><span>File manager</span></a>
-                        
-                        <li><a href="{{ route('list-products') }}" class="{{routeActive('list-products')}}">Product list</a></li>
-                        <li><a href="{{ route('order-history') }}" class="{{routeActive('order-history')}}">Orders</a></li>
-                        <li><a href="{{ route('email_compose') }}" class="{{routeActive('email_compose')}}">Compose</a></li>
+                        <li><a href="{{ route('editor') }}" class="{{routeActive('editor')}}">MarkDown editor</a></li>
+                        <li>
+                            <a href="{{ route('newsletter-editor') }}" class="{{routeActive('newsletter-editor')}}">Newsletter editor</a>
+                        </li>
+                        <li><a href="{{ route('orders') }}" class="{{routeActive('orders')}}">Orders</a></li>
+                        <li><a href="{{ route('email-compose') }}" class="{{routeActive('email-compose')}}">Compose</a></li>
                         <li><a href="{{ route('chat') }}" class="{{routeActive('chat')}}">Chats</a></li>
+                        <li><a href="{{ route('users') }}" class="{{routeActive('users')}}">Users</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>Products Section</h6>
+                        </div>
                     </li>
                     <li class="dropdown">
-                        <a class="nav-link menu-title {{ prefixActive('/users') }}" href="javascript:void(0)"><i data-feather="users"></i><span>Users</span></a>
-                        <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/users') }};">
-                            <li><a href="{{ route('user-profile') }}" class="{{routeActive('user-profile')}}">Users Profile</a></li>
-                            <li><a href="{{ route('edit-profile') }}" class="{{routeActive('edit-profile')}}">Users Edit</a></li>
-                            <li><a href="{{ route('user-cards') }}" class="{{routeActive('user-cards')}}">Users Cards</a></li>
+                        <a class="nav-link menu-title {{ prefixActive('/product') }}" href="javascript:void(0)"><i data-feather="edit"></i><span>Products</span></a>
+                        <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/blog') }};">
+                            <li><a href="{{ route('list-products') }}" class="{{routeActive('list-products')}}">Product list</a></li>
+                            <li><a href="{{ route('productcreate') }}" class="{{routeActive('productcreate')}}">Add new Product</a></li>
                         </ul>
+                    </li>
+
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>Blog Section</h6>
+                        </div>
                     </li>
                     <li class="dropdown">
                         <a class="nav-link menu-title {{ prefixActive('/blog') }}" href="javascript:void(0)"><i data-feather="edit"></i><span>Blog</span></a>
                         <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/blog') }};">
-                            <li><a href="{{ route('blog') }}" class="{{routeActive('blog')}}">Blog Details</a></li>
-                            <li><a href="{{ route('blog-single') }}" class="{{routeActive('blog-single')}}">Blog Single</a></li>
+                            <li><a href="{{ route('blog') }}" class="{{routeActive('blog')}}">Blog</a></li>
                             <li><a href="{{ route('add-post') }}" class="{{routeActive('add-post')}}">Add Post</a></li>
                         </ul>
                     </li>
+
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

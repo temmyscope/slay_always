@@ -15,6 +15,7 @@ class Images extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->enum('imageableType', [ 'chat', 'product', 'profile' ]);
             $table->bigInteger('imageableId');
             $table->string('img_link');
@@ -32,6 +33,6 @@ class Images extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('images');
     }
 }
