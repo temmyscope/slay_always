@@ -7025,11 +7025,15 @@ select {
 }
 
 .w-inptW {
-  width: 28%;
+  width: 25%;
+}
+
+.w-iconW {
+  width: 35%;
 }
 
 .w-slid {
-  width: 500px;
+  width: 50%;
 }
 
 .min-w-0 {
@@ -38711,11 +38715,15 @@ select {
   }
 
   .sm\:w-inptW {
-    width: 28%;
+    width: 25%;
+  }
+
+  .sm\:w-iconW {
+    width: 35%;
   }
 
   .sm\:w-slid {
-    width: 500px;
+    width: 50%;
   }
 
   .sm\:min-w-0 {
@@ -69979,11 +69987,15 @@ select {
   }
 
   .md\:w-inptW {
-    width: 28%;
+    width: 25%;
+  }
+
+  .md\:w-iconW {
+    width: 35%;
   }
 
   .md\:w-slid {
-    width: 500px;
+    width: 50%;
   }
 
   .md\:min-w-0 {
@@ -101247,11 +101259,15 @@ select {
   }
 
   .lg\:w-inptW {
-    width: 28%;
+    width: 25%;
+  }
+
+  .lg\:w-iconW {
+    width: 35%;
   }
 
   .lg\:w-slid {
-    width: 500px;
+    width: 50%;
   }
 
   .lg\:min-w-0 {
@@ -132515,11 +132531,15 @@ select {
   }
 
   .xl\:w-inptW {
-    width: 28%;
+    width: 25%;
+  }
+
+  .xl\:w-iconW {
+    width: 35%;
   }
 
   .xl\:w-slid {
-    width: 500px;
+    width: 50%;
   }
 
   .xl\:min-w-0 {
@@ -163783,11 +163803,15 @@ select {
   }
 
   .\32xl\:w-inptW {
-    width: 28%;
+    width: 25%;
+  }
+
+  .\32xl\:w-iconW {
+    width: 35%;
   }
 
   .\32xl\:w-slid {
-    width: 500px;
+    width: 50%;
   }
 
   .\32xl\:min-w-0 {

@@ -13,8 +13,9 @@ module.exports = {
       width: {
         navWidth: '96%',
         smWidth: '97%',
-        inptW: '28%',
-        slid: '500px'
+        inptW: '25%',
+        iconW: '35%',
+        slid: '50%'
       }
     },
   },

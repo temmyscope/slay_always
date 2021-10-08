@@ -1,23 +1,23 @@
 // handle navigation links on mobile
-const hamburgerMenu = document.querySelector('.menu-icon')
-const nav = document.querySelector('nav')
-const header = document.querySelector('header')
+// const hamburgerMenu = document.querySelector('.menu-icon')
+// const nav = document.querySelector('nav')
+// const header = document.querySelector('header')
 
-hamburgerMenu.addEventListener("click", showMenu=()=> {
-  hamburgerMenu.classList.toggle("close");
-  if (nav.style.display) {
-    nav.style.display = null;
-  } else {
-    nav.style.display = `flex`
-  }
-})
+// hamburgerMenu.addEventListener("click", showMenu=()=> {
+//   hamburgerMenu.classList.toggle("close");
+//   if (nav.style.display) {
+//     nav.style.display = null;
+//   } else {
+//     nav.style.display = `flex`
+//   }
+// })
 // close navigation links once the body is clicked
-document.body.addEventListener("click", function (e) {
-  if (!e.path.includes(header)) {
-    nav.style.display = null
-    hamburgerMenu.classList.remove("close");
-  }
-})
+// document.body.addEventListener("click", function (e) {
+//   if (!e.path.includes(header)) {
+//     nav.style.display = null
+//     hamburgerMenu.classList.remove("close");
+//   }
+// })
 
 // onclick="plusSlides(-1)"
 // manual slide show
