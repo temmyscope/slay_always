@@ -13,20 +13,14 @@
   float: right;
   cursor: pointer;
 }
-/* .active,
-.accord:hover {
-  background-color: aliceblue;
-} */
+
 .active::after {
   content: "\f078";
 }
-/* 
 
-main img {
-  height: 100%;
-  max-width: 100%;
-  border-radius: 5px;
-} */
+#panel {
+  border-bottom: 2px solid lightgray;
+}
 
 /* .access::after {
   content: "\f077";

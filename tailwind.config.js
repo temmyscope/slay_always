@@ -20,14 +20,13 @@ module.exports = {
         smWidth: '97%',
         inptW: '25%',
         iconW: '35%',
-        slid: '50%'
+        slid: '50%',
+        sideNav: '18%'
       },
       fontFamily: {
         slayFont: ['Nunito']
       },
-      // transform: {
-      //   cad: 'translate(-50%, -50%)'
-      // }
+      
       // backgroundImage: {
       //   cad: "url(/public/assets/footies1.PNG)",
       //   cad2: "url(/public/assets/cloth2.PNG)",
