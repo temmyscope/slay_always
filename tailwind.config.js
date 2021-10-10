@@ -8,11 +8,12 @@ module.exports = {
     },
     backgroundColor: theme => ({
       ...theme('colors'),
-      bgPry: '#010101'
+      bgPry: '#b7b7b7',
+      bgSec: '#010101'
     }),
     extend: {
       stroke: {
-        current: '#ffffff'
+        current: '#fcfdff'
       },
       width: {
         navWidth: '96%',

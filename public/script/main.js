@@ -73,18 +73,35 @@ setTimeout(showSlides, 2000); // Change image every 2 seconds
 showSlides();
 
 // dropdown
-const dropDown = document.querySelector('#drop-down')
-const dropDownContent = document.querySelector('#content')
+// const dropDown = document.querySelector('#drop-down')
+// const dropDownContent = document.querySelector('#content')
 
-dropDown.addEventListener('click', ()=> {
-  if (dropDownContent.style.display) {
-    dropDownContent.style.display = null
-  } else {
-    dropDownContent.style.display = `block`
-  }
-})
+// dropDown.addEventListener('click', ()=> {
+//   if (dropDownContent.style.display) {
+//     dropDownContent.style.display = null
+//   } else {
+//     dropDownContent.style.display = `block`
+//   }
+// })
 
-dropDownContent.onmouseleave = function (e) {
-  e.dropDownContent
-  dropDownContent.style.display = null
+// dropDownContent.onmouseleave = function (e) {
+//   e.dropDownContent
+//   dropDownContent.style.display = null
+// }
+
+// accordion
+
+var acc = document.querySelectorAll(".accord");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display) {
+      panel.style.display = `block`;
+    } else {
+      panel.style.display = `none`;
+    } 
+  });
 }

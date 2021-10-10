@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="./css/main.css">
-  <link rel="shortcut icon" href="./assets/logo2.PNG" type="image/x-icon">
-  <title>Stay Slay Fashion</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="shortcut icon" href="../assets/logo2.PNG" type="image/x-icon">
+  <title>Shoes</title>
 </head>
 <body class="font-slayFont">
   <!--  -->
@@ -17,7 +17,7 @@
     <div class="flex flex-wrap lg:w-navWidth mx-auto justify-between items-center h-full w-smWidth">
       <!-- logo -->
       <div class="w-1/2 lg:w-2/5 flex lg:order-1 order-1">
-        <a href="index.html"><img src="./assets/loggo.PNG" alt="" class=" lg:border-2 lg:p-2"></a>
+        <a href="../index.html"><img src="../assets/loggo.PNG" alt="" class=" lg:border-2 lg:p-2"></a>
       </div>
 
         <!-- search input -->
@@ -46,13 +46,13 @@
           </svg>
         </a>
      
-        <a href="./onboarding/login.html" class="p-1 lg:p-5 lg:inline hidden">
+        <a href="../onboarding/login.html" class="p-1 lg:p-5 lg:inline hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </a>
       
-        <a href="./carts.html" class="p-1 px-1 lg:p-5 relative">
+        <a href="#" class="p-1 px-1 lg:p-5 relative">
           <span class="inline-flex absolute -right-3 lg:-right-0 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">0</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8  stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -88,68 +88,88 @@
 
     </div>
   </div>
-
-  <!-- video background -->
-  <section class="w-full bg-gray-900 relative overflow-hidden flex justify-center items-center lg:h-vid h-smVid">
-    <div class="z-30 text-white relative p-5 bg-bgPry rounded-md bg-opacity-50 text-2xl text-center">
-        <a href="">
-          <h1 class="font-bold lg:text-3xl">Welcome To Stay Slay Fashion</h1>
-        </a>
-      </div>
-      <video autoplay loop muted class=" w-full absolute z-10 h-full">
-        <source src="./assets/sss.mp4" type="video/mp4">
-        your browswer does not support this type of video
-      </video>
-  </section>
-
-  <!-- categories section -->
-  <main class="w-full my-8">
-    <div class="w-navWidth mx-auto">
-      <h1 class="text-center text-4xl font-bold">Categories</h1>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 my-5 gap-4  w-full">
-        <div class=" shadow-md w-full rounded-sm text-center">
-          <a href="./categories/shoes.html">
-            <img class="" src="./assets/edited1.PNG" alt="" style=" width: 100%;">
-            <h3 class="text-purple-400 text-3xl py-5 underline">
-              Shoes
-            </h3>
-          </a>
-        </div>
-
-        <div class=" shadow-md max-w-full rounded-sm text-center">
-          <a href="">
-            <img class="h-full" src="./assets/edited2.PNG" alt="" style=" width: 100%;" >
-            <h3 class="text-purple-400 text-3xl py-5 underline">Sweater</h3>
-          </a>
-        </div>
-
-        <div class=" shadow-md max-w-full rounded-sm text-center">
-          <a href="">
-            <img src="./assets/edited3.PNG" alt="" style=" width: 100%;">
-            <h3 class="text-purple-400 text-3xl py-5 underline">Dress</h3>
-          </a>
-        </div>
-
-        <div class=" shadow-md max-w-full rounded-sm text-center">
-          <a href="">
-            <img src="./assets/edited4.PNG" alt="" style=" width: 100%;">
-            <h3 class="text-purple-400 text-3xl py-5 underline">Panties</h3>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </main>
-
-  <!-- section for customers favourites -->
-  <div class="w-full mt-5">
-    <div class="w-navWidth mx-auto">
-      <h1>Shop from our 'Gram</h1>
-    </div>
+  <!-- nav section -->
+  <nav class="w-full mt-6">
+    <ul class="w-navWidth flex mx-auto">
+      <li class="underline p-3 font-bold text-xl">
+        <a href="../index.html">Home</a>
+      </li>
+      <li class="p-3 text-gray-400 text-xl">
+        <a href="/public/categories/shoes.html">Shoe</a>
+      </li>
+    </ul>
+  </nav>
+  <!--  -->
+  <div class="w-full text-center my-5">
+    <h1 class="text-5xl font-bold">Shoes</h1>
   </div>
 
-  
+  <!-- side nav -->
+  <div class="w-1/5 h-full pl-10">
+    <div>
+      <button class="p-2 w-2/4 bg-bgSec text-gray-100 text-lg rounded-3xl focus:border-4 border-indigo-300">Button</button>
+
+        <!-- <div class=""> -->
+      <h4 class="accord py-5 font-bold text-xl">Division</h4>
+        
+      <div id="panel" class="block">
+        
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">Women</label>
+          </div>
+        
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">Plus</label>
+          </div>
+      </div>
+      <!-- categories section -->
+      <h4 class="accord py-5 mt-5 font-bold text-xl">Categories</h4>
+        
+      <div id="panel" class="block">
+        
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">Matching sets (no of items)</label>
+          </div>
+        
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">Sweaters (no of items)</label>
+          </div>
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">Vintage (no of items)</label>
+          </div>
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">Knit top (no of items)</label>
+          </div>
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">luxe (no of items)</label>
+          </div>
+      </div>
+      <h4 class="accord py-5 mt-5 font-bold text-xl">size</h4>
+        
+      <div id="panel" class="block">
+        
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">Women</label>
+          </div>
+        
+          <div class="w-full py-1">
+            <input type="checkbox" name="" id="" class="mr-1 inline-block relative top-0 w-4">
+          <label for="">Plus</label>
+          </div>
+      </div>
+
+     
+    
+    </div>
+  </div>
 </body>
-<script src="./script/main.js"></script>
+<script src="../script/main.js"></script>
 </html>
