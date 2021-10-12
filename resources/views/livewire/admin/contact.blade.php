@@ -80,12 +80,12 @@
 	                                        </form>
 	                                        <div class="action-wrapper">
 	                                            <ul class="actions">
-																								<li>
-																										<a class="btn btn-secondary" href="javascript:void(0)"><i class="fa fa-paper-plane me-2"></i>send </a>
-																								</li>
-																								<li>
-																										<a class="btn btn-danger" href="javascript:void(0)"> <i class="fa fa-times me-2"></i>cancel</a>
-																								</li>
+                                                    <li>
+                                                            <a class="btn btn-secondary" href="javascript:void(0)"><i class="fa fa-paper-plane me-2"></i>send </a>
+                                                    </li>
+                                                    <li>
+                                                            <a class="btn btn-danger" href="javascript:void(0)"> <i class="fa fa-times me-2"></i>cancel</a>
+                                                    </li>
 	                                            </ul>
 	                                        </div>
 	                                    </div>

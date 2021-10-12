@@ -8,6 +8,7 @@ use App\Models\User;
 
 class Users extends Component
 {
+    protected array $users = [];
 
     public function mount()
     {
@@ -16,6 +17,6 @@ class Users extends Component
 
     public function render()
     {
-        return view('livewire.admin.users')->extends('layouts.admin.master');
+        return view('livewire.admin.users', ['users' => $this->users])->extends('layouts.admin.master');
     }
 }

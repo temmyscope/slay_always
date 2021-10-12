@@ -22,14 +22,15 @@
                         <a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="edit"></i><span>General</span></a>
                         <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/blog') }};">
                         <li><a href="{{route('index')}}" class="{{routeActive('index')}}">Dashboard</a></li>
+                        <li><a href="{{ route('users') }}" class="{{routeActive('users')}}">Users</a></li>
+                        <li><a href="{{ route('chat') }}" class="{{routeActive('chat')}}">Chats</a></li>
+                        <li><a href="{{ route('orders') }}" class="{{routeActive('orders')}}">Orders</a></li>
+                        <li><a href="{{ route('coupons') }}" class="{{routeActive('coupons')}}">Coupons</a></li>
+                        <li><a href="{{ route('promos') }}" class="{{routeActive('promotions')}}">Promotions</a></li>
                         <li><a href="{{ route('editor') }}" class="{{routeActive('editor')}}">MarkDown editor</a></li>
                         <li>
                             <a href="{{ route('newsletter-editor') }}" class="{{routeActive('newsletter-editor')}}">Newsletter editor</a>
                         </li>
-                        <li><a href="{{ route('orders') }}" class="{{routeActive('orders')}}">Orders</a></li>
-                        <li><a href="{{ route('email-compose') }}" class="{{routeActive('email-compose')}}">Compose</a></li>
-                        <li><a href="{{ route('chat') }}" class="{{routeActive('chat')}}">Chats</a></li>
-                        <li><a href="{{ route('users') }}" class="{{routeActive('users')}}">Users</a></li>
                         </ul>
                     </li>
 

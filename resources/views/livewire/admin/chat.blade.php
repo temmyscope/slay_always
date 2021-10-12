@@ -7,7 +7,7 @@
 
 @section('content')
 	
-	<div class="container-fluid">
+	<div class="container-fluid" wire:poll.10000ms>
 	    <div class="row">
 	        <div class="col call-chat-sidebar">
 	            <div class="card">

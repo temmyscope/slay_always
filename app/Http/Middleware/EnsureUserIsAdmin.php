@@ -18,7 +18,7 @@ class EnsureUserIsAdmin
 
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->type !== 'admin' ) {
+        if (Auth::user()->acl !== 'admin' ) {
             return redirect('home');
         }
         return $next($request);

@@ -16,7 +16,7 @@ class Products extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('curator')->references('id')->on('users');
-            $table->foreignId('name');
+            $table->string('name');
             $table->string('tags'); //comma separated labels
             $table->string('description', 225);
             $table->json('metadata'); //would contain sizes, colors etc.

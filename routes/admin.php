@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\{
   Cart, Favorite, UserProfile, EditProfile, OrderHistory, NewsletterEditor,
-  Order, Invoice, InvoicesList, Notification, Chat, Search, NewsletterList,
-  Home, AddProduct, ProductsList, Product, Users, BlogEditor, BlogPosts, EmailCompose
+  Order, Invoice, Notification, Chat, Search, NewsletterList,
+  Home, AddProduct, ProductsList, Product, Users, BlogEditor, BlogPosts, 
+  Promotions, Coupons, Contact
 };
 
 Route::prefix('admin')->group(function () {
@@ -15,10 +16,12 @@ Route::prefix('admin')->group(function () {
   Route::get('/product/list-products', ProductsList::class)->name('list-products');
   Route::get('/orders', OrderHistory::class)->name('orders');
   Route::get('/order/{id}', Order::class)->name('order');
-  Route::get('/list-invoice', AddProduct::class)->name('list-invoice');
-  Route::get('/email-compose', EmailCompose::class)->name('email-compose');
+  //this route will be pointed to from orders on completed orders
   Route::get('/invoice/{orderId}', Invoice::class)->name('invoice-template');
-  Route::get('/chat', Chat::class)->name('chat');
+  Route::get('/chat/{id?}', Chat::class)->name('chat'); //if id is passed, the user chat will be in focus
+  Route::get('/promotions/{id?}', Promotions::class)->name('promos');
+  Route::get('/coupons/{id?}', Coupons::class)->name('coupons');
+  Route::get('/feedbacks', Contact::class)->name('contacts');
 
   //options on user cards will be updated to: email, cart, edit icons etc.
   Route::get('users', Users::class)->name('users');

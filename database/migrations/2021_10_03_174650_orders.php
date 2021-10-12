@@ -20,7 +20,7 @@ class Orders extends Migration
             $table->json('metadata')->nullable(); //any other info that does not fit in elsewhere
             $table->string('coupon_id')->nullable();
             $table->foreignId('total'); //sub_total from cart - coupons/promos deductions + taxes (VAT)
-            $table->enum('status', ['pending', 'completed']); //a payment would only be entered here if it is complete
+            $table->enum('status', ['pending', 'completed', 'canceled'])->default('pending'); //a payment would only be entered here if it is complete
             $table->timestamps();
         });
     }

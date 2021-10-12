@@ -7,7 +7,10 @@ use Livewire\Component;
 class NewsletterList extends Component
 {
 
-    
+    public function mount()
+    {
+        
+    }
 
     public function render()
     {
