@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\{ Auth };
 use App\Http\Middleware\EnsureUserIsAdmin;
 use App\Http\Livewire\Pages\Home;
 use App\Http\Livewire\Auth\{

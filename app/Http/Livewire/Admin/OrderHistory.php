@@ -9,9 +9,9 @@ class OrderHistory extends Component
 {
     protected $orders;
 
-    public function cancel()
+    public function cancel($id)
     {
-        OrderModel::update([
+        OrderModel::where('id', $id)->update([
             'status' => 'canceled'
         ]);
     }

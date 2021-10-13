@@ -8,61 +8,58 @@ use Illuminate\Support\Facades\Auth;
 
 class Promotions extends Component
 {
+    public $promotionId, $name, $discount, $description, $maxUsers, $dateRange;
+
     public bool $formVisibility = false;
     protected ?array $promotions = [];
-    protected array | Promotion $promotionById = [];
+    
 
     public function unhideForm()
     {
         $this->formVisibility = true;
     }
-    public function updateState($field, $value)
-    {
-        if (is_array($this->promotionById)) {
-            $this->promotionById[$field] = $value;
-        }else{
-            $this->promotionById->$field = $value;
-        }
-    }
+    
     public function cancel($id)
     {
-        Promotion::update([
+        Promotion::where('id', $id)->update([
             'end_date' => date('Y-m-d h:i:s')
-        ], ['id' => $id]);
+        ]);
     }
-    public function update()
+
+    public function save()
     {
-        if($this->promotionById instanceof Promotion)
-            $this->promotionById->save();
+        $dateRange = explode(' - ', $this->dateRange); //i.e. explode 9/3/2012 - 9/3/201
+        Promotion::updateOrInsert([
+            'metadata->name' => $this->name, 
+            'metadata->description' => $this->description, 
+            'discount' => $this->discount,
+            'max_users' => $this->maxUsers,
+            'start_date' => $dateRange[0] ?? null,
+            'end_date' => $dateRange[1] ?? null
+        ], ['id' => $this->promotionId]);
     }
+
     public function delete($id)
     {
-        Promotion::delete($id);
-    }
-    public function create()
-    {
-        $promotion = New Promotion();
-        foreach ($this->promotionById as $key => $value) {
-            if ($key === 'name' ||$key === 'description') {
-                $promotion->metadata[$key] = $value;
-            } else {
-                $promotion->$key = $value;
-            }
-        }
-        $promotion->save();
+        Promotion::where('id', $id)->delete();
     }
     public function mount($id = null)
     {
         $this->promotions = Promotion::all();
         if (is_numeric($id)) {
-            $this->promotionById = Promotion::find($id);
+            $promotion = Promotion::find($id);
+            $this->fill([
+                'promotionId' => $promotion->id, 'name' => $promotion->metadata->name,
+                'discount' => $promotion->discount, 'description' => $promotion->metadata->description,
+                'maxUsers' => $promotion->max_users, 
+                'dateRange' => $promotion->start_date." - ".$promotion->end_date
+            ]);
         }
     }
     public function render()
     {
         return view('livewire.admin.promotions', [
-            'promotions' => $this->promotions, 
-            'promotion' => $this->promotionById
+            'promotions' => $this->promotions
         ])->extends('layouts.admin.master');
     }
 }

@@ -17,6 +17,7 @@ class Carts extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->json('items');
+            $table->enum('ordered', ['true', 'false'])->default('false');
             $table->float('sub_total');
             $table->timestamps();
         });

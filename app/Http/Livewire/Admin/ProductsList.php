@@ -8,12 +8,12 @@ use App\Models\Product;
 class ProductsList extends Component
 {
     public array $products = [];
-    public array $bin = [];
-    public $binVisibility = false;
+    public $bin = [];
+    public bool $binVisibility = false;
 
     public function delete($id)
     {
-        Product::update(['deleted' => 'true'], [ 'id' => $id ]);
+        Product::where('id', $id)->update(['deleted' => 'true']);
     }
 
     public function mount()
