@@ -29,7 +29,7 @@
   /* background: -webkit-linear-gradient(#fff95b, #f88b06);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
-  color: #ffff00;
+  color: #f1f1f1;
   text-shadow: 2px 2px 4px #000000;
 }
 .overlay {
@@ -68,6 +68,24 @@
 .gram {
   color: #000000;
   font-size: 1rem;
+}
+
+.chevron::after {
+  content: "\f078";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 1rem;
+  /* display: flex; */
+  color: #ffffff;
+}
+
+@media screen and (max-width: 600px) {
+  .fa-instagram {
+    font-size: 2rem;
+  }
+  .gram {
+    font-size: 0.6rem;
+  }
 }
 
 /* @media screen and (max-width: 990px) {

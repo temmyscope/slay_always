@@ -21,7 +21,8 @@ module.exports = {
         inptW: '25%',
         iconW: '35%',
         slid: '50%',
-        sideNav: '18%'
+        sideNav: '18%',
+        slide: '20%',
       },
       fontFamily: {
         slayFont: ['Nunito']

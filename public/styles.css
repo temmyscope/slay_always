@@ -6838,6 +6838,10 @@ select{
   width: 18%;
 }
 
+.w-slide{
+  width: 20%;
+}
+
 .min-w-0{
   min-width: 0px;
 }
@@ -38357,6 +38361,10 @@ select{
     width: 18%;
   }
 
+  .sm\:w-slide{
+    width: 20%;
+  }
+
   .sm\:min-w-0{
     min-width: 0px;
   }
@@ -69456,6 +69464,10 @@ select{
 
   .md\:w-sideNav{
     width: 18%;
+  }
+
+  .md\:w-slide{
+    width: 20%;
   }
 
   .md\:min-w-0{
@@ -100559,6 +100571,10 @@ select{
     width: 18%;
   }
 
+  .lg\:w-slide{
+    width: 20%;
+  }
+
   .lg\:min-w-0{
     min-width: 0px;
   }
@@ -131660,6 +131676,10 @@ select{
     width: 18%;
   }
 
+  .xl\:w-slide{
+    width: 20%;
+  }
+
   .xl\:min-w-0{
     min-width: 0px;
   }
@@ -162759,6 +162779,10 @@ select{
 
   .\32xl\:w-sideNav{
     width: 18%;
+  }
+
+  .\32xl\:w-slide{
+    width: 20%;
   }
 
   .\32xl\:min-w-0{

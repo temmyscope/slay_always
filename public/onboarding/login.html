@@ -13,7 +13,7 @@
 </head>
 <body class="font-slayFont">
     <!--  -->
-    <header class="w-full bg-bgPry lg:h-24 h-40 p-3">
+    <header class="w-full bg-bgSec lg:h-24 h-40 p-3 sticky top-0 z-30">
       <div class="flex flex-wrap lg:w-navWidth mx-auto justify-between items-center h-full w-smWidth">
         <!-- logo -->
         <div class="w-1/2 lg:w-2/5 flex lg:order-1 order-1">
@@ -66,7 +66,7 @@
   <!--  -->
     <!-- slide show -->
      <!-- slide show -->
-     <div class="w-full h-14 bg-red-300">
+     <div class="w-full h-14 bg-bgPry">
       <div class="w-navWidth  mx-auto">
   
         <div class="w-full text-white h-full overflow-hidden items-center py-3 text-center flex">
@@ -90,6 +90,18 @@
   
       </div>
     </div>
+    <!-- nav section -->
+    <nav class="w-full mt-6">
+      <ul class="w-navWidth flex mx-auto">
+        <li class="underline p-3 font-bold text-xl">
+          <a href="../index.html">Home</a>
+        </li>
+        <li class="p-3 text-gray-400 text-xl">
+          <a href="./login.html">Login</a>
+        </li>
+      </ul>
+    </nav>
+
   <!-- login form -->
   <section class="w-full">
     <div class="mt-10 lg:w-2/5 mx-auto flex justify-center">
@@ -104,7 +116,7 @@
         <input type="email" id="" placeholder="email" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
         <input type="password" id="" placeholder="password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
         <a class="w-full underline" href="../onboarding/forget-password.html">Forgot your password?</a>
-        <input type="submit" value="Login" class="w-full my-6 rounded-md p-2 bg-bgPry font-medium text-white cursor-pointer hover:bg-gray-400 hover:text-black">
+        <input type="submit" value="Login" class="w-full my-6 rounded-md p-2 bg-bgSec font-medium text-white cursor-pointer hover:bg-gray-400 hover:text-black">
       </form>
     </div>
   </section>
