@@ -88,18 +88,81 @@ if (!function_exists('pushnotification')) {
   function pushNotification(string $msg, array $tokens = [])
   {
     $msg = [
-        'title' => "StaySlay - Fashion Notification",
-        'body'  => $msg,
-        'icon'  => env('APP_ICON_URL')
+      'title' => "StaySlay - Fashion Notification",
+      'body'  => $msg,
+      'icon'  => env('APP_ICON_URL')
     ];
     return curl('https://fcm.googleapis.com/fcm/send')
         ->setMethod('POST')->setHeaders([
-            'Authorization: key=' . app()->config()->get('firebase_token'),
+            'Authorization: key=' . env('FIREBASE_TOKEN'),
             'Content-Type: Application/json'
         ])->setData(['registration_ids' => $tokens, 'data' => $msg ])
         ->send();
   }
 }
+
+if (!function_exists('paystackverifypayment')) {
+  function paystackVerifyPayment(string $reference): array | object
+  {
+    $response = curl("https://api.paystack.co/transaction/verify/{$reference}")
+    ->setMethod('GET')
+    ->setHeaders(['Authorization: key=' . env('PAYSTACK_SECRET_KEY') ])->send();
+    return json_decode($response, true);
+  }
+}
+if (!function_exists('fetchtransactions')) {
+  function fetchTransactions(int $page =1, int $perPage=50): array | object
+  {
+    $response = curl("https://api.paystack.co/transaction?perPage={$perPage}&page={$page}")
+    ->setMethod('GET')->setHeaders([ 'Authorization: key=' . env('PAYSTACK_SECRET_KEY') ])->send();
+    return json_decode($response, true);
+  }
+}
+if (!function_exists('createrefund')) {
+  function createRefund(string $reference): array | object
+  {
+    $response = curl("https://api.paystack.co/refund")
+    ->setMethod('POST')->setHeaders([ 
+      'Authorization: key=' . env('PAYSTACK_SECRET_KEY'), 'content-type: application/json'
+    ])->setData([ 'transaction' => $reference ])->send();
+    return json_decode($response, true);
+  }
+}
+if (!function_exists('fetchrefund')) {
+  function fetchRefunds(): array | object
+  {
+    $response = curl("https://api.paystack.co/refund")
+    ->setMethod('GET')->setHeaders([ 
+      'Authorization: key=' . env('PAYSTACK_SECRET_KEY'), 'content-type: application/json'
+    ])->send();
+    return json_decode($response, true);
+  }
+}
+//charge a customer using previous token
+if (!function_exists('createRecharge')) {
+  function createRecharge(string $authCode, string $email, float $amount): array | object
+  {
+    $response = curl('https://api.paystack.co/transaction/charge_authorization')
+    ->setMethod('POST')->setData([
+      'authorization_code'=> $authCode, 'email' => $email, 'amount' => $amount*100 //amount in kobo
+    ])->setHeaders([ 
+      'Authorization: key=' . env('PAYSTACK_SECRET_KEY'), 'content-type: application/json'
+    ])->send();
+    return json_decode($response, true);
+  }
+}
+if(function_exists('percentageIncrease')){
+  function percentageIncrease(float $value, float $percent): float{
+      return $value + ($value * ($percent/100));
+  }
+}
+if(function_exists('percentageDecrease')){
+  function percentageDecrease(float $value, float $percent): float{
+      return $value - ($value * ($percent/100));
+  }
+}
+
+
 /**
  * I might need this
  * $url = 'https://www.instagram.com/stayslay_fashion/?__a=1'

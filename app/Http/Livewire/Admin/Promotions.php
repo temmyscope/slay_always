@@ -8,10 +8,19 @@ use Illuminate\Support\Facades\Auth;
 
 class Promotions extends Component
 {
-    public $promotionId, $name, $discount, $description, $maxUsers, $dateRange;
+    public int $promotionId; 
+    public string $name;
+    public float $discount;
+    public string $description; 
+    public int $maxUsers; 
+    public string $dateRange;
 
     public bool $formVisibility = false;
     protected ?array $promotions = [];
+    protected $rules = [
+        'code' => 'required|min:6',
+        'discount' => 'required|num',
+    ];
     
 
     public function unhideForm()
@@ -35,7 +44,8 @@ class Promotions extends Component
             'discount' => $this->discount,
             'max_users' => $this->maxUsers,
             'start_date' => $dateRange[0] ?? null,
-            'end_date' => $dateRange[1] ?? null
+            'end_date' => $dateRange[1] ?? null,
+            'coupon' => ''
         ], ['id' => $this->promotionId]);
     }
 

@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Start Promotion')
+@section('title', 'Create Coupon')
 
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dropzone.css')}}">
