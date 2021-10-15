@@ -27,6 +27,7 @@
     <script>
         var paymentForm = document.getElementById('paymentForm');
         paymentForm.addEventListener('submit', payWithPaystack, false);
+        var user_id = {!! auth()->user()->id() !!};
         function payWithPaystack() {
         var handler = PaystackPop.setup({
             key: 'YOUR_PUBLIC_KEY', currency: 'NGN', ref: {!! $reference !!},
@@ -36,7 +37,7 @@
                 document.getElementById(
                     "modal-body-message"
                 ).innerHTML = "Transaction Completed. Redirecting...";
-                fetch(`https://stayslayfashion.com/api/transaction/verify/${response.reference}`, {
+                fetch(`https://stayslayfashion.com/api/transaction/verify/${response.reference}/${user_id}`, {
                     method: "GET", headers: { 'Accept': 'application/json' },
                 }).then(res => res.json()).then(data => {
                     window.location.href="/order-history";

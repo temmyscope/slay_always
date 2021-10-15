@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\{
   Cart, Favorite, UserProfile, EditProfile, OrderHistory, NewsletterEditor,
-  Order, Invoice, Notification, Chat, Search, NewsletterList,
+  Order, Invoice, Notification, Chat, Search, NewsletterList,Contact,
   Home, AddProduct, ProductsList, Product, Users, BlogEditor, BlogPosts, 
-  Promotions, Coupons, Contact
+  Promotions, Settings
 };
 
 Route::prefix('admin')->group(function () {
@@ -20,8 +20,8 @@ Route::prefix('admin')->group(function () {
   Route::get('/invoice/{orderId}', Invoice::class)->name('invoice-template');
   Route::get('/chat/{id?}', Chat::class)->name('chat'); //if id is passed, the user chat will be in focus
   Route::get('/promotions/{id?}', Promotions::class)->name('promos');
-  Route::get('/coupons/{id?}', Coupons::class)->name('coupons');
   Route::get('/feedbacks', Contact::class)->name('contacts');
+  Route::get('/settings', Settings::class)->name('settings');
 
   //options on user cards will be updated to: email, cart, edit icons etc.
   Route::get('users', Users::class)->name('users');

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Pages;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\{ Auth, DB };
+use Illuminate\Support\Facades\{ DB };
 use Illuminate\Support\Str;
 use App\Models\{ Profile, Order, Promotion };
 
@@ -32,7 +32,9 @@ class Checkout extends Component
         );
         $this->creatingRecharge = false;
         if ($response['status'] === 'success') {
-
+            $user_id = auth()->user()->id();
+            curl("https://stayslayfashion.com/api/transaction/verify/$reference/{$user_id}")
+            ->setMethod('GET')->send();
         }
         return redirect()->to('/order-history');
     }
@@ -55,24 +57,26 @@ class Checkout extends Component
             'cart_id' => $id, 'txn_id' => $this->reference, 
             'total' => $this->cart->sub_total, 'status' => 'pending'
         ];
-        $promotion = Promotion::currentlyRunning();
         $total = $this->cart->sub_total;
-        if ( $promotion !== false) {
-            $order['coupon'] = $running->coupon;
-            /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
-            
-            $total = percentageDecrease($total, $running->dicount);
-        }
+        //search for taxes applicable in metadata table and aplly as necessary
         $metadata = DB::table('metadata')->whereNotNull('meta', 'vat')->first();
         $taxes = (empty($metadata)) ? ['vat' => 7.5] : json_decode($metadata->meta);
 
-        $orderMetaData = [];
+        $orderMetaData = [ 'paymentData' => [] ];
+        /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
         foreach ($taxes as $key => $amount) {
             $total = percentageIncrease($total, $amount);
             $orderMetaData['taxesApplied'][] = $key;
         }
         $order['metadata'] = json_encode($orderMetaData);
         $this->total = $order['total'] = $total;
+        //if promotion exists, apply necessary deductions
+        $promotion = Promotion::currentlyRunning();
+        if ( $promotion !== false) {
+            $order['coupon'] = $running->coupon;
+            
+            $total = percentageDecrease($total, $running->dicount);
+        }
         $this->orderId = Order::insertGetId($order);
     }
 

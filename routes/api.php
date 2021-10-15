@@ -13,22 +13,27 @@ use Illuminate\Support\Facades\{ Route, DB };
 |
 */
 
-Route::prefix('api')->post('/webhook', function (Request $request) {
-    //where webhook loads to
-    //DB::table('orders')->where('')
-    return;
+Route::prefix('api')->post('/paystack/webhook', function (Request $request) {
+    $input = @file_get_contents("php://input");
+    if($_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] !== hash_hmac('sha512', $input, env('PAYSTACK_SECRET_KEY'))){
+        exit();
+    }
+    DB::table('transaction_logs')->insert(['log' => $input]);
+    return response()->json(['status' => 200]);
 });
 
-Route::prefix('api')->post('/transaction/verify', function (Request $request) {
-    $response = paystackVerifyPayment($request->input('reference'));
+Route::prefix('api')->get('/transaction/verify/{ref}/{user_id}', function (Request $request, $ref, $user_id) {
+    $response = paystackVerifyPayment($ref);
     if ( isset($response['data']['status']) && strtolower($response['data']['status']) === 'success' ){
-        DB::table('orders')->where('')->update([
-            'status' => 'completed', 'metadata' => json_encode($response)
+        DB::table('orders')->where([[ 'txn_id', $ref ], [ 'user_id', $ref ]])->update([
+            'status' => 'completed', 'metadata->paymentData' => json_encode($response)
         ]);
         if (strtolower($response['data']['channel']) === 'card') {
-            $response['authorization']['authorization_code'];
+            DB::table('profile')->where('user_id', $user_id)->update([
+                'paystack_token' => $response['authorization']['authorization_code']
+            ]);
         }
-        return response()->json(['status' => 200, 'data' => $response ]);
+        return response()->json([ 'status' => 200, 'data' => $response ]);
     }
     return;
 });
