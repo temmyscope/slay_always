@@ -29,7 +29,7 @@
   /* background: -webkit-linear-gradient(#fff95b, #f88b06);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
-  color: #f1f1f1;
+  color: lightyellow;
   text-shadow: 2px 2px 4px #000000;
 }
 .overlay {
@@ -78,6 +78,78 @@
   /* display: flex; */
   color: #ffffff;
 }
+.con:hover .over {
+  width: 100%;
+}
+.over {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background-color: #008cba; */
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: 0.5s ease;
+}
+.over-display {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+.footer-gram {
+  font-size: 1.5rem;
+  color: #f1f1f1;
+}
+
+.foot-border {
+  border-top: 1px solid lightgray;
+}
+/* .slide {
+  display: none;
+} */
+/* #slid1 {
+  display: none;
+} */
+/* #slide1:checked ~ .slide1,
+#slide2:checked ~ .slide2,
+#slide3:checked ~ .slide3 {
+  display: block;
+} */
+/* .prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+} */
+
+/* Position the "next button" to the right */
+/* .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+} */
+/* .chev::after {
+  content: "\f054";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  color: #ff0000;
+} */
 
 @media screen and (max-width: 600px) {
   .fa-instagram {
@@ -85,6 +157,41 @@
   }
   .gram {
     font-size: 0.6rem;
+  }
+  .footer-accordion {
+    /* background-color: #eee; */
+    color: #ffffff;
+    cursor: pointer;
+    padding: 18px 0;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+
+  .footer-accordion:after {
+    content: "\002B";
+    color: #ffffff;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    font-size: 1.2rem;
+  }
+
+  .active:after {
+    content: "\2212";
+  }
+
+  .footer-panel {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  .borderr {
+    border-bottom: 1px solid #f1f1f1;
   }
 }
 
