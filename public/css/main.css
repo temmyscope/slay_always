@@ -75,7 +75,6 @@
   font-family: "Font Awesome 5 Free";
   font-weight: 600;
   font-size: 1rem;
-  /* display: flex; */
   color: #ffffff;
 }
 .con:hover .over {
@@ -86,7 +85,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  /* background-color: #008cba; */
   overflow: hidden;
   width: 0;
   height: 100%;
@@ -109,6 +107,9 @@
 
 .foot-border {
   border-top: 1px solid lightgray;
+}
+.filter {
+  display: none;
 }
 /* .slide {
   display: none;
@@ -159,7 +160,6 @@
     font-size: 0.6rem;
   }
   .footer-accordion {
-    /* background-color: #eee; */
     color: #ffffff;
     cursor: pointer;
     padding: 18px 0;
@@ -193,24 +193,12 @@
   .borderr {
     border-bottom: 1px solid #f1f1f1;
   }
-}
-
-/* @media screen and (max-width: 990px) {
-  .access::after {
-    content: "\f054";
+  .foot-border {
+    border-top: none;
   }
-  .menu-icon::before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 600;
-    font-size: 1.5rem;
-    content: "\f0c9";
-    color: #ffffff;
+  .filter {
+    border: 1px solid #333;
+    border-radius: 5px;
     display: flex;
-    padding-right: 7px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
   }
-  .close::before {
-    content: "\f00d";
-  }
-} */
+}
