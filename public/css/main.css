@@ -9,18 +9,19 @@
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1rem;
-  color: #000;
+  color: rgb(189, 185, 185);
   float: right;
   cursor: pointer;
 }
 
-.active::after {
+.chev::after {
   content: "\f078";
 }
 
-#panel {
+#side-panel {
   border-bottom: 2px solid lightgray;
 }
+
 .centered {
   position: absolute;
   top: 40%;
@@ -111,46 +112,6 @@
 .filter {
   display: none;
 }
-/* .slide {
-  display: none;
-} */
-/* #slid1 {
-  display: none;
-} */
-/* #slide1:checked ~ .slide1,
-#slide2:checked ~ .slide2,
-#slide3:checked ~ .slide3 {
-  display: block;
-} */
-/* .prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 40%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-} */
-
-/* Position the "next button" to the right */
-/* .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-} */
-/* .chev::after {
-  content: "\f054";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 600;
-  font-size: 1rem;
-  display: flex;
-  color: #ff0000;
-} */
 
 @media screen and (max-width: 600px) {
   .fa-instagram {
@@ -200,5 +161,18 @@
     border: 1px solid #333;
     border-radius: 5px;
     display: flex;
+  }
+  .side-nav {
+    max-width: 0;
+    overflow: hidden;
+    top: 8rem;
+    position: absolute;
+    background: #333;
+    color: #f1f1f1;
+    transition: width 0.2s ease-in;
+    /* transition-timing-function: ease-in-out; */
+  }
+  .fa-window-close {
+    font-size: 1.5rem;
   }
 }

@@ -91,32 +91,55 @@ showSlides();
 
 // accordion
 
-var acc = document.querySelectorAll(".accord");
-var i;
+// accordion for the side nav on shoes page
+const accs = document.querySelectorAll(".accord");
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === `none`) {
-      panel.style.display = `block`;
-    } else {
-      panel.style.display = `none`;
-    } 
-  });
-}
-
+accs.forEach(acc => {
+  acc.addEventListener("click", function() {
+    this.classList.toggle("chev");
+    let sidePanel = this.nextElementSibling;
+    sidePanel.style.display === `none` ? sidePanel.style.display = `block` : sidePanel.style.display = `none`;
+  })
+});
 
 
 // footer accordion
-const accordion = document.querySelectorAll(".footer-accordion");
-var i;
+const accordions = document.querySelectorAll(".footer-accordion");
 
-for (i = 0; i < accordion.length; i++) {
-  accordion[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling; 
+accordions.forEach(accordion => {
+  accordion.addEventListener('click', function() {
+    this.classList.toggle('active');
+    let panel = this.nextElementSibling;
     panel.style.maxHeight ? panel.style.maxHeight = null : panel.style.maxHeight = panel.scrollHeight + "px";
-  });
-}
+  })
+})
+
+// show sideNav
+const head = document.querySelector('#header')
+const filtered = document.querySelector('#filtered')
+const sideNav = document.querySelector('.side-nav')
+const close = document.querySelector('.close')
+
+filtered.style.backgroundColor = `#333333`
+filtered.style.color = `#ffffff`
+// close.style.color = `#ffff00`
+
+filtered.addEventListener('click', showSideNav=()=> {
+  if (sideNav.style.maxWidth) {
+    sideNav.style.maxWidth = null
+  } else {
+    sideNav.style.maxWidth = sideNav.scrollHeight + "vh"
+  }
+})
+
+close.addEventListener('click', CloseSideNav = ()=> {
+  sideNav.style.maxWidth = null
+})
+// document.body.addEventListener("click", function (e) {
+//     if (!e.path.includes(head)) {
+//       sideNav.style.maxHeight = null
+//     }
+//     console.log(12)
+//   })
+
 
