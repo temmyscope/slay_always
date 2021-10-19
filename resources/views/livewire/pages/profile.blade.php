@@ -1,33 +1,45 @@
-<div>
+@extends('layouts.app')
 
-    <div class="rating-container">
-        <div class="star-ratings">
-            <div class="stars stars-example-fontawesome-o">
-                <select id="u-rating-fontawesome-o" name="rating" data-current-rating="5.6" autocomplete="off">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <span class="title current-rating font-primary">Current rating: <span class="value digits"></span></span>
-                <span class="title your-rating font-primary hidden">
-                    Your rating: <span class="value digits"></span><a class="clear-rating" href="javascript:void(0)"><i class="fa fa-times-circle"></i></a>
-                </span>
-            </div>
-        </div>
-    </div>
+@section('title', 'Profile')
 
-    <script>
-    
-    </script>
+@push('scripts')
+<script type="text/javascript">
+    var config = {
+      apiKey: "AIzaSyC7iKRAAKkWmWsYSqeGfYSL4lo98FoC6U0",
+      authDomain: "bookevritin.firebaseapp.com",
+      databaseURL: "https://bookevritin.firebaseio.com",
+      projectId: "bookevritin",
+      storageBucket: "bookevritin.appspot.com",
+      messagingSenderId: "112016927417",
+      appId: "1:112016927417:web:8dfa9861edb6380fae0968"
+    };
+    firebase.initializeApp(config);
+    const messaging = firebase.messaging();
+    navigator.serviceWorker.register('/firebase-messaging-sw.js', {scope : '/'})
+    .then((registration)=>{messaging.useServiceWorker(registration);});
+    messaging.requestPermission().then(function(){
+        console.log('Notification permission granted.');
+        if(isTokenSentToServer()){ console.log('Token already saved'); }else{ getUserToken(); } 
+    }).catch(function(err){ console.log('Unable to get permission to notify.', err); });
+    function getUserToken(){
+        messaging.getToken().then(function(currentToken){
+          if(currentToken){ saveToken(currentToken); setTokenSentToServer(true);
+          }else{ console.log('No Instance ID token available. Request permission to generate one.'); setTokenSentToServer(false); }
+        }).catch(function(err){  console.log('An error occurred while retrieving token. ', err); setTokenSentToServer(false); });
+    }
+    function setTokenSentToServer(sent){
+      window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+    }
+    function isTokenSentToServer(){
+      return window.localStorage.getItem('sentToServer') === '1';
+    }
+    function saveToken(currentToken){
+      localStorage.setItem('pushToken', currentToken);
+    }
+    messaging.onMessage(function(payload){
+      var notification= new Notification(payload.data.title, {body: payload.data.body, icon: "/logo.png"});
+    });
+</script>
+@endpush
 
-    @push('scripts')
-    <script src="{{asset('assets/js/rating/rating-script.js')}}"></script>
-    @endpush
-</div>
+@section('content')

@@ -9,9 +9,9 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function images()
+    public function image()
     {
-        return $this->morphMany(Image::class, 'imageable');
+        return $this->morphOne(Image::class, 'imageable');
     }
 
 }

@@ -26,21 +26,21 @@ class Chat extends Component
     public function send()
     {
         ChatModel::insert([
-            'sender' => Auth::id(), 'recipient' => $this->recipient,
-            'msg' => $this->msg
+            'sender' => Auth::id(), 'recipient' => $this->recipient, 'msg' => $this->msg
         ]);
-    }
-
-    public function delete()
-    {
     }
 
     public function mount($id = null)
     {
         $this->recipient = $id;
-        $this->chatsHistory = ChatModel::with('profile')->take(5);
-        $this->chatInFocus = ChatModel::with('profile')
-        ->where('sender', $id)->orWhere('recipient', $id)->get();
+        $this->chatsHistory = ChatModel::with('user:name')->latest()->take(10);
+        $this->chatInFocus = ChatModel::with('user:name')
+        ->where([
+            [ 'sender', $id ],  [ 'recipient', auth()->user()->id ]
+        ])
+        ->orWhere([
+            [ 'sender', auth()->user()->id ], [ 'recipient', $id ]
+        ])->orderBy('created_at ASC')->get();
     }
 
     public function render()

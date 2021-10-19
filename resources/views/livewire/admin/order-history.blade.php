@@ -23,97 +23,43 @@
 	                                    <th scope="col">Order Ref.</th>
 	                                    <th scope="col">User</th>
 	                                    <th scope="col">Order status</th>
-	                                    <th scope="col">Units</th>
 	                                    <th scope="col">Price</th>
+	                                    <th scope="col">Action</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-	                                <tr>
-	                                    <td>
-	                                        <a href="/order/1">XY-3478-8790 </a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="/user/45">Elisha Temiloluwa</a>
-	                                        </div>
-	                                    </td>
-	                                    <td>
-																				<div class="order-process">
-																					<span class="order-process-circle"></span>Processing
-																				</div>
-																			</td>
-	                                    <td>42</td>
-	                                    <td>$55</td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="/order/1">XY-3478-8790 </a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="/user/45">Elisha Temiloluwa</a>
-	                                        </div>
-	                                    </td>
-	                                    <td>
-																				<div class="order-process">
-																					<span class="order-process-circle"></span>Processing
-																				</div>
-																			</td>
-	                                    <td>42</td>
-	                                    <td>$55</td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="/order/1">XY-3478-8790 </a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="/user/45">Elisha Temiloluwa</a>
-	                                        </div>
-	                                    </td>
-	                                    <td>
-																				<div class="order-process">
-																					<span class="order-process-circle"></span>Processing
-																				</div>
-																			</td>
-	                                    <td>42</td>
-	                                    <td>$55</td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="/order/1">XY-3478-8790 </a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="/user/45">Elisha Temiloluwa</a>
-	                                        </div>
-	                                    </td>
-	                                    <td>
-																				<div class="order-process">
-																					<span class="order-process-circle"></span>Processing
-																				</div>
-																			</td>
-	                                    <td>42</td>
-	                                    <td>$55</td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="/order/1">XY-3478-8790 </a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="/user/45">Elisha Temiloluwa</a>
-	                                        </div>
-	                                    </td>
-	                                    <td>
-																				<div class="order-process">
-																					<span class="order-process-circle"></span>Processing
-																				</div>
-																			</td>
-	                                    <td>42</td>
-	                                    <td>$55</td>
-	                                </tr>
-	                                
+																@forelse ($orders as $order)
+																<tr>
+																	<td>
+																			<a href="/order/{!! $order->id !!}">{!! $order->txn_id !!} </a>
+																	</td>
+																	<td>
+																			<div class="product-name">
+																					<a href="/user/{!! $order->user_id !!}">{!! $order->user->name !!}</a>
+																			</div>
+																	</td>
+																	<td>
+																		<div class="order-process">
+																			<span class="order-process-circle"></span>{!! $order->status !!}
+																		</div>
+																	</td>
+																	<td>{!! $order->total !!}</td>
+																	<td>
+																		<a class="badge badge-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="cancel order" href="#">
+																			<i data-feather="x-cancel"></i>
+																		</a>
+																		<a class="badge badge-secondary" data-bs-toggle="tooltip" 
+																			data-bs-placement="bottom" title="view order" href="/order/{!! $order->id !!}">
+																			<i data-feather="eye"></i>
+																		</a>
+																		<a class="badge badge-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="refund and cancel order" href="#">
+																			<i data-feather="refresh-ccw"></i>
+																		</a>
+																	</td>
+																</tr>
+																@empty
+																		
+																@endforelse
 	                            </tbody>
 	                        </table>
 	                    </div>

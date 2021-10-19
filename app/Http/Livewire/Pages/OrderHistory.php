@@ -8,6 +8,6 @@ class OrderHistory extends Component
 {
     public function render()
     {
-        return view('livewire.pages.order-history');
+        return view('livewire.pages.order-history')->extends('layouts.app');
     }
 }

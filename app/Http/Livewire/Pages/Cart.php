@@ -13,10 +13,7 @@ class Cart extends Component
 
     public function mount()
     {
-        if(!session()->has('visited')){
-            session('visited', true);
-            DB::table('metadata')->where('id', 1)->increment('meta->visits');
-        }
+        
     }
 
     public function render()
@@ -25,6 +22,6 @@ class Cart extends Component
             'cart' => UserCart::where([
                 'user_id' => auth()->user(), 'status' => 'active'
             ])->first()
-        ]);
+        ])->extends('layouts.app');
     }
 }

@@ -8,6 +8,6 @@ class Recent extends Component
 {
     public function render()
     {
-        return view('livewire.pages.recent');
+        return view('livewire.pages.recent')->extends('layouts.app');
     }
 }

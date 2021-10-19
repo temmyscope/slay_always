@@ -7,7 +7,7 @@
 
 @section('content')
 	
-	<div class="container-fluid" wire:poll.10000ms>
+	<div class="container-fluid">
 	    <div class="row">
 	        <div class="col call-chat-sidebar">
 	            <div class="card">
@@ -19,8 +19,8 @@
 	                                <img class="rounded-circle user-image" src="{{asset('assets/images/user/12.png')}}" alt="" />
 	                                <div class="media-body">
 	                                    <div class="about">
-	                                        <div class="name f-w-600">Mark Jecno</div>
-	                                        <div class="status">Status...</div>
+	                                        <div class="name f-w-600">{!! auth()->user()->name !!}</div>
+	                                        <div class="status">Admin</div>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -135,7 +135,8 @@
 	                </div>
 	            </div>
 	        </div>
-	        <div class="col call-chat-body">
+
+	        <div class="col call-chat-body"  wire:poll.10000ms>
 	            <div class="card">
 	                <div class="card-body p-0">
 	                    <div class="row chat-box">
@@ -153,7 +154,7 @@
 	                                    </div>
 	                                    <ul class="list-inline float-start float-sm-end chat-menu-icons">
 																			
-																				<form class="dropzone" id="singleFileUpload" action="/upload.php">
+																				<form class="dropzone" id="singleFileUpload">
 																					<div class="dz-message needsclick status digits">
 																						<i class="icon-camera"></i> Drop image here or click to upload
 																					</div>

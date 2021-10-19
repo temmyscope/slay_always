@@ -18,8 +18,9 @@ Route::prefix('api')->post('/paystack/webhook', function (Request $request) {
     if($_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] !== hash_hmac('sha512', $input, env('PAYSTACK_SECRET_KEY'))){
         exit();
     }
+    response()->json(['status' => 200]);
     DB::table('transaction_logs')->insert(['log' => $input]);
-    return response()->json(['status' => 200]);
+    return;
 });
 
 Route::prefix('api')->get('/transaction/verify/{ref}/{user_id}', function (Request $request, $ref, $user_id) {

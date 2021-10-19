@@ -3,25 +3,33 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\{
   Cart, Favorite, Recent, Profile, EditProfile, OrderHistory,
-  Order, Invoice, Notification, Chat, Search,
+  Order, Invoice, Notification, Chat, Search, Rating, Product, Category
 };
 
-Route::get('cart', Cart::class);
+Route::get('cart', Cart::class)->name('user-cart');
 
-Route::get('favorites', Favorite::class);
+Route::get('rate/{code}', Rating::class)->name('rate-orders');
 
-Route::get('recent', Recent::class);
+Route::get('favorites', Favorite::class)->name('user-favorites');
 
-Route::get('profile/me', Profile::class);
+Route::get('recent', Recent::class)->name('user-recent');
 
-Route::get('profile/edit', EditProfile::class);
+Route::get('categories/{category?}', Category::class)->name('categories');
 
-Route::get('order-history', OrderHistory::class);
+Route::get('search', Search::class)->name('search');
 
-Route::get('order/{id}', Order::class);
+Route::get('product/{id}', Product::class)->name('product');
 
-Route::get('invoice/{id}', Invoice::class);
+Route::get('profile/me', Profile::class)->name('user-profile');
 
-Route::get('notifications', Notification::class);
+Route::get('profile/edit', EditProfile::class)->name('edit-profile');
 
-Route::get('chat', Chat::class);
+Route::get('order-history', OrderHistory::class)->name('past-orders');
+
+Route::get('order/{id}', Order::class)->name('order');
+
+Route::get('invoice/{id}', Invoice::class)->name('invoice');
+
+Route::get('notifications', Notification::class)->name('notifications');
+
+Route::get('chat', Chat::class)->name('chat');

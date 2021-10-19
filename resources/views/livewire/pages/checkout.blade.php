@@ -25,10 +25,10 @@
     <script src="{{ asset('assets/js/tooltip-init.js')}}"></script>
     <script src="https://js.paystack.co/v2/inline.js"></script>
     <script>
-        var paymentForm = document.getElementById('paymentForm');
-        paymentForm.addEventListener('submit', payWithPaystack, false);
-        var user_id = {!! auth()->user()->id() !!};
-        function payWithPaystack() {
+    var paymentForm = document.getElementById('paymentForm');
+    paymentForm.addEventListener('submit', payWithPaystack, false);
+    var user_id = {!! auth()->user()->id() !!};
+    function payWithPaystack() {
         var handler = PaystackPop.setup({
             key: 'YOUR_PUBLIC_KEY', currency: 'NGN', ref: {!! $reference !!},
             email: {!! auth()->user()->email !!}, amount: {!! $total !!} * 100, //amount in kobo
@@ -50,7 +50,7 @@
             },
         });
         handler.openIframe();
-        }
+    }
     </script>
     @endpush
 @endsection

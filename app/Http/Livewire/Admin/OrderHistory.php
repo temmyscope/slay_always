@@ -11,20 +11,21 @@ class OrderHistory extends Component
 
     public function cancel($id)
     {
-        OrderModel::where('id', $id)->update([
-            'status' => 'canceled'
-        ]);
+        OrderModel::where('id', $id)->update(['status' => 'canceled']);
+    }
+
+    public function refund()
+    {
     }
 
     public function mount()
     {
-        $this->orders = Order::all();
     }
 
     public function render()
     {
         return view('livewire.admin.order-history', [
-            'orders' => $this->orders
+            'orders' => Order::with('user:name')->get()
         ])->extends('layouts.admin.master');
     }
 }
