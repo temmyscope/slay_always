@@ -78,9 +78,11 @@
   font-size: 1rem;
   color: #ffffff;
 }
+/*  */
 .con:hover .over {
   width: 100%;
 }
+
 .over {
   position: absolute;
   bottom: 0;
@@ -111,6 +113,19 @@
 }
 .filter {
   display: none;
+}
+
+.buttn-overlay {
+  bottom: 5%;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  transition: 0.5s ease;
+  opacity: 0;
+  font-size: 20px;
+}
+.shoe-container:hover .buttn-overlay {
+  opacity: 1;
 }
 
 @media screen and (max-width: 600px) {
@@ -169,7 +184,8 @@
     position: absolute;
     background: #333;
     color: #f1f1f1;
-    transition: width 0.2s ease-in;
+    transition: 0.5s ease;
+    z-index: 10;
     /* transition-timing-function: ease-in-out; */
   }
   .fa-window-close {

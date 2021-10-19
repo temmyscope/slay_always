@@ -142,4 +142,14 @@ close.addEventListener('click', CloseSideNav = ()=> {
 //     console.log(12)
 //   })
 
+// const image = document.querySelector('#images')
+// image.onmouseover = () => {
+
+// }
+// function changeImage(image) {
+//   image.src = "../assets/edited1.PNG"
+// }
+// function returnImage(image) {
+//   image.src = "../assets/slide4.PNG"
+// }
 
