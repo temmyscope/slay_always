@@ -16,6 +16,7 @@ class Settings extends Component
 
     public function render()
     {
+        //eg. Tax: VAT => value, shipping => value, etc.
         $this->settings = DB::table('metadata')->get();
         return view('livewire.admin.settings', [
             'settings' => $this->settings

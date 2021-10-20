@@ -1,3 +1,5 @@
-<div>
-    {{-- Stop trying to control. --}}
-</div>
+@section('title', 'Reset Password')
+
+@section('content')
+
+@endsection

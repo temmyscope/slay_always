@@ -38,11 +38,11 @@ var SweetAlert_custom = {
                 swal("Good job!", "You clicked the button!", "info");
         },  document.querySelector('.sweet-10').onclick = function(){
                 swal("Are you sure you want to do this?", {
-                    buttons: ["Oh noez!", "Aww yiss!"],
+                    buttons: ["Oh No!", "Yes!"],
                 });
         },  document.querySelector('.sweet-11').onclick = function(){
                 swal("Are you sure you want to do this?", {
-                    buttons: ["Oh noez!", "Aww yiss!"],
+                    buttons: ["Oh No!", "Yes!"],
                 });
         },  document.querySelector('.sweet-12').onclick = function(){
                 swal("A wild Pikachu appeared! What do you want to do?", {

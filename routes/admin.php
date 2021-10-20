@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\{
-  Cart, Favorite, UserProfile, EditProfile, OrderHistory, NewsletterEditor,
+  Cart, Favorite, EditProfile, OrderHistory, NewsletterEditor,
   Order, Invoice, Notification, Chat, Search, NewsletterList,Contact,
-  Home, AddProduct, ProductsList, Product, Users, BlogEditor, BlogPosts, 
-  Promotions, Settings
+  Home, AddProduct, ProductsList, Product, Users, BlogEditor, BlogPosts, Promotions, Settings
 };
 
 Route::prefix('admin')->group(function () {
@@ -26,7 +25,6 @@ Route::prefix('admin')->group(function () {
   //options on user cards will be updated to: email, cart, edit icons etc.
   Route::get('users', Users::class)->name('users');
   Route::get('users/cart/{user}', Cart::class)->name('cart');//view content of users cart
-  Route::get('users/edit-profile/{id}', UserProfile::class)->name('edit-profile');
 
   Route::get('/editor', NewsletterEditor::class)->name('editor');
   Route::get('/newsletter/editor', NewsletterEditor::class)->name('newsletter-editor');

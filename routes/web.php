@@ -23,17 +23,14 @@ Route::get('forgot-password', ForgotPassword::class)->name('forgot-password');
 
 Route::get('reset-password/{token}', ResetPassword::class)->name('reset-password');
 
-@include_once('customer.php');
-
-@include_once('admin.php');
-
-/*
 Route::group(['middleware' => 'auth'], function(){
+
+    Route::get('home', Home::class)->name('welcome');
 
     @include_once('customer.php');
 
     Route::middleware([EnsureUserIsAdmin::class])->group(function(){
-        @include_once('admin.php');
+        //@include_once('admin.php');
     });
 
 
@@ -43,4 +40,3 @@ Route::group(['middleware' => 'auth'], function(){
     })->name('logout');
 
 });
-*/

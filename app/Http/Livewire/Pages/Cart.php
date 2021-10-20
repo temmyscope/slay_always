@@ -20,7 +20,7 @@ class Cart extends Component
     {
         return view('livewire.pages.cart', [
             'cart' => UserCart::where([
-                'user_id' => auth()->user(), 'status' => 'active'
+                'user_id' => auth()->user(), 'ordered' => 'false'
             ])->first()
         ])->extends('layouts.app');
     }

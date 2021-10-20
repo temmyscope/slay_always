@@ -46,6 +46,11 @@
     <!-- Loader ends-->
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper modern-sidebar" id="pageWrapper">
+      <style>
+        div.customizer-links{
+          display:none;
+        }
+      </style>
       <!-- Page Header Start-->
       @includeIf('layouts.admin.partials.header')
       <!-- Page Header Ends -->
