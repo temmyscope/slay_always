@@ -19,6 +19,15 @@
       <h2 class="text-center mb-6 text-3xl font-medium">
         Reset Your Password
       </h2>
+
+      <p class="row text-center mt-3">
+        @if (session()->has('message'))
+            <div class="alert-success">
+                {!! session('email') !!}
+            </div>
+        @endif
+      </p>
+
       <p class="my-4 text-xl text-gray-400">
         We will send you an email to reset your password.
       </p>

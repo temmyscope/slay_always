@@ -17,7 +17,7 @@ class Register extends Component
         'lastname' => 'required|string',
         'email' => 'required|email|unique:users',
         'password' => 'required|min:8',
-        'confirm_pass' => 'required|same:password'
+        'password_confirmation' => 'required|same:password'
     ];
 
     public function save()
@@ -30,7 +30,7 @@ class Register extends Component
         $user->password = Hash::make($this->password);
         $user->acl = 'customer';
         if ($user->save()) {
-            session()->flash('message', 'Your account has been created successfully.');
+            session()->flash('message', 'Your account has been created successfully. Email Verification Link Sent.');
         }
     }
 

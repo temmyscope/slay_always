@@ -46,8 +46,8 @@
             <input type="password" id="pass" wire:model="password" id="" placeholder="password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
             @error('password') <span class="alert-danger">{{ $message }}</span> @enderror
 
-            <input type="password" id="confirmpass" wire:model="confirm_pass" id="" placeholder="confirm password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
-            @error('confirm_pass') <span class="alert-danger">{{ $message }}</span> @enderror
+            <input type="password" id="confirmpass" wire:model="password_confirmation" id="" placeholder="confirm password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
+            @error('password_confirmation') <span class="alert-danger">{{ $message }}</span> @enderror
             
             <span class="flex w-full">
                 <input type="checkbox" name="agree" id="agree" class="mr-1 inline-block relative top-2 w-4" checked disabled>

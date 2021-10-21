@@ -4,13 +4,16 @@ namespace App\Http\Livewire\Pages;
 
 use Livewire\{Component, WithFileUploads};
 use App\Models\{ Chat as ChatModel, Image };
+use App\Http\Livewire\Traits\Reusables;
 
 class Chat extends Component
 {
 
     public $recipient;
-    public string $image, $msg = '';
+    public string $msg = '';
     protected $chatsHistory, $chatInFocus;
+
+    use Reusables;
 
     protected function saveChat($msg=null): int | null
     {
@@ -23,10 +26,7 @@ class Chat extends Component
 
     public function saveImage()
     {
-        //5MB Max
-        $this->validate(['photo' => 'image|max:5024']);
-        $image = $this->image->store('photos');
-        $id = $this->saveChat(msg: "[!image: $image !]");
+        $this->saveChat(msg: "[!image: ".$this->upload()." !]");
     }
 
     public function send()
@@ -45,6 +45,7 @@ class Chat extends Component
 
     public function render()
     {
-        return view('livewire.pages.chat');
+        return view('livewire.pages.chat')
+        ->extends('layouts.app')->section('content');
     }
 }

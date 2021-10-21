@@ -20,10 +20,18 @@
         </h2>
 
         <p class="row text-center mt-3">
+          @if (session()->has('error'))
+            <div class="alert-danger">
+              {!! session('error') !!}
+            </div>
+          @endif
+        </p>
+
+        <p class="row text-center mt-3">
           @if (session()->has('message'))
-              <div class="alert-danger">
-                  {!! session('message') !!}
-              </div>
+            <div class="alert-success">
+                {!! session('message') !!}
+            </div>
           @endif
         </p>
 
@@ -31,6 +39,7 @@
           Not a memeber? 
           <a class="underline" href="{!! route('register') !!}">Join Us</a>
         </p>
+
         <input type="email" id="email" placeholder="email" wire:model="email" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
         @error('email') <span class="alert-danger">{{ $message }}</span> @enderror
 

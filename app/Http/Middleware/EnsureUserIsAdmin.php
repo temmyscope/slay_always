@@ -18,10 +18,10 @@ class EnsureUserIsAdmin
 
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->acl !== 'admin' ) {
-            return redirect('home');
+        if (Auth::user()->acl === 'admin' ) {
+            return $next($request);
         }
-        return $next($request);
+        return redirect('home');
     }
 
 }

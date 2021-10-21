@@ -21,16 +21,23 @@
       <!-- icons -->
       <div class="flex items-center lg:order-3 order-2 w-1/2 lg:w-iconW justify-end pb-1">
         <a href="{!! route('user-recent') !!}" class="p-1 lg:p-5">
+          @if ( $recentlyViewed && $recentlyViewed > 0 )
+            <span class="inline-flex absolute -right-3 lg:-right-1 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+              {!! $recentlyViewed !!}
+            </span>    
+          @endif
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8  stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" style="fill: #eb822a; " stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
           </svg>
         </a>
 
         <a href="{!! route('user-favorites') !!}" class="p-1 lg:p-5 relative">
-          <span class="inline-flex absolute -right-3 lg:-right-1 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
-            9
-          </span>
+          @if ( $favorites && $favorites > 0)
+            <span class="inline-flex absolute -right-3 lg:-right-1 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+              {!! $favorites !!}
+            </span>    
+          @endif
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8  stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
@@ -43,7 +50,11 @@
         </a>
       
         <a href="{!! route('user-cart') !!}" class="p-1 px-1 lg:p-5 relative">
-          <span class="inline-flex absolute -right-3 lg:-right-0 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">0</span>
+          @if ( $cartItemsCount && $cartItemsCount > 0)
+            <span class="inline-flex absolute -right-3 lg:-right-1 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+              {!! $cartItemsCount !!}
+            </span>    
+          @endif
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8  stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>

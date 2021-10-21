@@ -3,11 +3,34 @@
 namespace App\Http\Livewire\Pages;
 
 use Livewire\Component;
+use App\Models\Product as ProductModel;
+use Illuminate\Http\Request;
+use App\Http\Livewire\Traits\Reusables;
 
 class Recent extends Component
 {
+    protected ProductModel $products;
+
+    public function remove($productId)
+    {
+        $recent = session('recently-viewed');
+        foreach ($recent as $key => $value) {
+        if($value === $productId ){
+            unset($recent[$key]);
+        }
+        }
+        session()->put('recently-viewed', $recent);
+    }
+
     public function render()
     {
-        return view('livewire.pages.recent')->extends('layouts.app');
+        $recent = session('recently-viewed');
+        if (!empty($recent)) {
+            $this->products = ProductModel::whereIn('id', $recent)->get();
+        }
+        return view('livewire.pages.recent', [
+            'products' => $this->products ?? []
+        ])->extends('layouts.app')->section('content');
     }
+
 }

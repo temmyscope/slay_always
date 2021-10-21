@@ -20,11 +20,11 @@ Route::get('search', Search::class)->name('search');
 
 Route::get('product/{id}', Product::class)->name('product');
 
-Route::get('profile/me', Profile::class)->name('user-profile');
+Route::get('profile/me', Profile::class)->name('user-profile')->middleware('verified');
 
-Route::get('profile/edit', EditProfile::class)->name('edit-profile');
+Route::get('profile/edit', EditProfile::class)->name('edit-profile')->middleware('verified');
 
-Route::get('order-history', OrderHistory::class)->name('past-orders');
+Route::get('order-history', OrderHistory::class)->name('past-orders')->middleware('verified');
 
 Route::get('order/{id}', Order::class)->name('order');
 
@@ -32,4 +32,4 @@ Route::get('invoice/{id}', Invoice::class)->name('invoice');
 
 Route::get('notifications', Notification::class)->name('notifications');
 
-Route::get('chat', Chat::class)->name('chat');
+Route::get('chat', Chat::class)->name('chat')->middleware('verified');

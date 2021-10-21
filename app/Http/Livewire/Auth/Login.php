@@ -21,12 +21,12 @@ class Login extends Component
     {
         $credentials = $this->validate();
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember=true)) {
             $request->session()->regenerate();
 
             return redirect()->intended('home');
         }else{
-            $this->addError('message', 'An error occurred. Please try again later');
+            session()->flash('error', 'The provided credentials do not match our records.');
         }
     }
 
