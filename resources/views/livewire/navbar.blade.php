@@ -63,7 +63,7 @@
       </div>
     </div>
     <!-- end of Navbar -->
-
+    @if ( !str_contains( url()->current(), 'invoice' )  )
     <!-- slide text -->
     <div class="w-full h-14 bg-bgSec mt-2 border-t-2 border-gray-400">
       <div class="lg:w-navWidth w-full mx-auto">
@@ -90,6 +90,8 @@
 
       </div>
     </div>
+    @endif
+    
     <!--- End of slide --->
   </header>
 </div>

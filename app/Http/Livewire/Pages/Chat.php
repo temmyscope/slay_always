@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Livewire\Pages;
 
 use Livewire\{Component, WithFileUploads};
@@ -8,7 +7,6 @@ use StaySlay\Traits\Reusables;
 
 class Chat extends Component
 {
-
     public $recipient;
     public string $msg = '';
     protected $chatsHistory, $chatInFocus;

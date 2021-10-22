@@ -11,7 +11,6 @@ use StaySlay\Traits\Reusables;
 class Cart extends Component
 {
     protected $cart = [];
-    public bool $showCheckoutButton;
 
     use Reusables;
 
@@ -25,23 +24,13 @@ class Cart extends Component
                 'products' => $cartItems,
                 'paymentData' => []
             ];
-            Order::insert([
+            $orderId = Order::getInsertId([
                 'user_id' => auth()->user()->id, 
                 'metadata' => json_encode($metadata),
+                'total' => 0
             ]);
+            redirect()->to('checkout/'.$orderId);
         }
-    }
-
-    public function deleteFromCart($id)
-    {
-        $cartItems = session('user-cart');
-        foreach ($cartItems as $product => $qty) {
-            if($id === $product ){
-                unset($cartItems[$product]);
-                break;
-            }
-        }
-        session()->put('user-cart', $cartItems);
     }
 
     public function clearCart()
@@ -57,8 +46,6 @@ class Cart extends Component
         if (!empty($cartItems)) {
             $productIds = array_keys($cartItems);
             $products = Product::whereIn('id', $productIds)->get();
-        }else{
-            $this->showCheckoutButton = false;
         }
         return view('livewire.pages.cart', [
             'cart' => $products ?? []

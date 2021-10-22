@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\{ DB };
 use Illuminate\Support\Str;
 use App\Models\{ Profile, Order, Promotion };
+use StaySlay\Traits\Reusables;
 
 class Checkout extends Component
 {
@@ -17,6 +18,8 @@ class Checkout extends Component
     public string $reference; 
     public float $sub_total; //before tax and coupon
     public float $total; //after tax and coupon
+
+    use Reusables;
 
     //the recharge context mean that we're trying to use the paystack_token to charge a user
     public function createRecharge()
@@ -92,6 +95,7 @@ class Checkout extends Component
 
     public function render()
     {
-        return view('livewire.pages.checkout', [ 'cart' => $this->cart ])->extends('layouts.app');
+        return view('livewire.pages.checkout', [ 'cart' => $this->cart ])
+        ->extends('layouts.app')->section('content');
     }
 }

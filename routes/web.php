@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Livewire\Pages\Home;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\{ Auth };
 use App\Http\Middleware\EnsureUserIsAdmin;
-use App\Http\Livewire\Pages\Home;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Livewire\Auth\{
     Login, Register, ForgotPassword, ResetPassword, VerifyEmail
 };
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', Home::class)->name('welcome');
 
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Auth::logout();
 
-        $request->session()->invalidate();
+        //$request->session()->invalidate();
 
         $request->session()->regenerateToken();
 

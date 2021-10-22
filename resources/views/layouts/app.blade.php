@@ -47,7 +47,10 @@
 
     @livewireScripts
 
-  <!-- footer section -->
+    @if ( str_contains( url()->current(), 'invoice' )  )
+            
+    @else
+    <!-- footer section -->
     <footer class="bg-bgSec w-full text-white py-10">
       <div class="w-navWidth mx-auto flex justify-around flex-wrap">
         <div class="capitalize lg:order-1 order-2 w-full lg:w-auto borderr">
@@ -117,7 +120,7 @@
             </li>
           </ul>
         </div>
-
+        
         <div class="lg:w-2/6 lg:order-4 order-1 w-full lg:block flex flex-wrap">
           <label for="" class="order-2 lg:order-1 w-full my-3 font-bold">Sign up for discounts + updates</label>
           <div class="w-full flex border rounded-md border-gray-500  items-center bg-black text-black mt-3 mb-3 order-2">    
@@ -170,7 +173,8 @@
       </div>
     </footer>
     <!-- end of footer section -->
-    
+            
+    @endif
     
   </body>
   <script src="{!! asset('assets/script/main.js') !!}"></script>

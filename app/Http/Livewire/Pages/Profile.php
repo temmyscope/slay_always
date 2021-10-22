@@ -3,13 +3,12 @@
 namespace App\Http\Livewire\Pages;
 
 use Livewire\Component;
+use StaySlay\Traits\Reusables;
 
 class Profile extends Component
 {
-    public function upload()
-    {
-
-    }
+    
+    use Reusables;
 
     public function save()
     {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\{ DB };
 
 class Product extends Model
 {
@@ -12,6 +13,20 @@ class Product extends Model
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public static function search(string $search)
+    {
+        return Product::whereRaw("MATCH(tags, description) AGAINST(?)", [
+            $search 
+        ])->orWhereLike("name", "%$search%")->get();
+    }
+
+    public static function searchOne(string $search)
+    {
+        return Product::whereRaw("MATCH(tags, description) AGAINST(?)", [
+            $search 
+        ])->orWhereLike("name", "%$search%")->first();
     }
 
 }

@@ -28,6 +28,18 @@ trait Reusables{
     session()->put('user-cart', $cartItems);
   }
 
+  public function deleteFromCart($id)
+  {
+      $cartItems = session('user-cart');
+      foreach ($cartItems as $product => $qty) {
+          if($id === $product ){
+              unset($cartItems[$product]);
+              break;
+          }
+      }
+      session()->put('user-cart', $cartItems);
+  }
+
   public function addToFavorite($productId)
   {
     if (!Favorite::where([ 'user_id' => auth()->user()->id, 'product_id' => $productId ])->exists()) {
@@ -36,6 +48,7 @@ trait Reusables{
       ]);
     }
   }
+
   public function deleteFromFavorite($id)
   {
     FavoriteModel::where('product_id', $id)->where('user_id', auth()->user()->id)->delete();

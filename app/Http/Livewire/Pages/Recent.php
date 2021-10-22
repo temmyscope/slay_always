@@ -15,11 +15,16 @@ class Recent extends Component
     {
         $recent = session('recently-viewed');
         foreach ($recent as $key => $value) {
-        if($value === $productId ){
-            unset($recent[$key]);
-        }
+            if($value === $productId ){
+                unset($recent[$key]);
+            }
         }
         session()->put('recently-viewed', $recent);
+    }
+
+    public function clear()
+    {
+        session()->put('recently-viewed', []);
     }
 
     public function render()

@@ -44,11 +44,6 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'email_verified_at' => 'datetime',
     ];
 
-    public function recents()
-    {
-        return $this->hasMany(Recent::class);
-    }
-
     public function orders()
     {
         return $this->hasMany(Order::class);
@@ -57,6 +52,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 
     public function profile()

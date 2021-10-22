@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\{
   Cart, Favorite, Recent, Profile, EditProfile, OrderHistory,
-  Order, Invoice, Notification, Chat, Search, Rating, Product, Category
+  Invoice, Notification, Chat, Search, Rating, Product, Category, Checkout
 };
 
 Route::get('cart', Cart::class)->name('user-cart');
@@ -26,9 +26,9 @@ Route::get('profile/edit', EditProfile::class)->name('edit-profile')->middleware
 
 Route::get('order-history', OrderHistory::class)->name('past-orders')->middleware('verified');
 
-Route::get('order/{id}', Order::class)->name('order');
+Route::get('checkout/{id}', Checkout::class)->name('checkout');
 
-Route::get('invoice/{id}', Invoice::class)->name('invoice');
+Route::get('invoice/{txn_id}', Invoice::class)->name('invoice');
 
 Route::get('notifications', Notification::class)->name('notifications');
 

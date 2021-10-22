@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     use HasFactory;
+    
+    public function product()
+    {
+        $this->hasOne(Product::class);
+    }
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
 }
