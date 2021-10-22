@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use Livewire\{Component, WithFileUploads};
 use App\Models\{ Chat as ChatModel, Image };
-use App\Http\Livewire\Traits\Reusables;
+use StaySlay\Traits\Reusables;
 
 class Chat extends Component
 {

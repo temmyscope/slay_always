@@ -12,6 +12,7 @@ class Checkout extends Component
     //coupons and promotions must be applied at the point of checkout , not before
     public float $amount;
     public int $orderId;
+    public float $dicount;
     public bool $creatingRecharge = false;
     public string $reference; 
     public float $sub_total; //before tax and coupon
@@ -39,45 +40,54 @@ class Checkout extends Component
         return redirect()->to('/order-history');
     }
 
-    public function applyPromotions()
-    {
-        Order::insert([
-            'cart_id' => $id, 'txn_id' => $this->reference, 
-        ]);
-    }
-
     public function mount($id)
-    {
-        $this->cart = Cart::find($id);
+    {   
         $this->reference = Str::limit(Str::uuid(), 12) . Str::random(4);
-        if (!empty($this->cart)) {
-            
-        }
-        $order = [
-            'cart_id' => $id, 'txn_id' => $this->reference, 
-            'total' => $this->cart->sub_total, 'status' => 'pending'
-        ];
-        $total = $this->cart->sub_total;
-        //search for taxes applicable in metadata table and aplly as necessary
-        $metadata = DB::table('metadata')->whereNotNull('meta', 'vat')->first();
-        $taxes = (empty($metadata)) ? ['vat' => 7.5] : json_decode($metadata->meta);
+        $order = Order::where('id', $id)->where('user_id', auth()->user()->id)->first();
+        $order->txn_id = $this->reference;
+        $order->status = 'pending';
 
-        $orderMetaData = [ 'paymentData' => [] ];
-        /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
-        foreach ($taxes as $key => $amount) {
-            $total = percentageIncrease($total, $amount);
-            $orderMetaData['taxesApplied'][] = $key;
-        }
-        $order['metadata'] = json_encode($orderMetaData);
-        $this->total = $order['total'] = $total;
+        $productsMetaData = json_decode($order->metadata, true)['products'];
+        $products = Product::whereIn( 'id', array_keys($productsMetaData) )->get();
+    
+        $order->total = $products->sum(function ($product) use ($cartItems) {
+            //multiply price of each product with the qty available in the cart session
+            return $product->price * $cartItems[$product->id];
+        });
+        $productsDetails = [];
+        $products->each(function($item, $key) use ($productsDetails, $productsMetaData) {
+            $productsDetails[] = [
+                'name' => $item->name, 'price' => $item->price, 
+                'qty' => $productsMetaData[$item-id], 'metadata' => $item->metadata
+            ];
+        });
+        $metadata = [ 'products' => $productsDetails, 'paymentData' => [] ];
+
+        $total = $order->total;
+    
         //if promotion exists, apply necessary deductions
         $promotion = Promotion::currentlyRunning();
         if ( $promotion !== false) {
-            $order['coupon'] = $running->coupon;
-            
-            $total = percentageDecrease($total, $running->dicount);
+            $order->coupon = $promotion->coupon;
+            $total = percentageDecrease($total, $promotion->dicount);
         }
-        $this->orderId = Order::insertGetId($order);
+
+        //search for taxes applicable in metadata table and apply as necessary
+        $metadata = DB::table('metadata')->whereNotNull('taxes')->first();
+        $taxes = (empty($metadata)) ? ['vat' => 7.5] : json_decode($metadata->meta);
+
+        $orderMetaData = [];
+        /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
+        foreach ($taxes as $key => $amount) {
+            $total = percentageIncrease($total, $amount);
+            $orderMetaData['taxesApplied'][$key] = $amount;
+        }
+
+        $order->metadata = json_encode(
+            array_merge( json_decode($order->metadata, true), $orderMetaData )
+        );
+        $this->total = $order->total = $total;
+        $order->save();
     }
 
     public function render()

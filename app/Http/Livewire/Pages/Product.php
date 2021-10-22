@@ -19,7 +19,7 @@ class Product extends Component
         if ($request->session()->exists("recently-viewed")) {
             $request->session()->push('recently-viewed', $id);
         }else{
-            $request->session->put('recently-viewed', [ $id ]);
+            $request->session()->put('recently-viewed', [ $id ]);
         }
     }
 

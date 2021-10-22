@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\{ Cart, Favorite };
+use App\Models\{ Favorite };
 
 class Search extends Component
 {
@@ -17,9 +17,9 @@ class Search extends Component
 
     public function mount()
     {
-        $cartItemsCount = Cart::where(
-            'user_id', auth()->user()->id ?? null
-        )->where('ordered', 'false')->count();
+        $cartItems = session('user-cart');
+
+        $cartItemsCount = ( $cartItems && is_array($cartItems) ) ? count($cartItems) : 0;
 
         $favorites = Favorite::where(
             'user_id', auth()->user()->id ?? null
