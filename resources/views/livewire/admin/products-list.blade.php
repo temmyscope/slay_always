@@ -1,5 +1,3 @@
-@extends('layouts.admin.master')
-
 @section('title', 'Product List')
 
 @push('css')
@@ -8,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/rating.css')}}">
 @endpush
 
-@section('content')
+<div>
 	
 	<div class="container-fluid list-products">
 	    <div class="row">
@@ -167,13 +165,13 @@
 	    </div>
 	</div>
 
-	@push('scripts')
-	<script src="{{asset('assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/rating/jquery.barrating.js')}}"></script>
-    <script src="{{asset('assets/js/rating/rating-script.js')}}"></script>
-    <script src="{{asset('assets/js/owlcarousel/owl.carousel.js')}}"></script>
-    <script src="{{asset('assets/js/ecommerce.js')}}"></script>
-    <script src="{{asset('assets/js/product-list-custom.js')}}"></script>
-	@endpush
+</div>
 
-@endsection
+@push('scripts')
+<script src="{{asset('assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('assets/js/rating/jquery.barrating.js')}}"></script>
+	<script src="{{asset('assets/js/rating/rating-script.js')}}"></script>
+	<script src="{{asset('assets/js/owlcarousel/owl.carousel.js')}}"></script>
+	<script src="{{asset('assets/js/ecommerce.js')}}"></script>
+	<script src="{{asset('assets/js/product-list-custom.js')}}"></script>
+@endpush

@@ -1,8 +1,8 @@
 @section('title', 'Create Coupon')
 
 @push('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/dropzone.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/date-picker.css') }}">
 @endpush
 
 <div>	
@@ -14,7 +14,7 @@
                         <h5> Promotion </h5>
 
                         <div class="col ">
-                            <div class="text-end"><a class="btn btn-secondary me-3" wire:click="unhideForm" href="#">Create Promotion</a></div>
+                            <div class="text-end"><a class="btn btn-secondary me-3" wire:click="unhideForm">Create Promotion</a></div>
                         </div>
                     </div>
 
@@ -40,11 +40,13 @@
                         </div>
 
                         <div class="row">
-
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label>Available Dates</label>
-                                    <input class="datepicker-here form-control digits" type="text" data-range="true" data-multiple-dates-separator=" - " data-language="en" />
+                                    <input 
+                                        class="datepicker-here form-control digits" placeholder="E.g. 07/12/2021 - 08/01/2021"
+                                        type="text" data-range="true" data-multiple-dates-separator=" - " data-language="en" 
+                                    />
                                 </div>
                             </div>
 
@@ -88,15 +90,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($promotions as $promotion)
+                            @if(!$promotions->empty())
+                                @foreach ($promotions as $promotion)
+
                                 <tr>
                                     <td>
-                                        <a href="{!! route('promotion', [ 'id' => $promotion->id ]) !!}">{!! $promotion->coupon !!} </a>
+                                        <div class="product-name">
+                                        <a href="{!! route('promos', [ 'id' => $promotion->id ]) !!}">{!! $promotion->coupon !!} </a>
+                                        </div>
                                     </td>
                                     <td>
-                                        <div class="product-name">
-                                            <a href="{!! route('promotion', [ 'id' => $promotion->id ]) !!}">{!! $promotion->discount !!} </a>
-                                        </div>
+                                        {!! $promotion->discount !!}
                                     </td>
                                     <td>
                                         <div class="order-process">
@@ -109,18 +113,21 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a class="badge badge-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="cancel promotion" href="#">
-                                            <i data-feather="x-cancel"></i>
+                                        <a class="badge badge-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="delete coupon" href="#">
+                                            <i class="fa fa-trash" style="color: white"></i>
                                         </a>
                                         <a class="badge badge-secondary" data-bs-toggle="tooltip" 
-                                            data-bs-placement="bottom" title="edit promotion" href="/order/{!! $order->id !!}">
-                                            <i data-feather="pen"></i>
+                                            data-bs-placement="bottom" title="edit coupon" href="{!! route('promos', ['id' => $promotion->id ]) !!}">
+                                            <i class="fa fa-pencil" style="color: white"></i>
+                                        </a>
+                                        <a class="badge badge-secondary" data-bs-toggle="tooltip" 
+                                            data-bs-placement="bottom" title="stop promotion" href="">
+                                            <i class="fa fa-ban" style="color: white"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                @empty
-                                        
-                                @endforelse
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -133,8 +140,8 @@
 	</div>
 </div>
 
-	@push('scripts')
-	<script src="{{asset('assets/js/dropzone/dropzone.js')}}"></script>
-    <script src="{{asset('assets/js/dropzone/dropzone-script.js')}}"></script>
-	@endpush
-
+@push('scripts')
+<script src="{{ asset('assets/js/datepicker/date-picker/datepicker.js') }}"></script>
+<script src="{{ asset('assets/js/datepicker/date-picker/datepicker.en.js') }}"></script>
+<script src="{{ asset('assets/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
+@endpush

@@ -55,7 +55,6 @@ class Promotions extends Component
     }
     public function mount($id = null)
     {
-        $this->promotions = Promotion::all();
         if ( !is_null($id) && is_numeric($id)) {
             $promotion = Promotion::find($id);
             $this->fill([
@@ -68,8 +67,9 @@ class Promotions extends Component
     }
     public function render()
     {
+        $this->promotions = Promotion::all();
         return view('livewire.admin.promotions', [
             'promotions' => $this->promotions
-        ])->extends('layouts.admin.master');
+        ])->extends('layouts.admin.master')->section('content');
     }
 }

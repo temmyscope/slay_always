@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class ProductsList extends Component
 {
-    public array $products = [];
+    public $products = [];
     public $bin = [];
     public bool $binVisibility = false;
 
