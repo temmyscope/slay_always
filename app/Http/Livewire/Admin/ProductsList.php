@@ -16,14 +16,10 @@ class ProductsList extends Component
         Product::where('id', $id)->update(['deleted' => 'true']);
     }
 
-    public function mount()
+    public function render()
     {
         $this->products = Product::where('deleted', 'false')->get();
         $this->bin = Product::where('deleted', 'true')->get();
-    }
-
-    public function render()
-    {
         return view('livewire.admin.products-list', [
             'product' => $this->products, 'bin' => $this->bin
         ])->extends('layouts.admin.master');

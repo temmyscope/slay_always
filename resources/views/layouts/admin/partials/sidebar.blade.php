@@ -42,20 +42,6 @@
                             <li><a href="{{ route('productcreate') }}" class="{{routeActive('productcreate')}}">Add new Product</a></li>
                         </ul>
                     </li>
-
-                    <li class="sidebar-main-title">
-                        <div>
-                            <h6>Blog Section</h6>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a class="nav-link menu-title {{ prefixActive('/blog') }}" href="javascript:void(0)"><i data-feather="edit"></i><span>Blog</span></a>
-                        <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/blog') }};">
-                            <li><a href="{{ route('blog') }}" class="{{routeActive('blog')}}">Blog</a></li>
-                            <li><a href="{{ route('add-post') }}" class="{{routeActive('add-post')}}">Add Post</a></li>
-                        </ul>
-                    </li>
-
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
