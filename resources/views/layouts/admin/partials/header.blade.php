@@ -28,26 +28,12 @@
           <div class="notification-box"><i data-feather="bell"></i><span class="dot-animated"></span></div>
           <ul class="notification-dropdown onhover-show-div">
             <li>
-              <p class="f-w-700 mb-0">You have 3 Notifications<span class="pull-right badge badge-primary badge-pill">4</span></p>
-            </li>
-            <li class="noti-primary">
-              <div class="media"><span class="notification-bg bg-light-primary"><i data-feather="activity"> </i></span>
-                <div class="media-body">
-                  <p>Delivery processing </p><span>10 minutes ago</span>
-                </div>
-              </div>
+              <p class="f-w-700 mb-0">You have 2 Notifications<span class="pull-right badge badge-primary badge-pill">2</span></p>
             </li>
             <li class="noti-secondary">
               <div class="media"><span class="notification-bg bg-light-secondary"><i data-feather="check-circle"> </i></span>
                 <div class="media-body">
                   <p>Order Complete</p><span>1 hour ago</span>
-                </div>
-              </div>
-            </li>
-            <li class="noti-success">
-              <div class="media"><span class="notification-bg bg-light-success"><i data-feather="file-text"> </i></span>
-                <div class="media-body">
-                  <p>Tickets Generated</p><span>3 hour ago</span>
                 </div>
               </div>
             </li>
@@ -64,7 +50,9 @@
           <div class="mode"><i class="fa fa-moon-o"></i></div>
         </li>
         <li class="onhover-dropdown p-0">
-          <button class="btn btn-primary-light" type="button"><a href="login_two.html"><i data-feather="log-out"></i>Log out</a></button>
+          <button class="btn btn-primary-light" type="button">
+            <a href="{!! route('logout') !!}"><i data-feather="log-out"></i>Log out</a>
+          </button>
         </li>
       </ul>
     </div>
