@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\{
   Settings, Favorite, EditProfile, OrderHistory, NewsletterEditor,
   Order, Invoice, Notification, Chat, Search, NewsletterList,Contact,
-  Home, AddProduct, ProductsList, Product, Users, BlogEditor, BlogPosts, Promotions, 
+  Home, AddProduct, ProductsList, Product, Users, Promotions, 
 };
 
 Route::prefix('admin')->group(function () {
@@ -27,10 +27,6 @@ Route::prefix('admin')->group(function () {
 
   Route::get('/newsletter/editor/{user?}', NewsletterEditor::class)->name('editor');
   Route::get('/newsletters', NewsletterList::class)->name('newsletters');
-
-  Route::get('/blog/posts', BlogPosts::class)->name('blog');
-  //Route::view('blog/{id}', 'Blog::class)->name('blog-single');
-  Route::get('/blog/editor', BlogEditor::class)->name('add-post');
 
 });
 
