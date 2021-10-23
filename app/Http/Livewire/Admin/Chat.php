@@ -10,6 +10,7 @@ class Chat extends Component
 {
     use WithFileUploads;
 
+    public $userId;
     public $recipient;
     public string $image, $msg = '';
     protected $chatsHistory, $chatInFocus;
@@ -36,17 +37,17 @@ class Chat extends Component
     }
 
     public function mount($id = null)
-    {   
+    {
+        $this->userId = auth()->user()->id;
         $this->chatsHistory = ChatModel::with('user:id,name')->latest()->take(10)->get();
         $this->recipient = (!is_null($id)) ? $id : ($this->chatsHistory[0]->user->id ?? 0);
-
-        if ( !empty($this->chatsHistory) ) {
+        if ( !$this->chatsHistory->empty() ) {
             $this->chatInFocus = ChatModel::with('user:name')
             ->where([
                 [ 'sender', $id ],  [ 'recipient', auth()->user()->id ]
             ])->orWhere([
                 [ 'sender', auth()->user()->id ], [ 'recipient', $id ]
-            ])->orderBy('created_at ASC')->get();
+            ])->orderBy('created_at')->get();
             
         }
         

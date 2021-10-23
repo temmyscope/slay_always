@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\{ DB };
-use App\Models\Product;
+use App\Models\{Product, Favorite};
 
 class Home extends Component
 {
@@ -19,23 +19,25 @@ class Home extends Component
 
     public function render()
     {
-        $favorites = DB::table('favorites')->select('product_id', 'count(product_id) as freq')
-            ->groupBy('product_id')->orderBy('freq DESC')->take(6)->get();
-        $favoriteProducts = $favorites->map( fn($item, $key) => $item->id )->all();
-
+        $favorites = ((Favorite::selectRaw('count(id) AS frequency, product_id')
+        ->groupBy('product_id')->take(10)->get())?->sortByDesc('frequency'))->values()->all();
+        
+        $favoriteProducts = !empty($favorites) ? $favorites->map( fn($item, $key) => $item->id )->all() : [];
+        
         $tags = DB::table('metadata')->whereNotNull('meta->categories')->first();
-        $tagsArray = json_decode($tags->meta); //e.g. ['shoes', 'skirts'] etc.
-
+        
         $productPerCategory = [];
-        $index = 0;
-        foreach ($tagsArray as $key => $tag) {
-            if($index < 6){ 
-                $index += 1;
-                $productPerCategory[] = Product::with('image')->whereLike('tags', "%$tag%")->first();
+        if (!empty($tags)) {
+            $tagsArray = json_decode($tags->meta); //e.g. ['shoes', 'skirts'] etc.
+            $index = 0;
+            foreach ($tagsArray as $key => $tag) {
+                if($index < 6){ 
+                    $index += 1;
+                    $productPerCategory[] = Product::with('image')->whereLike('tags', "%$tag%")->first();
+                }
+                break;
             }
-            break;
         }
-
         return view('livewire.pages.home', [
             'popular' => Product::whereIn(
                 'id', array_values($favoriteProducts)

@@ -13,8 +13,8 @@ trait Reusables{
 
   public function upload(): string
   {
-    $this->validate(['photo' => 'image|max:5096']);//5MB Max
-    return $this->image->store('photos');
+    $this->validate(['image' => 'image|max:5096']);//5MB Max
+    return $this->image->store(env('APP_CDN'));
   }
   
   public function addToCart($id, $qty=1)

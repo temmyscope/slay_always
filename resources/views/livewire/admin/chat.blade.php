@@ -16,7 +16,7 @@
 	                        <!-- Chat left side Start-->
 	                        <div class="chat-left-aside">
 	                            <div class="media">
-	                                <img class="rounded-circle user-image" src="{{asset('assets/images/user/12.png')}}" alt="" />
+	                                <img class="rounded-circle user-image" src="{!! asset('assets/images/dashboard/1.png') !!}" alt="" />
 	                                <div class="media-body">
 	                                    <div class="about">
 	                                        <div class="name f-w-600">{!! auth()->user()->name !!}</div>
@@ -31,102 +31,21 @@
 	                                    </form>
 	                                </div>
 	                                <ul class="list custom-scrollbar">
-	                                    <li class="clearfix">
-	                                        <div class="media">
-	                                            <img class="rounded-circle user-image" src="{{asset('assets/images/user/1.jpg')}}" alt="" />
-	                                            <div class="status-circle away"></div>
-	                                            <div class="media-body">
-	                                                <div class="about">
-	                                                    <div class="name">Vincent Porter</div>
-	                                                    <div class="status">Hello Name</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                    <li class="clearfix">
-	                                        <div class="media">
-	                                            <img class="rounded-circle user-image" src="{{asset('assets/images/user/2.png')}}" alt="" />
-	                                            <div class="status-circle online"></div>
-	                                            <div class="media-body">
-	                                                <div class="about">
-	                                                    <div class="name">Aiden Chavez</div>
-	                                                    <div class="status">Out is my favorite.</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                    <li class="clearfix">
-	                                        <div class="media">
-	                                            <img class="rounded-circle user-image" src="{{asset('assets/images/user/8.jpg')}}" alt="" />
-	                                            <div class="status-circle online"></div>
-	                                            <div class="media-body">
-	                                                <div class="about">
-	                                                    <div class="name">Prasanth Anand</div>
-	                                                    <div class="status">Change for anyone.</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                    <li class="clearfix">
-	                                        <div class="media">
-	                                            <img class="rounded-circle user-image" src="{{asset('assets/images/user/4.jpg')}}" alt="" />
-	                                            <div class="status-circle offline"></div>
-	                                            <div class="media-body">
-	                                                <div class="about">
-	                                                    <div class="name">Venkata Satyamu</div>
-	                                                    <div class="status">First bun like a sun.</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                    <li class="clearfix">
-	                                        <div class="media">
-	                                            <img class="rounded-circle user-image" src="{{asset('assets/images/user/5.jpg')}}" alt="" />
-	                                            <div class="status-circle online"></div>
-	                                            <div class="media-body">
-	                                                <div class="about">
-	                                                    <div class="name">Ginger Johnston</div>
-	                                                    <div class="status">it's my life. Mind it.</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                    <li class="clearfix">
-	                                        <div class="media">
-	                                            <img class="rounded-circle user-image" src="{{asset('assets/images/user/8.jpg')}}" alt="" />
-	                                            <div class="status-circle offline"></div>
-	                                            <div class="media-body">
-	                                                <div class="about">
-	                                                    <div class="name">Kori Thomas</div>
-	                                                    <div class="status">Change for anyone.</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                    <li class="clearfix">
-	                                        <div class="media">
-	                                            <img class="rounded-circle user-image" src="{{asset('assets/images/user/1.jpg')}}" alt="" />
-	                                            <div class="status-circle online"></div>
-	                                            <div class="media-body">
-	                                                <div class="about">
-	                                                    <div class="name">Vincent Porter</div>
-	                                                    <div class="status">Hello Name</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                    <li class="clearfix">
-	                                        <div class="media">
-	                                            <img class="rounded-circle user-image" src="{{asset('assets/images/user/8.jpg')}}" alt="" />
-	                                            <div class="status-circle online"></div>
-	                                            <div class="media-body">
-	                                                <div class="about">
-	                                                    <div class="name">Kori Thomas</div>
-	                                                    <div class="status">Change for anyone.</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </li>
+																		@forelse ($chatsHistory as $chat)
+																		<li class="clearfix">
+																			<div class="media">
+																				<img class="rounded-circle user-image" src="{!! asset('assets/images/user/1.jpg') !!}" alt="" />
+																				<div class="media-body">
+																					<div class="about">
+																						<div class="name">{!! $chat->user->name !!}</div>
+																					</div>
+																				</div>
+																			</div>
+																		</li>
+																		@empty
+																				
+																		@endforelse
+	                                    
 	                                </ul>
 	                            </div>
 	                        </div>
@@ -146,49 +65,43 @@
 	                            <div class="chat">
 	                                <!-- chat-header start-->
 	                                <div class="media chat-header clearfix">
+																			@if (!$chatsHistory->empty())
 	                                    <div class="media-body">
-	                                        <div class="about">
-	                                            <div class="name">Kori Thomas <span class="font-primary f-12">Typing...</span></div>
-	                                            <div class="status digits">Last Seen 3:55 PM</div>
-	                                        </div>
+																				<div class="about">
+																					<div class="name">{!! $chatsHistory->user->name !!}</div>
+																				</div>
 	                                    </div>
-	                                    <ul class="list-inline float-start float-sm-end chat-menu-icons">
-																			
-																				<form class="dropzone" id="singleFileUpload">
-																					<div class="dz-message needsclick status digits">
-																						<i class="icon-camera"></i> Drop image here or click to upload
-																					</div>
-																				</form>
-	                                    </ul>
+																			@else
+																			<div class="media-body">
+																				<div class="about">
+																					<div class="name">{!! auth()->user()->name !!}</div>
+																				</div>
+	                                    </div>
+																			@endif
+
 	                                </div>
 	                                <!-- chat-header end-->
 	                                <div class="chat-history chat-msg-box custom-scrollbar">
 	                                    <ul>
-	                                        <li>
-	                                            <div class="message my-message">
-	                                                Are we meeting today? Project has been already finished and I have results to show you.
-	                                                <div class="message-data text-end"><span class="message-data-time">10:12 am</span></div>
-	                                            </div>
-	                                        </li>
-	                                        <li class="clearfix">
-	                                            <div class="message other-message pull-right">
-	                                                Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so?
-	                                                <div class="message-data"><span class="message-data-time">10:14 am</span></div>
-	                                            </div>
-	                                        </li>
-	                                        <li class="clearfix">
-	                                            <div class="message other-message pull-right">
-	                                                Well I am not sure. The rest of the team
-	                                                <div class="message-data"><span class="message-data-time">10:14 am</span></div>
-	                                            </div>
-	                                        </li>
-	                                        <li>
-	                                            <div class="message my-message mb-0">
-	                                                Actually everything was fine. I'm very excited to show this to our team.
-                                                    <div class="message-data text-end"><span class="message-data-time">10:20 am</span></div>
-	                                               
-	                                            </div>
-	                                        </li>
+																				@if (!is_null($chatInFocus) && !$chatInFocus->empty())
+																					@foreach ($chatInFocus as $chat)
+																						@if ($chat->sender == $userId)
+																						<li class="clearfix">
+																							<div class="message other-message pull-right">
+																								{!! $chat->msg !!}
+																								<div class="message-data text-end"><span class="message-data-time">{!! $chat->created_at !!}</span></div>
+																							</div>
+																						</li>
+																						@else
+																						<li>
+																							<div class="message my-message">
+																									{!! $chat->msg !!}
+																									<div class="message-data text-end"><span class="message-data-time">{!! $chat->created_at !!}</span></div>
+																							</div>
+																						</li>
+																						@endif
+																					@endforeach
+																				@endif
 	                                    </ul>
 	                                </div>
 	                                <!-- end chat-history-->
@@ -196,11 +109,11 @@
 	                                    <div class="row">
 	                                        <div class="col-xl-12 d-flex">
 	                                            <div class="smiley-box bg-primary">
-	                                                <div class="picker"><img src="{{asset('assets/images/smiley.png')}}" alt="" /></div>
+																									<i class="icon-camera"></i>
 	                                            </div>
 	                                            <div class="input-group text-box">
-	                                                <input class="form-control input-txt-bx" id="message-to-send" type="text" name="message-to-send" placeholder="Type a message......" />
-	                                                <button class="btn btn-primary input-group-text" type="button">SEND</button>
+	                                                <input class="form-control input-txt-bx" id="message-to-send" type="text" name="message-to-send" autofocus placeholder="Type a message......" />
+	                                                <button class="btn btn-primary input-group-text" wire:click="" type="button">SEND</button>
 	                                            </div>
 	                                        </div>
 	                                    </div>

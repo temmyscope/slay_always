@@ -16,7 +16,7 @@ class Promotions extends Component
     public string $dateRange;
 
     public bool $formVisibility = false;
-    protected ?array $promotions = [];
+    protected $promotions;
     protected $rules = [
         'code' => 'required|min:6',
         'discount' => 'required|num',
@@ -56,12 +56,12 @@ class Promotions extends Component
     public function mount($id = null)
     {
         $this->promotions = Promotion::all();
-        if (is_numeric($id)) {
+        if ( !is_null($id) && is_numeric($id)) {
             $promotion = Promotion::find($id);
             $this->fill([
                 'promotionId' => $promotion->id, 'name' => $promotion->metadata->name,
                 'discount' => $promotion->discount, 'description' => $promotion->metadata->description,
-                'maxUsers' => $promotion->max_users, 
+                'maxUsers' => $promotion->max_users, 'formVisibility' => true,
                 'dateRange' => $promotion->start_date." - ".$promotion->end_date
             ]);
         }

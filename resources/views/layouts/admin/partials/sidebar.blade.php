@@ -26,10 +26,7 @@
                         <li><a href="{{ route('chat') }}" class="{{routeActive('chat')}}">Chats</a></li>
                         <li><a href="{{ route('orders') }}" class="{{routeActive('orders')}}">Orders</a></li>
                         <li><a href="{{ route('promos') }}" class="{{routeActive('promotions')}}">Promotions</a></li>
-                        <li><a href="{{ route('editor') }}" class="{{routeActive('editor')}}">MarkDown editor</a></li>
-                        <li>
-                            <a href="{{ route('newsletter-editor') }}" class="{{routeActive('newsletter-editor')}}">Newsletter editor</a>
-                        </li>
+                        <li><a href="{{ route('editor') }}" class="{{routeActive('editor')}}">Newsletter editor</a></li>
                         </ul>
                     </li>
 

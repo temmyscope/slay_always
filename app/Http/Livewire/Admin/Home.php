@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\{ Auth, DB };
-use App\Models\{ Order, User, Product, Favorite, Cart };
+use App\Models\{ Order, User, Product, Favorite };
 
 class Home extends Component
 {
@@ -21,9 +21,10 @@ class Home extends Component
             'products' => Product::count(),
             'pageVisitors'=> DB::table('metadata')->select('meta')->first(), 
             'orderList' => Order::where('status', 'completed')->latest()->take(6), 
-            'mostLiked' => Favorite::select('product_id, count(id) as likes')
-            ->with('product:name,image')->groupBy('product_id')->orderBy('likes')->take(3),
-            'users' => User::count(), 'carts' => Cart::count()
+            'mostLiked' => ((Favorite::selectRaw('count(id) as likes, product_id')
+            ->with('product:name,image')->groupBy('product_id')->take(8)->get())
+            ?->sortByDesc('likes'))?->values()->all(),
+            'users' => User::count(),
         ])->extends('layouts.admin.master');
     }
 }

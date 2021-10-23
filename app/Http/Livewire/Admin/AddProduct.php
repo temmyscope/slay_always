@@ -4,22 +4,21 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\{Component, WithFileUploads};
 use App\Models\{Product as ProductModel, Image };
+use StaySlay\Traits\Reusables;
 
 class AddProduct extends Component
 {
-
-    use WithFileUploads;
     
     public string $name;
     public string $description;
-    public $image;
     public float $price;
     public string $tags;
+
+    use Reusables;
  
     protected $rules = [
         'name' => 'required|min:6',
         'description' => 'required',
-        'image' => 'image|max:5098',
         'price' => 'required|numeric',
         'tags' => 'required|string'
     ];
@@ -38,7 +37,7 @@ class AddProduct extends Component
         ]);
 
         Image::insert([
-            'imageabletype'=> 'product', 'imageableid' => $id,
+            'imageabletype'=> 'product', 'imageableid' => $id, 'url' => $this->image
         ]);
     }
 

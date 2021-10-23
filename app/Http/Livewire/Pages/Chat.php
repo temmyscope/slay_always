@@ -38,7 +38,7 @@ class Chat extends Component
         $this->chatInFocus = ChatModel::with('user:name')
         ->where('recipient', auth()->user()->id )
         ->orWhere('sender', auth()->user()->id)
-        ->orderBy('created_at ASC')->get();
+        ->orderBy('created_at')->get();
     }
 
     public function render()

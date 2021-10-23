@@ -122,11 +122,6 @@
                 </div>
 
                 <div class="transaction-totalbal">
-                  <h2>{!! $carts !!}</h2>
-                  <p>Total Carts</p>
-                </div>
-
-                <div class="transaction-totalbal">
                   <h2>{!! $users !!}</h2>
                   <p>Registered Users</p>
                 </div>
