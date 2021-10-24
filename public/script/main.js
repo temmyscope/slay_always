@@ -115,32 +115,23 @@ accordions.forEach(accordion => {
 })
 
 // show sideNav
-const head = document.querySelector('#header')
-const filtered = document.querySelector('#filtered')
+let filter = document.querySelector('#filtered')
 const sideNav = document.querySelector('.side-nav')
 const close = document.querySelector('.close')
 
-filtered.style.backgroundColor = `#333333`
-filtered.style.color = `#ffffff`
-// close.style.color = `#ffff00`
 
-filtered.addEventListener('click', showSideNav=()=> {
-  if (sideNav.style.maxWidth) {
-    sideNav.style.maxWidth = null
-  } else {
-    sideNav.style.maxWidth = sideNav.scrollHeight + "vh"
-  }
-})
+// filter.addEventListener("click", showSideNav =()=>{
+//   if (sideNav.style.maxWidth) {
+//     sideNav.style.maxWidth = "none"
+//   } else {
+//     sideNav.style.maxWidth = sideNav.scrollHeight + "vh"
+//   }
+// })
 
-close.addEventListener('click', CloseSideNav = ()=> {
-  sideNav.style.maxWidth = null
-})
-// document.body.addEventListener("click", function (e) {
-//     if (!e.path.includes(head)) {
-//       sideNav.style.maxHeight = null
-//     }
-//     console.log(12)
-//   })
+// close.addEventListener('click', CloseSideNav = ()=> {
+//   sideNav.style.maxWidth = "none"
+// })
+
 
 // const image = document.querySelector('#images')
 // image.onmouseover = () => {
@@ -153,3 +144,43 @@ close.addEventListener('click', CloseSideNav = ()=> {
 //   image.src = "../assets/slide4.PNG"
 // }
 
+
+// modal for size guide
+const modal = document.querySelector("#myModal");
+const openModal = document.querySelector("#openModal");
+const closeModal = document.querySelector("#close-modal");
+
+openModal.onclick = function() {
+  modal.style.display = "flex";
+}
+closeModal.onclick = function() {
+  modal.style.display = "none";
+}
+
+document.body.onclick = function(e) {
+  e.target === modal ? modal.style.display = "none" : ''
+}
+
+// product accordion
+
+const product = document.querySelector('.product')
+
+product.addEventListener('click', function(){
+  this.classList.toggle("prod");
+  let productDetails = this.nextElementSibling;
+  productDetails.style.display === 'none' ? productDetails.style.display = 'block' : productDetails.style.display = 'none'
+})
+
+const shippings = document.querySelectorAll(".shipping")
+
+shippings.forEach(shipping => {
+  shipping.addEventListener('click', function(){
+    this.classList.toggle("shipping-active");
+    let shippingDetails = this.nextElementSibling;
+    shippingDetails.style.display === 'block' ? shippingDetails.style.display = 'none' : shippingDetails.style.display = 'block'
+  })
+});
+
+// function fillHeart(heart) {
+//   heart.classList.toggle(" fa-heart")
+// }

@@ -82,6 +82,42 @@
 .con:hover .over {
   width: 100%;
 }
+.product:after {
+  content: "\f067";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333333;
+  float: right;
+  cursor: pointer;
+}
+.prod::after {
+  content: "\f068";
+}
+.shipping::after {
+  content: "\f068";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333333;
+  float: right;
+  cursor: pointer;
+}
+.shipping-active::after {
+  content: "\f067";
+}
+/* .heart::after {
+  content: "\f004";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333333;
+  float: right;
+  cursor: pointer;
+}
+.heart-active::after {
+  content: "\f004";
+} */
 
 .over {
   position: absolute;
@@ -126,6 +162,16 @@
 }
 .shoe-container:hover .buttn-overlay {
   opacity: 1;
+}
+
+.modal {
+  display: none;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.checked {
+  color: aqua;
 }
 
 @media screen and (max-width: 600px) {
