@@ -10,11 +10,26 @@ trait Reusables{
   use WithFileUploads;
 
   public $image;
+  public $images;
 
   public function upload(): string
   {
-    $this->validate(['image' => 'image|max:5096']);//5MB Max
-    return $this->image->store(env('APP_CDN'));
+    $this->validate([
+      'image' => 'image|max:5096'
+    ]); //5MB Max
+    return $this->image->store('images');
+  }
+
+  public function uploadMany(): array
+  {
+    $this->validate([
+      'images.*' => 'image|max:5096'
+    ]); //5MB Max
+    $arrayOfPaths = [];
+    foreach ($this->images as $image) {
+      $arrayOfPaths[] = $image->store('images');
+    }
+    return $arrayOfPaths;
   }
   
   public function addToCart($id, $qty=1)

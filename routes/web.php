@@ -12,7 +12,11 @@ use App\Http\Livewire\Auth\{
 
 Route::get('/', Home::class)->name('welcome');
 
-Route::view('about-us', 'about')->name('faqs');
+Route::view('about-us', 'about')->name('about-us');
+
+Route::view('terms', 'terms')->name('terms');
+
+Route::view('privacy', 'privacy-policy')->name('privacy');
 
 Route::get('login', Login::class)->name('login');
 

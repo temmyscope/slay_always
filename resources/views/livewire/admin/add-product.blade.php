@@ -1,14 +1,12 @@
-@extends('layouts.admin.master')
-
 @section('title', 'Product Create')
 
 @push('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/dropzone.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/dropzone.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/sweetalert2.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.css') }}">
 @endpush
 
-@section('content')
-	
+<div>
 	<div class="container-fluid">
 	    <div class="row">
 	        <div class="col-sm-12">
@@ -27,7 +25,7 @@
 													</div>
 													<div class="col-sm-4">
 														<div class="mb-3">
-															<label>Product Price(#)</label>
+															<label>Product Price(₦)</label>
 															<input wire:model="price" class="form-control" type="text" placeholder="Enter product Price" />
 														</div>
 													</div>
@@ -38,6 +36,56 @@
 														</div>
 													</div>
 												</div>
+												<div class="row">
+
+													<div class="col-sm-6">
+
+														<div class="mb-3">
+															<label>Available Colors</label>
+															<select wire:model="colors" class="js-example-basic-multiple col-sm-12" multiple="multiple">
+																<option value="AL">Alabama</option>
+																<option value="WY">Wyoming</option>
+																<option value="WY">Coming</option>
+																<option value="WY">Hanry Die</option>
+																<option value="WY">John Doe</option>
+															</select>
+														</div>
+
+													</div>
+
+													<div class="col-sm-6">
+
+														<div class="mb-3">
+															<label>Available Sizes</label>
+															<select wire:model="price" class="js-example-basic-multiple col-sm-12" multiple="multiple">
+																<option value="AL">Alabama</option>
+																<option value="WY">Wyoming</option>
+																<option value="WY">Coming</option>
+																<option value="WY">Hanry Die</option>
+																<option value="WY">John Doe</option>
+															</select>
+														</div>
+														
+													</div>
+													
+
+												</div>
+
+												<div class="row">
+
+													<div class="col">
+														<div class="mb-3">
+															<label>Category/Tags</label>
+															<select class="js-example-basic-multiple col-sm-12" multiple="multiple">
+																<option wire:keydown="add('tags', 'Alabama')" value="AL">Alabama</option>
+																<option wire:keydown="add('tags', 'Wyoming')" value="WY">Wyoming</option>
+																<option wire:keydown="add('tags', 'Coming')" value="WY">Coming</option>
+															</select>
+														</div>
+													</div>
+
+												</div>
+
 												<div class="row">
 													<div class="col">
 														<div class="mb-3">
@@ -50,13 +98,14 @@
 													<div class="col">
 														<div class="mb-3">
 															<label>Upload product images</label>
-															<form class="dropzone" id="singleFileUpload" action="/upload.php">
-																<div class="dz-message needsclick">
-																	<i class="icon-cloud-up"></i>
-																	<h6>Drop files here or click to upload.</h6>
-																	<span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
-																</div>
-															</form>
+															<div class="dropzone dz-message needsclick" 
+																style="display:flex;justify-content:center;align-items:stretch;"
+															>
+																<h6>Drop files here or click to upload.</h6>
+																<input type="file" wire:model="photo" multiple />
+																@error('photos.*') <span class="error">{{ $message }}</span> @enderror
+															</div>
+
 														</div>
 													</div>
 												</div>
@@ -66,7 +115,7 @@
 																	<button class="btn btn-secondary me-3 sweet-8"  onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-8']);">
 																		Add
 																	</button>
-																	<a class="btn btn-danger" href="#">Cancel</a>
+																	<a class="btn btn-danger">Cancel</a>
 																</div>
 														</div>
 												</div>
@@ -78,12 +127,21 @@
 	    </div>
 	</div>
 
-	
-	@push('scripts')
-		<script src="{{asset('assets/js/dropzone/dropzone.js')}}"></script>
-    <script src="{{asset('assets/js/dropzone/dropzone-script.js')}}"></script>
-		<script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
-		<script src="{{asset('assets/js/sweet-alert/app.js')}}"></script>
-	@endpush
+	<script>
+		document.addEventListener('livewire:load', function () {
+			console.log({!! $tags !!});
+		})
+	</script>
 
-@endsection
+</div>	
+
+
+
+@push('scripts')
+	<script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+	<script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script>
+	<script src="{{asset('assets/js/dropzone/dropzone.js')}}"></script>
+	<script src="{{asset('assets/js/dropzone/dropzone-script.js')}}"></script>
+	<script src="{{asset('assets/js/sweet-alert/sweetalert.min.js')}}"></script>
+	<script src="{{asset('assets/js/sweet-alert/app.js')}}"></script>
+@endpush

@@ -37,6 +37,7 @@ class Product extends Component
 
     public function render()
     {
+        //₦
         return view('livewire.pages.product', [
             'product' => $this->product
         ])->extends('layouts.app')->section('content');

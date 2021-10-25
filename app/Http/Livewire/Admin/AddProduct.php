@@ -8,11 +8,11 @@ use StaySlay\Traits\Reusables;
 
 class AddProduct extends Component
 {
-    
     public string $name;
     public string $description;
     public float $price;
-    public string $tags;
+    public array $tags;
+    public array $colors, $sizes;
 
     use Reusables;
  
@@ -20,11 +20,14 @@ class AddProduct extends Component
         'name' => 'required|min:6',
         'description' => 'required',
         'price' => 'required|numeric',
-        'tags' => 'required|string'
+        'tags' => 'required|array'
     ];
-    public function saveImage()
+
+    public function add($prop, $value)
     {
-        $this->image->store('cdn');
+        if(!in_array($value, $this->$prop)){
+            $this->$prop[] = $value;
+        }
     }
 
     public function create()
@@ -33,16 +36,20 @@ class AddProduct extends Component
 
         $id  = ProductModel::insertGetId([
             'name' => $this->name, 'description' => $this->description,
-            'price' => $this->price, 'tags' => $this->tags
+            'price' => $this->price, 'tags' => implode(', ', $this->tags), 
+            'metadata' => json_encode([ 'colors' => $this->colors, 'sizes' => $this->sizes ])
         ]);
-
-        Image::insert([
-            'imageabletype'=> 'product', 'imageableid' => $id, 'url' => $this->image
-        ]);
+        $images = $this->uploadMany();
+        foreach($images as $image){
+            Image::insert([
+                'imageabletype'=> 'product', 'imageableid' => $id, 'src' => $image
+            ]);
+        }
     }
 
     public function render()
     {
-        return view('livewire.admin.add-product')->extends('layouts.admin.master');
+        return view('livewire.admin.add-product')
+        ->extends('layouts.admin.master')->section('content');
     }
 }

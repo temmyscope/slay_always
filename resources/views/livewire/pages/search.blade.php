@@ -1,8 +1,6 @@
-@extends('layouts.app')
-
 @section('title', 'Search')
 
-@section('content')
+<div>
 <!-- nav section -->
   <nav class="w-full mt-6">
     <ul class="w-navWidth flex mx-auto">
@@ -710,4 +708,4 @@
     </div>
 
   </main>
-  @endsection
+</div>

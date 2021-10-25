@@ -10,7 +10,9 @@ class CategoryCard extends Component
 
     public function mount($category)
     {
-        
+        $this->fill([
+            'category' => $category
+        ]);
     }
 
     public function render()

@@ -12,70 +12,28 @@
       </a>
     </div>
     <video autoplay loop muted class=" w-full absolute z-10 h-full">
-      <source src="{{asset('assets/assets/sss.mp4')}}" type="video/mp4">
+      <source src="{{ asset('assets/assets/sss.mp4') }}" type="video/mp4">
       your browswer does not support this type of video
     </video>
   </section>
 
   <!-- categories section -->
+  @if( !empty($categories) )
   <main class="w-full my-8">
     <div class="w-navWidth mx-auto">
       <h1 class="text-center text-4xl font-bold">Categories</h1>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 my-5 gap-4  w-full">
-        <div class=" w-full rounded-sm text-center relative">
-          <a href="./categories/shoes.html">
-            <img class="" src="{{asset('assets/assets/edited1.PNG')}}" alt="" style=" width: 100%;">
-            <h3 class="text-black font-medium text-3xl py-5 underline">
-              Shoes
-            </h3>
-            <div class="centered font-extrabold">
-              <h1 class="text-4xl">Suede shoe</h1>
-              <p>Starting at</p>
-              <p class="text-4xl">&#8358;15,000</p>
-            </div>
-          </a>
-        </div>
+        @foreach (['Shoes', 'Sweaters & Coats', 'Ladies Dress', 'Panties & Skirts'] as $item)
 
-        <div class=" max-w-full rounded-sm text-center relative">
-          <a href="">
-            <img class="h-full" src="{{asset('assets/assets/edited2.PNG')}}" alt="" style=" width: 100%;" >
-            <h3 class="text-black font-medium text-3xl py-5 underline">Sweater</h3>
-            <div class="centered font-extrabold">
-              <h1 class="text-4xl">Sweaters & Coats</h1>
-              <p>Starting at</p>
-              <p class="text-4xl">&#8358;15,000</p>
-            </div>
-          </a>
-        </div>
-
-        <div class="max-w-full rounded-sm text-center relative">
-          <a href="">
-            <img src="{{asset('assets/assets/edited3.PNG')}}" alt="" style=" width: 100%;">
-            <h3 class="text-black font-medium text-3xl py-5 underline">Dress</h3>
-            <div class="centered font-extrabold">
-              <h1 class="text-4xl">Ladies Dress</h1>
-              <p>Starting at</p>
-              <p class="text-4xl">&#8358;15,000</p>
-            </div>
-          </a>
-        </div>
-
-        <div class="max-w-full rounded-sm text-center relative">
-          <a href="">
-            <img src="{{asset('assets/assets/edited4.PNG')}}" alt="" style=" width: 100%;">
-            <h3 class="text-black font-medium text-3xl py-5 underline">Panties</h3>
-            <div class="centered font-extrabold">
-              <h1 class="text-4xl">Panties & Skirts</h1>
-              <p>Starting at</p>
-              <p class="text-4xl">&#8358;15,000</p>
-            </div>
-          </a>
-        </div>
+        @livewire('category-card', ['category' => $item ])
+            
+        @endforeach
 
       </div>
     </div>
   </main>
+  @endif
 
   <!-- section for gram shopping -->
   <div class="w-full mt-5">
@@ -200,130 +158,25 @@
   </div>
 
   <!-- card images in slide -->
-  <div class="w-full my-14">
-    <div class="w-navWidth mx-auto">
-      <h1 class="text-3xl text-center font-bold my-9">Customer Favourites</h1>
-      
-      <div class="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
+  @if ( !$popular->empty() )
 
-        <!-- <div class="relative w-full"> -->
-          <div class="shadow-lg rounded-lg w-full">
-            <a href="#">
-              <div class="relative m-w-full max-h-full con">
-                <div id="slide1" class="slide slide1 w-full">
-                  <img src="{!! asset('assets/assets/slide1.PNG') !!}" alt="" class="w-full">
-                  <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-                  <div class="over w-full">
-                  </div>
-                </div>
-              </div>
-            </a>
+    <div class="w-full my-14">
+      <div class="w-navWidth mx-auto">
+        <h1 class="text-3xl text-center font-bold my-9">Customer Favourites</h1>
+        
+        <div class="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
 
-            <div class="py-5 px-2">
-              <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-              <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-              <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-                &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-              <span>
-                <input type="radio" name="radio" id="slide1"  class="bg-black check" checked>
-                <input type="radio" name="radio" id="slide2" class="bg-red-900 check">
-                <input type="radio" name="radio" id="slide3" class="bg-yellow-400 check">
-                <input type="radio" name="radio" id="" class="bg-purple-700">
-              </span>
-            </div>
-            <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-              Add to bag
-            </button>
-          </div>
+          @foreach ([ 0, 1,2, 3, 4 ] as $item)
 
-          <div class="shadow-lg rounded-lg w-full relative">
-            <a href="#">
-              <img src="{!! asset('assets/assets/slide2.PNG') !!}" alt="" class="w-full">
-              <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-            </a>
-            <div class="py-5 px-2">
-              <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-              <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-              <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-                &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-              <span>
-                <input type="radio" name="radio" id="" class="bg-black">
-                <input type="radio" name="radio" id="" class="bg-red-900">
-                <input type="radio" name="radio" id="" class="bg-pink-600">
-              </span>
-            </div>
-            <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-              Add to bag
-            </button>
-          </div>
+            <!---- livewire product component ----->
+            @livewire('product-card')
 
-          <div class="shadow-lg rounded-lg w-full relative">
-            <a href="#">
-              <img src="{!! asset('assets/assets/slide3.PNG') !!}" alt="" class="w-full">
-              <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-            </a>
-            <div class="py-5 px-2">
-              <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-              <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-              <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-                &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-              <span>
-                <input type="radio" name="radio" id="" class="bg-black">
-                <input type="radio" name="radio" id="" class="bg-yellow-400">
-                <input type="radio" name="radio" id="" class="bg-blue-700">
-              </span>
-            </div>
-            <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-              Add to bag
-            </button>
-          </div>
+          @endforeach
 
-          <div class="shadow-lg rounded-lg w-full relative">
-            <a href="#">
-              <img src="{!! asset('assets/assets/slide4.PNG') !!}" alt="" class="w-full">
-              <span id="heart" wire:model="like($id)" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-            </a>
-            <div class="py-5 px-2">
-              <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-              <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-              <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-                &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-              <span>
-                <input type="radio" name="radio" id="" class="bg-black">
-                <input type="radio" name="radio" id="" class="bg-green-900">
-                <input type="radio" name="radio" id="" class="bg-white">
-
-              </span>
-            </div>
-            <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-              Add to bag
-            </button>
-          </div>
-
-          <div class="shadow-lg rounded w-full relative">
-            <a href="#">
-              <img src="{!! asset('assets/assets/slide5.PNG') !!}" alt="" class="w-full">
-              <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-            </a>
-            <div class="py-5 px-2">
-              <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-              <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-              <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-                &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-              <span>
-                <input type="radio" name="radio" id="" class="bg-black">
-                <input type="radio" name="radio" id="" class="bg-red-900">
-                <input type="radio" name="radio" id="" class="bg-gray-400">
-              </span>
-            </div>
-            <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-              Add to bag
-            </button>
-          </div>
-        <!-- </div> -->
-
+        </div>
       </div>
     </div>
-  </div>
+
+  @endif
 
 @endsection

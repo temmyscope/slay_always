@@ -13,11 +13,10 @@ class ProductCard extends Component
 
     use Reusables;
 
-    public function mount($product, $dicountPercent = null)
+    public function mount()//$product, $dicountPercent = null)
     {
         $this->fill([
-            'product' => $product,
-            'dicountPercent' => $dicountPercent ?? 0
+            //'product' => $product, 'dicountPercent' => $dicountPercent ?? 0
         ]);
     }
 

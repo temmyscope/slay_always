@@ -1,6 +1,6 @@
 <div>
     <div class=" max-w-full rounded-sm text-center relative">
-        <a href="">
+        <a href="{!! route('categories', ['category' => $category->name ]) !!}">
             <img class="h-full" src="{!! env('APP_URL').$category->img->img_url !!}" alt="" style=" width: 100%;" >
             <h3 class="text-black font-medium text-3xl py-5 underline">
               {!! substr($category->name, 0, strpos($category->name, ',')) !!}

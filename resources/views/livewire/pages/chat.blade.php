@@ -1,11 +1,9 @@
-@extends('layouts.admin.master')
-
 @section('title', 'Chat')
 
 @push('css')
 @endpush
 
-@section('content')
+<div>
 	
 	<div class="container-fluid">
 	    <div class="row">
@@ -327,9 +325,8 @@
 	    </div>
 	</div>
 
-	
+</div>
+
 	@push('scripts')
 	<script src="{{asset('assets/js/fullscreen.js')}}"></script>
 	@endpush
-
-@endsection

@@ -161,7 +161,12 @@ if(function_exists('percentageDecrease')){
       return $value - ($value * ($percent/100));
   }
 }
-
+if ( function_exists('cdnURL') ) {
+  function cdnURL(string $image): string
+  {
+    return env('APP_CDN').$image;
+  }
+}
 
 /**
  * I might need this

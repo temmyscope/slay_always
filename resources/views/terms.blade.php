@@ -30,7 +30,7 @@
 <input id="en" checked="checked" type="radio" name="languages">
 <header class="header">
 <div class="container">
-<span class="logo">Terms of Use for PunHub Central</span>
+<span class="logo">Terms of Use for StaySlay Fashion</span>
 </div>
 </header>
 <div class="subnav">
