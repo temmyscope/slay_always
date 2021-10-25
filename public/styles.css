@@ -15783,6 +15783,11 @@ select{
   background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
 }
 
+.bg-slay{
+  --tw-bg-opacity: 1;
+  background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+}
+
 .group:hover .group-hover\:bg-transparent{
   background-color: transparent;
 }
@@ -16209,6 +16214,11 @@ select{
 .group:hover .group-hover\:bg-bgSec{
   --tw-bg-opacity: 1;
   background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+}
+
+.group:hover .group-hover\:bg-slay{
+  --tw-bg-opacity: 1;
+  background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
 }
 
 .focus-within\:bg-transparent:focus-within{
@@ -16639,6 +16649,11 @@ select{
   background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
 }
 
+.focus-within\:bg-slay:focus-within{
+  --tw-bg-opacity: 1;
+  background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+}
+
 .hover\:bg-transparent:hover{
   background-color: transparent;
 }
@@ -17067,6 +17082,11 @@ select{
   background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
 }
 
+.hover\:bg-slay:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+}
+
 .focus\:bg-transparent:focus{
   background-color: transparent;
 }
@@ -17493,6 +17513,11 @@ select{
 .focus\:bg-bgSec:focus{
   --tw-bg-opacity: 1;
   background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+}
+
+.focus\:bg-slay:focus{
+  --tw-bg-opacity: 1;
+  background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
 }
 
 .bg-opacity-0{
@@ -23094,6 +23119,11 @@ select{
   color: rgba(131, 24, 67, var(--tw-text-opacity));
 }
 
+.text-slayText{
+  --tw-text-opacity: 1;
+  color: rgba(235, 130, 42, var(--tw-text-opacity));
+}
+
 .group:hover .group-hover\:text-transparent{
   color: transparent;
 }
@@ -23510,6 +23540,11 @@ select{
 .group:hover .group-hover\:text-pink-900{
   --tw-text-opacity: 1;
   color: rgba(131, 24, 67, var(--tw-text-opacity));
+}
+
+.group:hover .group-hover\:text-slayText{
+  --tw-text-opacity: 1;
+  color: rgba(235, 130, 42, var(--tw-text-opacity));
 }
 
 .focus-within\:text-transparent:focus-within{
@@ -23930,6 +23965,11 @@ select{
   color: rgba(131, 24, 67, var(--tw-text-opacity));
 }
 
+.focus-within\:text-slayText:focus-within{
+  --tw-text-opacity: 1;
+  color: rgba(235, 130, 42, var(--tw-text-opacity));
+}
+
 .hover\:text-transparent:hover{
   color: transparent;
 }
@@ -24348,6 +24388,11 @@ select{
   color: rgba(131, 24, 67, var(--tw-text-opacity));
 }
 
+.hover\:text-slayText:hover{
+  --tw-text-opacity: 1;
+  color: rgba(235, 130, 42, var(--tw-text-opacity));
+}
+
 .focus\:text-transparent:focus{
   color: transparent;
 }
@@ -24764,6 +24809,11 @@ select{
 .focus\:text-pink-900:focus{
   --tw-text-opacity: 1;
   color: rgba(131, 24, 67, var(--tw-text-opacity));
+}
+
+.focus\:text-slayText:focus{
+  --tw-text-opacity: 1;
+  color: rgba(235, 130, 42, var(--tw-text-opacity));
 }
 
 .text-opacity-0{
@@ -47240,6 +47290,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .sm\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .group:hover .sm\:group-hover\:bg-transparent{
     background-color: transparent;
   }
@@ -47666,6 +47721,11 @@ select{
   .group:hover .sm\:group-hover\:bg-bgSec{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .group:hover .sm\:group-hover\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .sm\:focus-within\:bg-transparent:focus-within{
@@ -48096,6 +48156,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .sm\:focus-within\:bg-slay:focus-within{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .sm\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -48524,6 +48589,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .sm\:hover\:bg-slay:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .sm\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -48950,6 +49020,11 @@ select{
   .sm\:focus\:bg-bgSec:focus{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .sm\:focus\:bg-slay:focus{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .sm\:bg-opacity-0{
@@ -54551,6 +54626,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .sm\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .group:hover .sm\:group-hover\:text-transparent{
     color: transparent;
   }
@@ -54967,6 +55047,11 @@ select{
   .group:hover .sm\:group-hover\:text-pink-900{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .group:hover .sm\:group-hover\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .sm\:focus-within\:text-transparent:focus-within{
@@ -55387,6 +55472,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .sm\:focus-within\:text-slayText:focus-within{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .sm\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -55805,6 +55895,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .sm\:hover\:text-slayText:hover{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .sm\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -56221,6 +56316,11 @@ select{
   .sm\:focus\:text-pink-900:focus{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .sm\:focus\:text-slayText:focus{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .sm\:text-opacity-0{
@@ -78345,6 +78445,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .md\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .group:hover .md\:group-hover\:bg-transparent{
     background-color: transparent;
   }
@@ -78771,6 +78876,11 @@ select{
   .group:hover .md\:group-hover\:bg-bgSec{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .group:hover .md\:group-hover\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .md\:focus-within\:bg-transparent:focus-within{
@@ -79201,6 +79311,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .md\:focus-within\:bg-slay:focus-within{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .md\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -79629,6 +79744,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .md\:hover\:bg-slay:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .md\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -80055,6 +80175,11 @@ select{
   .md\:focus\:bg-bgSec:focus{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .md\:focus\:bg-slay:focus{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .md\:bg-opacity-0{
@@ -85656,6 +85781,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .md\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .group:hover .md\:group-hover\:text-transparent{
     color: transparent;
   }
@@ -86072,6 +86202,11 @@ select{
   .group:hover .md\:group-hover\:text-pink-900{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .group:hover .md\:group-hover\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .md\:focus-within\:text-transparent:focus-within{
@@ -86492,6 +86627,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .md\:focus-within\:text-slayText:focus-within{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .md\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -86910,6 +87050,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .md\:hover\:text-slayText:hover{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .md\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -87326,6 +87471,11 @@ select{
   .md\:focus\:text-pink-900:focus{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .md\:focus\:text-slayText:focus{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .md\:text-opacity-0{
@@ -109450,6 +109600,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .lg\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .group:hover .lg\:group-hover\:bg-transparent{
     background-color: transparent;
   }
@@ -109876,6 +110031,11 @@ select{
   .group:hover .lg\:group-hover\:bg-bgSec{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .group:hover .lg\:group-hover\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .lg\:focus-within\:bg-transparent:focus-within{
@@ -110306,6 +110466,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .lg\:focus-within\:bg-slay:focus-within{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .lg\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -110734,6 +110899,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .lg\:hover\:bg-slay:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .lg\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -111160,6 +111330,11 @@ select{
   .lg\:focus\:bg-bgSec:focus{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .lg\:focus\:bg-slay:focus{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .lg\:bg-opacity-0{
@@ -116761,6 +116936,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .lg\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .group:hover .lg\:group-hover\:text-transparent{
     color: transparent;
   }
@@ -117177,6 +117357,11 @@ select{
   .group:hover .lg\:group-hover\:text-pink-900{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .group:hover .lg\:group-hover\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .lg\:focus-within\:text-transparent:focus-within{
@@ -117597,6 +117782,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .lg\:focus-within\:text-slayText:focus-within{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .lg\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -118015,6 +118205,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .lg\:hover\:text-slayText:hover{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .lg\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -118431,6 +118626,11 @@ select{
   .lg\:focus\:text-pink-900:focus{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .lg\:focus\:text-slayText:focus{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .lg\:text-opacity-0{
@@ -140555,6 +140755,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .xl\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .group:hover .xl\:group-hover\:bg-transparent{
     background-color: transparent;
   }
@@ -140981,6 +141186,11 @@ select{
   .group:hover .xl\:group-hover\:bg-bgSec{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .group:hover .xl\:group-hover\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .xl\:focus-within\:bg-transparent:focus-within{
@@ -141411,6 +141621,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .xl\:focus-within\:bg-slay:focus-within{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .xl\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -141839,6 +142054,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .xl\:hover\:bg-slay:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .xl\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -142265,6 +142485,11 @@ select{
   .xl\:focus\:bg-bgSec:focus{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .xl\:focus\:bg-slay:focus{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .xl\:bg-opacity-0{
@@ -147866,6 +148091,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .xl\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .group:hover .xl\:group-hover\:text-transparent{
     color: transparent;
   }
@@ -148282,6 +148512,11 @@ select{
   .group:hover .xl\:group-hover\:text-pink-900{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .group:hover .xl\:group-hover\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .xl\:focus-within\:text-transparent:focus-within{
@@ -148702,6 +148937,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .xl\:focus-within\:text-slayText:focus-within{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .xl\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -149120,6 +149360,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .xl\:hover\:text-slayText:hover{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .xl\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -149536,6 +149781,11 @@ select{
   .xl\:focus\:text-pink-900:focus{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .xl\:focus\:text-slayText:focus{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .xl\:text-opacity-0{
@@ -171660,6 +171910,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .\32xl\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .group:hover .\32xl\:group-hover\:bg-transparent{
     background-color: transparent;
   }
@@ -172086,6 +172341,11 @@ select{
   .group:hover .\32xl\:group-hover\:bg-bgSec{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .group:hover .\32xl\:group-hover\:bg-slay{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .\32xl\:focus-within\:bg-transparent:focus-within{
@@ -172516,6 +172776,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .\32xl\:focus-within\:bg-slay:focus-within{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .\32xl\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -172944,6 +173209,11 @@ select{
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
   }
 
+  .\32xl\:hover\:bg-slay:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
+  }
+
   .\32xl\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -173370,6 +173640,11 @@ select{
   .\32xl\:focus\:bg-bgSec:focus{
     --tw-bg-opacity: 1;
     background-color: rgba(1, 1, 1, var(--tw-bg-opacity));
+  }
+
+  .\32xl\:focus\:bg-slay:focus{
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 130, 42, var(--tw-bg-opacity));
   }
 
   .\32xl\:bg-opacity-0{
@@ -178971,6 +179246,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .\32xl\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .group:hover .\32xl\:group-hover\:text-transparent{
     color: transparent;
   }
@@ -179387,6 +179667,11 @@ select{
   .group:hover .\32xl\:group-hover\:text-pink-900{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .group:hover .\32xl\:group-hover\:text-slayText{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .\32xl\:focus-within\:text-transparent:focus-within{
@@ -179807,6 +180092,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .\32xl\:focus-within\:text-slayText:focus-within{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .\32xl\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -180225,6 +180515,11 @@ select{
     color: rgba(131, 24, 67, var(--tw-text-opacity));
   }
 
+  .\32xl\:hover\:text-slayText:hover{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
+  }
+
   .\32xl\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -180641,6 +180936,11 @@ select{
   .\32xl\:focus\:text-pink-900:focus{
     --tw-text-opacity: 1;
     color: rgba(131, 24, 67, var(--tw-text-opacity));
+  }
+
+  .\32xl\:focus\:text-slayText:focus{
+    --tw-text-opacity: 1;
+    color: rgba(235, 130, 42, var(--tw-text-opacity));
   }
 
   .\32xl\:text-opacity-0{

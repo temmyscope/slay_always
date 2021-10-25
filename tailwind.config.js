@@ -9,8 +9,17 @@ module.exports = {
     backgroundColor: theme => ({
       ...theme('colors'),
       bgPry: '#b7b7b7',
-      bgSec: '#010101'
+      bgSec: '#010101',
+      slay: '#eb822a'
     }),
+    textColor: theme => ({
+      ...theme('colors'),
+      slayText: '#eb822a'
+    }),
+    // textColor: theme => theme('colors'),
+    // textColor: {
+    //   slayText: '#eb822a'
+    // },
     extend: {
       stroke: {
         current: '#fcfdff'

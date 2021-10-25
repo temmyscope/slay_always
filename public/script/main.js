@@ -181,6 +181,20 @@ shippings.forEach(shipping => {
   })
 });
 
+// active image
+let imagesHeader = document.querySelector("#imagesHeader");
+const imagesBtns = imagesHeader.querySelectorAll(".image-btn");
+  imagesBtns.forEach(imagesBtn => {
+    imagesBtn.addEventListener("click", function() {
+      const current = document.querySelectorAll(".active-images");
+      if (current.length > 0) {
+        current[0].className = current[0].className.replace(" active-images", "");
+      }
+      this.className += " active-images";
+    })
+  })
+
+
 // function fillHeart(heart) {
 //   heart.classList.toggle(" fa-heart")
 // }

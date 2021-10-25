@@ -101,28 +101,25 @@
   </nav>
 
   <main class="w-full mt-10 h-auto">
-    <div class="w-4/6 mx-auto grid lg:grid-cols-6 gap-4">
-      <div class="">
-        <!-- <div> -->
-          <!-- <img src="/public/assets/grid.jpg" alt=""> -->
+    <div class="lg:w-4/6 w-navWidth mx-auto  lg:grid  lg:grid-cols-6 gap-4">
+      <div id="imagesHeader" class="lg:block hidden">
           
-          <div class="mb-5 border-solid border-4 border-gray-200">
-            <label for="image1">
+          <div class="mb-5 image-btn active-images">
+            <label for="image1" class="cursor-pointer">
               <img src="../assets/grid.jpg" alt="" class="h-full">
             </label>
           </div>
-          <div class="mb-5 border-solid border-4 border-gray-200">
-            <label for="image2">
-              <img src="../assets/grid1.jpg" alt="" class="h-full">
+          <div class="mb-5 image-btn">
+            <label for="image2" class="cursor-pointer">
+              <img src="../assets/grid3.jpg" alt="" class="h-full">
             </label>
           </div>
-          <div class="mb-5 border-solid border-4 border-gray-200">
-            <label for="image3">
+          <div class="mb-5 image-btn">
+            <label for="image3" class="cursor-pointer">
               <img src="../assets/grid2.jpg" alt="" class="h-full">
             </label>
           </div>
         
-        <!-- </div> -->
       </div>
 
       <div class="col-span-3">
@@ -132,7 +129,7 @@
           
 
         <div class="images image1">
-          <img src="..//assets/grid.jpg" alt="" class="h-full">
+          <img src="../assets/grid.jpg" alt="" class="h-full">
         </div>
         <div class="images image2">
           <img src="../assets/grid3.jpg" alt="" class="h-full">
@@ -181,7 +178,7 @@
               </div>
             </div>
             <div class="flex justify-between py-4">
-              <button class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-4/5 hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 hover:bg-yellow-400 hover:text-gray-100 " type="button">
+              <button class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-4/5 hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 hover:bg-slay hover:text-gray-100 " type="button">
                 Add to bag
               </button>
               <button class="border-2 border-solid border-gray-500 p-1 px-2">
@@ -249,325 +246,162 @@
   </main>
 
     <!-- size chart table -->
-    <div id="myModal" class="w-full flex justify-between py-6 -top-16 z-30 absolute modal h-auto"> 
-      <div class="2/5"></div>
-      <div class="w-3/5 mt-5 opacity-100 z-30 bg-white">
+    <div id="myModal" class="w-full flex justify-between py-6 top-2 z-30 fixed overflow-auto modal"> 
+    
+      <div class="w-full lg:w-2/5 mx-auto opacity-100 z-30 bg-white rounded-xl py-2">
         <div class="text-right p-7">
           <span id="close-modal" class="fas fa-times text-2xl text-red-500 fixed cursor-pointer"></span>
         </div>
-        <h2 class="text-center text-3xl py-6 bg-white">Tops & Dresses</h2>
+        <h2 class="text-center text-3xl py-3 bg-white w-full text-slayText">Tops & Dresses</h2>
 
         <table class="w-full overflow-hidden bg-white">
           <thead>
-            <tr class="text-md font-semibold tracking-wide text-center text-gray-200 bg-bgSec uppercase border-b border-gray-900">
-              <th class="px-4 py-3 border">Size</th>
-              <th class="px-4 py-3 border">XS</th>
-              <th class="px-4 py-3 border">S</th>
-              <th class="px-4 py-3 border">M</th>
-              <th class="px-4 py-3 border">L</th>
-              <th class="px-4 py-3 border">XL</th>
+            <tr class="text-md font-semibold tracking-wide text-center text-slayText bg-bgSec uppercase border-b border-gray-900">
+              <th class="px-2 py-2 border">Size</th>
+              <th class="px-2 py-2 border">XS</th>
+              <th class="px-2 py-2 border">S</th>
+              <th class="px-2 py-2 border">M</th>
+              <th class="px-2 py-2 border">L</th>
+              <th class="px-2 py-2 border">XL</th>
             </tr>
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">Nig/US</td>
-              <td class="px-4 py-2 border">1</td>
-              <td class="px-4 py-2 border">3,5</td>
-              <td class="px-4 py-2 border">7,9</td>
-              <td class="px-4 py-2 border">11,13</td>
-              <td class="px-4 py-2 border">15</td>
+              <td class="px-2 py-2 border">Nig/US</td>
+              <td class="px-2 py-2 border">1</td>
+              <td class="px-2 py-2 border">3,5</td>
+              <td class="px-2 py-2 border">7,9</td>
+              <td class="px-2 py-2 border">11,13</td>
+              <td class="px-2 py-2 border">15</td>
             </tr>
             <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">BUST (IN)</td>
-              <td class="px-4 py-2 border">31-33</td>
-              <td class="px-4 py-2 border">33-35</td>
-              <td class="px-4 py-2 border">35-37</td>
-              <td class="px-4 py-2 border">37-39</td>
-              <td class="px-4 py-2 border">39-41</td>
+              <td class="px-2 py-2 border">BUST (IN)</td>
+              <td class="px-2 py-2 border">31-33</td>
+              <td class="px-2 py-2 border">33-35</td>
+              <td class="px-2 py-2 border">35-37</td>
+              <td class="px-2 py-2 border">37-39</td>
+              <td class="px-2 py-2 border">39-41</td>
             </tr>
             <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">WAIST (IN)	</td>
-              <td class="px-4 py-2 border">24-25</td>
-              <td class="px-4 py-2 border">26-27</td>
-              <td class="px-4 py-2 border">28-29</td>
-              <td class="px-4 py-2 border">30-31</td>
-              <td class="px-4 py-2 border">30-31</td>
+              <td class="px-2 py-2 border">WAIST (IN)	</td>
+              <td class="px-2 py-2 border">24-25</td>
+              <td class="px-2 py-2 border">26-27</td>
+              <td class="px-2 py-2 border">28-29</td>
+              <td class="px-2 py-2 border">30-31</td>
+              <td class="px-2 py-2 border">30-31</td>
             </tr>
             <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">HIPS (IN)</td>
-              <td class="px-4 py-2 border">31-33</td>
-              <td class="px-4 py-2 border">33-35</td>
-              <td class="px-4 py-2 border">35-37</td>
-              <td class="px-4 py-2 border">37-39</td>
-              <td class="px-4 py-2 border">41</td>
+              <td class="px-2 py-2 border">HIPS (IN)</td>
+              <td class="px-2 py-2 border">31-33</td>
+              <td class="px-2 py-2 border">33-35</td>
+              <td class="px-2 py-2 border">35-37</td>
+              <td class="px-2 py-2 border">37-39</td>
+              <td class="px-2 py-2 border">41</td>
             </tr>
             <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">UK</td>
-              <td class="px-4 py-2 border">2, 4</td>
-              <td class="px-4 py-2 border">6, 8</td>
-              <td class="px-4 py-2 border">10, 12</td>
-              <td class="px-4 py-2 border">14, 16</td>
-              <td class="px-4 py-2 border">18</td>
+              <td class="px-2 py-2 border">UK</td>
+              <td class="px-2 py-2 border">2, 4</td>
+              <td class="px-2 py-2 border">6, 8</td>
+              <td class="px-2 py-2 border">10, 12</td>
+              <td class="px-2 py-2 border">14, 16</td>
+              <td class="px-2 py-2 border">18</td>
             </tr>
             <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">BUST (CM)</td>
-              <td class="px-4 py-2 border">78-83</td>
-              <td class="px-4 py-2 border">83-89</td>
-              <td class="px-4 py-2 border">89-94</td>
-              <td class="px-4 py-2 border">94-99</td>
-              <td class="px-4 py-2 border">99-104</td>
+              <td class="px-2 py-2 border">BUST (CM)</td>
+              <td class="px-2 py-2 border">78-83</td>
+              <td class="px-2 py-2 border">83-89</td>
+              <td class="px-2 py-2 border">89-94</td>
+              <td class="px-2 py-2 border">94-99</td>
+              <td class="px-2 py-2 border">99-104</td>
             </tr>
             <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">WAIST (CM)</td>
-              <td class="px-4 py-2 border">60-65</td>
-              <td class="px-4 py-2 border">65-70</td>
-              <td class="px-4 py-2 border">70-75</td>
-              <td class="px-4 py-2 border">75-80</td>
-              <td class="px-4 py-2 border">80-85</td>
+              <td class="px-2 py-2 border">WAIST (CM)</td>
+              <td class="px-2 py-2 border">60-65</td>
+              <td class="px-2 py-2 border">65-70</td>
+              <td class="px-2 py-2 border">70-75</td>
+              <td class="px-2 py-2 border">75-80</td>
+              <td class="px-2 py-2 border">80-85</td>
             </tr>
             <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">HIPS (CM)</td>
-              <td class="px-4 py-2 border">83-88</td>
-              <td class="px-4 py-2 border">88-93</td>
-              <td class="px-4 py-2 border">93-98</td>
-              <td class="px-4 py-2 border">98-103</td>
-              <td class="px-4 py-2 border">103-108</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- butts and skirts -->
-        <h2 class="text-center text-3xl py-6">Butts & Skirts</h2>
-
-        <table class="w-full overflow-hidden">
-          <thead>
-            <tr class="text-md font-semibold tracking-wide text-center text-gray-200 bg-bgSec uppercase border-b border-gray-900">
-              <th class="px-4 py-3 border">Size</th>
-              <th class="px-4 py-3 border">XS</th>
-              <th class="px-4 py-3 border">S</th>
-              <th class="px-4 py-3 border">M</th>
-              <th class="px-4 py-3 border">L</th>
-              <th class="px-4 py-3 border">XL</th>
-            </tr>
-          </thead>
-          <tbody class="bg-white">
-            <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">Nig/US</td>
-              <td class="px-4 py-2 border">1</td>
-              <td class="px-4 py-2 border">3,5</td>
-              <td class="px-4 py-2 border">7,9</td>
-              <td class="px-4 py-2 border">11,13</td>
-              <td class="px-4 py-2 border">15</td>
-            </tr>
-            <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">BUST (IN)</td>
-              <td class="px-4 py-2 border">31-33</td>
-              <td class="px-4 py-2 border">33-35</td>
-              <td class="px-4 py-2 border">35-37</td>
-              <td class="px-4 py-2 border">37-39</td>
-              <td class="px-4 py-2 border">39-41</td>
-            </tr>
-            <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">WAIST (IN)	</td>
-              <td class="px-4 py-2 border">24-25</td>
-              <td class="px-4 py-2 border">26-27</td>
-              <td class="px-4 py-2 border">28-29</td>
-              <td class="px-4 py-2 border">30-31</td>
-              <td class="px-4 py-2 border">30-31</td>
-            </tr>
-            <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">HIPS (IN)</td>
-              <td class="px-4 py-2 border">31-33</td>
-              <td class="px-4 py-2 border">33-35</td>
-              <td class="px-4 py-2 border">35-37</td>
-              <td class="px-4 py-2 border">37-39</td>
-              <td class="px-4 py-2 border">41</td>
-            </tr>
-            <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">UK</td>
-              <td class="px-4 py-2 border">2, 4</td>
-              <td class="px-4 py-2 border">6, 8</td>
-              <td class="px-4 py-2 border">10, 12</td>
-              <td class="px-4 py-2 border">14, 16</td>
-              <td class="px-4 py-2 border">18</td>
-            </tr>
-            <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">BUST (CM)</td>
-              <td class="px-4 py-2 border">78-83</td>
-              <td class="px-4 py-2 border">83-89</td>
-              <td class="px-4 py-2 border">89-94</td>
-              <td class="px-4 py-2 border">94-99</td>
-              <td class="px-4 py-2 border">99-104</td>
-            </tr>
-            <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">WAIST (CM)</td>
-              <td class="px-4 py-2 border">60-65</td>
-              <td class="px-4 py-2 border">65-70</td>
-              <td class="px-4 py-2 border">70-75</td>
-              <td class="px-4 py-2 border">75-80</td>
-              <td class="px-4 py-2 border">80-85</td>
-            </tr>
-            <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">HIPS (CM)</td>
-              <td class="px-4 py-2 border">83-88</td>
-              <td class="px-4 py-2 border">88-93</td>
-              <td class="px-4 py-2 border">93-98</td>
-              <td class="px-4 py-2 border">98-103</td>
-              <td class="px-4 py-2 border">103-108</td>
+              <td class="px-2 py-2 border">HIPS (CM)</td>
+              <td class="px-2 py-2 border">83-88</td>
+              <td class="px-2 py-2 border">88-93</td>
+              <td class="px-2 py-2 border">93-98</td>
+              <td class="px-2 py-2 border">98-103</td>
+              <td class="px-2 py-2 border">103-108</td>
             </tr>
           </tbody>
         </table>
 
         <!-- shoes & boots -->
-        <h2 class="text-center text-3xl py-6">Shoes & Boots</h2>
+        <h2 class="text-center text-3xl py-6 text-slayText">Shoes & Boots</h2>
 
         <table class="w-full overflow-hidden">
           <thead>
-            <tr class="text-md font-semibold tracking-wide text-center text-gray-200 bg-bgSec uppercase border-b border-gray-900">
-              <th class="px-4 py-3 border">US/CAN</th>
-              <th class="px-4 py-3 border">5</th>
-              <th class="px-4 py-3 border">5.5</th>
-              <th class="px-4 py-3 border">6</th>
-              <th class="px-4 py-3 border">6, 5</th>
-              <th class="px-4 py-3 border">7</th>
-              <th class="px-4 py-3 border">7, 5</th>
-              <th class="px-4 py-3 border">8</th>
-              <th class="px-4 py-3 border">8,5</th>
-              <th class="px-4 py-3 border">9</th>
-              <th class="px-4 py-3 border">9,5</th>
-              <th class="px-4 py-3 border">10</th>
+            <tr class="text-md font-semibold tracking-wide text-center text-slayText bg-bgSec uppercase border-b border-gray-900">
+              <th class="px-2 py-3 border">US/CAN</th>
+              <th class="px-2 py-3 border">5</th>
+              <th class="px-2 py-3 border">5.5</th>
+              <th class="px-2 py-3 border">6</th>
+              <th class="px-2 py-3 border">6, 5</th>
+              <th class="px-2 py-3 border">7</th>
+              <th class="px-2 py-3 border">7, 5</th>
+              <th class="px-2 py-3 border">8</th>
+              <th class="px-2 py-3 border">8,5</th>
+              <th class="px-2 py-3 border">9</th>
+              <th class="px-2 py-3 border">9,5</th>
+              <th class="px-2 py-3 border">10</th>
             </tr>
           </thead>
           <tbody class="bg-white">
             <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">UK</td>
-              <td class="px-4 py-2 border">3</td>
-              <td class="px-4 py-2 border">3,5</td>
-              <td class="px-4 py-2 border">4</td>
-              <td class="px-4 py-2 border">4, 5</td>
-              <td class="px-4 py-2 border">5</td>
-              <td class="px-4 py-2 border">5, 5</td>
-              <td class="px-4 py-2 border">6</td>
-              <td class="px-4 py-2 border">6, 5</td>
-              <td class="px-4 py-2 border">7</td>
-              <td class="px-4 py-2 border">7, 5</td>
-              <td class="px-4 py-2 border">8</td>
+              <td class="px-2 py-2 border">UK</td>
+              <td class="px-2 py-2 border">3</td>
+              <td class="px-2 py-2 border">3,5</td>
+              <td class="px-2 py-2 border">4</td>
+              <td class="px-2 py-2 border">4, 5</td>
+              <td class="px-2 py-2 border">5</td>
+              <td class="px-2 py-2 border">5, 5</td>
+              <td class="px-2 py-2 border">6</td>
+              <td class="px-2 py-2 border">6, 5</td>
+              <td class="px-2 py-2 border">7</td>
+              <td class="px-2 py-2 border">7, 5</td>
+              <td class="px-2 py-2 border">8</td>
             </tr>
             <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">EU</td>
-              <td class="px-4 py-2 border">36</td>
-              <td class="px-4 py-2 border">36,5</td>
-              <td class="px-4 py-2 border">37</td>
-              <td class="px-4 py-2 border">37, 5</td>
-              <td class="px-4 py-2 border">38</td>
-              <td class="px-4 py-2 border">38, 5</td>
-              <td class="px-4 py-2 border">39</td>
-              <td class="px-4 py-2 border">39, 5</td>
-              <td class="px-4 py-2 border">40</td>
-              <td class="px-4 py-2 border">40, 5</td>
-              <td class="px-4 py-2 border">41</td>
+              <td class="px-2 py-2 border">EU</td>
+              <td class="px-2 py-2 border">36</td>
+              <td class="px-2 py-2 border">36,5</td>
+              <td class="px-2 py-2 border">37</td>
+              <td class="px-2 py-2 border">37, 5</td>
+              <td class="px-2 py-2 border">38</td>
+              <td class="px-2 py-2 border">38, 5</td>
+              <td class="px-2 py-2 border">39</td>
+              <td class="px-2 py-2 border">39, 5</td>
+              <td class="px-2 py-2 border">40</td>
+              <td class="px-2 py-2 border">40, 5</td>
+              <td class="px-2 py-2 border">41</td>
             </tr>
             <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">AUS</td>
-              <td class="px-4 py-2 border">5</td>
-              <td class="px-4 py-2 border">5,5</td>
-              <td class="px-4 py-2 border">6</td>
-              <td class="px-4 py-2 border">6, 5</td>
-              <td class="px-4 py-2 border">7</td>
-              <td class="px-4 py-2 border">7, 5</td>
-              <td class="px-4 py-2 border">8</td>
-              <td class="px-4 py-2 border">8, 5</td>
-              <td class="px-4 py-2 border">9</td>
-              <td class="px-4 py-2 border">9, 5</td>
-              <td class="px-4 py-2 border">10</td>
+              <td class="px-2 py-2 border">AUS</td>
+              <td class="px-2 py-2 border">5</td>
+              <td class="px-2 py-2 border">5,5</td>
+              <td class="px-2 py-2 border">6</td>
+              <td class="px-2 py-2 border">6, 5</td>
+              <td class="px-2 py-2 border">7</td>
+              <td class="px-2 py-2 border">7, 5</td>
+              <td class="px-2 py-2 border">8</td>
+              <td class="px-2 py-2 border">8, 5</td>
+              <td class="px-2 py-2 border">9</td>
+              <td class="px-2 py-2 border">9, 5</td>
+              <td class="px-2 py-2 border">10</td>
             </tr>
             
           </tbody>
         </table>
 
-        <!-- swimwear and lingerie -->
-        <h2 class="text-center text-3xl py-6">swimwear & lingerie</h2>
-
-        <table class="w-full overflow-hidden">
-          <thead>
-            <tr class="text-md font-semibold tracking-wide text-center text-gray-200 bg-bgSec uppercase border-b border-gray-900">
-              <th class="px-4 py-3 border">Size</th>
-              <th class="px-4 py-3 border">XS</th>
-              <th class="px-4 py-3 border">S</th>
-              <th class="px-4 py-3 border">M</th>
-              <th class="px-4 py-3 border">L</th>
-              <th class="px-4 py-3 border">XL</th>
-            </tr>
-          </thead>
-          <tbody class="bg-white">
-            <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">US/CAN	</td>
-              <td class="px-4 py-2 border">1</td>
-              <td class="px-4 py-2 border">3,5</td>
-              <td class="px-4 py-2 border">7,9</td>
-              <td class="px-4 py-2 border">11,13</td>
-              <td class="px-4 py-2 border">15</td>
-            </tr>
-            <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">BUST (IN)</td>
-              <td class="px-4 py-2 border">31-33</td>
-              <td class="px-4 py-2 border">33-35</td>
-              <td class="px-4 py-2 border">35-37</td>
-              <td class="px-4 py-2 border">37-39</td>
-              <td class="px-4 py-2 border">39-41</td>
-            </tr>
-            <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">WAIST (IN)	</td>
-              <td class="px-4 py-2 border">24-25</td>
-              <td class="px-4 py-2 border">26-27</td>
-              <td class="px-4 py-2 border">28-29</td>
-              <td class="px-4 py-2 border">30-31</td>
-              <td class="px-4 py-2 border">30-31</td>
-            </tr>
-            <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">HIPS (IN)</td>
-              <td class="px-4 py-2 border">31-33</td>
-              <td class="px-4 py-2 border">33-35</td>
-              <td class="px-4 py-2 border">35-37</td>
-              <td class="px-4 py-2 border">37-39</td>
-              <td class="px-4 py-2 border">41</td>
-            </tr>
-            <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">UK</td>
-              <td class="px-4 py-2 border">2, 4</td>
-              <td class="px-4 py-2 border">6, 8</td>
-              <td class="px-4 py-2 border">10, 12</td>
-              <td class="px-4 py-2 border">14, 16</td>
-              <td class="px-4 py-2 border">18</td>
-            </tr>
-            <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">BUST (CM)</td>
-              <td class="px-4 py-2 border">78-83</td>
-              <td class="px-4 py-2 border">83-89</td>
-              <td class="px-4 py-2 border">89-94</td>
-              <td class="px-4 py-2 border">94-99</td>
-              <td class="px-4 py-2 border">99-104</td>
-            </tr>
-            <tr class="text-gray-700 text-center border-gray-900">
-              <td class="px-4 py-2 border">WAIST (CM)</td>
-              <td class="px-4 py-2 border">60-65</td>
-              <td class="px-4 py-2 border">65-70</td>
-              <td class="px-4 py-2 border">70-75</td>
-              <td class="px-4 py-2 border">75-80</td>
-              <td class="px-4 py-2 border">80-85</td>
-            </tr>
-            <tr class="text-gray-700 bg-gray-50 text-center border-gray-900">
-              <td class="px-4 py-2 border">HIPS (CM)</td>
-              <td class="px-4 py-2 border">83-88</td>
-              <td class="px-4 py-2 border">88-93</td>
-              <td class="px-4 py-2 border">93-98</td>
-              <td class="px-4 py-2 border">98-103</td>
-              <td class="px-4 py-2 border">103-108</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="py-3 text-center">
+        
+        <div class="py-6 text-center bg-white">
           <a href="#" class="underline">see men size guide</a>
         </div>
       </div>
@@ -577,9 +411,11 @@
     <!-- more cute stuff -->
     <div class="w-full mt-10">
       <div class="w-3/5 mx-auto">
-      <div>hey</div>
+      <div>
+        <h3>More cute stuff for you</h3>
+      </div>
 
-      <div class="grid grid-cols-5 gap-3">
+      <div class="grid lg:grid-cols-5 gap-3">
         <div class="shadow-lg rounded-lg w-full">
           <a href="">
             <div class="relative m-w-full max-h-full con">
