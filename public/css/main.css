@@ -30,7 +30,7 @@
   /* background: -webkit-linear-gradient(#fff95b, #f88b06);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
-  color: lightyellow;
+  color: #eb822a;
   text-shadow: 2px 2px 4px #000000;
 }
 .overlay {
@@ -55,6 +55,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+.heart {
+  content: "\f004";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.9rem;
+  color: #eb822a;
 }
 .cont:hover .overlay {
   opacity: 0.8;
@@ -83,7 +90,7 @@
   width: 100%;
 }
 .product:after {
-  content: "\f067";
+  content: "\f068";
   font-family: "Font Awesome 5 Free";
   font-weight: 600;
   font-size: 1rem;
@@ -92,10 +99,10 @@
   cursor: pointer;
 }
 .prod::after {
-  content: "\f068";
+  content: "\f067";
 }
 .shipping::after {
-  content: "\f068";
+  content: "\f067";
   font-family: "Font Awesome 5 Free";
   font-weight: 600;
   font-size: 1rem;
@@ -104,7 +111,7 @@
   cursor: pointer;
 }
 .shipping-active::after {
-  content: "\f067";
+  content: "\f068";
 }
 /* .heart::after {
   content: "\f004";
@@ -172,26 +179,32 @@
   width: 100%;
 }
 
-.checked {
+/* .checked {
   color: aqua;
-}
+} */
 
 .images {
   display: none;
 }
 
-.images img {
+/* .images img {
   height: 100%;
-}
+} */
 
-#image1:checked ~ .image1,
+/* #image1:checked ~ .image1,
 #image2:checked ~ .image2,
 #image3:checked ~ .image3 {
   display: block;
-}
+} */
 
 .active-images {
   border: 5px solid #eb822a;
+}
+
+.nextt {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
 @media screen and (max-width: 600px) {
   .fa-instagram {

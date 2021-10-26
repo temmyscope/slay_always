@@ -1,95 +1,22 @@
-// handle navigation links on mobile
-// const hamburgerMenu = document.querySelector('.menu-icon')
-// const nav = document.querySelector('nav')
-// const header = document.querySelector('header')
+// const { x } = require("joi");
 
-// hamburgerMenu.addEventListener("click", showMenu=()=> {
-//   hamburgerMenu.classList.toggle("close");
-//   if (nav.style.display) {
-//     nav.style.display = null;
-//   } else {
-//     nav.style.display = `flex`
-//   }
-// })
-// close navigation links once the body is clicked
-// document.body.addEventListener("click", function (e) {
-//   if (!e.path.includes(header)) {
-//     nav.style.display = null
-//     hamburgerMenu.classList.remove("close");
-//   }
-// })
-
-// onclick="plusSlides(-1)"
-// manual slide show
-// const minus = document.querySelector('#minus')
-// const add = document.querySelector('#add')
-// minus.addEventListener('click', ()=> {
-//   plusSlides(-1)
-// })
-// add.addEventListener('click', ()=> {
-//   plusSlides(1)
-// })
-
-// let slideIndex = 1;
-// showSlides(slideIndex);
-
-// function plusSlides(n) {
-//   showSlides(slideIndex += n);
-// }
-
-// function currentSlide(n) {
-//   showSlides(slideIndex = n);
-// }
-
-// function showSlides(n) {
-//   var i;
-//   var slides = document.querySelectorAll("#slides");
-//   if (n > slides.length) {
-//     slideIndex = 1
-//   }    
-//   if (n < 1) {slideIndex = slides.length}
-//   for (i = 0; i < slides.length; i++) {
-//       slides[i].style.display = "none";  
-//   }
-//   slides[slideIndex-1].style.display = "block"; 
-// }
-// automatic slide show
-let slideIndex = 0;
+let slideTextIndex = 0;
 
 function showSlides() {
-var i;
-var slides = document.querySelectorAll("#slides");
-for (i = 0; i < slides.length; i++) {
-  slides[i].style.display = "none";
+let textSlides = document.querySelectorAll("#slides");
+for (let i = 0; i < textSlides.length; i++) {
+  textSlides[i].style.display = "none";
   // slides[i].style.display = `translate`  
 }
-slideIndex++;
-if (slideIndex > slides.length) {
-  slideIndex = 1
+slideTextIndex++;
+if (slideTextIndex > textSlides.length) {
+  slideTextIndex = 1
 }    
-slides[slideIndex-1].style.display = "block";  
+textSlides[slideTextIndex-1].style.display = "block";  
 setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
 showSlides();
 
-// dropdown
-// const dropDown = document.querySelector('#drop-down')
-// const dropDownContent = document.querySelector('#content')
-
-// dropDown.addEventListener('click', ()=> {
-//   if (dropDownContent.style.display) {
-//     dropDownContent.style.display = null
-//   } else {
-//     dropDownContent.style.display = `block`
-//   }
-// })
-
-// dropDownContent.onmouseleave = function (e) {
-//   e.dropDownContent
-//   dropDownContent.style.display = null
-// }
-
-// accordion
 
 // accordion for the side nav on shoes page
 const accs = document.querySelectorAll(".accord");
@@ -115,12 +42,12 @@ accordions.forEach(accordion => {
 })
 
 // show sideNav
-let filter = document.querySelector('#filtered')
-const sideNav = document.querySelector('.side-nav')
-const close = document.querySelector('.close')
+// let navDisplay = document.querySelector('#filtered')
+// const sideNav = document.querySelector('.side-nav')
+// const close = document.querySelector('.close')
 
 
-// filter.addEventListener("click", showSideNav =()=>{
+// navDisplay.addEventListener("click", showSideNav =()=>{
 //   if (sideNav.style.maxWidth) {
 //     sideNav.style.maxWidth = "none"
 //   } else {
@@ -131,18 +58,6 @@ const close = document.querySelector('.close')
 // close.addEventListener('click', CloseSideNav = ()=> {
 //   sideNav.style.maxWidth = "none"
 // })
-
-
-// const image = document.querySelector('#images')
-// image.onmouseover = () => {
-
-// }
-// function changeImage(image) {
-//   image.src = "../assets/edited1.PNG"
-// }
-// function returnImage(image) {
-//   image.src = "../assets/slide4.PNG"
-// }
 
 
 // modal for size guide
@@ -194,7 +109,39 @@ const imagesBtns = imagesHeader.querySelectorAll(".image-btn");
     })
   })
 
+// image slide for product page
+  var imageSlide = 1;
+showImages(imageSlide);
 
-// function fillHeart(heart) {
-//   heart.classList.toggle(" fa-heart")
-// }
+function plusImages(image) {
+  showImages(imageSlide += image);
+}
+
+function currentImage(image) {
+  showImages(imageSlide = image);
+}
+
+function showImages(image) {
+  var slides = document.querySelectorAll(".imagex");
+  if (image > slides.length) {imageSlide = 1}    
+  if (image < 1) {imageSlide = slides.length}
+  for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  slides[imageSlide-1].style.display = "block";  
+}
+
+// toggle like
+function toggleHeart(likeIcon) {
+  likeIcon.classList.toggle("heart")
+}
+
+// counter
+// let like = document.querySelector('#likeCounter')
+// let cart = document.querySelector('#counters')
+// let counter = 0
+
+// like.addEventListener("click", function() {
+//   counter ++
+//   cart.innerHTML = counter
+// })
