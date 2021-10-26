@@ -13,11 +13,11 @@
 </head>
 <body class="font-slayFont">
     <!--  -->
-    <header class="w-full bg-bgSec lg:h-24 h-40 p-3 sticky top-0 z-30">
+    <header class="w-full bg-bgSec py-3 sticky top-0 z-30 border-b-2 border-gray-300">
       <div class="flex flex-wrap lg:w-navWidth mx-auto justify-between items-center h-full w-smWidth">
         <!-- logo -->
         <div class="w-1/2 lg:w-2/5 flex lg:order-1 order-1">
-          <a href="index.html"><img src="../assets/loggo.PNG" alt="" class=" lg:border-2 lg:p-2"></a>
+          <a href="index.html"><img src="../assets/loggo.PNG" alt="company's logo"></a>
         </div>
   
           <!-- search input -->
@@ -40,20 +40,20 @@
           </a>
   
           <a href="#" class="p-1 lg:p-5 relative">
-            <span class="inline-flex absolute -right-3 lg:-right-1 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">9</span>
+            <span class="inline-flex absolute -right-3 lg:-right-1 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-slay rounded-full">0</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8  stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </a>
        
-          <a href="./onboarding/login.html" class="p-1 lg:p-5 lg:inline hidden">
+          <a href="../onboarding/login.html" class="p-1 lg:p-5 lg:inline hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </a>
         
-          <a href="#" class="p-1 px-1 lg:p-5 relative">
-            <span class="inline-flex absolute -right-3 lg:-right-0 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">0</span>
+          <a href="../carts.html" class="p-1 px-1 lg:p-5 relative">
+            <span class="inline-flex absolute -right-3 lg:-right-0 items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-slay rounded-full">0</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8  stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
@@ -61,35 +61,34 @@
   
         </div>
       </div>
-    </header>
   
-  <!--  -->
-    <!-- slide show -->
-     <!-- slide show -->
-     <div class="w-full h-14 bg-bgPry">
-      <div class="w-navWidth  mx-auto">
-  
-        <div class="w-full text-white h-full overflow-hidden items-center py-3 text-center flex">
-  
-          <div id="slides" class="w-full h-full hidden ">
+      <!-- slide text -->
+      <div class="w-full h-14 bg-bgSec mt-2 border-t-2 border-gray-400">
+        <div class="lg:w-navWidth w-full mx-auto">
+    
+          <div class="w-full text-white h-full overflow-hidden items-center py-3 text-center flex">
+    
+            <div id="slides" class="w-full h-full hidden ">
+              
+              <p>i am just going to type rubbish in</p>
+            </div>
+            <div  id="slides"class="w-full h-full hidden ">
+              <p>think of putting on a show that</p>
+            </div>
+           <div id="slides" class="w-full h-full hidden ">
             
-            <p>i am just going to type rubbish in here for some experimental tests</p>
-          </div>
-          <div  id="slides"class="w-full h-full hidden ">
-            <p>what do you think of putting on a show that says fuck you to your haters</p>
-          </div>
-         <div id="slides" class="w-full h-full hidden ">
+            <p>some goddamn free promo code</p>
+           </div>
+           <div id="slides" class="w-full h-full hidden ">
           
-          <p>some goddamn free promo code</p>
-         </div>
-         <div id="slides" class="w-full h-full hidden ">
-        
-          <p>what can i put here for sampling??? pensive</p>
-         </div>
+            <p>what can i put here for sampling??</p>
+           </div>
+          </div>
+    
         </div>
-  
       </div>
-    </div>
+    </header>
+
     <!-- nav section -->
     <nav class="w-full mt-6">
       <ul class="w-navWidth flex mx-auto">
@@ -116,7 +115,7 @@
         <input type="email" id="" placeholder="email" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
         <input type="password" id="" placeholder="password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
         <a class="w-full underline" href="../onboarding/forget-password.html">Forgot your password?</a>
-        <input type="submit" value="Login" class="w-full my-6 rounded-md p-2 bg-bgSec font-medium text-white cursor-pointer hover:bg-gray-400 hover:text-black">
+        <input type="submit" value="Login" class="w-full my-6 rounded-md p-2 bg-bgSec font-medium text-white cursor-pointer hover:bg-slay hover:text-gray-100">
       </form>
     </div>
   </section>
