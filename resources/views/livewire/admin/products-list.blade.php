@@ -47,8 +47,17 @@
 																		<td class="font-danger">out of stock</td>
 																	@endif
 																	<td>
-																			<button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-																			<button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
+																			<button 
+																				wire.click="delete({!! $product->id !!})" class="btn btn-danger btn-xs" type="button" 
+																				data-original-title="btn btn-danger btn-xs" title=""
+																			>Delete</button>
+																			<a href="{!! route('productcreate', ['product' => $product->id]) !!}">
+																				<button 
+																					wire.click="" class="btn btn-primary btn-xs" type="button" 
+																					data-original-title="btn btn-danger btn-xs" title="">
+																					Edit
+																				</button>
+																			</a>
 																	</td>
 																</tr>
 																@endforeach

@@ -15,8 +15,10 @@ class ProductCard extends Component
 
     public function mount()//$product, $dicountPercent = null)
     {
+        //$metadata = json_decode($product->metadata);
         $this->fill([
-            //'product' => $product, 'dicountPercent' => $dicountPercent ?? 0
+            //'product' => $product, 'dicountPercent' => $dicountPercent ?? 0,
+            //'color' => $metadata->colors,
         ]);
     }
 

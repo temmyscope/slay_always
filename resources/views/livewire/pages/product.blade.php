@@ -8,7 +8,7 @@
                 <a href="{!! route('welcome') !!}">Home</a>
             </li>
             <li class="p-3 text-gray-400 text-xl">
-                <a>Dresses</a>
+                <a>Product</a>
             </li>
         </ul>
     </nav>
@@ -18,40 +18,27 @@
         
             <div id="imagesHeader" class="lg:block hidden">
           
-                <div class="mb-5 image-btn active-images">
-                  <label for="image1" class="cursor-pointer">
-                    <img src="../assets/grid.jpg" alt="" class="h-full">
-                  </label>
-                </div>
-                <div class="mb-5 image-btn">
-                  <label for="image2" class="cursor-pointer">
-                    <img src="../assets/grid3.jpg" alt="" class="h-full">
-                  </label>
-                </div>
-                <div class="mb-5 image-btn">
-                  <label for="image3" class="cursor-pointer">
-                    <img src="../assets/grid2.jpg" alt="" class="h-full">
-                  </label>
-                </div>
+                @foreach ($images as $key => $image)
+                    <div class="mb-4 image-btn {!! ($key === 0) ? 'active-images' : '' !!} w-3/4 float-right">
+                        <label for="" class="cursor-pointer" onclick="currentImage({!! $key!!})">
+                            <img src="{!! cdnizeURL($item->src) !!}" alt="{!! $product->name !!}" class="h-full">
+                        </label>
+                    </div>
+                @endforeach
             
             </div>
             
 
             <div class="col-span-3">
-                <input type="radio" name="images" class="images" id="image1" checked>
-                <input type="radio" name="images" class="images" id="image2">
-                <input type="radio" name="images" class="images" id="image3">
-
-                <div class="images image1">
-                <img src="../assets/grid.jpg" alt="" class="h-full">
+                <div class="relative">
+                    @foreach ($images as $image)
+                        <div class="imagex">
+                            <img src="{!! cdnizeURL($imah) !!}" alt="{!! $product->name !!} image" class="h-full">
+                        </div>
+                    @endforeach
+                    <span class="fas fa-chevron-left absolute lg:hidden block left-6 py-2 px-3 bg-slay cursor-pointer nextt text-gray-100 text-2xl" onclick="plusImages(-1)"></span>
+                    <span class="fas fa-chevron-right absolute lg:hidden block -right-4 py-2 px-3 bg-slay cursor-pointer nextt text-gray-100 text-2xl" onclick="plusImages(1)"></span>
                 </div>
-                <div class="images image2">
-                <img src="../assets/grid3.jpg" alt="" class="h-full">
-                </div>
-                <div class="images image3">
-                <img src="../assets/grid2.jpg" alt="" class="h-full">
-                </div>
-                
             </div>
 
             <div class="col-span-2 p-1 text-gray-600 h-auto">
@@ -90,25 +77,26 @@
                         <div>
                             <p id="openModal" class="cursor-pointer text-gray-900 underline font-bold">size chart</p>
                         </div>
-                        </div>
-                        <div class="flex justify-between py-4">
-                        <button class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-4/5 hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 hover:bg-yellow-400 hover:text-gray-100 " type="button">
+                    </div>
+                    <div class="flex justify-between py-4">
+                        <button class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-4/5 hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 hover:bg-slay hover:text-gray-100 " type="button">
                             Add to bag
                         </button>
                         <button class="border-2 border-solid border-gray-500 p-1 px-2">
-                            <span id="heart" class="far fa-heart top-1 text-gray-500 text-3xl right-2 block"></span>
+                            <span id="likeCounter" class="far fa-heart top-1 text-slayText text-3xl right-2 block" onclick="toggleHeart(this)"></span>
                         </button>
-                        </div>
-                        <div class="flex w-full justify-between bg-gray-200 p-4 rounded-lg">
+                    </div>
+
+                    <div class="flex w-full justify-between bg-gray-200 p-4 rounded-lg">
                         <span class="flex">
                             <p class="fas fa-shipping-fast"> <span class="text-gray-500 font-normal">ships fast</span></p>
                         </span>
                         <span>
                             <p class="far fa-comments"> <span class="text-gray-500">24/7 Customer service</span></p>
                         </span>
-                        </div>
+                    </div>
 
-                        <div class="mt-7">
+                    <div class="mt-7">
                         <h4 class="uppercase py-4 text-gray-800 font-bold product">Product details</h4>
                         <ul class="capitalize list-disc px-4 text-gray-800 product-details block">
                             <li>Available in blue</li>

@@ -1,216 +1,138 @@
-@extends('layouts.admin.master')
-
 @section('title', 'Order')
 
 @push('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/slick.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/slick-theme.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/rating.css')}}">
 @endpush
 
-@section('content')
-
+<div>
+	
 	<div class="container-fluid">
-	    <div class="row">
-	        <div class="col-sm-12">
-	            <div class="card">
-	                <div class="card-header pb-0">
-	                    <h5>Order history</h5>
-	                </div>
-	                <div class="card-body">
-	                    <div class="order-history table-responsive">
-	                        <table class="table table-bordernone display" id="basic-1">
-	                            <thead>
-	                                <tr>
-	                                    <th scope="col">Prdouct</th>
-	                                    <th scope="col">Prdouct name</th>
-	                                    <th scope="col">Size</th>
-	                                    <th scope="col">Color</th>
-	                                    <th scope="col">Article number</th>
-	                                    <th scope="col">Units</th>
-	                                    <th scope="col">Price</th>
-	                                    <th scope="col"><i class="fa fa-angle-down"></i></th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/1.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Long Top</a>
-	                                            <div class="order-process"><span class="order-process-circle"></span>Processing</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>M</td>
-	                                    <td>Lavander</td>
-	                                    <td>4215738</td>
-	                                    <td>1</td>
-	                                    <td>$21</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/13.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Fancy watch</a>
-	                                            <div class="order-process"><span class="order-process-circle"></span>Processing</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>35mm</td>
-	                                    <td>Blue</td>
-	                                    <td>5476182</td>
-	                                    <td>1</td>
-	                                    <td>$10</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td><img class="img-fluid img-30" src="{{asset('assets/images/product/4.png')}}" alt="#" /></td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Man shoes</a>
-	                                            <div class="order-process"><span class="order-process-circle"></span>Processing</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>8</td>
-	                                    <td>Black & white</td>
-	                                    <td>1756457</td>
-	                                    <td>1</td>
-	                                    <td>$18</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/10.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Ledis side bag</a>
-	                                            <div class="order-process"><span class="order-process-circle shipped-order"></span>Shipped</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>22cm x 18cm</td>
-	                                    <td>Brown</td>
-	                                    <td>7451725</td>
-	                                    <td>1</td>
-	                                    <td>$13</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/12.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Ledis Slipper</a>
-	                                            <div class="order-process"><span class="order-process-circle shipped-order"></span>Shipped</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>6</td>
-	                                    <td>Brown & white</td>
-	                                    <td>4127421</td>
-	                                    <td>1</td>
-	                                    <td>$6</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/3.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Fancy ledis Jacket</a>
-	                                            <div class="order-process"><span class="order-process-circle shipped-order"></span>Shipped</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>Xl</td>
-	                                    <td>Light gray</td>
-	                                    <td>3581714</td>
-	                                    <td>1</td>
-	                                    <td>$24</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/2.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Ledis Handbag</a>
-	                                            <div class="order-process"><span class="order-process-circle shipped-order"></span>Shipped</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>25cm x 20cm</td>
-	                                    <td>Black</td>
-	                                    <td>6748142</td>
-	                                    <td>1</td>
-	                                    <td>$14</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/15.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Iphone6 mobile</a>
-	                                            <div class="order-process"><span class="order-process-circle cancel-order"></span>Cancelled</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>10cm x 15cm</td>
-	                                    <td>Black</td>
-	                                    <td>5748214</td>
-	                                    <td>1</td>
-	                                    <td>$25</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/14.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Watch</a>
-	                                            <div class="order-process"><span class="order-process-circle cancel-order"></span>Cancelled</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>27mm</td>
-	                                    <td>Brown</td>
-	                                    <td>2471254</td>
-	                                    <td>1</td>
-	                                    <td>$12</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                                <tr>
-	                                    <td>
-	                                        <a href="#"><img class="img-fluid img-30" src="{{asset('assets/images/product/11.png')}}" alt="#" /></a>
-	                                    </td>
-	                                    <td>
-	                                        <div class="product-name">
-	                                            <a href="#">Slipper</a>
-	                                            <div class="order-process"><span class="order-process-circle cancel-order"></span>Cancelled</div>
-	                                        </div>
-	                                    </td>
-	                                    <td>6</td>
-	                                    <td>Blue</td>
-	                                    <td>8475112</td>
-	                                    <td>1</td>
-	                                    <td>$6</td>
-	                                    <td><i data-feather="more-vertical"></i></td>
-	                                </tr>
-	                            </tbody>
-	                        </table>
+	    <div>
+	        <div class="row product-page-main p-0">
+	            <div class="col-xl-5 col-md-6 box-col-12 xl-50">
+	                <div class="card">
+	                    <div class="card-body">
+	                        <div class="row">
+	                            <div class="col-xl-9 product-main">
+	                                <div class="pro-slide-single">
+																		@foreach ($products as $item)
+																		<div>
+																			<img class="img-fluid" src="{!! cdnizeURL($item->images[0]->src) !!}" alt="" />
+																		</div>
+																		@endforeach
+	                                </div>
+	                            </div>
+	                            <div class="col-xl-3 product-thumbnail">
+	                                <div class="pro-slide-right">
+																			@foreach ($products as $item)
+	                                    <div>
+	                                        <div class="slide-box">
+																						<img src="{!! cdnizeURL($item->images[0]->src) !!}" alt="" />
+																					</div>
+	                                    </div>
+																			@endforeach
+	                                </div>
+	                            </div>
+	                        </div>
 	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-xl-5 box-col-6 proorder-xl-3 xl-100">
+	                <div class="card">
+	                    <div class="card-body">
+	                        <div class="pro-group pt-0 border-0">
+	                            <div class="product-page-details mt-0">
+	                                <h3>Customer's Name.</h3>
+	                                <div class="pro-review">
+	                                    <div class="d-flex">
+	                                        <select id="u-rating-fontawesome" name="rating" autocomplete="off">
+	                                            <option value="1">1</option>
+	                                            <option value="2">2</option>
+	                                            <option value="3">3</option>
+	                                            <option value="4">4</option>
+	                                            <option value="5">5</option>
+	                                        </select>
+	                                        <span>(250 review)</span>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="product-price">
+	                                $260.00
+	                                <del>$350.00 </del>
+	                            </div>
+	                        </div>
+
+	                        <div class="pro-group pb-0">
+	                            <div class="pro-shop">
+	                                <a class="btn btn-primary m-r-10" href="cart"> <i class="fa fa-shopping-basket me-2"></i>Confirm Order</a>
+	                                <a class="btn btn-danger" href="list-wish"><i class="fa fa-cancel me-2"></i>Remove From Order</a>
+	                            </div>
+	                        </div>
+	                        
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-xl-2 col-md-6 box-col-6 xl-50 proorder-lg-1">
+	                <div class="card">
+	                    <div class="card-body">
+	                        <!-- side-bar colleps block stat-->
+	                        <div class="filter-block">
+	                            <h4>Ordererd Products</h4>
+
+	                            <ul>
+
+																@foreach ($products as $item)
+																<li>
+																	<div class="form-check">
+																		<input class="form-check-input" id="Raymond" type="checkbox" value="{!! $item->id !!}" />
+																		<label class="form-check-label" for="Raymond">{!! $item->name !!}</label>
+																	</div>
+																</li>
+																@endforeach
+
+	                            </ul>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="card">
+	                    <div class="card-body">
+	                        <div class="collection-filter-block">
+	                            <ul class="pro-services">
+	                                <li>
+	                                    <div class="media">
+	                                        <i data-feather="truck"></i>
+	                                        <div class="media-body">
+	                                            <h5>Free Shipping</h5>
+	                                            <p>Free Shipping World Wide</p>
+	                                        </div>
+	                                    </div>
+	                                </li>
+	                                <li>
+	                                    <div class="media">
+	                                        <i data-feather="clock"></i>
+	                                        <div class="media-body">
+	                                            <h5>24 X 7 Service</h5>
+	                                            <p>Online Service For New Customer</p>
+	                                        </div>
+	                                    </div>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                    </div>
+	                    <!-- silde-bar colleps block end here-->
 	                </div>
 	            </div>
 	        </div>
 	    </div>
 	</div>
-	
-	@push('scripts')
-	<script src="{{asset('assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/datatable/datatables/datatable.custom.js')}}"></script>
-	@endpush
 
-@endsection
+</div>
+
+@push('scripts')
+<script src="{{asset('assets/js/rating/jquery.barrating.js')}}"></script>
+	<script src="{{asset('assets/js/rating/rating-script.js')}}"></script>
+	<script src="{{asset('assets/js/slick-slider/slick.min.js')}}"></script>
+	<script src="{{asset('assets/js/slick-slider/slick-theme.js')}}"></script>
+@endpush

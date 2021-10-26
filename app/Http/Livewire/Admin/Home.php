@@ -22,7 +22,7 @@ class Home extends Component
             'pageVisitors'=> DB::table('metadata')->select('meta')->first(), 
             'orderList' => Order::where('status', 'completed')->latest()->take(6), 
             'mostLiked' => ((Favorite::selectRaw('count(id) as likes, product_id')
-            ->with('product:name,image')->groupBy('product_id')->take(8)->get())
+            ->with('product:name,images')->groupBy('product_id')->take(8)->get())
             ?->sortByDesc('likes'))?->values()->all(),
             'users' => User::count(),
         ])->extends('layouts.admin.master');

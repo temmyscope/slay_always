@@ -31,30 +31,46 @@
 																@forelse ($orders as $order)
 																<tr>
 																	<td>
-																			<a href="/order/{!! $order->id !!}">{!! $order->txn_id !!} </a>
+																		<a href="/order/{!! $order->id !!}">{!! $order->txn_id !!} </a>
 																	</td>
+
 																	<td>
 																			<div class="product-name">
-																					<a href="/user/{!! $order->user_id !!}">{!! $order->user->name !!}</a>
+																				{!! $order->user->name !!}
 																			</div>
 																	</td>
+
 																	<td>
 																		<div class="order-process">
-																			<span class="order-process-circle"></span>{!! $order->status !!}
+																			<span class="order-process-circle"></span>{!! ucfirst($order->status) !!}
 																		</div>
 																	</td>
+																	
 																	<td>{!! $order->total !!}</td>
+
 																	<td>
-																		<a class="badge badge-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="cancel order" href="#">
-																			<i data-feather="x-cancel"></i>
-																		</a>
-																		<a class="badge badge-secondary" data-bs-toggle="tooltip" 
-																			data-bs-placement="bottom" title="view order" href="/order/{!! $order->id !!}">
-																			<i data-feather="eye"></i>
-																		</a>
-																		<a class="badge badge-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="refund and cancel order" href="#">
-																			<i data-feather="refresh-ccw"></i>
-																		</a>
+																		@if ( $order->status === 'completed' )
+																			<a 
+																				class="badge badge-secondary" data-bs-toggle="tooltip" 
+																				data-bs-placement="bottom" title="view invoice" 
+																				href="{!! route('invoice', [ 'orderId' => $order->id ]) !!}"
+																			>
+																				<i data-feather="eye"></i>
+																			</a>
+																		@else
+																			<a 
+																				class="badge badge-secondary" data-bs-toggle="tooltip" 
+																				data-bs-placement="bottom" title="view order" href="{!! route('order', [ 'id' => $order->id ]) !!}">
+																				<i data-feather="eye"></i>
+																			</a>
+																			<a 
+																				class="badge badge-secondary" data-bs-toggle="tooltip" 
+																				data-bs-placement="bottom" title="refund and cancel order" wire:click="cancelOrder({!! $order->id !!})"
+																			>
+																				<i data-feather="x-cancel"></i>
+																			</a>
+																		@endif
+																		
 																	</td>
 																</tr>
 																@empty

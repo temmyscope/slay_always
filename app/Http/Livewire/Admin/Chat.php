@@ -2,23 +2,24 @@
 
 namespace App\Http\Livewire\Admin;
 
-use Livewire\{Component, WithFileUploads};
+use Livewire\{Component};
 use App\Models\Chat as ChatModel;
 use Illuminate\Support\Facades\Auth;
+use StaySlay\Traits\Reusables;
 
 class Chat extends Component
 {
-    use WithFileUploads;
-
     public $userId;
     public $recipient;
-    public string $image, $msg = '';
+    public string $msg = '';
     protected $chatsHistory, $chatInFocus;
+
+    use Reusables;
 
     protected function saveChat($msg=null): int | null
     {
         return ChatModel::getInsertId([
-            'msg' => ($msg === null)? $this->msg : $msg,
+            'msg' => ($msg === null) ? $this->msg : $msg,
             'sender' => Auth::id(), 
             'recipient' => $this->recipient,
         ]);
@@ -26,9 +27,8 @@ class Chat extends Component
 
     public function saveImage()
     {
-        $this->validate(['photo' => 'image|max:5096']); //5MB Max
-        $image = $this->image->store('photos');
-        $id = $this->saveChat(msg: "[!image: $image !]");
+        $image = $this->upload();
+        $id = $this->saveChat(msg: "[!image!]:$image");
     }
 
     public function send()
@@ -58,6 +58,6 @@ class Chat extends Component
         return view('livewire.admin.chat', [
             'chatsHistory' => $this->chatsHistory,
             'chatInFocus' => $this->chatInFocus
-        ])->extends('layouts.admin.master');
+        ])->extends('layouts.admin.master')->section('content');
     }
 }

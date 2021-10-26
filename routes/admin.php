@@ -11,11 +11,12 @@ use App\Http\Livewire\Admin\{
 Route::prefix('admin')->group(function () {
 
   Route::get('/home', Home::class)->name('index');
-  Route::get('/product/add-product', AddProduct::class)->name('productcreate');
+  Route::get('/product/add-product/{product?}', AddProduct::class)->name('productcreate');
   Route::get('/product/list-products', ProductsList::class)->name('list-products');
   Route::get('/orders', OrderHistory::class)->name('orders');
-  Route::get('/order/{id}', Order::class)->name('order');
-  //this route will be pointed to from orders on completed orders
+//  Route::get('/order/{id}', Order::class)->name('order');
+  
+//this route will be pointed to from orders on completed orders
   Route::get('/invoice/{orderId}', Invoice::class)->name('invoice-template');
   Route::get('/chat/{id?}', Chat::class)->name('chat'); //if id is passed, the user chat will be in focus
   Route::get('/promotions/{id?}', Promotions::class)->name('promos');

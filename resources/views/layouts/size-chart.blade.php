@@ -3,7 +3,7 @@
     
   <div class="w-full lg:w-2/5 mx-auto opacity-100 z-30 bg-white rounded-xl py-2">
     <div class="text-right p-7">
-      <span id="close-modal" class="fas fa-times text-2xl text-red-500 fixed cursor-pointer"></span>
+      <span id="close-modal" class="fas fa-times text-2xl text-red-500 sticky cursor-pointer"></span>
     </div>
     <h2 class="text-center text-3xl py-3 bg-white w-full text-slayText">Tops & Dresses</h2>
 
@@ -86,6 +86,8 @@
       </tbody>
     </table>
 
+ 
+
     <!-- shoes & boots -->
     <h2 class="text-center text-3xl py-6 text-slayText">Shoes & Boots</h2>
 
@@ -153,7 +155,6 @@
       </tbody>
     </table>
 
-    
     <div class="py-6 text-center bg-white">
       <a href="#" class="underline">see men size guide</a>
     </div>
