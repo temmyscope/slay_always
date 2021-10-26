@@ -130,6 +130,24 @@ function showImages(image) {
   }
   slides[imageSlide-1].style.display = "block";  
 }
+// cart-image slide for mobile view
+  var cartImage = 1;
+showCartImages(cartImage);
+
+function plusCarts(carts) {
+  showCartImages(cartImage += carts);
+}
+
+
+function showCartImages(carts) {
+  var cartSlides = document.querySelectorAll(".cart-image");
+  if (carts > cartSlides.length) {cartImage = 1}    
+  if (carts < 1) {cartImage = cartSlides.length}
+  for (let firstCart = 0; firstCart < cartSlides.length; firstCart++) {
+      cartSlides[firstCart].style.display = "none";  
+  }
+  cartSlides[cartImage-1].style.display = "block";  
+}
 
 // toggle like
 function toggleHeart(likeIcon) {
