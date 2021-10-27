@@ -9,12 +9,6 @@ class OrderHistory extends Component
 {
     protected $orders;
 
-    public function cancelOrder()
-    {
-        OrderModel::where('id', $id)->update(['status' => 'canceled']);
-        //and refund
-    }
-
     public function mount()
     {
         $this->orders = Order::with('user:name')->get();

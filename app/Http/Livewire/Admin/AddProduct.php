@@ -34,12 +34,16 @@ class AddProduct extends Component
 
     public function mount($product = null)
     {
-        $this->productId = $product;
-        $product = ProductModel::find($id);
-        $this->fill([
-            'name' => $product->name, 'description' => $product->description,
-            'price' => $product->price, 'tags' => explode(', ', $product->tags),
-        ]);
+        $product = ProductModel::find($this->productId);
+        if (!empty($product) and $product?->empty()) {
+            $this->productId = $product->id;
+        
+            $this->fill([
+                'name' => $product->name, 'description' => $product->description,
+                'price' => $product->price, 'tags' => explode(', ', $product->tags),
+            ]);
+        }
+        
     }
 
     public function save()
@@ -77,9 +81,9 @@ class AddProduct extends Component
         $colors = DB::table('metadata')->whereNotNull('meta->colors')->first();
         $sizes = DB::table('metadata')->whereNotNull('meta->sizes')->first();
         return view('livewire.admin.add-product', [
-            'tagOptions' => json_decode($tags->meta), 
-            'colorOptions' => json_decode($colors->meta), 
-            'sizeOptions' => json_decode($sizes->meta)
+            'tagOptions' => $tags ? json_decode($tags->meta) : [], 
+            'colorOptions' => $colors ? json_decode($colors->meta) : [], 
+            'sizeOptions' => $sizes ? json_decode($sizes->meta) : []
         ])->extends('layouts.admin.master')->section('content');
     }
 }

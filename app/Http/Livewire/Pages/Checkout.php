@@ -57,17 +57,7 @@ class Checkout extends Component
             //multiply price of each product with the qty available in the cart session
             return $product->price * $cartItems[$product->id];
         });
-        $productsDetails = [];
-        $products->each(function($item, $key) use ($productsDetails, $productsMetaData) {
-            $productsDetails[] = [
-                'name' => $item->name, 'price' => $item->price, 
-                'qty' => $productsMetaData[$item-id], 'metadata' => $item->metadata
-            ];
-        });
-        $metadata = [ 'products' => $productsDetails, 'paymentData' => [] ];
 
-        $total = $order->total;
-    
         //if promotion exists, apply necessary deductions
         $promotion = Promotion::currentlyRunning();
         if ( $promotion !== false) {
@@ -75,15 +65,35 @@ class Checkout extends Component
             $total = percentageDecrease($total, $promotion->dicount);
         }
 
+        $productsDetails = [];
+        $products->each(function($item, $key) use (
+            $productsDetails, $productsMetaData, $promotion
+        ) {
+            $productsDetails[$item->id] = [
+                'price' => $item->price, 'metadata' => $item->metadata,
+                'activePrice' => (
+                    $promotion !== false
+                ) ? percentageDecrease($item->price, $promotion->dicount) : $item->price,
+                'qty' => $productsMetaData[$item->id], 'name' => $item->name
+            ];
+        });
+        $orderMetaData = [ 
+            'products' => $productsDetails, 
+            'paymentData' => [], 'taxesApplied'=> []
+        ];
+
+        $total = $order->total;
+    
         //search for taxes applicable in metadata table and apply as necessary
         $metadata = DB::table('metadata')->whereNotNull('taxes')->first();
-        $taxes = (empty($metadata)) ? ['vat' => 7.5] : json_decode($metadata->meta);
+        $taxes = (empty($metadata)) ? [] : json_decode($metadata->meta);
 
-        $orderMetaData = [];
-        /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
-        foreach ($taxes as $key => $amount) {
-            $total = percentageIncrease($total, $amount);
-            $orderMetaData['taxesApplied'][$key] = $amount;
+        if (!empty($taxes)) {
+            /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
+            foreach ($taxes as $key => $taxPercent) {
+                $total = percentageIncrease($total, $taxPercent);
+                $orderMetaData['taxesApplied'][$key] = $taxPercent;
+            }
         }
 
         $order->metadata = json_encode(

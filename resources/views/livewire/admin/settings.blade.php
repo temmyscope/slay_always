@@ -13,7 +13,7 @@
                         <div class="col-4">
                             <label class="form-label">VAT</label>
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Percent (Default is 7.5)" />
+                                <input class="form-control" wire:model="vat" type="number" placeholder="Percent (Default is 7.5)" />
                                 <span class="input-group-text">%</span> 
                             </div>
                         </div>
@@ -21,13 +21,13 @@
                             <label class="form-label">Shipping Fee</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">₦</span> 
-                                <input class="form-control" type="text" placeholder="Amount (in naira)" />
+                                <input class="form-control" wire:model="shipping" type="number" placeholder="Amount (in naira)" />
                             </div>
                         </div>
                         <div class="col-4">
                             <label class="form-label">Other Taxes: (Leave empty if no other taxes)</label>
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Percentage Amount" />
+                                <input class="form-control" type="text" wire:model="other_taxes" placeholder="Percentage Amount" />
                                 <span class="input-group-text">%</span> 
                             </div>
                         </div>
@@ -103,28 +103,14 @@
                     <div class="col-6">
                         <label class="form-label">Instagram:</label>
                         <div class="input-group">
-                            <input class="form-control" type="text" placeholder="E.g. Blue, Burgundy, Red, etc." /> &nbsp;
-                            <button class="btn btn-primary m-r-15" type="submit">Save</button>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <label class="form-label">Pinterest:</label>
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="E.g. Blue, Burgundy, Red, etc." /> &nbsp;
+                            <input class="form-control" type="url" wire:model="instagram" placeholder="E.g. Blue, Burgundy, Red, etc." /> &nbsp;
                             <button class="btn btn-primary m-r-15" type="submit">Save</button>
                         </div>
                     </div>
                     <div class="col-6">
                         <label class="form-label">WhatsApp:</label>
                         <div class="input-group">
-                            <input class="form-control" type="text" placeholder="E.g. Blue, Burgundy, Red, etc." /> &nbsp;
-                            <button class="btn btn-primary m-r-15" type="submit">Save</button>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <label class="form-label">Facebook:</label>
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="E.g. Blue, Burgundy, Red, etc." /> &nbsp;
+                            <input class="form-control" type="url" wire:model="whatsapp" placeholder="E.g. Blue, Burgundy, Red, etc." /> &nbsp;
                             <button class="btn btn-primary m-r-15" type="submit">Save</button>
                         </div>
                     </div>

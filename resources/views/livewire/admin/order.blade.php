@@ -79,20 +79,36 @@
 	                    <div class="card-body">
 	                        <!-- side-bar colleps block stat-->
 	                        <div class="filter-block">
-	                            <h4>Ordererd Products</h4>
+														<h4>Ordererd Products</h4>
 
-	                            <ul>
+														<ul>
 
-																@foreach ($products as $item)
-																<li>
-																	<div class="form-check">
-																		<input class="form-check-input" id="Raymond" type="checkbox" value="{!! $item->id !!}" />
-																		<label class="form-check-label" for="Raymond">{!! $item->name !!}</label>
-																	</div>
-																</li>
-																@endforeach
+															@foreach ($products as $item)
+															<li>
+																<div class="form-check">
+																	<label class="form-check-label" for="Raymond">{!! $item->name !!}</label>
+																	<a class="btn btn-danger" wire:click="removeItem({!! $item->id !!})" href="list-wish">
+																		<i class="fa fa-cancel me-2"></i>Remove From Order
+																	</a>
+																</div>
+															</li>
+															@endforeach
 
-	                            </ul>
+														</ul>
+
+														<div class="pro-group pb-0">
+
+															<div class="pro-shop">
+																<button class="btn btn-danger" wire:click="cancelOrder({!! $order->id !!}, {!! $order->txn_id !!})">
+																	<i class="fa fa-cancel me-2"></i>Cancel Order
+																</button>
+																<a class="btn btn-danger" wire:click="removeCheckedItems()" href="list-wish">
+																	<i class="fa fa-cancel me-2"></i>Update Order
+																</a>
+															</div>
+															
+														</div>
+														
 	                        </div>
 	                    </div>
 	                </div>

@@ -63,12 +63,6 @@
 																				data-bs-placement="bottom" title="view order" href="{!! route('order', [ 'id' => $order->id ]) !!}">
 																				<i data-feather="eye"></i>
 																			</a>
-																			<a 
-																				class="badge badge-secondary" data-bs-toggle="tooltip" 
-																				data-bs-placement="bottom" title="refund and cancel order" wire:click="cancelOrder({!! $order->id !!})"
-																			>
-																				<i data-feather="x-cancel"></i>
-																			</a>
 																		@endif
 																		
 																	</td>
