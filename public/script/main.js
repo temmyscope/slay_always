@@ -1,36 +1,57 @@
-// const { x } = require("joi");
-
 let slideTextIndex = 0;
 
-function showSlides() {
+function showTextSlides() {
 let textSlides = document.querySelectorAll("#slides");
-for (let i = 0; i < textSlides.length; i++) {
-  textSlides[i].style.display = "none";
-  // slides[i].style.display = `translate`  
+for (let firstText = 0; firstText < textSlides.length; firstText++) {
+  textSlides[firstText].style.display = "none";
 }
 slideTextIndex++;
 if (slideTextIndex > textSlides.length) {
   slideTextIndex = 1
 }    
 textSlides[slideTextIndex-1].style.display = "block";  
-setTimeout(showSlides, 2000); // Change image every 2 seconds
+setTimeout(showTextSlides, 2000); // Change image every 2 seconds
 }
-showSlides();
+showTextSlides();
 
 
-// accordion for the side nav on shoes page
-const accs = document.querySelectorAll(".accord");
 
-accs.forEach(acc => {
-  acc.addEventListener("click", function() {
+  // accordion for the side nav on shoes page
+const sideNavAccordions = document.querySelectorAll(".accord");
+for (let sideAccs = 0; sideAccs < sideNavAccordions.length; sideAccs++) {
+  sideNavAccordions[sideAccs].addEventListener("click", function(){
     this.classList.toggle("chev");
     let sidePanel = this.nextElementSibling;
     sidePanel.style.display === `none` ? sidePanel.style.display = `block` : sidePanel.style.display = `none`;
   })
-});
+}
 
 
-// footer accordion
+  // show sideNav
+let displaySideNav = document.querySelector('.filtered')
+const sideNav = document.querySelector('.side-nav')
+const close = document.querySelector('.close')
+
+displaySideNav.addEventListener('click', function(){
+  if (sideNav.style.display === "block") {
+    sideNav.style.display = "none"
+  } else {
+    sideNav.style.display = "block"
+  }
+})
+close.addEventListener('click', CloseSideNav = ()=> {
+  sideNav.style.display = "none"
+})
+document.body.addEventListener("click", function(event){
+  event.target === sideNav ? sideNav.style.display = "none" : ''
+})
+// document.body.onclick = function(event) {
+//   event.target === sideNav ? sideNav.style.display = "none" : ''
+// }
+
+
+
+  // footer accordion
 const accordions = document.querySelectorAll(".footer-accordion");
 
 accordions.forEach(accordion => {
@@ -41,28 +62,9 @@ accordions.forEach(accordion => {
   })
 })
 
-// show sideNav
-// let navDisplay = document.querySelector('#filtered')
-// const sideNav = document.querySelector('.side-nav')
-// const close = document.querySelector('.close')
-
-
-// navDisplay.addEventListener("click", showSideNav =()=>{
-//   if (sideNav.style.maxWidth) {
-//     sideNav.style.maxWidth = "none"
-//   } else {
-//     sideNav.style.maxWidth = sideNav.scrollHeight + "vh"
-//   }
-// })
-
-// close.addEventListener('click', CloseSideNav = ()=> {
-//   sideNav.style.maxWidth = "none"
-// })
-
-
 // modal for size guide
 const modal = document.querySelector("#myModal");
-const openModal = document.querySelector("#openModal");
+let openModal = document.querySelector("#openModal");
 const closeModal = document.querySelector("#close-modal");
 
 openModal.onclick = function() {
@@ -76,8 +78,9 @@ document.body.onclick = function(e) {
   e.target === modal ? modal.style.display = "none" : ''
 }
 
-// product accordion
 
+
+// product accordion
 const product = document.querySelector('.product')
 
 product.addEventListener('click', function(){
@@ -96,7 +99,8 @@ shippings.forEach(shipping => {
   })
 });
 
-// active image
+
+  // active image
 let imagesHeader = document.querySelector("#imagesHeader");
 const imagesBtns = imagesHeader.querySelectorAll(".image-btn");
   imagesBtns.forEach(imagesBtn => {
@@ -109,7 +113,8 @@ const imagesBtns = imagesHeader.querySelectorAll(".image-btn");
     })
   })
 
-// image slide for product page
+
+  // image slide for product page
   var imageSlide = 1;
 showImages(imageSlide);
 
@@ -130,7 +135,10 @@ function showImages(image) {
   }
   slides[imageSlide-1].style.display = "block";  
 }
-// cart-image slide for mobile view
+
+
+
+  // cart-image slide for mobile view
   var cartImage = 1;
 showCartImages(cartImage);
 
@@ -149,10 +157,20 @@ function showCartImages(carts) {
   cartSlides[cartImage-1].style.display = "block";  
 }
 
+
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+
 // toggle like
-function toggleHeart(likeIcon) {
-  likeIcon.classList.toggle("heart")
-}
+// function toggleHeart(likeIcon) {
+//   likeIcon.classList.toggle("heart")
+// }
 
 // counter
 // let like = document.querySelector('#likeCounter')
@@ -163,3 +181,4 @@ function toggleHeart(likeIcon) {
 //   counter ++
 //   cart.innerHTML = counter
 // })
+

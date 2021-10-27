@@ -288,7 +288,7 @@
     <div class="w-navWidth mx-auto">
       <h1 class="text-3xl text-center font-bold my-9">Customer Favourites</h1>
       
-      <div class="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4 w-full">
 
         <!-- <div class="relative w-full"> -->
           <div class="shadow-lg rounded-lg w-full">
@@ -421,6 +421,24 @@
     </div>
   </div>
 
+  <!-- chat section -->
+  <div>
+    <button class="bg-bgSec text-gray-50 py-3 px-5 cursor-pointer fixed bottom-14 right-14 w-72 text-2xl rounded" onclick="openForm()">
+      Chat <span class="fas fa-comments text-2xl"></span>
+    </button>
+
+    <div class="hidden fixed bottom-0 right-14 z-50 border-4 border-solid border-gray-400" id="myForm">
+      <form action="/action_page.php" class="form-container">
+        <h1>Chat</h1>
+
+        <label for="msg"><b>Message</b></label>
+        <textarea placeholder="Type message.." name="msg" required></textarea>
+
+        <button type="submit" class="chat-btn">Send</button>
+        <button type="button" class="chat-btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div>
+  </div>
   <!-- footer section -->
   <footer class="bg-bgSec w-full text-white py-10">
     <div class="w-navWidth mx-auto flex justify-around flex-wrap">
@@ -544,6 +562,6 @@
     </div>
   </footer>
 
+  <script src="./script/main.js"></script>
 </body>
-<script src="./script/main.js"></script>
 </html>

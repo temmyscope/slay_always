@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../css/main.css">
-  <link rel="shortcut icon" href="../assets/logo2.PNG" type="image/x-icon">
+  <link rel="shortcut icon" href="../assets/slaylogo.PNG" type="image/x-icon">
   <title>Shoes</title>
 </head>
 <body class="font-slayFont">
@@ -107,7 +107,7 @@
   <!--  -->
   <div class="w-full lg:text-center my-5 mx-2">
     <div class="w-navWidth mx-auto">
-      <div id="filtered" class="filter w-40 justify-around py-2 cursor-pointer bg-gray-700 text-gray-100">
+      <div class="filter w-40 justify-around py-2 filtered cursor-pointer bg-gray-700 text-gray-100">
         <h3 class="text-left">
           Filtered  
         </h3>
@@ -124,13 +124,13 @@
     <div class="lg:w-1/5  side-nav w-3/4 overflow-scroll lg:overflow-hidden ">
       <!-- button will be displayed on medium to large screen -->
       <div class="w-auto flex justify-end md:justify-start">
-        <div class="lg:block md:block  hidden">
+        <div class="lg:block clear">
           <button class="p-2 w-48 bg-bgSec text-gray-100 text-lg rounded-3xl focus:border-4 border-indigo-300 mb-3 hover:bg-slay">
             clear (2)
           </button>
         </div>
-        <div class="cursor-pointer close p-2 md:p-0">
-          <i class="far fa-window-close"></i>
+        <div class="close w-full">
+          <span class="far fa-window-close text-gray-50 cursor-pointer float-right"></span>
         </div>
       </div>
       <div class="w-11/12 mx-auto">
@@ -566,7 +566,7 @@
     </div>
   </footer>
 
-
+  <script src="../script/main.js"></script>
+  <!-- <script src="../script/shoes.js"></script> -->
 </body>
-<script src="../script/main.js"></script>
 </html>
