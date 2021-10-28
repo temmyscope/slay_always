@@ -185,10 +185,13 @@
   display: none;
 }
 
-/* .images img {
-  height: 100%;
-} */
+.viewed {
+  display: none;
+}
 
+/* #viewed1:checked ~ .viewed1 {
+  display: block;
+} */
 /* #image1:checked ~ .image1,
 #image2:checked ~ .image2,
 #image3:checked ~ .image3 {
@@ -204,22 +207,6 @@
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
-
-/* .chat-header {
-  background: #333;
-  color: #f1f1f1;
-  padding: 7px 20px;
-  justify-content: space-between;
-  display: flex;
-  border-radius: 10px;
-}
-
-.title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-} */
 
 /* The popup chat - hidden by default */
 .chat-popup {
@@ -267,12 +254,8 @@
   opacity: 0.8;
 }
 
-/* Add a red background color to the cancel button */
-/*  */
-
 /* Add some hover effects to buttons */
-.form-container .chat-btn:hover,
-.open-button:hover {
+.form-container .chat-btn:hover {
   opacity: 1;
 }
 @media screen and (max-width: 790px) {

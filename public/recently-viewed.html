@@ -5,11 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
-
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./css/main.css">
-  <link rel="shortcut icon" href="./assets/slaylogo.PNG" type="image/x-icon">
-  <title>Carts</title>
+  <link rel="shortcut icon" href="./assets/slaylogo.PNG" type="image/PNG">
+  <title>Recently viewed</title>
 </head>
 <body class="font-slayFont">
   <!--  -->
@@ -66,7 +65,7 @@
     <div class="w-full h-14 bg-bgSec mt-2 border-t-2 border-gray-400">
       <div class="lg:w-navWidth w-full mx-auto">
   
-        <div class="w-full text-white h-full overflow-hidden items-center py-3 text-center flex">
+        <div class="w-full text-white h-full overflow-hidden items-center pb-0 pt-2 text-center flex">
   
           <div id="slides" class="w-full h-full hidden ">
             
@@ -89,153 +88,174 @@
     </div>
   </header>
 
+  <!-- nav section -->
   <nav class="w-full mt-6">
     <ul class="w-navWidth flex mx-auto">
       <li class="underline p-3 font-bold text-xl">
         <a href="./index.html">Home</a>
       </li>
       <li class="p-3 text-gray-400 text-xl">
-        <a href="./carts.html">Shopping bag</a>
+        <a href="./recently-viewed.html">Recently viewed</a>
       </li>
     </ul>
   </nav>
 
-  <main class="w-full mt-10">
-    <div class="w-4/5 mx-auto">
-      <div class="w-full">
-        <h1 class="text-center uppercase text-3xl">shopping bag</h1>
+  <!-- rencently viewed items -->
+  <main class="w-full mt-14">
+    <div class="w-navWidth mx-auto">
+      <div class="text-center">
+        <h1 class="capitalize text-3xl text-gray-700">recently viewed</h1>
       </div>
-      <div class="w-full text-center mt-24">
-        <h4 class="text-center  text-xl">Your shopping bag is empty</h4>
-        <a href="./index.html">
-          <button class=" lg:w-1/5 bg-black text-white lg:text-xl mt-7 rounded-md lg:p-3 p-1 hover:bg-slay">Continue shopping</button>
-        </a>
+      <div class="w-full flex justify-between mt-7 py-4 text-xl">
+        <p>7 items</p>
+        <button type="button" class="underline">clear all</button>
+      
+      </div>
+
+      <div class="grid lg:grid-cols-5 grid-cols-2 mt-4 gap-4">
+        <div>
+          <div class="shadow w-full relative">
+            <div class="viewed">
+              <a href="#">
+                <img src="https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="w-full">
+                <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
+              </a>
+            </div>
+            <div class="viewed">
+              <a href="#">
+                <img src="https://images.pexels.com/photos/952213/pexels-photo-952213.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="w-full">
+                <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
+              </a>
+            </div>
+            <div class="viewed">
+              <a href="#">
+                <img src="https://images.pexels.com/photos/3763949/pexels-photo-3763949.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="w-full">
+                <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
+              </a>
+            </div>
+          </div>
+          <div class="py-5 px-2">
+            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
+            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
+            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
+              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
+              <span>
+                <input type="radio" name="view" id="viewed1" class="bg-black" checked onclick="currentViewedImage(1)">
+                <input type="radio" name="view" id="viewed2" class="bg-red-900" onclick="currentViewedImage(2)">
+                <input type="radio" name="view" id="viewed3" class="bg-pink-600" onclick="currentViewedImage(3)">
+              </span>
+          </div>
+          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
+            Add to bag
+          </button>
+        </div>
+        <div class="shadow w-full relative">
+          <a href="#">
+            <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="w-full">
+            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
+          </a>
+          <div class="py-5 px-2">
+            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
+            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
+            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
+              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
+            <span>
+              <input type="radio" name="radio" id="" class="bg-black">
+              <input type="radio" name="radio" id="" class="bg-red-900">
+              <input type="radio" name="radio" id="" class="bg-pink-600">
+            </span>
+          </div>
+          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
+            Add to bag
+          </button>
+        </div>
+        <div class="shadow w-full relative">
+          <a href="#">
+            <img src="https://images.pexels.com/photos/1631181/pexels-photo-1631181.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="w-full">
+            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
+          </a>
+          <div class="py-5 px-2">
+            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
+            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
+            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
+              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
+            <span>
+              <input type="radio" name="radio" id="" class="bg-black">
+              <input type="radio" name="radio" id="" class="bg-red-900">
+              <input type="radio" name="radio" id="" class="bg-pink-600">
+            </span>
+          </div>
+          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
+            Add to bag
+          </button>
+        </div>
+        <div class="shadow w-full relative">
+          <a href="#">
+            <img src="https://images.pexels.com/photos/2916814/pexels-photo-2916814.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="w-full">
+            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
+          </a>
+          <div class="py-5 px-2">
+            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
+            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
+            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
+              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
+            <span>
+              <input type="radio" name="radio" id="" class="bg-black">
+              <input type="radio" name="radio" id="" class="bg-red-900">
+              <input type="radio" name="radio" id="" class="bg-pink-600">
+            </span>
+          </div>
+          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
+            Add to bag
+          </button>
+        </div>
+        <div class="shadow w-full relative">
+          <a href="#">
+            <img src="https://images.pexels.com/photos/1390600/pexels-photo-1390600.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="w-full">
+            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
+          </a>
+          <div class="py-5 px-2">
+            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
+            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
+            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
+              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
+            <span>
+              <input type="radio" name="radio" id="" class="bg-black">
+              <input type="radio" name="radio" id="" class="bg-red-900">
+              <input type="radio" name="radio" id="" class="bg-pink-600">
+            </span>
+          </div>
+          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
+            Add to bag
+          </button>
+        </div>
+
+        <div class="shadow w-full relative">
+          <a href="#">
+            <img src="https://images.pexels.com/photos/859195/pexels-photo-859195.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="w-full">
+            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
+          </a>
+          <div class="py-5 px-2">
+            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
+            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
+            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
+              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
+            <span>
+              <input type="radio" name="radio" id="" class="bg-black">
+              <input type="radio" name="radio" id="" class="bg-red-900">
+              <input type="radio" name="radio" id="" class="bg-pink-600">
+            </span>
+          </div>
+          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
+            Add to bag
+          </button>
+        </div>
       </div>
     </div>
   </main>
 
-  <section class="w-full mt-20">
-    <div class="w-navWidth mx-auto">
-      <h2 class="capitalize py-10 text-3xl lg:text-center">recommended for you</h2>
-
-      <div class="mb-7 lg:hidden block">
-        <span class="fas fa-chevron-left py-2 px-3 bg-slay cursor-pointer text-gray-100 text-2xl" onclick="plusCarts(-1)"></span>
-            <span class="fas fa-chevron-right py-2 px-3 bg-slay cursor-pointer  text-gray-100 text-2xl" onclick="plusCarts(1)"></span>
-      </div>
-
-      <div class="lg:grid lg:grid-cols-5 w-full gap-3 block">
-
-        <div class="shadow w-full relative lg:block hidden cart-image">
-          <a href="#">
-            <img src="https://images.pexels.com/photos/3055011/pexels-photo-3055011.jpeg?cs=srgb&dl=pexels-l%C3%AA-minh-3055011.jpg&fm=jpg" alt="" class="w-full">
-            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-          </a>
-          <div class="py-5 px-2">
-            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-            <span>
-              <input type="radio" name="radio" id="" class="bg-black">
-              <input type="radio" name="radio" id="" class="bg-red-900">
-              <input type="radio" name="radio" id="" class="bg-pink-600">
-            </span>
-          </div>
-          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-            Add to bag
-          </button>
-        </div>
-
-        <div class="shadow w-full relative lg:block hidden cart-image">
-          <a href="#">
-            <img src="./assets/cart2.jpg" alt="" class="w-full">
-            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-          </a>
-          <div class="py-5 px-2">
-            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-            <span>
-              <input type="radio" name="radio" id="" class="bg-black">
-              <input type="radio" name="radio" id="" class="bg-red-900">
-              <input type="radio" name="radio" id="" class="bg-pink-600">
-            </span>
-          </div>
-          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-            Add to bag
-          </button>
-        </div>
-
-        <div class="shadow w-full relative lg:block hidden cart-image">
-          <a href="#">
-            <img src="./assets/cart3.jpg" alt="" class="w-full">
-            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-          </a>
-          <div class="py-5 px-2">
-            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-            <span>
-              <input type="radio" name="radio" id="" class="bg-black">
-              <input type="radio" name="radio" id="" class="bg-red-900">
-              <input type="radio" name="radio" id="" class="bg-pink-600">
-            </span>
-          </div>
-          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase mt-2 text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-            Add to bag
-          </button>
-        </div>
-
-        <div class="shadow w-full relative lg:block hidden cart-image">
-          <a href="#">
-            <img src="./assets/cart4.jpg" alt="" class="w-full">
-            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-          </a>
-          <div class="py-5 px-2">
-            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-            <span>
-              <input type="radio" name="radio" id="" class="bg-black">
-              <input type="radio" name="radio" id="" class="bg-red-900">
-              <input type="radio" name="radio" id="" class="bg-pink-600">
-            </span>
-          </div>
-          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-            Add to bag
-          </button>
-        </div>
-
-        <div class="shadow w-full relative lg:block hidden cart-image">
-          <a href="#">
-            <img src="./assets/cart5.jpg" alt="" class="w-full">
-            <span id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></span>
-          </a>
-          <div class="py-5 px-2">
-            <p class="text-red-700 font-bold uppercase mb-3">30% off! no code needed prices as marked</p>
-            <p class="mb-2 text-gray-500 font-bold">Spree dress black</p>
-            <p class="font-bold mb-2"><span class="line-through text-gray-500">&#8358;30,000</span>
-              &nbsp; <span class="text-red-700">&#8358;25,000</span></p>
-            <span>
-              <input type="radio" name="radio" id="" class="bg-black">
-              <input type="radio" name="radio" id="" class="bg-red-900">
-              <input type="radio" name="radio" id="" class="bg-pink-600">
-            </span>
-          </div>
-          <button class="bg-black chevron text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3" type="button">
-            Add to bag
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- footer section -->
-  <footer class="bg-bgSec w-full text-white py-10 mt-7">
+  <footer class="bg-bgSec w-full text-white py-10 mt-10">
     <div class="w-navWidth mx-auto flex justify-around flex-wrap">
       <div class="capitalize lg:order-1 order-2 w-full lg:w-auto borderr">
         <h5 class="footer-accordion uppercase font-medium text-lg">Get Help</h5>
@@ -316,8 +336,7 @@
           </button>
         </div>
         <small class="text-gray-400 order-3">By signing up for email, you agree to Stay Slay Fashion's <a href="#" class="underline">Terms of Service </a>and <a href="#" class="underline">Privacy policy</a></small>
-        
-
+        <!-- icons -->
         <div class="flex my-7 order-1 lg:order-4 w-full lg:w-3/4 justify-around">
           <span class="px-2">
             <a href="#">
@@ -357,8 +376,7 @@
       </div>
     </div>
   </footer>
-  
+
   <script src="./script/main.js"></script>
-  <!-- <script src="./script/carts.js"></script> -->
 </body>
 </html>
