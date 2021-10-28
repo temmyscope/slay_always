@@ -45,6 +45,9 @@
     
     @yield('content')
 
+    <!-- End Content -->
+    <livewire:chat >
+
     @livewireScripts
 
     @livewire('footer')

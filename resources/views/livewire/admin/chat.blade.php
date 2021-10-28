@@ -109,7 +109,7 @@
 	                                    <div class="row">
 	                                        <div class="col-xl-12 d-flex">
 	                                            <div class="smiley-box bg-primary">
-																									<button type="file" class="icon-camera" wire:model="image"></button>
+																									<input type="file"  class="icon-camera" wire:model="image"></button>
 	                                            </div>
 	                                            <div class="input-group text-box">
 	                                                <input 

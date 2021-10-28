@@ -1,15 +1,17 @@
 <?php
-namespace App\Http\Livewire\Pages;
 
-use Livewire\{Component, WithFileUploads};
+namespace App\Http\Livewire;
+
+use Livewire\Component;
 use App\Models\{ Chat as ChatModel, Image };
 use StaySlay\Traits\Reusables;
 
 class Chat extends Component
 {
+
     public $recipient;
     public string $msg = '';
-    protected $chatsHistory, $chatInFocus;
+    protected $chatInFocus;
 
     use Reusables;
 
@@ -43,7 +45,6 @@ class Chat extends Component
 
     public function render()
     {
-        return view('livewire.pages.chat')
-        ->extends('layouts.app')->section('content');
+        return view('livewire.chat');
     }
 }

@@ -6,7 +6,10 @@
       <div class="relative m-w-full max-h-full con">
         <div id="slide1" class="slide slide1 w-full">
           <img src="{!! cdnizeURL($product->images[0]->src) !!}" alt="{!! $product->name !!} Image" class="w-full">
-          <a wire:click="addTofavorite({!! $product->id !!})" id="heart" class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block"></a>
+          <a 
+            wire:click="addTofavorite({!! $product->id !!})" id="heart" 
+            class="far fa-heart absolute top-1 text-yellow-800 text-3xl right-2 block heart"
+          ></a>
           <div class="over w-full">
           </div>
         </div>

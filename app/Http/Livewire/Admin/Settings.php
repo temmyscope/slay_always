@@ -15,26 +15,36 @@ class Settings extends Component
 
     protected $settings;
 
+    protected $rules = [
+        'vat' => 'required'
+    ];
+
     public function saveTaxes()
     {
-        DB::table('metadata')->insert([
-            'taxes' => json_encode([
-                'vat' => $this->vat, 'shipping' => $this->shipping,
-                'others' => $other_taxes
-            ]),
-            'created_at' => '', 'updated_at' => ''
+        DB::table('metadata')->where('id', 2)->update([
+            'meta' =>  json_encode([
+                'taxes' => [ 
+                    'vat' => (float)$this->vat, 'shipping' => (float)$this->shipping,
+                    'others' => (float)$this->other_taxes
+                ]
+            ]), 'updated_at' => date('Y-m-d h:i:s')
         ]);
     }
 
-    public function saveMeta()
+    public function saveMeta($meta)
     {
-
+        DB::table('metadata')->whereNotNull("meta->$meta")->update(
+          ["meta->$meta" => $this->$meta, 'updated_at' => date('Y-m-d h:i:s') ]
+        );
     }
 
-    public function saveSocials($network, $handle)
+    public function saveSocials()
     {
-        DB::table('metadata')->whereNotNull('meta->socials')
-        ->update(["$network" => $handle]);
+        DB::table('metadata')->where('id', 3)->update([
+            'meta' =>  json_encode([
+                'socials' => [ 'instagram' => $this->instagram, 'whatsapp' => $this->whatsapp ]
+            ]), 'updated_at' => date('Y-m-d h:i:s')
+        ]);
     }
 
     public function productsMeta()
@@ -44,27 +54,29 @@ class Settings extends Component
     public function mount()
     {
         $this->settings = DB::table('metadata')->get();
-        $taxes = $colors = $sizes = $categories = []; 
+        $taxes = []; 
         $properties = [];
-        $this->settings->each(function($item, $key) use ($properties, $taxes){
+        $this->settings->each(function($item, $key) use (&$properties, &$taxes){
             $setting = json_decode($item->meta, true);
-            $properties[$key] = $setting;
-
             if( array_key_exists('taxes', $setting) ){
-                $taxes = $settting;
+                $taxes = $setting['taxes'];
+            }elseif( array_key_exists('socials', $setting) ){
+                $properties = $setting['socials'];
+            }else{
+                $properties = $setting;
             }
         });
-        
+        unset($properties['visits']);
         $this->fill([
-            'vat' => $taxes['vat'] ?? [], 'shipping' => $taxes['shipping'] ?? [], 
-            'others' => $taxes['others'] ?? [], ...$properties
+            'vat' => $taxes['vat'] ?? null, 'shipping' => $taxes['shipping'] ?? null, 
+            'others' => $taxes['others'] ?? null, 'colors' => $properties['colors'] ?? "", 
+            'sizes' => $properties['sizes'] ?? "", 'categories' => $properties['categories'] ?? "", 
+            'whatsapp' => $properties['whatsapp'] ?? null, 'instagram' => $properties['instagram'] ?? null
         ]);
     }
 
     public function render()
     {
-        //eg. Tax: VAT => value, shipping => value, etc.
-        
         return view('livewire.admin.settings', [
             'settings' => $this->settings
         ])->extends('layouts.admin.master')->section('content');
