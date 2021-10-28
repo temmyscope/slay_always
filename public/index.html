@@ -423,7 +423,7 @@
 
   <!-- chat section -->
   <div>
-    <button class="bg-bgSec text-gray-50 py-3 px-5 cursor-pointer fixed bottom-14 right-14 w-72 text-2xl rounded" onclick="openForm()">
+    <button class="bg-slay text-gray-50 py-3 px-5 cursor-pointer fixed bottom-10 right-14 w-72 text-2xl rounded" onclick="openForm()">
       Chat <span class="fas fa-comments text-2xl"></span>
     </button>
 
@@ -431,11 +431,13 @@
       <form action="/action_page.php" class="form-container">
         <h1>Chat</h1>
 
-        <label for="msg"><b>Message</b></label>
+        <div class="flex justify-between p-1">
+          <label for="msg"><b>Message</b></label>
+          <span class="fas fa-times text-xl cursor-pointer text-red-500" onclick="closeForm()"></span>
+        </div>
         <textarea placeholder="Type message.." name="msg" required></textarea>
 
         <button type="submit" class="chat-btn">Send</button>
-        <button type="button" class="chat-btn cancel" onclick="closeForm()">Close</button>
       </form>
     </div>
   </div>

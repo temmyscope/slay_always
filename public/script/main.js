@@ -78,8 +78,6 @@ document.body.onclick = function(e) {
   e.target === modal ? modal.style.display = "none" : ''
 }
 
-
-
 // product accordion
 const product = document.querySelector('.product')
 
