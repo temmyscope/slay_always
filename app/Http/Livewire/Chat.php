@@ -17,7 +17,7 @@ class Chat extends Component
 
     protected function saveChat($msg=null): int | null
     {
-        return ChatModel::getInsertId([
+        return ChatModel::insertGetId([
             'msg' => ($msg === null)? $this->msg : $msg,
             'sender' => Auth::id(), 
             'recipient' => $this->recipient,

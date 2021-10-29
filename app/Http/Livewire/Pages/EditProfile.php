@@ -4,16 +4,17 @@ namespace App\Http\Livewire\Pages;
 
 use Livewire\Component;
 use App\Models\{ Profile, Image };
+use StaySlay\Traits\Reusables;
 
 class EditProfile extends Component
 {
+    use Reusables;
 
-    public function saveImage()
-    {
-    }
+    public $phone;
 
     public function update()
     {
+
     }
 
     public function render()

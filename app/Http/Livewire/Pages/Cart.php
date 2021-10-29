@@ -24,7 +24,7 @@ class Cart extends Component
                 'products' => $cartItems,
                 'paymentData' => []
             ];
-            $orderId = Order::getInsertId([
+            $orderId = Order::insertGetId([
                 'user_id' => auth()->user()->id, 
                 'metadata' => json_encode($metadata),
                 'total' => 0

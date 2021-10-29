@@ -9,21 +9,38 @@ use App\Models\Product;
 class Search extends Component
 {
     public Product $searchResult;
+    public $filtered;
     public array $filters;
+    protected $listeners = ['applyFilter','searchOnPage'];
     
     public function clearFilters()
     {
         $this->filters = [];
     }
 
-    public function Filter($filterName, $value)
+    public function applyFilter()
     {
-        //update search result object based on this filter
     }
 
-    public function mount(Request $request)
+    public function searchOnPage(string $query)
     {
-        $query = $request->input('query') ?? $request->input('category');
+        $this->searchResult = Product::search($query);
+    }
+
+    public function filter($filterName, $value)
+    {
+        //update search result object based on this filter
+        if(array_key_exists($filterName, $this->filters) && $this->filters[$filterName] == $value){
+            unset($this->filters[$filterName]);
+            $this->emit('applyFilter');
+        }else{
+
+        }
+    }
+
+    public function mount(Request $request, $category = null)
+    {
+        $query = ($category !== null) ? $request->input('category') : $request->input('query');
         $this->searchResult = Product::where('name', 'like', '%'.$query.'%')
         ->orWhere('tags', 'like', '%'.$query.'%')->get();
     }
@@ -32,6 +49,6 @@ class Search extends Component
     {
         return view('livewire.pages.search', [
             'searchResult' => $this->searchResult
-        ])->extends('layouts.app');
+        ])->extends('layouts.app')->section('content');
     }
 }

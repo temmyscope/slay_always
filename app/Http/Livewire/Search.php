@@ -7,12 +7,23 @@ use App\Models\{ Favorite };
 
 class Search extends Component
 {
+
     public string $searchQuery;
     public $favorites, $cartItemsCount, $recentlyViewed;
+    protected $listeners = ['incrementRecent'];
+
+    public function incrementRecent()
+    {
+        $this->recentlyViewed = $this->recentlyViewed + 1;
+    }
 
     public function searchForQuery()
     {
-        return redirect('search?query='.$this->searchQuery);
+        if (str_contains(url()->current(), 'search')) {
+            $this->emitTo('pages.search', 'searchOnPage', this->searchQuery);
+        }else{
+            return redirect('search?query='.$this->searchQuery);
+        }
     }
 
     public function mount()

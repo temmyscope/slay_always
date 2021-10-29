@@ -9,14 +9,14 @@ class Chat extends Model
 {
     use HasFactory;
 
-    public function image()
+    public function sender()
     {
-        return $this->hasOne(Image::class);
+        return $this->hasOneThrough(User::class, Chat::class, 'recipient_id', 'id');
     }
 
-    public function user()
+    public function recipient()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOneThrough(User::class, Chat::class, 'user_id', 'id');
     }
 
 }

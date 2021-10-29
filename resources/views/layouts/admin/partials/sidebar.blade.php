@@ -23,7 +23,6 @@
                         <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/blog') }};">
                         <li><a href="{{route('index')}}" class="{{routeActive('index')}}">Dashboard</a></li>
                         <li><a href="{{ route('users') }}" class="{{routeActive('users')}}">Users</a></li>
-                        <li><a href="{{ route('chat') }}" class="{{routeActive('chat')}}">Chats</a></li>
                         <li><a href="{{ route('orders') }}" class="{{routeActive('orders')}}">Orders</a></li>
                         <li><a href="{{ route('promos') }}" class="{{routeActive('promotions')}}">Promotions</a></li>
                         <li><a href="{{ route('editor') }}" class="{{routeActive('editor')}}">Newsletter editor</a></li>

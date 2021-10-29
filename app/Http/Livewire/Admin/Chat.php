@@ -9,20 +9,20 @@ use StaySlay\Traits\Reusables;
 
 class Chat extends Component
 {
-    public $userId;
+    public $user;
     public $recipient;
     public string $msg = '';
-    protected $chatsHistory, $chatInFocus;
+    public $chatsHistory, $chatInFocus;
 
     use Reusables;
 
-    protected function saveChat($msg=null): int | null
+    protected function saveChat($msg=null)
     {
-        return ChatModel::getInsertId([
-            'msg' => ($msg === null) ? $this->msg : $msg,
-            'sender' => Auth::id(), 
-            'recipient' => $this->recipient,
-        ]);
+        $chat = New ChatModel;
+        $chat->msg = ($msg === null) ? $this->msg : $msg;
+        $chat->user_id = $this->user->id;
+        $chat->recipient_id = $this->recipient->id;
+        $chat->save();
     }
 
     public function saveImage()
@@ -34,21 +34,37 @@ class Chat extends Component
     public function send()
     {
         $this->saveChat();
+        $this->emit('updateChat');
+    }
+
+    public function updateChat()
+    {
+        $this->chatInFocus = ChatModel::where([
+                [ 'user_id', $this->user->id ],  
+                [ 'recipient_id', $this->user->id ]
+            ])->orWhere([
+                [ 'user_id', $this->user->id ], 
+                [ 'recipient_id', $this->user->id ]
+            ])->orderBy('created_at')->get();
+        $this->msg = "";
     }
 
     public function mount($id = null)
     {
-        $this->userId = auth()->user()->id;
-        $this->chatsHistory = ChatModel::with('user:id,name')->latest()->take(10)->get();
-        $this->recipient = (!is_null($id)) ? $id : ($this->chatsHistory[0]->user->id ?? 0);
+        $this->user = auth()->user();
+        $this->chatsHistory = ChatModel::where(
+            'recipient_id', $this->user->id
+        )->distinct()->latest()->take(10)->get();
+
+        $this->recipient = $id ? \App\Models\User::find($id) : $this->user;
+        
         if ( !$this->chatsHistory->empty() ) {
-            $this->chatInFocus = ChatModel::with('user:name')
-            ->where([
-                [ 'sender', $id ],  [ 'recipient', auth()->user()->id ]
+            $this->chatInFocus = ChatModel::where([
+                [ 'user_id', $id ],  [ 'recipient_id', $this->user->id ]
             ])->orWhere([
-                [ 'sender', auth()->user()->id ], [ 'recipient', $id ]
+                [ 'user_id', $this->user->id ], [ 'recipient_id', $this->user->id ]
             ])->orderBy('created_at')->get();
-            
+            dd($this->chatInFocus->sender);
         }
         
     }
@@ -56,8 +72,8 @@ class Chat extends Component
     public function render()
     {
         return view('livewire.admin.chat', [
-            'chatsHistory' => $this->chatsHistory,
-            'chatInFocus' => $this->chatInFocus
+            //'chatsHistory' => $this->chatsHistory,
+            //'chatInFocus' => $this->chatInFocus
         ])->extends('layouts.admin.master')->section('content');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\{
   Cart, Favorite, Recent, Profile, EditProfile, OrderHistory,
-  Invoice, Notification, Search, Rating, Product, Category, Checkout
+  Invoice, Notification, Search, Rating, Product, Checkout
 };
 
 Route::get('cart', Cart::class)->name('user-cart');
@@ -14,7 +14,7 @@ Route::get('favorites', Favorite::class)->name('user-favorites');
 
 Route::get('recent', Recent::class)->name('user-recent');
 
-Route::get('categories/{category?}', Category::class)->name('categories');
+Route::get('categories/{category}', Search::class)->name('categories');
 
 Route::get('search', Search::class)->name('search');
 
