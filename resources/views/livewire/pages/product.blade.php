@@ -153,4 +153,81 @@
         </div>
     </div>
 
+
+    <!-- review page -->
+    <section class="w-full mt-14">
+        <div class="w-2/5 mx-auto py-2">
+          <h2 class="text-center text-3xl py-8 font-bold">Reviews</h2>
+          <div class="w-1/2 flex mx-auto items-center">
+  
+            <div class="w-3/5 justify-center">
+              <div class="text-center">
+                <h2 class="font-bold text-3xl py-1">4.3</h2>
+  
+                <span class="pr-3 cursor-pointer ">
+                  <span class="fas fa-star text-2xl"></span>
+                  <span class="fas fa-star text-2xl"></span>
+                  <span class="fas fa-star text-2xl"></span>
+                  <span class="fas fa-star-half-alt text-2xl"></span>
+                  <span class="far fa-star text-2xl"></span>
+                </span>
+  
+                  <p class="py-2">27 reviews</p>
+              </div>
+              
+            </div>
+            <!-- bars -->
+            <div class="w-2/5 h-auto">
+              <table class="w-full">
+                <tbody>
+                  <th>
+                    <tr class="w-full inline-table ">
+                      <td class="pb-1">5</td>
+                      <td class="w-10/12">
+                        <div class="w-full bg-gray-100 mb-2">
+                          <div class="w-4/5 bg-gray-400 py-1"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="w-full inline-table ">
+                      <td class="pb-1">4</td>
+                      <td class="w-10/12">
+                        <div class="w-full bg-gray-100 mb-2">
+                          <div class="w-3/5 bg-gray-400 py-1"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="w-full inline-table ">
+                      <td class="pb-1">3</td>
+                      <td class="w-10/12">
+                        <div class="w-full bg-gray-100 mb-2">
+                          <div class="w-2/5 bg-gray-400 py-1"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="w-full inline-table ">
+                      <td class="pb-1">2</td>
+                      <td class="w-10/12">
+                        <div class="w-full bg-gray-100 mb-2">
+                          <div class="w-1/5 bg-gray-400 py-1"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="w-full inline-table ">
+                      <td class="pb-1">1</td>
+                      <td class="w-10/12">
+                        <div class="w-full bg-gray-100 mb-2">
+                          <div class="w-1 bg-gray-400 py-1"></div>
+                        </div>
+                      </td>
+                    </tr>
+                  </th>
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
 </div>

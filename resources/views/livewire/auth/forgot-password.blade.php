@@ -33,7 +33,7 @@
       </p>
       <input type="email" id="" placeholder="email" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
       <span class="w-full flex my-6 items-center gap-x-2">
-        <input type="submit" value="Submit" class="w-2/5 p-2 bg-bgSec rounded-lg font-medium text-white cursor-pointer hover:bg-gray-400 hover:text-black">
+        <input type="submit" value="Submit" class="w-2/5 p-2 bg-bgSec rounded-lg font-medium text-white cursor-pointer hover:bg-slay hover:text-gray-100">
         <a href="#" class="underline font-medium text-xl">Cancel</a>
       </span>
     </form>

@@ -5,14 +5,14 @@
 <div>
     
     <nav class="w-full mt-6">
-        <ul class="w-navWidth flex mx-auto">
-        <li class="underline p-3 font-bold text-xl">
-            <a href="{!! route('welcome') !!}">Home</a>
-        </li>
-        <li class="p-3 text-gray-400 text-xl">
-            <a>Shopping bag</a>
-        </li>
-        </ul>
+      <ul class="w-navWidth flex mx-auto">
+      <li class="underline p-3 font-bold text-xl">
+          <a href="{!! route('welcome') !!}">Home</a>
+      </li>
+      <li class="p-3 text-gray-400 text-xl">
+          <a>Shopping bag</a>
+      </li>
+      </ul>
     </nav>
 
 

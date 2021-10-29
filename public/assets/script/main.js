@@ -14,22 +14,19 @@ setTimeout(showTextSlides, 2000); // Change image every 2 seconds
 }
 showTextSlides();
 
-
-
-  // accordion for the side nav on shoes page
+// accordion for the side nav on shoes page
 const sideNavAccordions = document.querySelectorAll(".accord");
-for (let sideAccs = 0; sideAccs < sideNavAccordions.length; sideAccs++) {
-  sideNavAccordions[sideAccs].addEventListener("click", function(){
+  for (let sideAccordion = 0; sideAccordion < sideNavAccordions.length; sideAccordion++) {
+  sideNavAccordions[sideAccordion].addEventListener("click", function(){
     this.classList.toggle("chev");
     let sidePanel = this.nextElementSibling;
     sidePanel.style.display === `none` ? sidePanel.style.display = `block` : sidePanel.style.display = `none`;
   })
 }
 
-
   // show sideNav
 let displaySideNav = document.querySelector('.filtered')
-const sideNav = document.querySelector('.side-nav')
+let sideNav = document.querySelector('.side-nav')
 const close = document.querySelector('.close')
 
 displaySideNav.addEventListener('click', function(){
@@ -42,25 +39,18 @@ displaySideNav.addEventListener('click', function(){
 close.addEventListener('click', CloseSideNav = ()=> {
   sideNav.style.display = "none"
 })
-document.body.addEventListener("click", function(event){
-  event.target === sideNav ? sideNav.style.display = "none" : ''
-})
-// document.body.onclick = function(event) {
-//   event.target === sideNav ? sideNav.style.display = "none" : ''
-// }
-
-
 
   // footer accordion
 const accordions = document.querySelectorAll(".footer-accordion");
 
-accordions.forEach(accordion => {
-  accordion.addEventListener('click', function() {
+for (let accordion = 0; accordion < accordions.length; accordion++) {
+  accordions[accordion].addEventListener('click', function(){
     this.classList.toggle('active');
     let panel = this.nextElementSibling;
     panel.style.maxHeight ? panel.style.maxHeight = null : panel.style.maxHeight = panel.scrollHeight + "px";
   })
-})
+  
+}
 
 // modal for size guide
 const modal = document.querySelector("#myModal");
@@ -144,7 +134,6 @@ function plusCarts(carts) {
   showCartImages(cartImage += carts);
 }
 
-
 function showCartImages(carts) {
   var cartSlides = document.querySelectorAll(".cart-image");
   if (carts > cartSlides.length) {cartImage = 1}    
@@ -165,18 +154,24 @@ function showCartImages(carts) {
   }
 
 
-// toggle like
-function toggleHeart(likeIcon) {
-  likeIcon.classList.toggle("heart")
-}
-
-// counter
-// let like = document.querySelector('#likeCounter')
-// let cart = document.querySelector('#counters')
-// let counter = 0
-
 // like.addEventListener("click", function() {
 //   counter ++
 //   cart.innerHTML = counter
 // })
 
+var recentImage = 1;
+showRecentImages(recentImage);
+
+function currentViewedImage(viwedImage) {
+  showRecentImages(recentImage = viwedImage);
+}
+
+function showRecentImages(viwedImage) {
+  var viewed = document.querySelectorAll(".viewed");
+  if (viwedImage > viewed.length) {recentImage = 1}    
+  if (viwedImage < 1) {recentImage = viewed.length}
+  for (let vi = 0; vi < viewed.length; vi++) {
+      viewed[vi].style.display = "none";  
+  }
+  viewed[recentImage-1].style.display = "block";  
+}
