@@ -51,7 +51,7 @@
 																				wire.click="delete({!! $product->id !!})" class="btn btn-danger btn-xs" type="button" 
 																				data-original-title="btn btn-danger btn-xs" title=""
 																			>Delete</button>
-																			<a href="{!! route('productcreate', ['product' => $product->id]) !!}">
+																			<a href="{!! route('product', ['id' => $product->id]) !!}">
 																				<button 
 																					wire.click="" class="btn btn-primary btn-xs" type="button" 
 																					data-original-title="btn btn-danger btn-xs" title="">

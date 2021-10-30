@@ -14,7 +14,8 @@ class AddProduct extends Component
     public string $description;
     public float $price;
     public array $tags;
-    public array $colors, $sizes;
+    public $colors, $sizes;
+    protected $isteners = ['addColors', 'addSizes', 'addTags'];
 
     use Reusables;
  
@@ -25,6 +26,18 @@ class AddProduct extends Component
         'tags' => 'required|array'
     ];
 
+    public function addColors(string $color)
+    {
+    }
+
+    public function addSizes(string $size)
+    {
+    }
+
+    public function addTags(string $tag)
+    {
+    }
+
     public function add($prop, $value)
     {
         if(!in_array($value, $this->$prop)){
@@ -32,46 +45,27 @@ class AddProduct extends Component
         }
     }
 
-    public function mount($product = null)
-    {
-        $product = ProductModel::find($this->productId);
-        if (!empty($product) and $product?->empty()) {
-            $this->productId = $product->id;
-        
-            $this->fill([
-                'name' => $product->name, 'description' => $product->description,
-                'price' => $product->price, 'tags' => explode(', ', $product->tags),
-            ]);
-        }
-        
-    }
-
     public function save()
     {
         $this->validate();
-        $id = null;
-        if (!is_null($this->productId)) {
-            $id = $this->productId;
-            ProductModel::where('id', $id)
-            ->update([
-                'name' => $this->name, 'description' => $this->description,
-                'price' => $this->price, 'tags' => implode(', ', $this->tags), 
-                'metadata' => json_encode([ 'colors' => $this->colors, 'sizes' => $this->sizes ])
-            ]);
-        } else {
-            $id  = ProductModel::insertGetId([
-                'name' => $this->name, 'description' => $this->description,
-                'price' => $this->price, 'tags' => implode(', ', $this->tags), 
-                'metadata' => json_encode([ 'colors' => $this->colors, 'sizes' => $this->sizes ])
-            ]);
-        }
         
-       
+        $id = $this->productId;
+        $product = New ProductModel();
+        $product->name = $this->name;
+        $product->description = $this->description;
+        $product->price = $this->price;
+        $product->tags = implode(', ', $this->tags);
+        $product->metadata = json_encode([ 'colors' => $this->colors, 'sizes' => $this->sizes ]);
+        $product->save();
+        
+
         $images = $this->uploadMany();
+        $img = New Image();
         foreach($images as $image){
-            Image::insert([
-                'imageabletype'=> 'product', 'imageableid' => $id, 'src' => $image
-            ]);
+            $img->imageabletype = 'product';
+            $img->imageableid = $product->id;
+            $img->src = $image;
+            $img->save();
         }
     }
 
@@ -80,10 +74,11 @@ class AddProduct extends Component
         $tags = DB::table('metadata')->whereNotNull('meta->categories')->first();
         $colors = DB::table('metadata')->whereNotNull('meta->colors')->first();
         $sizes = DB::table('metadata')->whereNotNull('meta->sizes')->first();
+        
         return view('livewire.admin.add-product', [
-            'tagOptions' => $tags ? json_decode($tags->meta) : [], 
-            'colorOptions' => $colors ? json_decode($colors->meta) : [], 
-            'sizeOptions' => $sizes ? json_decode($sizes->meta) : []
+            'tagOptions' => $tags ? explode(',', json_decode($tags->meta)->categories) : [], 
+            'colorOptions' => $colors ? explode(',', json_decode($colors->meta)->colors) : [], 
+            'sizeOptions' => $sizes ? explode(',', json_decode($sizes->meta)->sizes) : []
         ])->extends('layouts.admin.master')->section('content');
     }
 }

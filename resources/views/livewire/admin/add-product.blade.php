@@ -43,10 +43,16 @@
 														<div class="mb-3">
 
 															<label>Available Colors</label>
-															<select wire:model="colors" class="js-example-basic-multiple col-sm-12" multiple="multiple">
-																@forelse ($sizeOptions as $item)
-																<option wire:keydown="add('sizes', {!! $item !!})" value="{!! $item !!}">
-																	{!! ucfirst($item) !!}
+															<select 
+																wire:model="colors" wire:change="" 
+																class="js-example-basic-multiple col-sm-12" multiple
+															>
+																@forelse ($colorOptions as $item)
+																<option 
+																	wire:c="add('colors', {!! $item !!})"
+																	value="{!! $item !!}" wire:key="unique-{{$item}}"
+																>
+																	{!! ucfirst(trim($item)) !!}
 																</option>
 																@empty
 																<option value="">Add Colors in Settings First</option>
@@ -62,7 +68,7 @@
 															<select wire:model="sizes" class="js-example-basic-multiple col-sm-12" multiple="multiple">
 																@forelse ($sizeOptions as $item)
 																<option wire:keydown="add('sizes', {!! $item !!})" value="{!! $item !!}">
-																	{!! ucfirst($item) !!}
+																	{!! ucfirst(trim($item)) !!}
 																</option>
 																@empty
 																<option value="">Add Sizes in Settings First</option>
@@ -82,7 +88,9 @@
 															<label>Category/Tags</label>
 															<select wire:model="tags" class="js-example-basic-multiple col-sm-12" multiple="multiple">
 																@forelse ($tagOptions as $item)
-																<option wire:keydown="add('tags', {!! $item !!})" value="AL">{!! ucfirst($item) !!}</option>
+																<option wire:keydown="add('tags', {!! $item !!})" value="AL">
+																	{!! ucfirst(trim($item)) !!}
+																</option>
 																@empty
 																<option value="">Add Categories in Settings First</option>
 																@endforelse
@@ -104,13 +112,23 @@
 													<div class="col">
 														<div class="mb-3">
 															<label>Upload product images</label>
-															<div class="dropzone dz-message needsclick" 
-																style="display:flex;justify-content:center;align-items:stretch;"
+															<div class="dropzone dz-message" 
+																style="display:flex;justify-content:center;align-items:stretch;cursor: pointer;"
+																onclick="document.getElementById('product-image').click()"
 															>
 																<h6>Drop files here or click to upload.</h6>
-																<input type="file" wire:model="image" multiple />
 																@error('photos.*') <span class="error">{{ $message }}</span> @enderror
+																@if ($images && !empty($images))
+																	<div class="dz-preview dz-processing dz-image-preview dz-error dz-complete">
+																		@foreach ($images as $item)
+																			<div class="dz-image">
+																				<img src="{!! $item->temporaryUrl() !!}" />
+																			</div>
+																		@endforeach
+																	</div>
+																@endif
 															</div>
+															<input type="file" wire:model="image" multiple style="display: none;" id="product-image" />
 
 														</div>
 													</div>

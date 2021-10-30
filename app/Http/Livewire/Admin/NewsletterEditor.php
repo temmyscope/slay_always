@@ -13,7 +13,7 @@ class NewsletterEditor extends Component
     public string $news;
     public string $newsType = 'email'; 
     public string $group;
-    public array $newsTypesEnum = ['email', 'push'];
+    public array $newsTypesEnum = ['email'];
     public array $groups = [ 'all',  'specific', 'customers', 'verified' ];
 
     public function send()

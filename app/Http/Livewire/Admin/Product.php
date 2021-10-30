@@ -15,17 +15,23 @@ class Product extends Component
     public array $others = []; //aka metadata
     public float $price;
     public int $quantity;
+    public $colors, $sizes; 
 
-    public function mount($id = null)
+    public function mount($id)
     {
-        if(isset($id)){
-            $this->product = ProductModel::with('image')->find($id);
-            $this->fill([
-                'name' => $this->product->name, 'description' => $this->product->description,
-                'tags' => $this->product->tags, 'others' => json_decode($this->product->metadata),
-                'price' => $this->product->price, 'quantity' => $this->product->quantity
-            ]);
-        }
+        
+        $this->product = ProductModel::with('images')->find($id);
+
+        $metadata = json_decode($this->product->metadata);
+
+        $this->fill([
+            'name' => $this->product->name, 'description' => $this->product->description,
+            'tags' => $this->product->tags, 'others' => json_decode($this->product->metadata),
+            'price' => $this->product->price, 'quantity' => $this->product->quantity,
+            'colors' => explode(',', $metadata->colors), 
+            'sizes' => explode(',', $metadata->sizes)
+        ]);
+        
     }
 
     public function save()
