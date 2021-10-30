@@ -1,23 +1,6 @@
 @section('title', 'Product Create')
 
 <div>
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.css') }}">
-	<script>
-		//document.addEventListener('livewire:load', function () {
-		function insertValueOnColorsModel(colors){
-			let len = @this.colors.length;
-			@this.colors[len] = colors.value;
-			console.log([len,  @this.colors]);
-		}
-		function insertValueOnSizesModel(sizes){
-			let len = @this.sizes.length;
-			@this.sizes[len] = sizes.value;
-		}
-		function insertValueOnTagsModel(tags){
-			let len = @this.tags.length;
-			@this.tags[len] = tags.value;
-		}	
-	</script>
 	
 	<div class="container-fluid">
 	    <div class="row">
@@ -54,42 +37,17 @@
 
 													<div class="col-sm-6">
 														<div class="mb-3">
-															<label>Available Colors</label>
-															<select 
-																class="js-example-basic-multiple col-sm-12" multiple
-																onchange="insertValueOnColorsModel(this)" 
-															>
-																@forelse ($colorOptions as $item)
-																<option
-																	value="{!! ucfirst(trim($item)) !!}" wire:click="$wire.set('colors')"
-																>
-																	{!! ucfirst(trim($item)) !!}
-																</option>
-																@empty
-																<option value="">Add Colors in Settings First</option>
-																@endforelse
-															</select>
+															<label>Available Colors (Leave empty if all colors are available)</label>
+															<input wire:model.defer="colors" class="form-control" type="text" placeholder="E.g. Red, Green" />
 														</div>
 													</div>
 
 													<div class="col-sm-6">
 														<div class="mb-3">
-															<label>Available Sizes</label>
-															<select 
-																class="js-example-basic-multiple col-sm-12" multiple
-																onchange="insertValueOnSizesModel(this)"
-															>
-																@forelse ($sizeOptions as $item)
-																<option value="{!! trim($item) !!}" id="{!! $item !!}" >
-																	{!! ucfirst(trim($item)) !!}
-																</option>
-																@empty
-																<option value="">Add Sizes in Settings First</option>
-																@endforelse
-															</select>
+															<label>Available Sizes (Leave empty if all sizes are available)</label>
+															<input wire:model.defer="sizes" class="form-control" type="text" placeholder="E.g. XL, XXL, L" />
 														</div>
 													</div>
-													
 
 												</div>
 
@@ -97,19 +55,8 @@
 
 													<div class="col">
 														<div class="mb-3">
-															<label>Category/Tags</label>
-															<select 
-																class="js-example-basic-multiple col-sm-12" multiple="multiple"
-																onchange="insertValueOnTagsModel(this)"
-															>
-																@forelse ($tagOptions as $item)
-																<option value="{!! trim($item) !!}">
-																	{!! ucfirst(trim($item)) !!}
-																</option>
-																@empty
-																<option value="">Add Categories in Settings First</option>
-																@endforelse
-															</select>
+															<label>Category/Tags (categories available)</label>
+															<input wire:model.defer="tags" class="form-control" type="text" placeholder="E.g. Unisex, Ladies Wear, etc." />
 														</div>
 													</div>
 

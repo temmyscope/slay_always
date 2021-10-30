@@ -161,11 +161,9 @@ if(function_exists('percentageDecrease')){
       return $value - ($value * ($percent/100));
   }
 }
-if ( function_exists('cdnizeURL') ) {
-  function cdnizeURL(string $image): string
-  {
-    return env('APP_CDN').$image;
-  }
+function cdnizeURL(string $image): string
+{
+  return env('APP_CDN').$image;
 }
 
 /**

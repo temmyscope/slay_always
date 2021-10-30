@@ -29,18 +29,20 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-															@if ( !$products->empty() )
 
+															@if ( $products )
 																@foreach ($products as $product)
 																<tr>
 																	<td>
-																			<a href="#"><img src="{!! env('APP_URL').$product->image->img_url !!}" alt="" /></a>
+																			<a href="">
+																				<img src="{!! cdnizeURL($product->images[0]->src ?? '') !!}" alt="" />
+																			</a>
 																	</td>
 																	<td>
-																			<a href="#"> <h6>{!! $product->name !!}</h6></a>
+																			<a href=""> <h6>{!! $product->name !!}</h6></a>
 																			<span>{!! $product->description !!}</span>
 																	</td>
-																	<td>NGN {!! $product->price !!}</td>
+																	<td>₦{!! $product->price !!}</td>
 																	@if ( $product->quantity > 0 )
 																		<td class="font-success">In Stock ({!! $product->quantity !!})</td>
 																	@else
@@ -51,19 +53,15 @@
 																				wire.click="delete({!! $product->id !!})" class="btn btn-danger btn-xs" type="button" 
 																				data-original-title="btn btn-danger btn-xs" title=""
 																			>Delete</button>
-																			<a href="{!! route('product', ['id' => $product->id]) !!}">
-																				<button 
-																					class="btn btn-primary btn-xs" type="button" 
-																					data-original-title="btn btn-danger btn-xs" title="">
-																					Edit
-																				</button>
+																			<a class="btn btn-primary btn-xs" data-original-title="btn btn-danger btn-xs" 
+																				href="{!! route('product', ['id' => $product->id]) !!}"
+																			>
+																				Edit
 																			</a>
-																			<a href="{!! route('add-image', ['id' => $product->id]) !!}">
-																				<button 
-																					class="btn btn-primary btn-xs" type="button" 
-																					data-original-title="btn btn-danger btn-xs" title="">
-																					Add Image(s)
-																				</button>
+																			<a class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs"
+																				href="{!! route('add-image', ['id' => $product->id, 'type' => 'product']) !!}"
+																			>
+																				Add Image(s)
 																			</a>
 																	</td>
 																</tr>

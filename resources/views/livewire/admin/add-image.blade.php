@@ -26,5 +26,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="text-end">
+                    <button wire:click="save" class="btn btn-secondary me-3 sweet-8" type="submit">
+                        Save Image(s)
+                        <span wire:loading wire:target="save"><i class="fa fa-spinner faa-spin animated"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
