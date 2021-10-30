@@ -41,9 +41,13 @@
 							<li>
 									<a href="{!! route('editor', ['user' => $user->id]) !!}"><i class="fa fa-envelope"></i></a>
 							</li>
+							@if ( $user->profile && $user->profile->mobile )
 							<li>
-								<a href="{!! route('chat', ['id' => $user->id])!!}"><i class="fa fa-comments"></i></a>
+								<a href="https://web.whatsapp.com/send?phone={!! $user->profile->mobile !!}&text=Hello!">
+									<i class="fa fa-comments"></i>
+								</a>
 							</li>
+							@endif
 						</ul>
 						<div class="text-center profile-details">
 							<a href="#"> <h4>{!! $user->name !!}</h4></a>

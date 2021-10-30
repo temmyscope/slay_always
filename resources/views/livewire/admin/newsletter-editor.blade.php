@@ -35,16 +35,6 @@
 																				
 																			</li>
 
-																			<li class="nav-item">
-																				<a wire:click="changeNewsType('push')" class="btn-primary btn-block btn-mail" id="pills-darkhome-push" data-bs-toggle="pill" href="#pills-darkhome-push" style="display: flex;justify-content: space-between">
-																					<span><i class="icofont icofont-envelope me-2"></i>PUSH NOTIFICATION</span>
-
-																					@if($newsType === 'push')
-																						<i  class="icofont icofont-star me-2"></i>
-																					@endif
-																				</a>
-																			</li>
-
 																		</ul>
 																</div>
 														</div>
@@ -70,20 +60,21 @@
 																									<label class="col-form-label pt-0" for="exampleInputEmail1">To: </label>
 
 																									<div class="radio radio-primary">
-																									@if($recipient !== null)
-																									<input id="radioinline1" type="radio" name="radio1" value="option1" checked>
-																									@endif
+																										<input 
+																											id="radioinline1" type="radio" name="radio1" value="option1" 
+																											{!! ($recipient !== null)? 'checked' : '' !!}
+																										>
+																										<label class="mb-0" for="radioinline1">Specific User</label>
+																									</div>
+																									<div class="radio radio-primary">
+																										<input id="radioinline2" type="radio" name="radio1" value="option1">
+																										<label class="mb-0" for="radioinline2">All Users</label>
+																									</div>
+																									<div class="radio radio-primary">
+																										<input id="radioinline3" type="radio" name="radio1" value="option1">
+																										<label class="mb-0" for="radioinline3">Option<span class="digits"> 3</span></label>
+																									</div>
 
-																									<label class="mb-0" for="radioinline1">Specific User</label>
-																									</div>
-																									<div class="radio radio-primary">
-																									<input id="radioinline2" type="radio" name="radio1" value="option1">
-																									<label class="mb-0" for="radioinline2">All Users</label>
-																									</div>
-																									<div class="radio radio-primary">
-																									<input id="radioinline3" type="radio" name="radio1" value="option1">
-																									<label class="mb-0" for="radioinline3">Option<span class="digits"> 3</span></label>
-																									</div>
 																								</div>
 																								@if($recipient !== null)
 																								<input class="form-control" id="exampleInputEmail1" type="email" />
@@ -98,7 +89,6 @@
 																								<textarea class="form-control" id="text-box" name="text-box" cols="20" rows="4"> </textarea>
 																						</div>
 
-																						@if($newsType === 'email')
 																						<div class="form-group">
 																							<div class="dropzone digits text-center" id="singleFileUpload" action="/upload.php">
 																								<div class="dz-message needsclick">
@@ -108,7 +98,7 @@
 																								</div>
 																							</div>
 																						</div>
-																						@endif
+																						
 																				</form>
 																				<div class="action-wrapper">
 																						<ul class="actions">

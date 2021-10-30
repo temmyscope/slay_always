@@ -45,7 +45,7 @@
 															<label>Available Colors</label>
 															<select wire:model="colors" class="js-example-basic-multiple col-sm-12" multiple="multiple">
 																@forelse ($sizeOptions as $item)
-																<option wire:keydown="add('sizes', {!! $item !!})" value="{!! item !!}">
+																<option wire:keydown="add('sizes', {!! $item !!})" value="{!! $item !!}">
 																	{!! ucfirst($item) !!}
 																</option>
 																@empty
@@ -61,7 +61,7 @@
 															<label>Available Sizes</label>
 															<select wire:model="sizes" class="js-example-basic-multiple col-sm-12" multiple="multiple">
 																@forelse ($sizeOptions as $item)
-																<option wire:keydown="add('sizes', {!! $item !!})" value="{!! item !!}">
+																<option wire:keydown="add('sizes', {!! $item !!})" value="{!! $item !!}">
 																	{!! ucfirst($item) !!}
 																</option>
 																@empty
