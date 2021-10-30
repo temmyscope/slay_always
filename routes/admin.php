@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\{
   Settings, Favorite, EditProfile, OrderHistory, NewsletterEditor,
   Order, Invoice, Notification, Search, NewsletterList,Contact,
-  Home, AddProduct, ProductsList, Product, Users, Promotions,
+  Home, AddProduct, ProductsList, Product, Users, Promotions, AddImage
 };
 
 Route::prefix('admin')->group(function () {
@@ -13,6 +13,7 @@ Route::prefix('admin')->group(function () {
   Route::get('/home', Home::class)->name('index');
   Route::get('/product/add-product', AddProduct::class)->name('productcreate');
   Route::get('/product/list-products', ProductsList::class)->name('list-products');
+  Route::get('/add-image/{id}/{type}', AddImage::class)->name('add-image');
   Route::get('/product/{id}', Product::class)->name('product');
   Route::get('/orders', OrderHistory::class)->name('orders');
 //  Route::get('/order/{id}', Order::class)->name('order');

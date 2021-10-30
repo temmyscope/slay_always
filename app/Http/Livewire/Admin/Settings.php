@@ -56,22 +56,27 @@ class Settings extends Component
         $this->settings = DB::table('metadata')->get();
         $taxes = []; 
         $properties = [];
-        $this->settings->each(function($item, $key) use (&$properties, &$taxes){
+        $socials = [];
+        $this->settings->each(function($item, $key) use (&$properties, &$taxes, &$socials){
             $setting = json_decode($item->meta, true);
             if( array_key_exists('taxes', $setting) ){
                 $taxes = $setting['taxes'];
             }elseif( array_key_exists('socials', $setting) ){
-                $properties = $setting['socials'];
+                $socials = $setting['socials'];
             }else{
-                $properties = $setting;
+                $v = array_values($setting);
+                $k = array_keys($setting);
+                $properties[ $k[0] ] = $v[0];
             }
         });
+        //dd([$taxes, $properties, $socials]);
+
         unset($properties['visits']);
         $this->fill([
             'vat' => $taxes['vat'] ?? null, 'shipping' => $taxes['shipping'] ?? null, 
             'others' => $taxes['others'] ?? null, 'colors' => $properties['colors'] ?? "", 
             'sizes' => $properties['sizes'] ?? "", 'categories' => $properties['categories'] ?? "", 
-            'whatsapp' => $properties['whatsapp'] ?? null, 'instagram' => $properties['instagram'] ?? null
+            'whatsapp' => $socials['whatsapp'] ?? null, 'instagram' => $socials['instagram'] ?? null
         ]);
     }
 

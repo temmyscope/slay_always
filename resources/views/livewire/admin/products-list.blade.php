@@ -53,9 +53,16 @@
 																			>Delete</button>
 																			<a href="{!! route('product', ['id' => $product->id]) !!}">
 																				<button 
-																					wire.click="" class="btn btn-primary btn-xs" type="button" 
+																					class="btn btn-primary btn-xs" type="button" 
 																					data-original-title="btn btn-danger btn-xs" title="">
 																					Edit
+																				</button>
+																			</a>
+																			<a href="{!! route('add-image', ['id' => $product->id]) !!}">
+																				<button 
+																					class="btn btn-primary btn-xs" type="button" 
+																					data-original-title="btn btn-danger btn-xs" title="">
+																					Add Image(s)
 																				</button>
 																			</a>
 																	</td>

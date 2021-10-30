@@ -103,7 +103,9 @@
 																				<div class="action-wrapper">
 																						<ul class="actions">
 																								<li>
-																										<a class="btn btn-secondary" href="javascript:void(0)"><i class="fa fa-paper-plane me-2"></i>send </a>
+																										<button class="btn btn-secondary" href="javascript:void(0)">
+																											<i class="fa fa-paper-plane me-2"></i>send 
+																										</button>
 																								</li>
 																						</ul>
 																				</div>

@@ -5,68 +5,39 @@ namespace App\Http\Livewire\Admin;
 use Livewire\{Component, WithFileUploads};
 use App\Models\{Product as ProductModel, Image };
 use Illuminate\Support\Facades\{ DB };
-use StaySlay\Traits\Reusables;
 
 class AddProduct extends Component
 {
-    public $productId;
-    public string $name;
-    public string $description;
-    public float $price;
-    public array $tags;
-    public $colors, $sizes;
-    protected $isteners = ['addColors', 'addSizes', 'addTags'];
-
-    use Reusables;
- 
-    protected $rules = [
-        'name' => 'required|min:6',
-        'description' => 'required',
-        'price' => 'required|numeric',
-        'tags' => 'required|array'
-    ];
-
-    public function addColors(string $color)
-    {
-    }
-
-    public function addSizes(string $size)
-    {
-    }
-
-    public function addTags(string $tag)
-    {
-    }
-
-    public function add($prop, $value)
-    {
-        if(!in_array($value, $this->$prop)){
-            $this->$prop[] = $value;
-        }
-    }
+    public $product;
+    public $desc;
+    public $qty;
+    public $price;
+    public $tags, $colors, $sizes;
 
     public function save()
     {
-        $this->validate();
+        $this->validate([
+            'product' => 'required|min:6',
+            'desc' => 'required|string',
+            'price' => 'required|numeric'
+        ]);
         
-        $id = $this->productId;
         $product = New ProductModel();
-        $product->name = $this->name;
-        $product->description = $this->description;
-        $product->price = $this->price;
+        $product->name = $this->product;
+        $product->description = $this->desc;
+        $product->price = (float)$this->price;
+        $product->quantity = (int)$this->qty;
         $product->tags = implode(', ', $this->tags);
         $product->metadata = json_encode([ 'colors' => $this->colors, 'sizes' => $this->sizes ]);
         $product->save();
-        
+    }
 
-        $images = $this->uploadMany();
-        $img = New Image();
-        foreach($images as $image){
-            $img->imageabletype = 'product';
-            $img->imageableid = $product->id;
-            $img->src = $image;
-            $img->save();
-        }
+    public function mount()
+    {
+        $this->fill([
+            'product' => null, 'desc' => null, 'price' => null,
+            'tags' => [], 'colors' => [], 'sizes' => [], 'qty' => null
+        ]);
     }
 
     public function render()
