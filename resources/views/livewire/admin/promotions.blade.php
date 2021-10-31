@@ -70,7 +70,9 @@
 
                         <div class="row">
                             <div class="col">
-                                <div class="text-end"><a class="btn btn-secondary me-3" href="#">Add</a><a class="btn btn-danger" href="#">Cancel</a></div>
+                                <div class="text-end">
+                                    <a class="btn btn-secondary me-3">Add</a>
+                                    <a class="btn btn-danger" >Cancel</a></div>
                             </div>
                         </div>
 

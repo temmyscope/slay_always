@@ -13,8 +13,29 @@
 	        <!-- Individual column searching (text inputs) Starts-->
 	        <div class="col-sm-12">
 	            <div class="card">
-	                <div class="card-header pb-0">
-	                    <h5>All Available Products</h5>
+	                <div class="card-header pb-0" style="display: flex;justify-content:space-between;">
+	                  <h5>All Available Products</h5>
+										@if ($binVisibility === true)
+											<button
+												wire:click="switchVisibility" type="button"
+												class="btn btn-success  btn-xs" 
+												data-original-title="btn btn-success btn-xs"
+											>  Show Product
+												<span wire:loading wire:target="switchVisibility">
+													<i class="fa fa-spinner faa-spin animated"></i>
+												</span>
+											</button>
+										@else
+											<button
+												wire:click="switchVisibility" type="button"
+												class="btn btn-danger btn-xs" 
+												data-original-title="btn btn-danger btn-xs"
+											> See Recycle Bin
+												<span wire:loading wire:target="switchVisibility">
+													<i class="fa fa-spinner faa-spin animated"></i>
+												</span>
+											</button>
+										@endif
 	                </div>
 	                <div class="card-body">
 	                    <div class="table-responsive product-table">
@@ -29,46 +50,99 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-
-															@if ( $products )
-																@foreach ($products as $product)
-																<tr>
-																	<td>
-																			<a href="">
-																				<img src="{!! cdnizeURL($product->images[0]->src ?? '') !!}" alt="" />
-																			</a>
-																	</td>
-																	<td>
-																			<a href=""> <h6>{!! $product->name !!}</h6></a>
-																			<span>{!! $product->description !!}</span>
-																	</td>
-																	<td>₦{!! $product->price !!}</td>
-																	@if ( $product->quantity > 0 )
-																		<td class="font-success">In Stock ({!! $product->quantity !!})</td>
-																	@else
-																		<td class="font-danger">out of stock</td>
-																	@endif
-																	<td>
+															@if ($binVisibility === true)
+																@if ( $bin && !empty($bin) )
+																	@foreach ($bin as $product)
+																	<tr class="pb-1">
+																		<td>
+																				<a href="">
+																					<img src="{!! cdnizeURL($product->images[0]->src ?? '') !!}" alt="" />
+																				</a>
+																		</td>
+																		<td>
+																				<a href=""> <h6>{!! $product->name !!}</h6></a>
+																				<span>{!! $product->description !!}</span>
+																		</td>
+																		<td>₦{!! $product->price !!}</td>
+																		@if ( $product->quantity > 0 )
+																			<td class="font-success">In Stock ({!! $product->quantity !!})</td>
+																		@else
+																			<td class="font-danger">out of stock</td>
+																		@endif
+																		<td 
+																			style="display:flex;flex-direction:column;justify-content:space-evenly;align-items:stretch;align-content:space-between"
+																		>
 																			<button 
-																				wire.click="delete({!! $product->id !!})" class="btn btn-danger btn-xs" type="button" 
+																				wire:click="delete({!! $product->id !!})" class="btn btn-danger btn-xs" type="button" 
 																				data-original-title="btn btn-danger btn-xs" title=""
-																			>Delete</button>
-																			<a class="btn btn-primary btn-xs" data-original-title="btn btn-danger btn-xs" 
-																				href="{!! route('product', ['id' => $product->id]) !!}"
-																			>
-																				Edit
-																			</a>
-																			<a class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs"
-																				href="{!! route('add-image', ['id' => $product->id, 'type' => 'product']) !!}"
-																			>
-																				Add Image(s)
-																			</a>
-																	</td>
-																</tr>
-																@endforeach
+																			>Delete
+																			<span wire:loading wire:target="delete"><i class="fa fa-spinner faa-spin animated"></i></span>
+																			</button>
+																				<hr/>
+																				<a class="btn btn-primary btn-xs" data-original-title="btn btn-danger btn-xs" 
+																					href="{!! route('product', ['id' => $product->id]) !!}"
+																				>
+																					Edit
+																				</a>
+																				<hr/>
+																				<a class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs"
+																					href="{!! route('add-image', ['id' => $product->id, 'type' => 'product']) !!}"
+																				>
+																					Add Image(s)
+																				</a>
+																		</td>
+																	</tr>
+																	@endforeach
+																		
+																@endif	
+															@else
+																@if ( $products )
+																	@foreach ($products as $product)
+																	<tr class="pb-1">
+																		<td>
+																				<a href="">
+																					<img src="{!! cdnizeURL($product->images[0]->src ?? '') !!}" alt="" />
+																				</a>
+																		</td>
+																		<td>
+																				<a href=""> <h6>{!! $product->name !!}</h6></a>
+																				<span>{!! $product->description !!}</span>
+																		</td>
+																		<td>₦{!! $product->price !!}</td>
+																		@if ( $product->quantity > 0 )
+																			<td class="font-success">In Stock ({!! $product->quantity !!})</td>
+																		@else
+																			<td class="font-danger">out of stock</td>
+																		@endif
+																		<td 
+																			style="display:flex;flex-direction:column;justify-content:space-evenly;align-items:stretch;align-content:space-between"
+																		>
+																			<button 
+																				wire:click="delete({!! $product->id !!})" class="btn btn-danger btn-xs" type="button" 
+																				data-original-title="btn btn-danger btn-xs" title=""
+																			>Delete
+																			<span wire:loading wire:target="delete"><i class="fa fa-spinner faa-spin animated"></i></span>
+																			</button>
+																				<hr/>
+																				<a class="btn btn-primary btn-xs" data-original-title="btn btn-danger btn-xs" 
+																					href="{!! route('product', ['id' => $product->id]) !!}"
+																				>
+																					Edit
+																				</a>
+																				<hr/>
+																				<a class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs"
+																					href="{!! route('add-image', ['id' => $product->id, 'type' => 'product']) !!}"
+																				>
+																					Add Image(s)
+																				</a>
+																		</td>
+																	</tr>
+																	@endforeach
+																		
+																@endif
 																	
 															@endif
-	                                
+
 	                            </tbody>
 	                        </table>
 	                    </div>
