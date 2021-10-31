@@ -14,7 +14,9 @@
                         <h5> Promotion </h5>
 
                         <div class="col ">
-                            <div class="text-end"><a class="btn btn-secondary me-3" wire:click="unhideForm">Create Promotion</a></div>
+                            <div class="text-end">
+                                <a class="btn btn-secondary me-3" wire:click="unhideForm">Create Promotion</a>
+                            </div>
                         </div>
                     </div>
 
@@ -26,14 +28,20 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label>Coupon Name</label>
-                                    <input class="form-control" type="text" placeholder="Enter Coupon Name" />
+                                    <input 
+                                        class="form-control" wire:model="name" 
+                                        type="text" placeholder="Enter Coupon Name" 
+                                    />
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label>Coupon Code(#)</label>
-                                    <input class="form-control" type="text" placeholder="Enter Coupon Code" />
+                                    <input 
+                                        wire:model="coupon" class="form-control" 
+                                        type="text" placeholder="Enter Coupon Code" 
+                                    />
                                 </div>
                             </div>
 
@@ -53,7 +61,10 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label>Percentage of Discount(%)</label>
-                                    <input class="form-control" type="text" placeholder="Enter Percentage" />
+                                    <input 
+                                        class="form-control"  wire:model="discount" 
+                                        type="text" placeholder="Enter Percentage" 
+                                    />
                                 </div>
                             </div>
 
@@ -62,8 +73,9 @@
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
-                                    <label>Enter Message</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                                    <label>Enter Promotional Message</label>
+                                    <textarea  wire:model="description"  class="form-control" id="exampleFormControlTextarea4" rows="3">
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -71,8 +83,8 @@
                         <div class="row">
                             <div class="col">
                                 <div class="text-end">
-                                    <a class="btn btn-secondary me-3">Add</a>
-                                    <a class="btn btn-danger" >Cancel</a></div>
+                                    <a class="btn btn-secondary me-3" wire:click="save">Add</a>
+                                    <a class="btn btn-danger" wire:click="unhideForm" >Cancel</a></div>
                             </div>
                         </div>
 

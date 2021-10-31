@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class Promotions extends Component
 {
     public int $promotionId; 
-    public string $name;
-    public float $discount;
+    public string $name, $coupon;
+    public $discount;
     public string $description; 
     public int $maxUsers; 
     public string $dateRange;
@@ -18,7 +18,7 @@ class Promotions extends Component
     public bool $formVisibility = false;
     protected $promotions;
     protected $rules = [
-        'code' => 'required|min:6',
+        'coupon' => 'required|min:6',
         'discount' => 'required|num',
     ];
     
@@ -53,6 +53,7 @@ class Promotions extends Component
     {
         Promotion::where('id', $id)->delete();
     }
+
     public function mount($id = null)
     {
         if ( !is_null($id) && is_numeric($id)) {
@@ -60,7 +61,7 @@ class Promotions extends Component
             $this->fill([
                 'promotionId' => $promotion->id, 'name' => $promotion->metadata->name,
                 'discount' => $promotion->discount, 'description' => $promotion->metadata->description,
-                'maxUsers' => $promotion->max_users, 'formVisibility' => true,
+                'maxUsers' => $promotion->max_users, 'formVisibility' => true, 'coupon' => '',
                 'dateRange' => $promotion->start_date." - ".$promotion->end_date
             ]);
         }
