@@ -7,11 +7,12 @@ use Livewire\Component;
 class CategoryCard extends Component
 {
     public $category;
+    public $name;
 
-    public function mount($category)
+    public function mount($category, $name)
     {
         $this->fill([
-            'category' => $category
+            'category' => $category, 'name' => $name
         ]);
     }
 

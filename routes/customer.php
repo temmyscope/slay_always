@@ -14,7 +14,7 @@ Route::get('favorites', Favorite::class)->name('user-favorites');
 
 Route::get('recent', Recent::class)->name('user-recent');
 
-Route::get('categories/{category}', Search::class)->name('categories');
+Route::get('category/{category}', Search::class)->name('category');
 
 Route::get('search', Search::class)->name('search');
 

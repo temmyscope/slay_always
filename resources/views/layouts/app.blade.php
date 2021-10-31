@@ -49,9 +49,14 @@
 
     <!-- chat section -->
     <div>
+      <script>
+        function openWhatsapp() {
+          window.location.href='';
+        }
+      </script>
       <button 
         class="bg-slay text-gray-50 py-3 px-5 cursor-pointer fixed bottom-10 right-14 w-72 text-2xl rounded" 
-        onclick="window.location.href=''"
+        onclick="openWhatsapp();"
       > Chat <span class="fas fa-comments text-2xl"></span>
       </button>
     </div>

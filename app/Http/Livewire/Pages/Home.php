@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\{ DB };
-use App\Models\{ Product, Favorite };
+use App\Models\{ Product, Favorite, Category };
 
 class Home extends Component
 {
@@ -25,29 +25,12 @@ class Home extends Component
         ->groupBy('product_id')->take(10)->get())?->sortByDesc('frequency'))->values()->all();
         
         $favoriteProducts = !empty($favorites) ? $favorites->map( fn($item, $key) => $item->id )->all() : [];
-        
-        $tags = DB::table('metadata')->whereNotNull('meta->categories')->first();
-        
-        $productPerCategory = [];
-        if (!empty($tags)) {
-            //e.g. "shoes, skirts, lingerie" etc. into [shoes, skirts, lingerie]
-            $tagsArray = explode(',', trim(json_decode($tags->meta)->categories, ","));
-            $index = 0;
-            foreach ($tagsArray as $key => $tag) {
-                if($index < 6){ 
-                    $index += 1;
-                    $tag = trim($tag);
-                    $productPerCategory[] = Product::with('image')->whereLike('tags', "%$tag%")->first();
-                }
-                break;
-            }
-        }
 
         return view('livewire.pages.home', [
             'popular' => Product::whereIn(
                 'id', array_values($favoriteProducts)
             )->get()->unique(),
-            'categories' => $productPerCategory
+            'categories' => (New Category())->categories()
         ])->extends('layouts.app')->section('content');
     }
 

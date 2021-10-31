@@ -24,9 +24,9 @@
       <h1 class="text-center text-4xl font-bold">Categories</h1>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 my-5 gap-4  w-full">
-        @foreach (['Shoes', 'Sweaters & Coats', 'Ladies Dress', 'Panties & Skirts'] as $item)
+        @foreach ($categories as $name => $category)
 
-        @livewire('category-card', ['category' => $item ])
+          @livewire('category-card', ['category' => $category, 'name' => $name ], key($name))
             
         @endforeach
 
