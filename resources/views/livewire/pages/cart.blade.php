@@ -1,6 +1,6 @@
-@extends('layouts.app')
-
 @section('title', 'Cart')
+@section('description', 'Welcome to StaySlay - Fashion. Our Cart')
+@section('keywords', 'Stay, Slay, Fashion, Cart, Add Products,')
 
 <div>
     

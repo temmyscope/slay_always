@@ -10,7 +10,7 @@
     <link rel="manifest" href="{!! asset('/manifest.json') !!}" />
     <link href="{!! asset('assets/css/app.css') !!}" rel='stylesheet'>
     <meta name='author' content='Elisha Temiloluwa a.k.a TemmyScope'/>
-    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon" />
+    <link rel="icon" href="{!! asset('assets/images/favicon.png') !!}" type="image/x-icon" />
     <meta name='robots' content='index, follow' />
 
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Nunito:300,400,500,700&display=swap' />

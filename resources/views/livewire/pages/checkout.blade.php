@@ -1,11 +1,13 @@
 @section('title', 'Checkout')
-<div>
-<div>
-    <!-- payWithPaystack() on payment button -->
+@section('description', 'Welcome to StaySlay - Fashion. Checkout')
+@section('keywords', 'Stay, Slay, Fashion')
 
-</div>
+<div>
+    <div>
+        <!-- payWithPaystack() on payment button -->
+    </div>
 
-<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-sm">Small modal</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-sm">Small modal</button>
     <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">

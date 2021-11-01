@@ -1,4 +1,6 @@
 @section('title', 'Recent')
+@section('description', 'Welcome to StaySlay - Fashion. Our Recent Page')
+@section('keywords', 'Stay, Slay, Fashion,')
 
 <div>
 
