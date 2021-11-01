@@ -14,3 +14,17 @@
 - Always wrap your livewire view code with a div
 - the render method should always contain the view()->extends()->section();
 
+- product metadata on order follows this:
+
+```php
+
+  'price' => ..., 
+  'metadata' => $item->metadata,
+  'activePrice' => (
+      $promotion !== false
+  ) ? percentageDecrease($item->price, $promotion->dicount) : $item->price,
+  'qty' => $productsMetaData[$item->id], 
+  'name' => ...
+
+
+```

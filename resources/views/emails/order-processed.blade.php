@@ -110,7 +110,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                color: #24695c;
+                color: #b7b7b7;
                 //- padding:10px;
                 background-color: #24695c3d;
                 transition: all 0.5s ease;
@@ -331,7 +331,7 @@
                                     <td>
                                         <p style="font-size: 18px;"><b>Hi John Doe,</b></p>
                                         <p style="font-size: 14px; color: #aba8a8;">Order Is Successfully Processsed And Your Order Is On The Way,</p>
-                                        <p style="font-size: 14px; color: #aba8a8;">Transaction ID : 267676GHERT105467,</p>
+                                        <p style="font-size: 14px; color: #aba8a8;">Transaction ID : {!! $order->txn_id !!},</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -344,9 +344,7 @@
                                             Your Shipping Address
                                         </h5>
                                         <p style="text-align: left; font-weight: normal; font-size: 14px; color: #aba8a8; line-height: 21px; margin-top: 0;">
-                                            268 Cambridge Lane New Albany,<br />
-                                            IN 47150268 Cambridge Lane <br />
-                                            New Albany, IN 47150
+                                            {!! $order->delivery_address !!}
                                         </p>
                                     </td>
                                     <td><img src="{{ asset('assets/images/email-template/space.jpg') }}" alt=" " height="25" width="30" /></td>
@@ -355,9 +353,7 @@
                                             Your Billing Address:
                                         </h5>
                                         <p style="text-align: left; font-weight: normal; font-size: 14px; color: #aba8a8; line-height: 21px; margin-top: 0;">
-                                            268 Cambridge Lane New Albany,<br />
-                                            IN 47150268 Cambridge Lane <br />
-                                            New Albany, IN 47150
+                                            {!! $order->delivery_address !!}
                                         </p>
                                     </td>
                                 </tr>
@@ -367,97 +363,63 @@
                             <tbody>
                                 <tr align="left">
                                     <th>PRODUCT</th>
-                                    <th style="padding-left: 15px;">DESCRIPTION</th>
+                                    <th style="padding-left: 15px;">NAME</th>
                                     <th>QUANTITY</th>
                                     <th>PRICE</th>
                                 </tr>
+                                @foreach ($products as $item)
                                 <tr>
-                                    <td><img src="{{ asset('assets/images/email-template/4.png') }}" alt="" width="80" /></td>
+                                    <td><img src="{!! $item->image !!}" alt="" width="80" /></td>
                                     <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="margin-top: 15px;">Three seater Wood Style sofa for Leavingroom</h5>
+                                        <h5 style="margin-top: 15px;">{!! $item->name !!}</h5>
                                     </td>
                                     <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px;">Size : <span> L</span></h5>
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 10px;">QTY : <span>1</span></h5>
+                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px;">
+                                            Size : <span>{!! $item->metadata->size !!}</span>
+                                        </h5>
+                                        <h5 style="font-size: 14px; color: #444; margin-top: 10px;">
+                                            QTY : <span>{!! $item->metadata->qty !!}</span>
+                                        </h5>
                                     </td>
                                     <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px;"><b>$500</b></h5>
+                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px;">
+                                            <b>₦{!! $item->price !!}</b>
+                                        </h5>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><img src="{{ asset('assets/images/email-template/1.png') }}" alt="" width="80" /></td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="margin-top: 15px;">Three seater Wood Style sofa for Leavingroom</h5>
-                                    </td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px;">Size : <span> L</span></h5>
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 10px;">QTY : <span>1</span></h5>
-                                    </td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px;"><b>$500</b></h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="{{ asset('assets/images/email-template/4.png') }}" alt="" width="80" /></td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="margin-top: 15px;">Three seater Wood Style sofa for Leavingroom</h5>
-                                    </td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px;">Size : <span> L</span></h5>
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 10px;">QTY : <span>1</span></h5>
-                                    </td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px;"><b>$500</b></h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="{{ asset('assets/images/email-template/1.png') }}" alt="" width="80" /></td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="margin-top: 15px;">Three seater Wood Style sofa for Leavingroom</h5>
-                                    </td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px;">Size : <span> L</span></h5>
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 10px;">QTY : <span>1</span></h5>
-                                    </td>
-                                    <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="font-size: 14px; color: #444; margin-top: 15px;"><b>$500</b></h5>
-                                    </td>
-                                </tr>
+                                @endforeach
+
                                 <tr class="pad-left-right-space">
                                     <td class="m-t-5" colspan="2" align="left">
                                         <p style="font-size: 14px;">Subtotal :</p>
                                     </td>
-                                    <td class="m-t-5" colspan="2" align="right"><b>$2000</b></td>
+                                    <td class="m-t-5" colspan="2" align="right">
+                                        <b>₦{!! $subTotal !!}</b>
+                                    </td>
                                 </tr>
+                                @foreach ($charges as $tax => $charge)
                                 <tr class="pad-left-right-space">
                                     <td colspan="2" align="left">
-                                        <p style="font-size: 14px;">TAX :</p>
+                                        <p style="font-size: 14px;">{!! strtoupper($tax) !!} :</p>
                                     </td>
-                                    <td colspan="2" align="right"><b>$5</b></td>
+                                    @if ($tax == 'shipping')
+                                    <td colspan="2" align="right"><b>₦{!! $charge * $order->total !!}</b></td>
+                                    @else
+                                    <td colspan="2" align="right"><b>{!! $charge !!}%</b></td>
+                                    @endif
                                 </tr>
-                                <tr class="pad-left-right-space">
-                                    <td colspan="2" align="left">
-                                        <p style="font-size: 14px;">VAT :</p>
-                                    </td>
-                                    <td colspan="2" align="right"><b>$5</b></td>
-                                </tr>
-                                <tr class="pad-left-right-space">
-                                    <td colspan="2" align="left">
-                                        <p style="font-size: 14px;">SHIPPING Charge :</p>
-                                    </td>
-                                    <td colspan="2" align="right"><b>$2</b></td>
-                                </tr>
+                                @endforeach
                                 <tr class="pad-left-right-space">
                                     <td colspan="2" align="left">
                                         <p style="font-size: 14px;">Discount :</p>
                                     </td>
-                                    <td colspan="2" align="right"><b> $1000</b></td>
+                                    <td colspan="2" align="right"><b> ₦{!! $order->metadata->discount !!}</b></td>
                                 </tr>
                                 <tr class="pad-left-right-space">
                                     <td class="m-b-5" colspan="2" align="left">
                                         <p style="font-size: 14px;">Total :</p>
                                     </td>
-                                    <td class="m-b-5" colspan="2" align="right"><b>$2600</b></td>
+                                    <td class="m-b-5" colspan="2" align="right"><b>₦{!! $order->total !!}</b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -472,19 +434,10 @@
                                             <tbody>
                                                 <tr class="temp-social">
                                                     <td>
-                                                        <a href="javascript:void(0)"><i class="fa fa-facebook"></i></a>
+                                                        <a href=""><i class="fa fa-twitter"></i></a>
                                                     </td>
                                                     <td>
-                                                        <a href="javascript:void(0)"><i class="fa fa-youtube-play"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:void(0)"><i class="fa fa-twitter"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:void(0)"><i class="fa fa-linkedin"> </i></a>
+                                                        <a href="https://www.instagram.com/stayslay_fashion/"><i class="fa fa-instagram"> </i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -493,15 +446,9 @@
                                         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 20px auto 0;">
                                             <tbody>
                                                 <tr>
-                                                    <td><a href="javascript:void(0)" style="color: #24695c; font-size: 14px; text-transform: capitalize; font-weight: 600;">Want to change how you receive these emails?</a></td>
-                                                </tr>
-                                                <tr>
                                                     <td>
-                                                        <p style="font-size: 14px; margin: 8px 0; color: #aba8a8;">2021 - 22 Copy Right by Themeforest powerd by Pixel Strap</p>
+                                                        <p style="font-size: 14px; margin: 8px 0; color: #aba8a8;">&copy;{!! date('Y') !!} StaySlay -  Fashion</p>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="javascript:void(0)" style="color: #24695c; font-size: 14px; text-transform: capitalize; font-weight: 600; margin: 0; text-decoration: underline;">Unsubscribe</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>

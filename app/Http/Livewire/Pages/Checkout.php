@@ -67,19 +67,18 @@ class Checkout extends Component
 
         $productsDetails = [];
         $products->each(function($item, $key) use (
-            $productsDetails, $productsMetaData, $promotion
+            &$productsDetails, $productsMetaData, $promotion
         ) {
             $productsDetails[$item->id] = [
                 'price' => $item->price, 'metadata' => $item->metadata,
-                'activePrice' => (
-                    $promotion !== false
-                ) ? percentageDecrease($item->price, $promotion->dicount) : $item->price,
-                'qty' => $productsMetaData[$item->id], 'name' => $item->name
+                'image' => $item->images[0]->src, 'name' => $item->name,
+                'activePrice' => ($promotion !== false)
+                ? percentageDecrease($item->price, $promotion->dicount) : $item->price,
             ];
         });
-        $orderMetaData = [ 
-            'products' => $productsDetails, 
-            'paymentData' => [], 'taxesApplied'=> []
+        $orderMetaData = [
+            'products' => $productsDetails, 'paymentData' => [], 
+            'discount' => $promotion->dicount * $order->total, 'taxesApplied'=> []
         ];
 
         $total = $order->total;
