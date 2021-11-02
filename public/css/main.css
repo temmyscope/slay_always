@@ -19,7 +19,7 @@
 }
 
 .nav-height {
-  height: 65vh;
+  height: 530px;
 }
 
 .chev::after {
@@ -250,6 +250,7 @@
 .form-container .chat-btn:hover {
   opacity: 1;
 }
+
 @media screen and (max-width: 790px) {
   .fa-instagram {
     font-size: 2rem;
@@ -318,8 +319,5 @@
   }
   .clear {
     display: none;
-  }
-  .nav-height {
-    height: 52vh;
   }
 }
