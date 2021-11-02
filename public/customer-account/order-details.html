@@ -109,13 +109,13 @@
       </div>
     </nav>
 
-    <main class="w-full mt-16 overflow-x-scroll lg:overflow-hidden">
+    <main class="w-full mt-16 overflow-x-scroll lg:overflow-hidden flex">
       <div class="lg:w-3/4 mx-auto flex gap-6 min-w-full">
-        <div class="bg-white rounded-md min-w-odd">
+        <div class="bg-white rounded-md min-w-odd flex-shrink-0 p-1 lg:p-0 nav-height">
           <div class="py-1 w-full">
             <ul class="capitalize">
               <li class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4">
-                <a href="#">
+                <a href="./profile.html">
                   <span class="far fa-user lg:px-3 px-1"></span>
                 my slay account
                 </a>
@@ -150,7 +150,7 @@
               </li>
 
               <li class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4">
-                <a href="">
+                <a href="../recently-viewed.html">
                   <span class="fas fa-history lg:px-3 px-1"></span>
                 recently viewed
                 </a>
@@ -172,7 +172,7 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-md min-w-profie">
+        <div class="bg-white rounded-md min-w-profie flex-shrink-0">
           <div class="p-3 border-b-2 border-gray-200 border-solid w-full flex items-center">
             <a href="./orders.html" class="px-2 text-xl">
               <span class="fas fa-arrow-left"></span>
@@ -200,11 +200,12 @@
                   Date
                 </p>
               </div>
-              <div class="p-3  grid grid-cols-8 gap-6">
-                <div class="col-span-1 p-1">
-                  <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+
+              <div class="p-3  grid grid-cols-9 gap-3 w-full">
+                <div class="col-span-1 p-1 img-width">
+                  <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="">
                 </div>
-                <div class="col-span-7 leading-7">
+                <div class="col-span-8 leading-7">
                   <p class="font-semibold capitalize">
                     Fashion Creative Watches Men Luxury Brand Digital LED Display 50M Waterpro
                   </p>
@@ -250,7 +251,8 @@
                 </div>
               </div>
             </div>
-          </div>
+            
+          </div> <!---->
         </div>
       </div>
     </main>

@@ -14,7 +14,7 @@ module.exports = {
     }),
     minWidth: {
       profie: '80%',
-      odd: '18%'
+      odd: '19%'
     },
     extend: {
       width: {
