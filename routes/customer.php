@@ -26,7 +26,7 @@ Route::get('profile/edit', EditProfile::class)->name('edit-profile')->middleware
 
 Route::get('order-history', OrderHistory::class)->name('order-history')->middleware('verified');
 
-Route::get('order/{id}', Cart::class)->name('each-order');
+Route::get('order/{id}', Order::class)->name('each-order');
 
 Route::get('checkout/{id}', Checkout::class)->name('checkout');
 

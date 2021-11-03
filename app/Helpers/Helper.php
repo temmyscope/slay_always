@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Cache;
+
 function curl($url)
 {
 	return new class($url){
@@ -171,6 +174,14 @@ function cdnizeURL(string $image): string
  * $url = 'https://www.instagram.com/stayslay_fashion/?__a=1'
  * $instagram = json_decode(file_get_contents($url), true);
 */
+function fetchGramFeed($instagram)
+{
+  $gramFeed = Cache::rememberForever('gramfeed', function () use ($instagram) {
+    $url = "https://www.instagram.com/$instagram/?__a=1";
+    return json_decode(file_get_contents($url));
+  });
+  return $gramFeed;
+}
 
 if(! function_exists('prefixActive')){
 	function prefixActive($prefixName)
