@@ -251,6 +251,10 @@
   opacity: 1;
 }
 
+.input-bod {
+  border-bottom: 1px solid #eb822a;
+}
+
 @media screen and (max-width: 790px) {
   .fa-instagram {
     font-size: 2rem;
