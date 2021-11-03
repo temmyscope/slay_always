@@ -90,15 +90,23 @@
     </header>
     
     <!-- nav section -->
-    <nav class="w-full mt-6">
-      <ul class="w-navWidth flex mx-auto">
-        <li class="underline p-3 font-bold text-xl">
-          <a href="../index.html">Home</a>
-        </li>
-        <li class="p-3 text-gray-400 text-xl">
-          <a href="./join.html">Join</a>
-        </li>
-      </ul>
+    <nav class="w-full">
+      <div class="lg:w-3/4 flex mx-auto justify-between bg-white items-center h-auto p-1">
+        <ul class="flex">
+          <li class="underline p-3 font-bold text-xl">
+            <a href="../index.html">Home</a>
+          </li>
+          <li class="p-3 text-gray-400 text-xl">
+            <a href="./edit-profile.html">Edit Profile</a>
+          </li>
+        </ul>
+        <div class="flex items-center p-1">
+          <p class="px-2 text-2xl">Hello</p>
+          <div class="py-4 px-4 rounded-full bg-bgSec text-gray-200 text-center">
+            <p class="uppercase text-2xl">sd</p>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <main class="w-full mt-16 overflow-x-auto lg:overflow-hidden flex">
@@ -212,7 +220,7 @@
                 </div>
 
                 <div class="py-2">
-                  <h3>Newsletter preferences</h3>
+                  <h3 class="font-bold">Newsletter preferences</h3>
                   <div class="py-1">
                     <input type="checkbox" name="tips" id="tips" class="mr-1 inline-block relative top-0 w-4">
                     <label for="tips" class="text-gray-900 capitalize">

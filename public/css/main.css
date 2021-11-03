@@ -255,6 +255,10 @@
   border-bottom: 1px solid #eb822a;
 }
 
+.increment {
+  border: 1px solid #eb822a;
+  border-radius: 5px;
+}
 @media screen and (max-width: 790px) {
   .fa-instagram {
     font-size: 2rem;

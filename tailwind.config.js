@@ -8,13 +8,19 @@ module.exports = {
       bgSec: '#010101',
       slay: '#eb822a'
     }),
+    height: {
+      vid: '65vh',
+      smVid: '45vh'
+    },
     textColor: theme => ({
       ...theme('colors'),
       slayText: '#eb822a'
     }),
     minWidth: {
       profie: '80%',
-      odd: '19%'
+      odd: '19%',
+      cartWb: '72%',
+      cartWs: '25%'
     },
     extend: {
       width: {
@@ -25,6 +31,8 @@ module.exports = {
         slid: '50%',
         sideNav: '18%',
         slide: '20%',
+        cartWb: '72%',
+        cartWs: '25%'
       },
       fontFamily: {
         slayFont: ['Nunito']
