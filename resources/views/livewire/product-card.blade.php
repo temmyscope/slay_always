@@ -25,7 +25,6 @@
         @if (!is_null($dicountPercent))
         <span class="line-through text-gray-500">&#8358;{!! $product->price !!}</span>
         @endif
-
         &nbsp; <span class="text-red-700">&#8358;{!! percentageDecrease($product->price, $dicountPercent) !!}</span>
       </p>
       <span><!-- color variants: derive a loop from the metadata -->

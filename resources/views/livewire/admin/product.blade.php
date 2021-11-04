@@ -66,7 +66,7 @@
 													<div class="col">
 														<div class="mb-3">
 															<label>Enter Product Details</label>
-															<textarea wire:model.defer="desc" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+															<textarea wire:model.defer="description" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
 														</div>
 													</div>
 												</div>

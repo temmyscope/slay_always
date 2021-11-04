@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\{
   Settings, Favorite, EditProfile, OrderHistory, NewsletterEditor,
-  Order, Invoice, Notification, Search, NewsletterList,Contact,
+  Order, Invoice, Notification, Search, NewsletterList,Contact, Announcement,
   Home, AddProduct, ProductsList, Product, Users, Promotions, AddImage
 };
 
@@ -16,6 +16,7 @@ Route::prefix('admin')->group(function () {
   Route::get('/add-image/{id}/{type}', AddImage::class)->name('add-image');
   Route::get('/product/{id}', Product::class)->name('product');
   Route::get('/orders', OrderHistory::class)->name('orders');
+  Route::get('/announce', Announcement::class)->name('announcement');
 //  Route::get('/order/{id}', Order::class)->name('order');
   
 //this route will be pointed to from orders on completed orders

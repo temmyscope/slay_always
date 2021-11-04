@@ -11,8 +11,8 @@ class Product extends Component
 
     public $productId = null;
     protected array | ProductModel $product;
-    public string $name, $description, $tags = '';
-    public array $others = []; //aka metadata
+    public string $name, $description, $tags;
+    protected $others; //aka metadata
     public float $price;
     public int $quantity;
     public $colors, $sizes; 
@@ -28,8 +28,8 @@ class Product extends Component
             'name' => $this->product->name, 'description' => $this->product->description,
             'tags' => $this->product->tags, 'others' => json_decode($this->product->metadata),
             'price' => $this->product->price, 'quantity' => $this->product->quantity,
-            'colors' => explode(',', $metadata->colors), 
-            'sizes' => explode(',', $metadata->sizes)
+            'colors' => $metadata->colors, 
+            'sizes' => $metadata->sizes
         ]);
         
     }
@@ -40,12 +40,12 @@ class Product extends Component
         if( !$this->product instanceof ProductModel){
             $product = New ProductModel();
         }
-        $product->name = $this->name;
+        $product->name = ucfirst(strtolower($this->name));
         $product->description = $this->description;
         $product->tags = $this->tags;
         $product->price = $this->price;
         $product->quantity = $this->quantity;
-        foreach ($others as $key => $value) {
+        foreach ($this->others as $key => $value) {
             $product->metadata[$key] = $value;
         }
         $product->save();

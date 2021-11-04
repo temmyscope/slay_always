@@ -8,8 +8,9 @@ use App\Models\Product;
 
 class Search extends Component
 {
-    public Product $searchResult;
+    public $searchResult;
     public $filtered;
+    public $category;
     public array $filters;
     protected $listeners = ['applyFilter','searchOnPage'];
     
@@ -34,7 +35,6 @@ class Search extends Component
             unset($this->filters[$filterName]);
             $this->emit('applyFilter');
         }else{
-
         }
     }
 
@@ -43,6 +43,9 @@ class Search extends Component
         $query = ($category !== null) ? $request->input('category') : $request->input('query');
         $this->searchResult = Product::where('name', 'like', '%'.$query.'%')
         ->orWhere('tags', 'like', '%'.$query.'%')->get();
+        $this->fill([
+            'category' => $category ?? ucfirst($query ?? 'All'), 'filters' => [], 'filtered' => [],
+        ]);
     }
 
     public function render()

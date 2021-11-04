@@ -29,7 +29,7 @@ class Favorite extends Component
         $favorites->each( fn($item, $key) => array_push($favoriteList, $item->product_id));
         return view('livewire.pages.favorite', [
             'products' => Product::whereIn('id', $favoriteList)->with('image')->get()
-        ]);
+        ])->extends('layouts.app')->section('content');
     }
 
 }

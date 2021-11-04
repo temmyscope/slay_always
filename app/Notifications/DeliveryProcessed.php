@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class OrderCompleted extends Notification
+class DeliveryProcessed extends Notification
 {
     use Queueable;
 
@@ -40,21 +40,10 @@ class OrderCompleted extends Notification
      */
     public function toMail($notifiable)
     {
-        $metadata = json_decode($this->order->metadata);
-        $subTotal = 0;
-        foreach ($metadata->products as $key => $product) {
-            $sub_total += $product->price;
-        }
-
-        return (new MailMessage)->view(
-            'emails.order-processed', [
-                'order' => $this->order,
-                'products' => $metadata->products,
-                'charges' => $metadata->taxesApplied,
-                'user' => $notifiable,
-                'subTotal' =>$subTotal
-            ]
-        );
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**

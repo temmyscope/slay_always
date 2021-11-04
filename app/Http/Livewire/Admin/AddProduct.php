@@ -29,7 +29,7 @@ class AddProduct extends Component
         
         $product = New ProductModel();
         $product->user_id = auth()->user()->id;
-        $product->name = $this->product;
+        $product->name = ucfirst(strtolower($this->product));
         $product->description = $this->desc;
         $product->price = (float)$this->price;
         $product->quantity = (int)$this->qty;

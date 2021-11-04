@@ -27,99 +27,44 @@
 
         <div class="bg-white rounded-md min-w-profie flex-shrink-0">
             <div class="p-3 border-b-2 border-gray-200 border-solid w-full flex items-center">
-              <a href="./profile.html" class="px-4 text-xl">
+              <a href="{!! route('user-profile') !!}" class="px-4 text-xl">
                 <span class="fas fa-arrow-left"></span>
               </a>
               <h3 class="capitalize text-2xl">Orders</h3>
             </div>
             <div class=" p-3 w-full">
-  
-              <div class="border-2 border-solid border-gray-200 rounded-lg">
-                <!-- -->
-                <div class="p-3  grid grid-cols-9 gap-3">
-                  <div class="col-span-1 p-1 img-width">
-                    <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+              @if (!$orders->empty())
+                @foreach ($orders as $order)
+                  <div class="border-2 border-solid border-gray-200 rounded-lg mt-2">
+                    <!-- -->
+                    <div class="p-3  grid grid-cols-9 gap-3">
+                      <div class="col-span-1 p-1 img-width">
+                        <img src="{!! cdnizeURL($order->products[0]->images[0]->src) !!}" alt="">
+                      </div>
+                      <div class="col-span-7 leading-7">
+                        <p class="font-semibold capitalize">
+                          Order ID. {!! $order->txn_id !!}
+                        </p>
+                        <p class="font-semibold capitalize text-white bg-green-300 w-20 p-1 rounded-lg">
+                          {!! ucfirst($order->status) !!}
+                        </p>
+                        
+                        <p class="font-semibold text-gray-500">
+                          {!! ucfirst($order->updated_at) !!}
+                        </p>
+                      </div>
+                      <div class="col-span-1 text-right">
+                        <a href="./order-details.html" class="font-bold text-slayText hover:bg-slay hover:text-gray-100 hover:opacity-75 p-2 rounded-lg">
+                          See details
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-span-7 leading-7">
-                    <p class="font-semibold capitalize">
-                      Fashion Creative Watches Men Luxury Brand Digital LED Display 50M Waterpro
-                    </p>
-                    <p class="font-semibold text-gray-500">
-                      order AK4767890
-                    </p>
-                    <p class="font-semibold capitalize text-white bg-green-300 w-20 p-1 rounded-lg">
-                      Delivered
-                    </p>
-                    
-                    <p class="font-semibold text-gray-500">
-                      Date
-                    </p>
-                  </div>
-                  <div class="col-span-1 text-right">
-                    <a href="./order-details.html" class="font-bold text-slayText hover:bg-slay hover:text-gray-100 hover:opacity-75 p-2 rounded-lg">
-                      See details
-                    </a>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="border-2 border-solid border-gray-200 rounded-lg mt-2">
-                <!-- -->
-                <div class="p-3  grid grid-cols-9 gap-3">
-                  <div class="col-span-1 p-1 img-width">
-                    <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
-                  </div>
-                  <div class="col-span-7 leading-7">
-                    <p class="font-semibold capitalize">
-                      Fashion Creative Watches Men Luxury Brand Digital LED Display 50M Waterpro
-                    </p>
-                    <p class="font-semibold text-gray-500">
-                      order AK4767890
-                    </p>
-                    <p class="font-semibold capitalize text-white bg-green-300 w-20 p-1 rounded-lg">
-                      Delivered
-                    </p>
-                    
-                    <p class="font-semibold text-gray-500">
-                      Date
-                    </p>
-                  </div>
-                  <div class="col-span-1 text-right">
-                    <a href="" class="font-bold text-slayText hover:bg-slay hover:text-gray-100 hover:opacity-75 p-2 rounded-lg">
-                      See details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="border-2 border-solid border-gray-200 rounded-lg mt-2">
-                <!-- -->
-                <div class="p-3  grid grid-cols-9 gap-3">
-                  <div class="col-span-1 p-1 img-width">
-                    <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
-                  </div>
-                  <div class="col-span-7 leading-7">
-                    <p class="font-semibold capitalize">
-                      Fashion Creative Watches Men Luxury Brand Digital LED Display 50M Waterpro
-                    </p>
-                    <p class="font-semibold text-gray-500">
-                      order AK4767890
-                    </p>
-                    <p class="font-semibold capitalize text-white bg-green-300 w-20 p-1 rounded-lg">
-                      Delivered
-                    </p>
-                    
-                    <p class="font-semibold text-gray-500">
-                      Date
-                    </p>
-                  </div>
-                  <div class="col-span-1 text-right">
-                    <a href="" class="font-bold text-slayText hover:bg-slay hover:text-gray-100 hover:opacity-75 p-2 rounded-lg">
-                      See details
-                    </a>
-                  </div>
-                </div>
-              </div>
-  
+                @endforeach
+              @else
+                  
+              @endif
+              
             </div>
           </div>
         </div>

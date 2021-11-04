@@ -42,8 +42,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         </a>
-     
-        <a href="{!! route('login') !!}" class="p-1 lg:p-5 lg:inline hidden">
+
+        <a href="{!! auth()->user()? route('user-profile') : route('login') !!}" class="p-1 lg:p-5 lg:inline hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
@@ -63,34 +63,27 @@
       </div>
     </div>
     <!-- end of Navbar -->
-    @if ( !str_contains( url()->current(), 'invoice' )  )
+    
     <!-- slide text -->
     <div class="w-full h-14 bg-bgSec mt-2 border-t-2 border-gray-400">
       <div class="lg:w-navWidth w-full mx-auto">
   
         <div class="w-full text-white h-full overflow-hidden items-center py-3 text-center flex">
-  
+          @if (empty($notes))
           <div id="slides" class="w-full h-full hidden ">
-            <p>i am just going to type rubbish in</p>
+            <p>Welcome To StaySlay-Fashion</p>
           </div>
-          
-          <div  id="slides"class="w-full h-full hidden ">
-            <p>think of putting on a show that</p>
-          </div>
-          
+          @else
+          @foreach ($notes as $note)
           <div id="slides" class="w-full h-full hidden ">
-          
-            <p>some goddamn free promo code</p>
+            <p>{!! $not->note !!}</p>
           </div>
-          <div id="slides" class="w-full h-full hidden ">
-        
-            <p>what can i put here for sampling??</p>
-          </div>
+          @endforeach
+          @endif
         </div>
 
       </div>
     </div>
-    @endif
     
     <!--- End of slide --->
   </header>

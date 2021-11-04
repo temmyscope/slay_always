@@ -18,7 +18,7 @@
       <div class="flex items-center p-1">
         <p class="px-2 text-2xl">Hello</p>
         <div class="py-4 px-4 rounded-full bg-bgSec text-gray-200 text-center">
-          <p class="uppercase text-2xl">sd</p>
+          <p class="uppercase text-2xl">{!! $avatar !!}</p>
         </div>
       </div>
 
@@ -41,8 +41,8 @@
               <button class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60"></button>
             </div>
             <div class="p-3">
-              <p class="font-semibold capitalize">elisha temmyscope</p>
-              <p class="text-gray-500">scope@yahoo.com</p>
+              <p class="font-semibold capitalize">{!! $user->name !!}</p>
+              <p class="text-gray-500">{!! $user->email !!}</p>
 
               <button class="mt-12 text-slayText font-bold hover:bg-slay hover:text-gray-200 p-1 rounded-md">
                 Change Password
@@ -57,11 +57,10 @@
             </div>
             <div class="p-3">
               <p class="font-semibold">Your default shipping address:</p>
-              <p class="text-gray-500">samuel damilola</p>
+              <p class="text-gray-500">{!! $user->name !!}</p>
               <address class="text-gray-500">
-                15b, Scope street, Samfrexz Bus stop, Ketu <br>
-                Ketu, Lagos.
-                <p>+234 8000400020</p>
+                {!! $user?->profile?->address !!}
+                <p>{!! $user?->profile?->mobile !!}</p>
               </address>
             </div>
           </div>
@@ -75,7 +74,6 @@
               <p class="font-semibold">You're currently subscribed to the following newsletters:</p>
               <ul class="py-2 text-gray-500">
                 <li><span class="text-green-400">&#10003;</span> fashion tips newsletters</li>
-                <li><span class="text-green-400">&#10003;</span> daily newsletters</li>
               </ul>
               
             </div>
@@ -95,16 +93,5 @@
       </div>
     </div>
   </main>
-
-  <section class="w-full mt-10">
-    <div class="w-navWidth mx-auto">
-      <div class="py-10">
-        <h3 class="capitalize text-4xl text-gray-800 font-bold lg:text-center">Recommended for you</h3>
-      </div>
-      <div class="grid lg:grid-cols-5 grid-cols-2 mt-4 gap-4">
-
-      </div>
-    </div>
-  </section>
 
 </div>

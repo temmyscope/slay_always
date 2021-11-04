@@ -41,32 +41,22 @@
         
         <div class="lg:w-2/6 lg:order-4 order-1 w-full lg:block flex flex-wrap">
           
-          <small class="text-gray-400 order-3">By signing up for email, you agree to Stay Slay Fashion's <a href="{!! route('terms') !!}" class="underline">Terms of Service </a>and <a href="#" class="underline">Privacy policy</a></small>
+          <small class="text-gray-400 order-3">By using our website, you agree to StaySlay Fashion's <a href="{!! route('terms') !!}" class="underline">Terms of Service </a>and <a href="#" class="underline">Privacy policy</a></small>
           <!-- icons -->
           <div class="flex my-7 order-1 lg:order-4 w-full lg:w-3/4 justify-around">
             <span class="px-2">
-              <a href="#">
+              <a href="https://www.instagram.com/stayslay_fashion/" target="_blank">
                 <i class="fab fa-instagram footer-gram"></i>
               </a>
             </span>
             <span class="px-2">
-              <a href="">
-                <i class="fab fa-pinterest footer-gram"></i>
-              </a>
-            </span>
-            <span class="px-2">
-              <a href="https://web.whatsapp.com/send?phone=2349075620497&text=Hello!%20I%want%20to%20o%20make%20an%20order">
+              <a href="https://web.whatsapp.com/send?phone=2349075620497&text=Hello!%20I%want%20to%20o%20make%20an%20order" target="_blank">
                 <i class="fab fa-whatsapp footer-gram"></i>
               </a>
             </span>
             <span class="px-2">
-              <a href="">
+              <a href="https://web.facebook.com/stayslayfashion" target="_blank">
                 <i class="fab fa-facebook footer-gram"></i>
-              </a>
-            </span>
-            <span class="px-2" style="display: none">
-              <a href="">
-                <i class="fab fa-snapchat-ghost footer-gram"></i>
               </a>
             </span>
           </div>
