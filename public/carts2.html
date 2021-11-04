@@ -95,7 +95,7 @@
         <a href="./index.html">Home</a>
       </li>
       <li class="p-3 text-gray-400 text-xl">
-        <a href="./carts.html">Shopping bag</a>
+        <a href="./carts2.html">Cart Item</a>
       </li>
     </ul>
   </nav>
@@ -145,6 +145,13 @@
 
             <div class="text-center w-1/5">
               <p>&#8358;25,000</p>
+              <div class="mt-9 flex gap-1 items-center justify-center">
+                <small class="font-bold">Add to Favourite</small>
+                <button class="rounded-full bg-bgSec text-gray-400 text-center py-2 px-3">
+                  <span class="far fa-heart"></span>
+                </button>
+                
+              </div>
             </div>
           </div>
 
@@ -176,17 +183,21 @@
               </div>
             </div>
 
-            <div class="w-1/5">
+            <div class="w-1/4">
               <p class="text-center">&#8358;25,000</p>
-              <!-- <div>
-                <small>Add to Favourite</small>
-              </div> -->
+              <div class="mt-9 flex gap-1 items-center justify-center">
+                <small class="font-bold">Add to Favourite</small>
+                <button class="rounded-full bg-bgSec text-gray-400 text-center py-2 px-3">
+                  <span class="far fa-heart"></span>
+                </button>
+                
+              </div>
             </div>
           </div> <!--end-->
           
         </div>
 
-        <div class="min-w-cartWs bg-gray-300 flex-shrink-0 max-h-32 mt-6 rounded-md">
+        <div class="min-w-cartWs bg-gray-300 flex-shrink-0 max-h-44 mt-6 rounded-md">
           <div class="p-2 flex gap-1">
             <input type="text" name="name" id="name" placeholder="Discount code" class="w-9/12 py-1 increment focus:ring-0 focus:outline-none px-2">
             <button class="bg-bgSec text-white w-28 text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md " type="button">
@@ -196,6 +207,13 @@
           <div class="flex justify-between p-2 mt-5">
             <p>Subtotal (2 items)</p>
             <p>Naira &#8358;30,000</p>
+          </div>
+          <div class="p-2">
+            <a href="#">
+              <button class="bg-bgSec text-white w-full text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md">
+                Checkout
+              </button>
+            </a>
           </div>
         </div>
       </div>
