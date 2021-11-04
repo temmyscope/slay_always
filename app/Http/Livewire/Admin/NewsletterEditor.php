@@ -14,15 +14,16 @@ class NewsletterEditor extends Component
     public string $newsType = 'email'; 
     public string $group;
     public array $newsTypesEnum = ['email'];
-    public array $groups = [ 'all',  'specific', 'customers', 'verified' ];
+    public array $groups = [ 'all',  'specific', 'customers' ];
 
     public function send()
     {
         Newsletter::insert([
             'title' => $this->title, 'content' => $this->news, 'type' => $this->newsType,
-            'recipients' => json_encode(['group' => $this->group]), 'admin' => Auth::id()
+            'recipients' => $this->group, 'admin' => Auth::id()
         ]);
-        //send mail or push
+        
+        //send mail or push to newsletter subscribers; users are subscribed by default
     }
     
     function changeNewsType(string $type)

@@ -11,7 +11,7 @@
       </li>
 
       <li 
-        class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4 {!! ($active==='profile')?'bg-slay': '' !!}"
+        class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4 {!! ($active==='orders')?'bg-slay': '' !!}"
       >
         <a href="{!! route('order-history') !!}">
           <span class="fas fa-shopping-bag lg:px-3 px-1"></span>

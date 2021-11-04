@@ -19,6 +19,7 @@ class EditProfile extends Component
 
     public function render()
     {
-        return view('livewire.pages.edit-profile');
+        return view('livewire.pages.edit-profile')
+        ->extends('layouts.app')->section('content');
     }
 }

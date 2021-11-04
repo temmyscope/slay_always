@@ -38,22 +38,26 @@
           <div class="border-2 border-solid border-gray-200 rounded-lg">
             <div class="flex justify-between items-center border-b-2 border-gray-200 border-solid p-1">
               <h3 class="capitalize text-xl">account details</h3>
-              <button class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60"></button>
+              <a href="{!! route('edit-profile') !!}"
+                class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60">
+              </a>
             </div>
             <div class="p-3">
               <p class="font-semibold capitalize">{!! $user->name !!}</p>
               <p class="text-gray-500">{!! $user->email !!}</p>
 
-              <button class="mt-12 text-slayText font-bold hover:bg-slay hover:text-gray-200 p-1 rounded-md">
+              <a class="mt-12 text-slayText font-bold hover:bg-slay hover:text-gray-200 p-1 rounded-md">
                 Change Password
-              </button>
+              </a>
             </div>
           </div>
 
           <div class="border-2 border-solid border-gray-200 rounded-lg w-full">
             <div class="flex justify-between items-center p-1 border-b-2 border-gray-200 border-solid">
               <h3 class="capitalize text-xl">address details</h3>
-              <button class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60"></button>
+              <a href="{!! route('edit-profile') !!}"
+                class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60">
+              </a>
             </div>
             <div class="p-3">
               <p class="font-semibold">Your default shipping address:</p>
@@ -68,7 +72,11 @@
           <div class="border-2 border-solid border-gray-200 rounded-lg w-full">
             <div class="flex justify-between items-center p-1 border-b-2 border-gray-200 border-solid">
               <h3 class="capitalize text-xl">Newsletter preferences</h3>
-              <button class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60"></button>
+              <a
+                href="{!! route('edit-profile') !!}"
+                class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60"
+              >
+              </a>
             </div>
             <div class="p-3">
               <p class="font-semibold">You're currently subscribed to the following newsletters:</p>
