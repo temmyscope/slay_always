@@ -1,4 +1,5 @@
-* {
+html,
+body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -255,11 +256,40 @@
   border-bottom: 1px solid #eb822a;
 }
 
+.input-rate {
+  border: 1px solid #b7b7b7;
+}
+
 .increment {
   border: 1px solid #b7b7b7;
   border-radius: 5px;
 }
 
+/* .review {
+  margin: 10px;
+  padding: 6px;
+  display: inline-block;
+  border: 1px solid #b7b7b7;
+  border-radius: 20px;
+  width: 110px;
+  text-align: center;
+  cursor: pointer;
+} */
+#rating1:checked ~ .rate1,
+#rating2:checked ~ .rate2,
+#rating3:checked ~ .rate3 {
+  background-color: #010101;
+  color: #f1f1f1;
+}
+#slide2:checked ~ .check1 {
+  background: green;
+}
+#slide3:checked ~ .check2 {
+  background: lawngreen;
+}
+#slide4:checked ~ .check3 {
+  background: red;
+}
 @media screen and (max-width: 790px) {
   .fa-instagram {
     font-size: 2rem;
