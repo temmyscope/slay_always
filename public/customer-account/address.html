@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="shortcut icon" href="../assets/slaylogo.PNG" type="image/x-icon">
-  <title>Profle page</title>
+  <title>Address</title>
 </head>
 <body class="font-slayFont bg-gray-100">
     <!--  -->
@@ -97,7 +97,7 @@
             <a href="../index.html">Home</a>
           </li>
           <li class="p-3 text-gray-400 text-xl">
-            <a href="./profile.html">Profile</a>
+            <a href="./address.html">Delivery Address</a>
           </li>
         </ul>
         <div class="flex items-center p-1">
@@ -174,64 +174,49 @@
 
         <div class="bg-white rounded-md min-w-profie flex-shrink-0">
           <div class="p-3 border-b-2 border-gray-200 border-solid w-full">
-            <h3 class="capitalize text-2xl">account overview</h3>
+            <h3 class="capitalize text-xl">Delivery address</h3>
           </div>
-          <div class="grid grid-cols-2 gap-6 p-3 w-full">
-            <div class="border-2 border-solid border-gray-200 rounded-lg">
-              <div class="flex justify-between items-center border-b-2 border-gray-200 border-solid p-1">
-                <h3 class="capitalize text-xl">account details</h3>
-                <a href="./edit-profile.html">
-                  <button class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60"></button>
-                </a>
-              </div>
-              <div class="p-3">
-                <p class="font-semibold capitalize">elisha temmyscope</p>
-                <p class="text-gray-500">scope@yahoo.com</p>
+          <div class="grid lg:grid-cols-2 gap-6 p-3 w-full">
 
-                <div class="mt-12">
-                  <a href="./change-password.html" class=" text-slayText font-bold hover:bg-slay hover:text-gray-200 p-1 rounded-md">
-                    Change Password
-                </a>
-                </div>
-              </div>
+            <div class="py-2">
+              <label for="country" class="w-full block mb-4">Please select your country</label>
+              <select name="country" id="country" class="w-9/12 text-gray-800 input-bod py-1 focus:ring-0 focus:outline-none  px-2">
+                <option value="male">Please select one</option>
+                <option value="male">Nigeria</option>
+                <option value="female">United Kingdom</option>
+                <option value="rather not say">Ghana</option>
+                <option value="rather not say">South Africa</option>
+                <option value="rather not say">United States of America</option>
+              </select>
+              <a href="" class="text-slayText font-bold">Save</a>
             </div>
 
-            <div class="border-2 border-solid border-gray-200 rounded-lg w-full">
-              <div class="flex justify-between items-center p-1 border-b-2 border-gray-200 border-solid">
-                <h3 class="capitalize text-xl">address details</h3>
-                <a href="./address.html">
-                  <button class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60"></button>
-                </a>
-              </div>
-              <div class="p-3">
-                <p class="font-semibold">Your default shipping address:</p>
-                <p class="text-gray-500">samuel damilola</p>
-                <address class="text-gray-500">
-                  15b, Scope street, Samfrexz Bus stop, Ketu <br>
-                  Ketu, Lagos.
-                  <p>+234 8000400020</p>
-                </address>
-              </div>
+            <div class="py-2">
+              <label for="state" class="w-full block mb-3">State</label>
+              <span>
+                <input type="text" name="state" id="state" placeholder="enter your state" class="w-9/12 py-1 input-bod focus:ring-0 focus:outline-none  px-2">
+              <a href="" class="text-slayText font-bold">Save</a>
+              </span>
             </div>
 
-            <div class="border-2 border-solid border-gray-200 rounded-lg w-full">
-              <div class="flex justify-between items-center p-1 border-b-2 border-gray-200 border-solid">
-                <h3 class="capitalize text-xl">Newsletter preferences</h3>
-                <a href="./edit-profile.html">
-                  <button class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60"></button>
-                </a>
-              </div>
-              <div class="p-3">
-                <p class="font-semibold">You're currently subscribed to the following newsletters:</p>
-                <ul class="py-2 text-gray-500">
-                  <li><span class="text-green-400">&#10003;</span> fashion tips newsletters</li>
-                  <li><span class="text-green-400">&#10003;</span> daily newsletters</li>
-                </ul>
+            <div class="py-2">
+              <label for="zip" class="w-full block">Zip code</label>
+              <span>
+                <input type="text" name="zip" id="zip"  pattern="[0-9]{5}" placeholder="enter your zip code" class="w-9/12 py-1 input-bod focus:ring-0 focus:outline-none  px-2">
+              <a href="" class="text-slayText font-bold">Save</a>
+              </span>
+            </div>
+
+            <div class="py-2">
+              <label for="residential" class="w-full block">Residential Address</label>
+              <span>
+                <textarea name="residential" id="residential" cols="30" rows="2" class="w-9/12 py-1 input-bod focus:ring-0 focus:outline-none  px-2"></textarea>
                 
-              </div>
+              <a href="" class="text-slayText font-bold">Save</a>
+              </span>
             </div>
 
-            <div class="border-2 border-solid border-gray-200 rounded-lg">
+            <!-- <div class="border-2 border-solid border-gray-200 rounded-lg">
               <div class="p-2 border-b-2 border-gray-200 border-solid">
                 <h3 class="capitalize text-xl">stay slay voucher</h3>
               </div>
@@ -239,7 +224,7 @@
                 <p class="font-semibold">Voucher code:</p>
                 <p class="text-gray-500">currently you've no voucher</p>
               </div>
-            </div>
+            </div> -->
 
           </div>
         </div>
