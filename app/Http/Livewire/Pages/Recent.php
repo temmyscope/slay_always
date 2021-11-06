@@ -9,7 +9,7 @@ use App\Http\Livewire\Traits\Reusables;
 
 class Recent extends Component
 {
-    protected ProductModel $products;
+    protected $products;
 
     public function remove($productId)
     {
@@ -34,7 +34,8 @@ class Recent extends Component
             $this->products = ProductModel::whereIn('id', $recent)->get();
         }
         return view('livewire.pages.recent', [
-            'products' => $this->products ?? []
+            'products' => $this->products ?? [], 
+            'recentCount' => count($recent ?? [])
         ])->extends('layouts.app')->section('content');
     }
 

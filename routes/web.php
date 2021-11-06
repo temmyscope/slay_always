@@ -47,7 +47,7 @@ Route::get('category/{category}', Search::class)->name('category');
 
 Route::get('search', Search::class)->name('search');
 
-Route::get('product/{id}', Product::class)->name('product');
+Route::get('product/{id}', Product::class)->name('user-product');
 
 Route::group(['middleware' => 'auth'], function(){
 

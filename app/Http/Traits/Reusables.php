@@ -41,32 +41,38 @@ trait Reusables{
       $cartItems =  [ $id => $qty ];
     }
     session()->put('user-cart', $cartItems);
+    $this->emitTo('search', 'incrementCart');
   }
 
   public function deleteFromCart($id)
   {
-      $cartItems = session('user-cart');
-      foreach ($cartItems as $product => $qty) {
-          if($id === $product ){
-              unset($cartItems[$product]);
-              break;
-          }
+    $cartItems = session('user-cart');
+    foreach ($cartItems as $product => $qty) {
+      if($id === $product ){
+        unset($cartItems[$product]);
+        break;
       }
-      session()->put('user-cart', $cartItems);
+    }
+    session()->put('user-cart', $cartItems);
+    $this->emitTo('search', 'decrementCart');
   }
 
   public function addToFavorite($productId)
   {
-    if (!Favorite::where([ 'user_id' => auth()->user()->id, 'product_id' => $productId ])->exists()) {
-      Favorite::insert([
-        'user_id' => auth()->user()->id, 'product_id' => $productId
-      ]);
+    if (!Favorite::where('user_id', auth()->user()->id)->where('product_id', $productId)->exists()) {
+      $favorite = new Favorite();
+      $favorite->user_id = auth()->user()->id;
+      $favorite->product_id = $productId;
+      $favorite->save();
+      $this->emitTo('search', 'incrementFavorite');
     }
   }
 
   public function deleteFromFavorite($id)
   {
-    FavoriteModel::where('product_id', $id)->where('user_id', auth()->user()->id)->delete();
+    FavoriteModel::where('product_id', $id)
+    ->where('user_id', auth()->user()->id)->delete();
+    $this->emitTo('search', 'decrementFavorite');
   }
   
 }

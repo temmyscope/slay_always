@@ -43,6 +43,20 @@
                             <li><a href="{{ route('productcreate') }}" class="{{routeActive('productcreate')}}">Add new Product</a></li>
                         </ul>
                     </li>
+
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>Codes/Script</h6>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link menu-title {{ prefixActive('/script') }}" href="javascript:void(0)">
+                            <i data-feather="edit"></i><span>Code Snippets</span>
+                        </a>
+                        <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/script') }};">
+                            <li><a href="{{ route('scripts') }}" class="{{routeActive('scripts')}}">Scripts</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

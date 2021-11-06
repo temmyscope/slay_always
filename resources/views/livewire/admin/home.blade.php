@@ -155,19 +155,19 @@
             <div class="card-body">
               
               <div class="row">
-
-                @forelse ($mostLiked as $item)
+              @if(!empty($mostLiked))
+                @foreach ($mostLiked as $key => $item)
                 <div class="item col-4">
                   <div class="card">
                     <div class="top-dealerbox text-center">
-                      <img class="card-img-top" src="{{$item->product->image}}" alt="...">
+                      <img class="card-img-top" src="{{cdnizeURL($item->product->images[0]->src ?? '')}}" alt="...">
                       <h6>{{$item->product->name}}</h6>
-                      <p>{{$item->likes}}</p>
+                      <p>{{$item->likes}} Likes</p>
                     </div>
                   </div>
                 </div>
-                @empty
-                @endforelse
+                @endforeach
+              @endif
 
               </div>
 

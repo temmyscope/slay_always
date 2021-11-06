@@ -24,7 +24,7 @@ class Home extends Component
         $favorites = ((Favorite::selectRaw('count(id) AS frequency, product_id')
         ->groupBy('product_id')->take(10)->get())?->sortByDesc('frequency'))->values()->all();
         
-        $favoriteProducts = !empty($favorites) ? $favorites->map( fn($item, $key) => $item->id )->all() : [];
+        $favoriteProducts = !empty($favorites) ? array_map( fn($item) => $item->id, $favorites) : [];
         $socials = DB::table('metadata')->whereNotNull('meta->socials')->first();
         $gramFeed = fetchGramFeed(
             json_decode($socials->meta)->socials->instagram

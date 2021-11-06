@@ -6,7 +6,6 @@ use App\Http\Livewire\Pages\{
   Invoice, Notification, Search, Rating, Product, Checkout, Order
 };
 
-
 Route::get('rate/{code}', Rating::class)->name('rate-orders');
 
 Route::get('favorites', Favorite::class)->name('user-favorites');

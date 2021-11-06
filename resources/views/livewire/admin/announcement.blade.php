@@ -12,12 +12,17 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label>Enter Announcement Note</label>
-                                    <textarea wire:model.defer="note" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                                    <textarea wire:model.defer="note" placeholder="Keep It Short and Simple"
+                                        class="form-control" id="exampleFormControlTextarea4" rows="3"
+                                    ></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
+                                <label>Announcement Expiry</label>
+                                <input wire:model="expiry" type="date" class="form-control" />
+
                                 <div class="text-end">
                                     <button class="btn btn-secondary me-3 sweet-8" type="submit">
                                         Add

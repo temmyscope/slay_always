@@ -20,7 +20,7 @@
         </div>
     </nav>
 
-    <main class="w-full mt-16 overflow-x-scroll lg:overflow-hidden flex">
+    <main class="w-full mt-5 overflow-x-scroll lg:overflow-hidden flex">
       <div class="lg:w-3/4 mx-auto flex gap-6 min-w-full">
 
         @includeIf('layouts.sidebar', ['active' => 'orders'])
@@ -32,6 +32,7 @@
               </a>
               <h3 class="capitalize text-2xl">Orders</h3>
             </div>
+
             <div class=" p-3 w-full">
               @if (!$orders->empty())
                 @foreach ($orders as $order)

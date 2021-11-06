@@ -17,16 +17,27 @@ class Product extends Model
 
     public static function search(string $search)
     {
-        return Product::whereRaw("MATCH(tags, description) AGAINST(?)", [
-            $search 
-        ])->orWhereLike("name", "%$search%")->get();
+        return Product::whereRaw("MATCH(description) AGAINST(?)", [$search])
+        ->orWhereRaw("MATCH(tags) AGAINST(?)", [$search])
+        ->orWhere("name", 'like', "%$search%")
+        ->get();
     }
 
     public static function searchOne(string $search)
     {
-        return Product::whereRaw("MATCH(tags, description) AGAINST(?)", [
-            $search 
-        ])->orWhereLike("name", "%$search%")->first();
+        return Product::whereRaw("MATCH(description) AGAINST(?)", [$search])
+        ->orWhereRaw("MATCH(tags) AGAINST(?)", [$search])
+        ->orWhere("name", 'like', "%$search%")->first();
+    }
+
+    public function liked($id): bool
+    {
+        $liked = Favorite::where('user_id', auth()->user()->id)
+        ->where('product_id', $id)->get();
+        if ($liked->empty()) {
+            return false;
+        }
+        return true;
     }
 
 }

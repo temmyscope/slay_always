@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\{ DB };
 class Announcement extends Component
 {
 
-    public string $note;
+    public string $note, $expiry;
 
     public function mount()
     {
         $this->fill([
-            'note' => ''
+            'note' => '', 'expiry' => ''
         ]);
     }
 
@@ -22,7 +22,7 @@ class Announcement extends Component
         DB::table('notes')->insert([
             'note' => $this->note,
             'created_at' => date('Y-m-d h:is'),
-            'active_at' => date('Y-m-d h:i:s', strtotime("+2 weeks"))
+            'active_at' => date('Y-m-d h:i:s', strtotime("$this->expiry"))
         ]);
 
         $this->fill(['note' => '' ]);

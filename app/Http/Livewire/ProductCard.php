@@ -9,16 +9,17 @@ use App\Models\Product;
 class ProductCard extends Component
 {
     public Product $product;
-    public float $dicountPercent;
+    public ?float $dicountPercent;
+    public $colors;
 
     use Reusables;
 
-    public function mount()//$product, $dicountPercent = null)
+    public function mount($product, $dicountPercent = null)
     {
-        //$metadata = json_decode($product->metadata);
+        $metadata = json_decode($product->metadata);
         $this->fill([
-            //'product' => $product, 'dicountPercent' => $dicountPercent ?? 0,
-            //'color' => $metadata->colors,
+            'product' => $product, 'dicountPercent' => $dicountPercent,
+            'colors' => $metadata->colors,
         ]);
     }
 

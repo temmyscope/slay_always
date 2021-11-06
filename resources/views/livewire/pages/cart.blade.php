@@ -49,7 +49,7 @@
                 </div>
               </div>
 
-              @foreach($itemInCart as $item)
+              @foreach($cart as $item)
               <div class="flex justify-between gap-4 py-3 increment px-2">
                 <div class="w-3/5 flex gap-4">
                   <div class="w-1/5">

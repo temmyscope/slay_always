@@ -31,7 +31,7 @@
         color: #fcfdff; background-color: #eb822a;
       }
     </style>
-
+    {!! App\Models\PageScript::head() !!}
     @livewireStyles
   </head>
 
@@ -51,5 +51,6 @@
 
     @livewire('footer')
   </body>
+  {!! App\Models\PageScript::foot() !!}
   <script src="{!! asset('assets/script/main.js') !!}"></script>
 </html>

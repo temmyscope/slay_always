@@ -25,20 +25,21 @@ const sideNavAccordions = document.querySelectorAll(".accord");
 }
 
   // show sideNav
-let displaySideNav = document.querySelector('.filtered')
-let sideNav = document.querySelector('.side-nav')
-const close = document.querySelector('.close')
-
-displaySideNav.addEventListener('click', function(){
-  if (sideNav.style.display === "block") {
+  let displaySideNav = document.getElementById('filtered')
+  let sideNav = document.querySelector('.side-nav')
+  const close = document.querySelector('.close')
+  
+  displaySideNav.addEventListener('click', function(){
+    if (sideNav.style.display === "block") {
+      sideNav.style.display = "none"
+    } else {
+      sideNav.style.display = "block"
+    }
+  })
+  close.addEventListener('click', CloseSideNav = ()=> {
     sideNav.style.display = "none"
-  } else {
-    sideNav.style.display = "block"
-  }
-})
-close.addEventListener('click', CloseSideNav = ()=> {
-  sideNav.style.display = "none"
-})
+  })
+ 
 
   // footer accordion
 const accordions = document.querySelectorAll(".footer-accordion");
@@ -154,10 +155,10 @@ function showCartImages(carts) {
   }
 
 
-// like.addEventListener("click", function() {
-//   counter ++
-//   cart.innerHTML = counter
-// })
+like.addEventListener("click", function() {
+  counter ++
+  cart.innerHTML = counter
+})
 
 var recentImage = 1;
 showRecentImages(recentImage);

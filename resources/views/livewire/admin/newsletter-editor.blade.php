@@ -27,10 +27,7 @@
 																			<li class="nav-item">
 																				<a  wire:click="changeNewsType('email')" class="btn-primary btn-block btn-mail" id="pills-darkhome" data-bs-toggle="pill" href="#pills-darkhome" style="display: flex;justify-content: space-between">
 																					<span><i class="icofont icofont-envelope me-2"></i>MAIL</span>
-
-																					@if($newsType === 'email')
-																						<i class="icofont icofont-star me-2"></i>
-																					@endif
+																					<i class="icofont icofont-star me-2"></i>
 																				</a>
 																				
 																			</li>
@@ -54,7 +51,7 @@
 																				</div>
 																		</div>
 																		<div class="email-wrapper">
-																				<form class="theme-form">
+																				<form class="theme-form" wire:submit.prevent="send">
 																						<div class="form-group">
 																								<div class="form-group m-t-10 m-checkbox-inline mb-1 custom-radio-ml">
 																									<label class="col-form-label pt-0" for="exampleInputEmail1">To: </label>
@@ -70,42 +67,30 @@
 																										<input id="radioinline2" type="radio" name="radio1" value="option1">
 																										<label class="mb-0" for="radioinline2">All Users</label>
 																									</div>
-																									<div class="radio radio-primary">
-																										<input id="radioinline3" type="radio" name="radio1" value="option1">
-																										<label class="mb-0" for="radioinline3">Option<span class="digits"> 3</span></label>
-																									</div>
 
 																								</div>
-																								@if($recipient !== null)
+																								@if($recipient === null)
 																								<input class="form-control" id="exampleInputEmail1" type="email" />
 																								@endif
 																						</div>
 																						<div class="form-group">
 																								<label for="exampleInputPassword1">Subject</label>
-																								<input class="form-control" id="exampleInputPassword1" type="text" />
+																								<input class="form-control" id="exampleInputPassword1" wire:model="title" type="text" />
 																						</div>
 																						<div class="form-group">
 																								<label>Message</label>
-																								<textarea class="form-control" id="text-box" name="text-box" cols="20" rows="4"> </textarea>
-																						</div>
-
-																						<div class="form-group">
-																							<div class="dropzone digits text-center" id="singleFileUpload" action="/upload.php">
-																								<div class="dz-message needsclick">
-																									<i class="icon-cloud-up"></i>
-																									<h6>Drop files here or click to upload.</h6>
-																									<span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
-																								</div>
-																							</div>
+																								<textarea class="form-control" id="text-box" name="text-box" cols="20" wire:model="news" rows="4">
+																								</textarea>
 																						</div>
 																						
 																				</form>
 																				<div class="action-wrapper">
 																						<ul class="actions">
 																								<li>
-																										<button class="btn btn-secondary" href="javascript:void(0)">
-																											<i class="fa fa-paper-plane me-2"></i>send 
-																										</button>
+																									<button class="btn btn-secondary" type="submit">
+																										<i class="fa fa-paper-plane me-2"></i>send 
+																										<span wire:loading wire:target="save"><i class="fa fa-spinner faa-spin animated"></i></span>
+																									</button>
 																								</li>
 																						</ul>
 																				</div>

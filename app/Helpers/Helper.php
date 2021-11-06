@@ -154,15 +154,11 @@ if (!function_exists('createRecharge')) {
     return json_decode($response, true);
   }
 }
-if(function_exists('percentageIncrease')){
-  function percentageIncrease(float $value, float $percent): float{
-      return $value + ($value * ($percent/100));
-  }
+function percentageIncrease(float $value, float $percent): float{
+    return $value + ($value * ($percent/100));
 }
-if(function_exists('percentageDecrease')){
-  function percentageDecrease(float $value, float $percent): float{
-      return $value - ($value * ($percent/100));
-  }
+function percentageDecrease(float $value, float $percent): float{
+    return $value - ($value * ($percent/100));
 }
 function cdnizeURL(string $image): string
 {
