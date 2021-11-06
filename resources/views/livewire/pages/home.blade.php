@@ -62,20 +62,15 @@
       <h1>Our 'gram<i class="fab fa-instagram gram"></i> Shopping</h1>
     </div>
     <div class="grid grid-cols-4 my-5 gap-4  w-full ">
-      
-      @foreach ($instagram->edge_owner_to_timeline_media->edges as $item)
+
+      @foreach ([1,2,3,4,5,6,7,8] as $item)
       <div class=" shadow-md max-w-full rounded-sm text-center relative cont">
         <a href="">
-          <img 
-            class="h-full" alt="" style="width:100%;height:500px;object-fit:cover;" crossorigin="anonymous" decoding="auto"
-            src="https://instagram.com/p/{{$item->node->shortcode}}"
-          />
+          <img src="{!! asset('/assets/assets/gram'.$item.'.PNG') !!}" alt="" style="width: 100%;object-fit:contain;">
           <div class="overlay">
             <div class="text">
               <span>
-                <a href="https://instagram.com/p/{{$item->node->shortcode}}" target="_blank" rel="no-follow">
-                  <i class="fab fa-instagram"></i>
-                </a>
+                <i class="fab fa-instagram"></i>
               </span>
               <a href="{!! $instagram->external_url !!}" target="_blank">
                 <button 

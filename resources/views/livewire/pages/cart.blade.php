@@ -49,20 +49,42 @@
                 </div>
               </div>
 
-              @foreach($cart as $item)
+              @foreach($cart as $product)
               <div class="flex justify-between gap-4 py-3 increment px-2">
                 <div class="w-3/5 flex gap-4">
                   <div class="w-1/5">
                     <img src="https://images.pexels.com/photos/2010812/pexels-photo-2010812.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
                   </div>
                   <div class="capitalize block">
-                    <p>Glow Up Rhinestone Tights - Black</p>
-                    <p>color: Black</p>
+                    <p>{!! $product->name !!}</p>
+                    <p style="display: flex;align-item:center">Choose Color: &nbsp;
+                    @if (!empty($product->metadata->colors))
+                    @foreach ($product->metadata->colors as $index => $item)
+                    <input 
+                      type="radio" name="slide" id="slide{!!$product->id.'-'.$item!!}" 
+                      class="hidden mr-2" {!! ($index==0)?'checked':'' !!}
+                      wire:click.prevent="changeColor({!!$product->id!!}, '{!! strtolower($item) !!}')"
+                    >
+                    <label for="slide{!!$product->id.'-'.$item!!}" 
+                      class="p-2 border-solid border-2 border-gray-400 check{!!$product->id.'-'.$item!!} inline-block cursor-pointer rounded-full">
+                    </label>
+                    <style>
+                    #slide{!!$product->id.'-'.$item!!}:checked ~ .check{!!$product->id.'-'.$item!!}  {
+                      background: {!! strtolower($item) !!};
+                    }
+                    </style>
+                    @endforeach
+                    </p>
+                  @endif
                     <p>size: sm</p>
-                    <a href="./index.html" class="font-bold text-slayText">continue shopping</a>
+                    <a href="{!! route('category', ['category' => $product->category ]) !!}" class="font-bold text-slayText">
+                      continue shopping
+                    </a>
                     <div class="flex gap-2 mt-4 w-full p-1 items-center">
                       <small class="font-bold">remove item</small>
-                      <button class="rounded-full bg-bgSec text-gray-400 text-center py-2 px-3">
+                      <button wire:click="$emit('deleteItem')" 
+                        class="rounded-full bg-bgSec text-gray-400 text-center py-2 px-3"
+                      >
                         <span class="fas fa-trash"></span>
                       </button>
                     </div>
@@ -78,11 +100,13 @@
                 </div>
     
                 <div class="text-center w-1/5">
-                  <p>&#8358;25,000</p>
+                  <p>&#8358;{!! number_format($product->price) !!}</p>
                   <div class="mt-9 flex gap-1 items-center justify-center">
-                    <small class="font-bold">Add to Favourite</small>
-                    <button class="rounded-full bg-bgSec text-gray-400 text-center py-2 px-3">
-                      <span class="far fa-heart"></span>
+                    <button wire:click="addToFavorite" class="rounded-full bg-bgSec text-gray-400 text-center py-2 px-3">
+                      <span class="{!! ($product->liked())? 'fa fa-heart':'far fa-heart' !!}"></span>
+                      <span wire:loading wire:target="addToFavorite">
+                        <i class="fa fa-spinner faa-spin animated"></i>
+                      </span>
                     </button>
                     
                   </div>
@@ -94,18 +118,20 @@
     
             <div class="lg:w-cartWs bg-gray-300 flex-shrink-0 max-h-44 mt-6 rounded-md">
               <div class="p-2 flex gap-1">
-                <input type="text" name="name" id="name" placeholder="Discount code" class="w-9/12 py-1 increment focus:ring-0 focus:outline-none px-2">
+                <input type="text" name="name" id="name" placeholder="Coupon code" class="w-9/12 py-1 increment focus:ring-0 focus:outline-none px-2">
                 <button class="bg-bgSec text-white w-28 text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md " type="button">
                   Apply
                 </button>
               </div>
               <div class="flex justify-between p-2 mt-5">
-                <p>Subtotal (2 items)</p>
-                <p>Naira &#8358;30,000</p>
+                <p>Subtotal ({!! $cart->count() !!} items)</p>
+                <p>&#8358;{!! number_format($cart->sum('price')) !!}</p>
               </div>
               <div class="p-2">
                 <a href="#">
-                  <button class="bg-bgSec text-white w-full text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md">
+                  <button wire:click="checkout"
+                    class="bg-bgSec text-white w-full text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md"
+                  >
                     Checkout
                   </button>
                 </a>

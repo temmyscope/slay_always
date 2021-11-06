@@ -245,7 +245,8 @@
 
       <!-- main cards will be displayed here-->
 
-      <div class="grid lg:grid-cols-4 mt-4 gap-4 mb-6">
+      <div class="grid lg:grid-cols-4 mt-4 gap-4 mb-6 w-full">
+
           @if ( !empty($searchResult) )
 
             @if (!empty($filtered))

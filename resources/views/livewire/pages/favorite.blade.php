@@ -14,8 +14,8 @@
         </li>
         </ul>
     </nav>
-
-    @if ($products && $products->empty())
+    
+    @if ($favorites && empty($favorites))
       <main class="w-full mt-14">
         <div class="w-full">
           <h1 class="text-center uppercase text-3xl">Favorites</h1>
@@ -29,20 +29,22 @@
           </a>
         </div>
       </main>
-
     @else
-      <main class="w-full mt-14">
+      <main class="w-full">
         
         <div class="w-navWidth mx-auto">
-            <div class="text-center">
-                <h1 class="capitalize text-3xl text-gray-700">recently viewed</h1>
-            </div>
             <div class="w-full flex justify-between mt-7 py-4 text-xl">
-                <p>7 items</p>
-                <button type="button" class="underline">clear all</button>
-            
+              <p>{!! $favorites->count() !!} items</p>
+              <button type="button" class="underline">clear all</button>
             </div>
         </div>
+
+        <div class="grid grid-cols-3 lg:grid-cols-5 mt-4 mb-2 ml-2 gap-4 w-full">
+        @foreach ($favorites as $item)
+          <livewire:product-card :product="$item->product" :wire:key="'faves-'.$item->product->id" >
+        @endforeach
+        </div>
+
       </main>
     
     @endif

@@ -34,12 +34,8 @@ trait Reusables{
   
   public function addToCart($id, $qty=1)
   {
-    $cartItems = session('user-cart');
-    if ( $cartItems && is_array($cartItems) ) {
-      $cartItems[$id] = $qty;
-    }else{
-      $cartItems =  [ $id => $qty ];
-    }
+    $cartItems = session('user-cart') ?? [];
+    $cartItems[$id] = $qty;
     session()->put('user-cart', $cartItems);
     $this->emitTo('search', 'incrementCart');
   }
@@ -47,12 +43,7 @@ trait Reusables{
   public function deleteFromCart($id)
   {
     $cartItems = session('user-cart');
-    foreach ($cartItems as $product => $qty) {
-      if($id === $product ){
-        unset($cartItems[$product]);
-        break;
-      }
-    }
+    unset($cartItems[$id]);
     session()->put('user-cart', $cartItems);
     $this->emitTo('search', 'decrementCart');
   }
@@ -65,14 +56,10 @@ trait Reusables{
       $favorite->product_id = $productId;
       $favorite->save();
       $this->emitTo('search', 'incrementFavorite');
+    }else{
+      Favorite::where('user_id', auth()->user()->id)->where('product_id', $productId)->delete();
+      $this->emitTo('search', 'decrementFavorite');
     }
-  }
-
-  public function deleteFromFavorite($id)
-  {
-    FavoriteModel::where('product_id', $id)
-    ->where('user_id', auth()->user()->id)->delete();
-    $this->emitTo('search', 'decrementFavorite');
   }
   
 }

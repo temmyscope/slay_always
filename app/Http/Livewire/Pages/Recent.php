@@ -10,6 +10,7 @@ use App\Http\Livewire\Traits\Reusables;
 class Recent extends Component
 {
     protected $products;
+    public $recent;
 
     public function remove($productId)
     {
@@ -30,12 +31,8 @@ class Recent extends Component
     public function render()
     {
         $recent = session('recently-viewed');
-        if (!empty($recent)) {
-            $this->products = ProductModel::whereIn('id', $recent)->get();
-        }
         return view('livewire.pages.recent', [
-            'products' => $this->products ?? [], 
-            'recentCount' => count($recent ?? [])
+            'products' => (empty($recent))? null : ProductModel::whereIn('id', $recent)->get(),
         ])->extends('layouts.app')->section('content');
     }
 

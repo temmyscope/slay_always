@@ -9,9 +9,14 @@ class Review extends Model
 {
     use HasFactory;
 
-    public function order()
+    public function product()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Product::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
