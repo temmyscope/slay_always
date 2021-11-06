@@ -281,6 +281,17 @@ body {
   background-color: #010101;
   color: #f1f1f1;
 }
+#size1:checked ~ .chart1,
+#size2:checked ~ .chart2,
+#size3:checked ~ .chart3,
+#size4:checked ~ .chart4,
+#size5:checked ~ .chart5,
+#size6:checked ~ .chart6,
+#size7:checked ~ .chart7,
+#size8:checked ~ .chart8 {
+  background-color: #010101;
+  color: #f1f1f1;
+}
 #slide2:checked ~ .check1 {
   background: green;
 }

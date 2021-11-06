@@ -54,20 +54,20 @@ for (let accordion = 0; accordion < accordions.length; accordion++) {
 }
 
 // modal for size guide
-const modal = document.querySelector("#myModal");
-let openModal = document.querySelector("#openModal");
-const closeModal = document.querySelector("#close-modal");
+// const modal = document.querySelector("#myModal");
+// let openModal = document.querySelector("#openModal");
+// const closeModal = document.querySelector("#close-modal");
 
-openModal.onclick = function() {
-  modal.style.display = "flex";
-}
-closeModal.onclick = function() {
-  modal.style.display = "none";
-}
+// openModal.onclick = function() {
+//   modal.style.display = "flex";
+// }
+// closeModal.onclick = function() {
+//   modal.style.display = "none";
+// }
 
-document.body.onclick = function(e) {
-  e.target === modal ? modal.style.display = "none" : ''
-}
+// document.body.onclick = function(e) {
+//   e.target === modal ? modal.style.display = "none" : ''
+// }
 
 // product accordion
 const product = document.querySelector('.product')
@@ -90,40 +90,40 @@ shippings.forEach(shipping => {
 
 
   // active image
-let imagesHeader = document.querySelector("#imagesHeader");
-const imagesBtns = imagesHeader.querySelectorAll(".image-btn");
-  imagesBtns.forEach(imagesBtn => {
-    imagesBtn.addEventListener("click", function() {
-      const current = document.querySelectorAll(".active-images");
-      if (current.length > 0) {
-        current[0].className = current[0].className.replace(" active-images", "");
-      }
-      this.className += " active-images";
-    })
-  })
+// let imagesHeader = document.querySelector("#imagesHeader");
+// const imagesBtns = imagesHeader.querySelectorAll(".image-btn");
+//   imagesBtns.forEach(imagesBtn => {
+//     imagesBtn.addEventListener("click", function() {
+//       const current = document.querySelectorAll(".active-images");
+//       if (current.length > 0) {
+//         current[0].className = current[0].className.replace(" active-images", "");
+//       }
+//       this.className += " active-images";
+//     })
+//   })
 
 
   // image slide for product page
-  var imageSlide = 1;
-showImages(imageSlide);
+//   var imageSlide = 1;
+// showImages(imageSlide);
 
-function plusImages(image) {
-  showImages(imageSlide += image);
-}
+// function plusImages(image) {
+//   showImages(imageSlide += image);
+// }
 
-function currentImage(image) {
-  showImages(imageSlide = image);
-}
+// function currentImage(image) {
+//   showImages(imageSlide = image);
+// }
 
-function showImages(image) {
-  var slides = document.querySelectorAll(".imagex");
-  if (image > slides.length) {imageSlide = 1}    
-  if (image < 1) {imageSlide = slides.length}
-  for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  slides[imageSlide-1].style.display = "block";  
-}
+// function showImages(image) {
+//   var slides = document.querySelectorAll(".imagex");
+//   if (image > slides.length) {imageSlide = 1}    
+//   if (image < 1) {imageSlide = slides.length}
+//   for (let i = 0; i < slides.length; i++) {
+//       slides[i].style.display = "none";  
+//   }
+//   slides[imageSlide-1].style.display = "block";  
+// }
 
 
 
