@@ -25,7 +25,7 @@
     </div>
   </nav>
 
-  <main class="w-full mt-16 overflow-x-auto lg:overflow-hidden flex">
+  <main class="w-full mt-16 overflow-x-auto lg:overflow-hidden flex mb-4">
     <div class="lg:w-3/4 mx-auto flex gap-6 w-full">
       
       @includeIf('layouts.sidebar', ['active' => 'profile'])

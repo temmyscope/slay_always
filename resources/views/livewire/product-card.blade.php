@@ -1,11 +1,10 @@
-<div class="shadow w-full relative">
+<div class="shadow-lg rounded-lg w-full">
   <a href="{!! route('user-product', ['id' => $product->id ]) !!}">
     <!--<img 
       class="w-full" alt="{!! $product->name !!} Image"
       src="{!! cdnizeURL($product->images[0]->src ?? '') !!}"
     />-->
     <div class="relative m-w-full max-h-full con">
-
       <div id="slide1" class="slide slide1 w-full">
         <img src="https://images.pexels.com/photos/1689731/pexels-photo-1689731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" 
           alt="" class="w-full" style="object-fit:contain;"
@@ -52,18 +51,12 @@
   </div>
   <button
     wire:click="addToCart({!! $product->id !!})"
-    class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 font-bold hidden md:block"
+    class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 font-bold"
   >
     <span wire:loading.remove>Add to bag <i class="fas fa-shopping-bag"></i></span>
     <span wire:loading wire:target="addToCart">
       <i class="fa fa-spinner faa-spin animated"></i>
     </span>
   </button>
-  <a wire:click="addToCart({!! $product->id !!})" class="md:hidden">
-    <span class="fas fa-shopping-bag absolute text-slayText bottom-3 right-2 text-3xl"></span>
-    <span wire:loading wire:target="addToCart">
-      <i class="fa fa-spinner faa-spin animated"></i>
-    </span>
-  </a>
 </div>
 

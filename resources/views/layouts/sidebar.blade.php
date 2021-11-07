@@ -1,8 +1,9 @@
 <div class="bg-white rounded-md min-w-odd flex-shrink-0 p-1 lg:p-0 nav-height">
+
   <div class="py-1 w-full">
     <ul class="capitalize">
       <li 
-        class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4 {!! ($active==='profile')?'bg-slay': '' !!}"
+        class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4 {!! ($active==='profile')?'bg-slay text-gray-200': '' !!}"
       >
         <a href="{!! route('user-profile') !!}">
           <span class="far fa-user lg:px-3 px-1"></span>
@@ -11,7 +12,7 @@
       </li>
 
       <li 
-        class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4 {!! ($active==='orders')?'bg-slay': '' !!}"
+        class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4 {!! ($active==='orders')?'bg-slay text-gray-200': '' !!}"
       >
         <a href="{!! route('order-history') !!}">
           <span class="fas fa-shopping-bag lg:px-3 px-1"></span>
@@ -26,10 +27,10 @@
         </a>
       </li>
 
-      <li class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4">
-        <a href="{!! route('user-favorites') !!}">
+      <li class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4 {!! ($active==='review')?'bg-slay text-gray-200': '' !!}">
+        <a href="{!! route('pending-reviews') !!}">
           <span class="far fa-edit lg:px-3 px-1"></span>
-        pending review
+        pending reviews
         </a>
       </li>
 
@@ -50,4 +51,5 @@
     </div>
     </ul>
   </div>
+
 </div>

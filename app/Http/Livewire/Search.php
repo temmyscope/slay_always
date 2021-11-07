@@ -5,28 +5,23 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\{ DB , Route};
 use App\Models\{ Favorite };
+use StaySlay\Traits\{ Reusables };
 
 class Search extends Component
 {
+    use Reusables;
+
     public string $searchQuery;
     public $favorites, $cartItemsCount;
-    protected $listeners = ['incrementCart', 'decrementCart', 'incrementFavorite', 'decrementFavorite'];
+    protected $listeners = ['refreshCartCount', 'refreshFavoriteCount'];
 
-    public function decrementCart()
+    public function refreshCartCount()
     {
-        $this->cartItemsCount = $this->cartItemsCount - 1;
+        $this->cartItemsCount = $this->cartCount();
     }
-    public function incrementCart()
+    public function refreshFavoriteCount()
     {
-        $this->cartItemsCount = $this->cartItemsCount + 1;
-    }
-    public function incrementFavorite()
-    {
-        $this->favorites = Favorite::where('user_id', auth()->user()->id)->count();
-    }
-    public function decrementFavorite()
-    {
-        $this->favorites = $this->favorites - 1;
+        $this->favorites = Favorite::where('user_id', auth()->user()->id)->count()+1;
     }
 
     public function searchForQuery()
@@ -37,10 +32,7 @@ class Search extends Component
 
     public function mount()
     {
-        $cartItems = session('user-cart');
-
-        $cartItemsCount = ( $cartItems && is_array($cartItems) )? 
-        count(array_keys($cartItems)) : 0;
+        $cartItemsCount = $this->cartCount();
 
         $favorites = Favorite::where(
             'user_id', auth()->user()->id ?? null

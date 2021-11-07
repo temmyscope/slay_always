@@ -21,7 +21,7 @@
         
             <div id="imagesHeader" class="lg:block hidden">
           
-                @foreach ($images as $key => $image)
+                @foreach ($product->images as $key => $image)
                     <div class="mb-4 image-btn {!! ($key === 0) ? 'active-images' : '' !!} w-3/4 float-right">
                         <label for="" class="cursor-pointer" onclick="currentImage({!! $key!!})">
                             <img src="{!! cdnizeURL($item->src) !!}" alt="{!! $product->name !!}" class="h-full">
@@ -34,7 +34,7 @@
 
             <div class="col-span-3">
                 <div class="relative">
-                    @foreach ($images as $image)
+                    @foreach ($product->images as $image)
                         <div class="imagex">
                             <img src="{!! cdnizeURL($imah) !!}" alt="{!! $product->name !!} image" class="h-full">
                         </div>
@@ -80,6 +80,27 @@
                         <div>
                             <p id="openModal" class="cursor-pointer text-gray-900 underline font-bold">size chart</p>
                         </div>
+                    </div>
+                    <div class="mt-6 inline-block">
+                      <!-- <div> -->
+                        <input type="radio" name="sizing" id="size1" class="hidden">
+                        <input type="radio" name="sizing" id="size2" class="hidden">
+                        <input type="radio" name="sizing" id="size3" class="hidden">
+                        <input type="radio" name="sizing" id="size4" class="hidden">
+                        <input type="radio" name="sizing" id="size5" class="hidden">
+                        <input type="radio" name="sizing" id="size6" class="hidden">
+                        <input type="radio" name="sizing" id="size7" class="hidden">
+                        <input type="radio" name="sizing" id="size8" class="hidden">
+        
+                        <label for="size1" class="w-16 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-3 mr-2 chart1 m-1">XXL</label>
+                        <label for="size2" class="w-16 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-3 mr-2 chart2 m-1">XL</label>
+                        <label for="size3" class="w-16 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-3 mr-2 chart3 m-1">L</label>
+                        <label for="size4" class="w-16 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-3 mr-2 chart4 m-1">M</label>
+                        <label for="size5" class="w-16 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-3 mr-2 chart5 m-1">M</label>
+                        <label for="size6" class="w-16 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-3 mr-2 chart6 m-1">M</label>
+                        <label for="size7" class="w-16 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-3 mr-2 chart7 m-1">M</label>
+                        <label for="size8" class="w-16 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-3 mr-2 chart8 m-1">M</label>
+                      <!-- </div> -->
                     </div>
                     <div class="flex justify-between py-4">
                         <button class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-4/5 hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 hover:bg-slay hover:text-gray-100 " type="button">
@@ -142,95 +163,45 @@
     </main>
 
     @include('layouts.size-chart')
-    
-    <!-- more cute stuff -->
-    <div class="w-full mt-10">
-        <div class="w-3/5 mx-auto">
-            <div class="text-yellow-400 font-bold uppercase mb-3 text-xs">Similar Products</div>
-
-            <div class="grid grid-cols-5 gap-3">
-
-                <!--- only 5 similar products available loop over livewire product component :product  > --->
-                
-            </div>
-        </div>
-    </div>
-
 
     <!-- review page -->
-    <section class="w-full mt-14">
-        <div class="w-2/5 mx-auto py-2">
-          <h2 class="text-center text-3xl py-8 font-bold">Reviews</h2>
-          <div class="w-1/2 flex mx-auto items-center">
-  
-            <div class="w-3/5 justify-center">
-              <div class="text-center">
-                <h2 class="font-bold text-3xl py-1">4.3</h2>
-  
+    <section class="w-full mt-14 mb-4">
+      <h2 class="text-center text-3xl py-8 font-bold capitalize">What customers are saying</h2>
+      
+      <div class="lg:w-1/2 w-4/5 px-1 mx-auto py-2 grid lg:grid-cols-2 gap-3 rounded-lg bg-white border-4 border-solid border-gray-200">
+        
+        <div class=" ">
+          <div class="w-full">
+
+              <div class="">
                 <span class="pr-3 cursor-pointer ">
                   <span class="fas fa-star text-2xl"></span>
                   <span class="fas fa-star text-2xl"></span>
                   <span class="fas fa-star text-2xl"></span>
-                  <span class="fas fa-star-half-alt text-2xl"></span>
-                  <span class="far fa-star text-2xl"></span>
+                  <span class="fas fa-star text-2xl"></span>
+                  <span class="fas fa-star text-2xl"></span>
                 </span>
-  
-                  <p class="py-2">27 reviews</p>
               </div>
-              
-            </div>
-            <!-- bars -->
-            <div class="w-2/5 h-auto">
-              <table class="w-full">
-                <tbody>
-                  <th>
-                    <tr class="w-full inline-table ">
-                      <td class="pb-1">5</td>
-                      <td class="w-10/12">
-                        <div class="w-full bg-gray-100 mb-2">
-                          <div class="w-4/5 bg-gray-400 py-1"></div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="w-full inline-table ">
-                      <td class="pb-1">4</td>
-                      <td class="w-10/12">
-                        <div class="w-full bg-gray-100 mb-2">
-                          <div class="w-3/5 bg-gray-400 py-1"></div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="w-full inline-table ">
-                      <td class="pb-1">3</td>
-                      <td class="w-10/12">
-                        <div class="w-full bg-gray-100 mb-2">
-                          <div class="w-2/5 bg-gray-400 py-1"></div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="w-full inline-table ">
-                      <td class="pb-1">2</td>
-                      <td class="w-10/12">
-                        <div class="w-full bg-gray-100 mb-2">
-                          <div class="w-1/5 bg-gray-400 py-1"></div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="w-full inline-table ">
-                      <td class="pb-1">1</td>
-                      <td class="w-10/12">
-                        <div class="w-full bg-gray-100 mb-2">
-                          <div class="w-1 bg-gray-400 py-1"></div>
-                        </div>
-                      </td>
-                    </tr>
-                  </th>
-                </tbody>
-              </table>
-              
+      
+            <div class="mt-3">
+              <p>Samfrexz</p>
+            <p>November 6, 2021</p>
             </div>
           </div>
+  
         </div>
-      </section>
+        <!-- comment -->
+        <div class="">
+          <p class="font-bold capitalize text-xl">so nice</p>
+          <div class="mt-3">
+            <p>Size purchased: True to size</p>
+            <p>The top is so so pretty and i love it</p>
+          </div>
+        </div>
+        
+      </div>
+
+    </section>
+    
 
 </div>

@@ -5,13 +5,13 @@
 <div>
     
     <nav class="w-full mt-6">
-      <ul class="w-navWidth flex mx-auto">
-      <li class="underline p-3 font-bold text-xl">
-          <a href="{!! route('welcome') !!}">Home</a>
-      </li>
-      <li class="p-3 text-gray-400 text-xl">
-          <a>Shopping bag</a>
-      </li>
+      <ul class="w-navWidth flex justify-between mx-auto">
+        <li class="p-3 font-bold text-xl">
+          <a href="{!! route('welcome') !!}">Home </a>
+        </li>
+        <button wire:click="clearCart" type="button" class="text-xl underline font-bold">
+          clear all
+        </button>
       </ul>
     </nav>
 
@@ -127,12 +127,21 @@
                 <p>Subtotal ({!! $cart->count() !!} items)</p>
                 <p>&#8358;{!! number_format($cart->sum('price')) !!}</p>
               </div>
+              <div class="p-2 text-center">
+                <p class="font-bold">Use my delivery address or 
+                  <a href="{!! route('edit-address') !!}" class="text-slayText font-bold underline">update address</a>
+                </p>
+              </div>
               <div class="p-2">
                 <a href="#">
-                  <button wire:click="checkout"
+                  <button 
+                    wire:click="checkout" id="paymentButton"
                     class="bg-bgSec text-white w-full text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md"
                   >
                     Checkout
+                    <span wire:loading wire:target="checkout">
+                      Please wait... <i class="fa fa-spinner faa-spin animated"></i>
+                    </span>
                   </button>
                 </a>
               </div>
@@ -146,13 +155,52 @@
     
     @endif
     
-    <section class="w-full mt-20">
-      <div class="w-navWidth mx-auto">
-        <h2 class="capitalize py-10 text-3xl lg:text-center">recommended for you</h2>
-  
-        
-      </div>
-    </section>
+    @livewire('recommended')
+
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mySmallModalLabel">Info</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-body-message">
+                </div>
+            </div>
+        </div>
+    </div>
+
     
-    
+    @push('scripts')
+    <script src="{{ asset('assets/js/tooltip-init.js')}}"></script>
+    <script src="https://js.paystack.co/v2/inline.js"></script>
+    <script>
+    Livewire.on('checkoutWithPaystack', () => {
+      var user_id = {!! auth()->user()->id !!};
+      var handler = PaystackPop.setup({
+        key: {!! env('PAYSTACK_PUBLIC_KEY') !!}, 
+        currency: 'NGN', ref: {!! $reference !!},
+        email: {!! auth()->user()->email !!}, 
+        amount: {!! $total !!} * 100, //amount in kobo
+        metadata: @php $cart ? print_r($cart->all()) : null; @endphp
+        callback: async function(response) {
+            document.getElementById(
+                "modal-body-message"
+            ).innerHTML = "Transaction Completed. Redirecting...";
+            fetch(`https://stayslayfashion.com/api/transaction/verify/${response.reference}/${user_id}`, {
+                method: "GET", headers: { 'Accept': 'application/json' },
+            }).then(res => res.json()).then(data => {
+                window.location.href="/order-history";
+            }).catch(err => console.log(err));
+        },
+        onClose: function() {
+            document.getElementById(
+                "modal-body-message"
+            ).innerHTML = "Transaction was not completed, window closed.";
+        },
+      });
+      handler.openIframe();
+    });
+    </script>
+    @endpush    
 </div>

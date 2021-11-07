@@ -20,7 +20,7 @@
         </div>
     </nav>
 
-    <main class="w-full mt-5 overflow-x-scroll lg:overflow-hidden flex">
+    <main class="w-full mt-5 mb-5 overflow-x-scroll lg:overflow-hidden flex">
       <div class="lg:w-3/4 mx-auto flex gap-6 min-w-full">
 
         @includeIf('layouts.sidebar', ['active' => 'orders'])
@@ -55,7 +55,10 @@
                         </p>
                       </div>
                       <div class="col-span-1 text-right">
-                        <a href="./order-details.html" class="font-bold text-slayText hover:bg-slay hover:text-gray-100 hover:opacity-75 p-2 rounded-lg">
+                        <a 
+                          href="{!! route('each-order', ['id' => $order->id ]) !!}" 
+                          class="font-bold text-slayText hover:bg-slay hover:text-gray-100 hover:opacity-75 p-2 rounded-lg"
+                        >
                           See details
                         </a>
                       </div>

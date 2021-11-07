@@ -1,4 +1,5 @@
-* {
+html,
+body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -255,11 +256,51 @@
   border-bottom: 1px solid #eb822a;
 }
 
+.input-rate {
+  border: 1px solid #b7b7b7;
+}
+
 .increment {
   border: 1px solid #b7b7b7;
   border-radius: 5px;
 }
 
+/* .review {
+  margin: 10px;
+  padding: 6px;
+  display: inline-block;
+  border: 1px solid #b7b7b7;
+  border-radius: 20px;
+  width: 110px;
+  text-align: center;
+  cursor: pointer;
+} */
+#rating1:checked ~ .rate1,
+#rating2:checked ~ .rate2,
+#rating3:checked ~ .rate3 {
+  background-color: #010101;
+  color: #f1f1f1;
+}
+#size1:checked ~ .chart1,
+#size2:checked ~ .chart2,
+#size3:checked ~ .chart3,
+#size4:checked ~ .chart4,
+#size5:checked ~ .chart5,
+#size6:checked ~ .chart6,
+#size7:checked ~ .chart7,
+#size8:checked ~ .chart8 {
+  background-color: #010101;
+  color: #f1f1f1;
+}
+#slide2:checked ~ .check1 {
+  background: green;
+}
+#slide3:checked ~ .check2 {
+  background: lawngreen;
+}
+#slide4:checked ~ .check3 {
+  background: red;
+}
 @media screen and (max-width: 790px) {
   .fa-instagram {
     font-size: 2rem;
@@ -313,7 +354,7 @@
     /* max-width: 0;
     overflow: hidden; */
     display: none;
-    top: 12rem;
+    top: 11rem;
     position: absolute;
     background: #333;
     color: #f1f1f1;

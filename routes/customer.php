@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\{
-  Cart, Favorite, Recent, Profile, EditProfile, OrderHistory,
-  Invoice, Notification, Search, Rating, Product, Checkout, Order
+  Cart, Favorite, Recent, Profile, EditProfile, OrderHistory, Review,
+  Invoice, Notification, Search, Rating, Product, Order, EditAddress, PendingReview
 };
 
 Route::get('rate/{code}', Rating::class)->name('rate-orders');
@@ -14,11 +14,15 @@ Route::get('profile/me', Profile::class)->name('user-profile');//->middleware('v
 
 Route::get('profile/edit', EditProfile::class)->name('edit-profile');//->middleware('verified');
 
+Route::get('profile/edit-address', EditAddress::class)->name('edit-address');//->middleware('verified');
+
 Route::get('order-history', OrderHistory::class)->name('order-history');//->middleware('verified');
 
 Route::get('order/{id}', Order::class)->name('each-order');
 
-Route::get('checkout/{id}', Checkout::class)->name('checkout');
+Route::get('review/{id}', Review::class)->name('review-product');
+
+Route::get('pending-reviews', PendingReview::class)->name('pending-reviews');
 
 //Route::get('invoice/{txn_id}', Invoice::class)->name('invoice');
 

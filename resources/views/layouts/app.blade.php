@@ -35,7 +35,7 @@
     @livewireStyles
   </head>
 
-  <body class="font-slayFont">
+  <body class="font-slayFont bg-gray-100">
     <!-- Navbar -->
     @livewire('search')
 
@@ -52,5 +52,5 @@
     @livewire('footer')
   </body>
   {!! App\Models\PageScript::foot() !!}
-  <script src="{!! asset('assets/script/main.js') !!}"></script>
+  <script src="{!! asset('assets/script/product.js') !!}"></script>
 </html>
