@@ -128,20 +128,8 @@
                             <li>style with black heeels for the perfect look!</li>
                         </ul>
                         <div>
-                            <h4 class="uppercase py-4 text-gray-800 font-bold shipping">shipping information</h4>
-                            <div class="shipping-details hidden">
-                            <h5 class="py-2 font-bold">International Standard Shipping</h5>
-                            <p>₦15,000.00 - All orders</p>
-                            <h4 class="py-2 font-bold">International Express Shipping</h4>
-                            <p>₦125.00 - All orders</p>
-                            <h4 class="py-2 font-bold">Local Shipping</h4>
-                            <p>₦10,000.00 - All orders</p>
-                            
-                            </div>
-                        </div>
-                        <div>
                             <h4 class="uppercase py-4 text-gray-800 font-bold shipping">returns: store credit</h4>
-                            <div class="shipping-details hidden">
+                            <div class="shipping-details">
                             <p class="py-3">
                                 With limited exceptions, valid returns are refunded in the form of store credit. 
                                 Damaged/defective items will be subject to an exchange if in stock.

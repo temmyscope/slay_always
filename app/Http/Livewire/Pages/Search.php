@@ -40,9 +40,19 @@ class Search extends Component
 
     public function mount(Request $request, $category = null)
     {
-        $query = ($category !== null) ? $request->input('category') : $request->input('query');
+        $query = '';
+        if($category !== null){
+            $query = $category;
+        }else{
+            if ( $request->input('category') ) {
+                $query = $request->input('category');
+            }else{
+                $query = $request->input('query');
+            }
+        }
+
         $this->fill([
-            'category' => $category ?? ucfirst($query ?? 'All'), 'filters' => [], 'filtered' => [], 
+            'category' => $query, 'filters' => [], 'filtered' => [], 
             'isCategory' => $category !== null, 'searchResult' => Product::search($query)
         ]);
     }

@@ -7,7 +7,7 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\{ DB };
 use StaySlay\Traits\{ Payment, Reusables };
-use App\Models\{ Order, Product, Profile, Promotion };
+use App\Models\{ Order, Product, Profile, Voucher, Promotion };
 
 class Cart extends Component
 {
@@ -38,6 +38,7 @@ class Cart extends Component
 
         $promo = Promotion::currentlyRunning();
         $profile = auth()->user()->profile;
+        
         $this->fill([
             'couponIsActive' => ($promo !== false)? true : false, 
             'coupon' => ($promo !== false)? $promo->coupon : '',
@@ -45,14 +46,14 @@ class Cart extends Component
             'address'=> [
                 'address' => $profile?->address, 'state' => $profile?->state, 
                 'country' => $profile?->country, 'zip_code' => $profile?->zip_code
-            ],
-            'discount' => ($promo !== false)? $promo->discount : 0, 'total' => ($promo !== false)? 
-            percentageDecrease($this->cart->sum('price'), $promo->coupon) : $this->cart->sum('price'),
+            ], 'discount' => ($promo !== false)? $promo->discount : 0, 
+            'total' => ($promo !== false)? 
+            percentageDecrease($this->cart->sum('price'), $promo->discount) : $this->cart->sum('price'),
             'taxes' => json_decode(
                 DB::table('metadata')->whereNotNull('meta->taxes')->first()->meta, true
-            )
+            ), 'voucher' => Voucher::where('user_id', auth()->user()->id)->first(),
+            'reference' => strtoupper(str_replace('-','', Str::uuid()->toString()))
         ]);
-        $this->reference = strtoupper(str_replace('-','', Str::uuid()->toString()));
     }
 
     public function deleteItem($product)

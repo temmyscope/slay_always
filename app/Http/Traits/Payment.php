@@ -3,7 +3,7 @@
 namespace StaySlay\Traits;
 
 use Illuminate\Support\Facades\{ DB };
-use App\Models\{ Order, Product, Profile, Promotion };
+use App\Models\{ Order, Product, Profile, Voucher, Promotion };
 
 trait Payment{
 
@@ -16,6 +16,7 @@ trait Payment{
   public bool $creatingRecharge = false;
   public string $reference; 
   public $taxes;
+  public $voucher;
   public float $sub_total; //before tax and coupon
   public float $total; //after tax and coupon
 
@@ -82,6 +83,23 @@ trait Payment{
     }
     return $this->cart->sum('price');
   }
+
+  public function getTotalPrice(): float
+  {
+    $total = $this->cart->sum('price');
+    if (!empty($this->taxes['taxes'])) {
+      foreach ($this->taxes['taxes'] as $key => $taxPercent) {
+        if ($key !== '') {
+          if ($key == 'shipping') {//for shipping, the amount is not in percent
+            $total += (float)$taxPercent; 
+          }else{
+            $total += $this->cart->sum('price')*($taxPercent/100);
+          }
+        }
+      }
+    }
+    return ($this->voucher) ? $total - $this->voucher->value : $total;
+  }
   
   public function checkout()
   {
@@ -122,14 +140,10 @@ trait Payment{
       'discount' => (($discount * $this->cart->sum('price'))/100), //total amount discounted
     ];
 
-    //search for taxes applicable in metadata table and apply as necessary
-    $metadata = DB::table('metadata')->whereNotNull('meta->taxes')->first();
-    $taxes = (empty($metadata)) ? [] : json_decode($metadata->meta);
-
     $taxedTotal = 0;
-    if (!empty($taxes)) {
+    if (!empty($this->taxes['taxes'])) {
       /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
-      foreach ($taxes as $key => $taxPercent) {
+      foreach ($this->taxes['taxes'] as $key => $taxPercent) {
         if ($key !== '') {
           if ($key == 'shipping') {//for shipping, the amount is not in percent
             $taxedTotal += (float)$taxPercent; 
@@ -142,15 +156,20 @@ trait Payment{
     }
 
     $order->metadata = json_encode(
-        array_merge( json_decode($order->metadata, true), $orderMetaData )
+      array_merge( json_decode($order->metadata, true), $orderMetaData )
     );
     $this->total = $order->total = $taxedTotal;
+
+    if ($this->voucher) {
+      $this->total = $order->total = $taxedTotal - $this->voucher->value;
+      Voucher::where('id', $this->voucher->id)->delete();
+    }
 
     $order->save();
 
     $this->clearCart();
 
-    $this->emit('checkoutWithPaystack');
+    $this->emit('checkoutWithPaystack', $this->total);
   }
 
 }

@@ -65,8 +65,10 @@
                       class="hidden mr-2" {!! ($index==0)?'checked':'' !!}
                       wire:click.prevent="changeColor({!!$product->id!!}, '{!! strtolower($item) !!}')"
                     >
-                    <label for="slide{!!$product->id.'-'.$item!!}" 
-                      class="p-2 border-solid border-2 border-gray-400 check{!!$product->id.'-'.$item!!} inline-block cursor-pointer rounded-full">
+                    <label
+                      class="p-2 border-solid border-2 border-gray-400 check{!!$product->id.'-'.$item!!} inline-block cursor-pointer rounded-full"
+                      for="slide{!!$product->id.'-'.$item!!}" style="border-radius: 50%;margin:2px;"
+                    >
                     </label>
                     <style>
                     #slide{!!$product->id.'-'.$item!!}:checked ~ .check{!!$product->id.'-'.$item!!}  {
@@ -116,34 +118,49 @@
               
             </div>
     
-            <div class="lg:w-cartWs bg-gray-300 flex-shrink-0 max-h-44 mt-6 rounded-md">
+            <div class="lg:w-cartWs bg-gray-300 flex-shrink-0 max-h-full mt-6 rounded-md">
               <div class="p-2 flex gap-1">
                 <input type="text" name="name" id="name" placeholder="Coupon code" class="w-9/12 py-1 increment focus:ring-0 focus:outline-none px-2">
                 <button class="bg-bgSec text-white w-28 text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md " type="button">
                   Apply
                 </button>
               </div>
-              <div class="flex justify-between p-2 mt-5">
+
+              <div class="flex justify-between p-2 mt-2">
                 <p>Subtotal ({!! $cart->count() !!} items)</p>
                 <p>&#8358;{!! number_format($cart->sum('price')) !!}</p>
               </div>
+
+              @if ($voucher && !empty($voucher))
+              <div class="flex justify-between p-2 mt-2">
+                <p>Voucher</p>
+                <p>&#8358;{!! number_format($voucher->value) !!}</p>
+              </div>
+              @endif
 
               @foreach ($taxes['taxes'] as $tax => $value)
                 @if ($value === '')
                 @else
                   @if ($tax == 'shipping')
-                    <div class="flex justify-between p-2 mt-5">
+                    <div class="flex justify-between p-2 mt-2">
                       <p>{!! ucfirst($tax) !!}</p>
                       <p>&#8358;{!! $value !!}</p>
                     </div>
                   @else
-                    <div class="flex justify-between p-2 mt-5">
+                    <div class="flex justify-between p-2 mt-2">
                       <p>{!! ucfirst($tax) !!}</p>
                       <p>{!! $value !!}%</p>
                     </div>
                   @endif
                 @endif
               @endforeach
+
+              <hr />
+              
+              <div class="flex justify-between p-2 mt-2">
+                <p>Total </p>
+                <p>&#8358;{!! number_format($this->getTotalPrice()) !!}</p>
+              </div>
 
               <div class="p-2 text-center">
                 @if ($deliveryAddressSet)
@@ -199,13 +216,13 @@
     <script src="{{ asset('assets/js/tooltip-init.js')}}"></script>
     <script src="https://js.paystack.co/v2/inline.js"></script>
     <script>
-    Livewire.on('checkoutWithPaystack', () => {
+    Livewire.on('checkoutWithPaystack', (total) => {
       var user_id = {!! auth()->user()->id !!};
       var handler = PaystackPop.setup({
         key: {!! env('PAYSTACK_PUBLIC_KEY') !!}, 
         currency: 'NGN', ref: {!! $reference !!},
         email: {!! auth()->user()->email !!}, 
-        amount: {!! $total !!} * 100, //amount in kobo
+        amount: total * 100, //amount in kobo
         metadata: @php $cart ? print_r($cart->all()) : null; @endphp
         callback: async function(response) {
             document.getElementById(
@@ -214,7 +231,7 @@
             fetch(`https://stayslayfashion.com/api/transaction/verify/${response.reference}/${user_id}`, {
                 method: "GET", headers: { 'Accept': 'application/json' },
             }).then(res => res.json()).then(data => {
-                window.location.href="/order-history";
+                window.location.href= {!! env('APP_URL').'/order-history' !!};
             }).catch(err => console.log(err));
         },
         onClose: function() {
