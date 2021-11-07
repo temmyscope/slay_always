@@ -10,7 +10,7 @@
           alt="" class="w-full" style="object-fit:contain;"
         />
         <button id="heart" wire:click.prevent="addToFavorite({!! $product->id !!})"
-        class="{!! ($product->liked())? 'fa fa-heart':'far fa-heart' !!} absolute top-1 text-yellow-800 text-3xl right-2 block">
+        class="{!! (App\Models\Product::liked($product->id))? 'fa fa-heart':'far fa-heart' !!} absolute top-1 text-yellow-800 text-3xl right-2 block">
         </button>
       </div>
      

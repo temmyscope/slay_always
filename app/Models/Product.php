@@ -30,10 +30,10 @@ class Product extends Model
         ->orWhere("name", 'like', "%$search%")->first();
     }
 
-    public function liked(): bool
+    public static function liked($id): bool
     {
         $liked = Favorite::where('user_id', auth()->user()->id)
-        ->where('product_id', $this->id)->get()->all();
+        ->where('product_id', $id)->get()->all();
         if (empty($liked)) {
             return false;
         }

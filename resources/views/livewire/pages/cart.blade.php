@@ -56,22 +56,26 @@
                     <img src="https://images.pexels.com/photos/2010812/pexels-photo-2010812.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
                   </div>
                   <div class="capitalize block">
-                    <p>{!! $product->name !!}</p>
+                    <p>{!! $product->name ?? $product['name']  !!}</p>
                     <p style="display: flex;align-item:center">Choose Color: &nbsp;
-                    @if (!empty($product->metadata->colors))
-                    @foreach ($product->metadata->colors as $index => $item)
+                    @php
+                      $metadata = $product->metadata ?? $product['metadata'];
+                      $colors = (is_object($metadata))? $metadata->colors : ($metadata['colors'] ?? []);
+                    @endphp
+                    @if (!empty($colors))
+                    @foreach ($colors as $index => $item)
                     <input 
-                      type="radio" name="slide" id="slide{!!$product->id.'-'.$item!!}" 
+                      type="radio" name="slide" id="slide{!!($product->id ?? $product['id']).'-'.$item!!}" 
                       class="hidden mr-2" {!! ($index==0)?'checked':'' !!}
-                      wire:click.prevent="changeColor({!!$product->id!!}, '{!! strtolower($item) !!}')"
+                      wire:click="changeColor({!!$product->id ?? $product['id']!!}, '{!! $item !!}')"
                     >
                     <label
-                      class="p-2 border-solid border-2 border-gray-400 check{!!$product->id.'-'.$item!!} inline-block cursor-pointer rounded-full"
-                      for="slide{!!$product->id.'-'.$item!!}" style="border-radius: 50%;margin:2px;"
+                      class="p-2 border-solid border-2 border-gray-400 check{!!$product->id ?? $product['id'].'-'.$item!!} inline-block cursor-pointer rounded-full"
+                      for="slide{!!$product->id ?? $product['id'].'-'.$item!!}" style="border-radius: 50%;margin:2px;"
                     >
                     </label>
                     <style>
-                    #slide{!!$product->id.'-'.$item!!}:checked ~ .check{!!$product->id.'-'.$item!!}  {
+                    #slide{!!($product->id ?? $product['id']).'-'.$item!!}:checked ~ .check{!!($product->id ?? $product['id']).'-'.$item!!}  {
                       background: {!! strtolower($item) !!};
                     }
                     </style>
@@ -79,12 +83,12 @@
                     </p>
                   @endif
                     <p>size: sm</p>
-                    <a href="{!! route('category', ['category' => $product->category ]) !!}" class="font-bold text-slayText">
+                    <a href="{!! route('category', ['category' => $product->category ?? $product['category'] ]) !!}" class="font-bold text-slayText">
                       continue shopping
                     </a>
                     <div class="flex gap-2 mt-4 w-full p-1 items-center">
                       <small class="font-bold">remove item</small>
-                      <button wire:click="$emit('deleteItem')" 
+                      <button wire:click="$emit('deleteItem', {!!$product->id ?? $product['id']!!})" 
                         class="rounded-full bg-bgSec text-gray-400 text-center py-2 px-3"
                       >
                         <span class="fas fa-trash"></span>
@@ -95,17 +99,26 @@
                 
                 <div class=" w-1/5 flex gap-2 justify-center">
                   <div class="flex gap-2 increment p-2 max-h-10 w-1/2 justify-between">
-                    <p class="cursor-pointer"><span class="fas fa-minus"></span></p>
-                    <p>0</p>
-                    <p class="cursor-pointer"><span class="fas fa-plus"></span></p>
+                    <p class="cursor-pointer" 
+                      wire:click="changeQty({!! $product->id ?? $product['id'] !!}, {!! ($product->qty ?? $product['qty'])-1 !!})"
+                    >
+                      <span class="fas fa-minus"></span>
+                    </p>
+                    <p>{!! $product->qty ?? $product['qty'] !!}</p>
+                    <p class="cursor-pointer"
+                      wire:click="changeQty({!! $product->id ?? $product['id'] !!}, {!! ($product->qty ?? $product['qty'])+1 !!})"
+                    >
+                      <span class="fas fa-plus"></span>
+                    </p>
                   </div>
                 </div>
     
                 <div class="text-center w-1/5">
-                  <p>&#8358;{!! number_format($product->price) !!}</p>
+                  <p>&#8358;{!! number_format($product->price ?? $product['price']) !!}</p>
                   <div class="mt-9 flex gap-1 items-center justify-center">
                     <button wire:click="addToFavorite" class="rounded-full bg-bgSec text-gray-400 text-center py-2 px-3">
-                      <span class="{!! ($product->liked())? 'fa fa-heart':'far fa-heart' !!}"></span>
+                      <span class="{!! (App\Models\Product::liked($product->id ?? $product['id']))? 'fa fa-heart':'far fa-heart' !!}">
+                      </span>
                       <span wire:loading wire:target="addToFavorite">
                         <i class="fa fa-spinner faa-spin animated"></i>
                       </span>
@@ -120,14 +133,20 @@
     
             <div class="lg:w-cartWs bg-gray-300 flex-shrink-0 max-h-full mt-6 rounded-md">
               <div class="p-2 flex gap-1">
-                <input type="text" name="name" id="name" placeholder="Coupon code" class="w-9/12 py-1 increment focus:ring-0 focus:outline-none px-2">
-                <button class="bg-bgSec text-white w-28 text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md " type="button">
+                <input 
+                  type="text" name="name" id="name" placeholder="Coupon code" wire:model="coupon"
+                  class="w-9/12 py-1 increment focus:ring-0 focus:outline-none px-2"
+                >
+                <button 
+                  class="bg-bgSec text-white w-28 text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md " 
+                  type="button" wire:click=""
+                >
                   Apply
                 </button>
               </div>
 
               <div class="flex justify-between p-2 mt-2">
-                <p>Subtotal ({!! $cart->count() !!} items)</p>
+                <p>Subtotal</p>
                 <p>&#8358;{!! number_format($cart->sum('price')) !!}</p>
               </div>
 

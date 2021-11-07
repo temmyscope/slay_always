@@ -26,22 +26,25 @@ class Cart extends Component
             $productIds = array_keys($cartItems);
             $products = Product::whereIn('id', $productIds)->get();
             $products->transform(function($item, $key) use ($cartItems){
-                $item->metadata = [
-                    'qty' => (int) $cartItems[$item->id], 
-                    'size' => '', 'color' => ''
-                ];
+                $item->qty = $cartItems[$item->id];
+                $item->color = '';
+                $item->size = 'XL';
+                $item->metadata = json_decode($item->metadata);
                 $item->category = array_map('trim', explode(',', $item->tags))[0];
                 return $item;
             });
         }
         $this->cart = $products ? $products->collect() : $products;
+        
         if (is_null($this->cart)) {
             return;
         }
 
         $promo = Promotion::currentlyRunning();
         $profile = auth()->user()->profile;
-        
+
+        $this->coupon = ($promo !== false) ? $promo->coupon : '';
+
         $this->fill([
             'couponIsActive' => ($promo !== false)? true : false, 
             'coupon' => ($promo !== false)? $promo->coupon : '',
@@ -50,8 +53,7 @@ class Cart extends Component
                 'address' => $profile?->address, 'state' => $profile?->state, 
                 'country' => $profile?->country, 'zip_code' => $profile?->zip_code
             ], 'discount' => ($promo !== false)? $promo->discount : 0, 
-            'total' => ($promo !== false)? 
-            percentageDecrease($this->cart->sum('price'), $promo->discount) : $this->cart->sum('price'),
+            'total' => $this->applyCoupon(),
             'taxes' => json_decode(
                 DB::table('metadata')->whereNotNull('meta->taxes')->first()->meta, true
             ), 'voucher' => Voucher::where('user_id', auth()->user()->id)->first(),

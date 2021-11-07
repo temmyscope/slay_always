@@ -44,56 +44,59 @@ trait Payment{
 
   public function changeColor($id, $color)
   {
-      $this->cart = $this->cart->transform(function($item, $key) use($id, $color){
-          if ($item->id == $id) {
-              $item->metadata->color = $color;
-          }
-          return $item;
-      });
+    $this->cart->transform(function($item, $key) use($id, $color){
+      if ($item['id'] == $id) {
+        $item['color'] = $color;
+      }
+      return $item;
+    });
   }
 
   public function changeQty($id, $qty)
   {
-      $this->cart->transform(function($item, $key) use($id, $qty){
-        if ($item->id == $id) {
-          $item->metadata->qty = $qty;
-        }
-        return $item;
-      });
+    $this->cart->transform(function($item, $key) use($id, $qty){
+      if ($item['id'] == $id) {
+        $item['qty'] = $qty;
+      }
+      return $item;
+    });
   }
 
   public function changeSize($id, $size)
   {
-      $this->cart->transform(function($item, $key) use($id, $size){
-        if ($item->id == $id) {
-            $item->metadata->size = $size;
-        }
-        return $item;
-      });
+    $this->cart->transform(function($item, $key) use($id, $size){
+      if ($item['id'] == $id) {
+        $item['size'] = $size;
+      }
+      return $item;
+    });
   }
 
   public function applyCoupon()
   {
     //if promotion exists, apply necessary deductions
     $promotion = Promotion::currentlyRunning($this->coupon);
+    $total = $this->cart->sum(function($item) {
+      return $item['price']*$item['qty'];
+    });
     if ( $promotion !== false) {
-      $this->total = percentageDecrease($this->cart->sum('price'), $promotion->coupon);
-      $this->couponIsActive = true; $this->discount = $promotion->discount;
+      $this->total = percentageDecrease($total, $promotion->coupon);
+      $this->discount = $promotion->discount; $this->couponIsActive = true;
       return $this->total;
     }
-    return $this->cart->sum('price');
+    return $this->total = $total;
   }
 
   public function getTotalPrice(): float
   {
-    $total = $this->cart->sum('price');
+    $total = $this->applyCoupon();
     if (!empty($this->taxes['taxes'])) {
       foreach ($this->taxes['taxes'] as $key => $taxPercent) {
         if ($key !== '') {
           if ($key == 'shipping') {//for shipping, the amount is not in percent
             $total += (float)$taxPercent; 
           }else{
-            $total += $this->cart->sum('price')*($taxPercent/100);
+            $total += $total*($taxPercent/100);
           }
         }
       }
@@ -106,7 +109,6 @@ trait Payment{
     if (empty($this->cart)) {
       return;
     }
-
     $order = new Order();
     $order->user_id = auth()->user()->id;
 
@@ -114,24 +116,16 @@ trait Payment{
     $order->txn_id = $this->reference;
     $order->status = 'pending';
 
-    $order->total = $this->cart->sum(function ($product){
-      //multiply price of each product with the qty available
-      return $product['price'] * $product['metadata']['qty'];
-    });
-
-
     $total = $this->applyCoupon();
     $discount = $this->discount;
 
     $productsDetails = [];
     //loop over products and insert into $productDetails
-    $products->each(function($item, $key) use (
-      $dicount, &$productsDetails,
-    ) {
+    $products->each(function($item, $key) use ($discount, &$productsDetails) {
       $productsDetails[$item->id] = [
         'price' => $item->price, 'metadata' => $item->metadata,
         'image' => $item->images[0]->src, 'name' => $item->name,
-        'activePrice' => percentageDecrease($item->price, $dicount),
+        'activePrice' => percentageDecrease($item->price, $discount),
       ];
     });
 
