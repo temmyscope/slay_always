@@ -25,8 +25,11 @@ class Cart extends Component
         if (!empty($cartItems)) {
             $productIds = array_keys($cartItems);
             $products = Product::whereIn('id', $productIds)->get();
-            $products->transform(function($item, $key){
-                $item->metadata = json_decode($item->metadata);
+            $products->transform(function($item, $key) use ($cartItems){
+                $item->metadata = [
+                    'qty' => (int) $cartItems[$item->id], 
+                    'size' => '', 'color' => ''
+                ];
                 $item->category = array_map('trim', explode(',', $item->tags))[0];
                 return $item;
             });

@@ -116,7 +116,7 @@ trait Payment{
 
     $order->total = $this->cart->sum(function ($product){
       //multiply price of each product with the qty available
-      return $product->price * $product->metadata->qty;
+      return $product['price'] * $product['metadata']['qty'];
     });
 
 
