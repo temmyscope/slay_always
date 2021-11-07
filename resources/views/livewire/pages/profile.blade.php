@@ -55,7 +55,7 @@
           <div class="border-2 border-solid border-gray-200 rounded-lg w-full">
             <div class="flex justify-between items-center p-1 border-b-2 border-gray-200 border-solid">
               <h3 class="capitalize text-xl">address details</h3>
-              <a href="{!! route('edit-profile') !!}"
+              <a href="{!! route('edit-address') !!}"
                 class="fas fa-pen cursor-pointer text-slayText hover:bg-slay hover:text-gray-200 p-3 rounded-full hover:opacity-60">
               </a>
             </div>
@@ -83,7 +83,6 @@
               <ul class="py-2 text-gray-500">
                 <li><span class="text-green-400">&#10003;</span> fashion tips newsletters</li>
               </ul>
-              
             </div>
           </div>
 

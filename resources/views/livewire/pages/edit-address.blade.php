@@ -12,7 +12,7 @@
         </div>
       </nav>
     
-    <main class="w-full mt-16 overflow-x-auto lg:overflow-hidden flex">
+    <main class="w-full mt-16 mb-4 overflow-x-auto lg:overflow-hidden flex">
         <div class="lg:w-3/4 mx-auto flex gap-6 min-w-full">
 
             @includeIf('layouts.sidebar', ['active' => 'review'])

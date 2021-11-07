@@ -55,9 +55,7 @@
                 </div>
 
                 <div>
-                  
-                  <input type="text" name="review" placeholder="Review title" class="w-full py-2 input-rate rounded-lg focus:ring-0 focus:outline-none  px-2">
-                  <label for="" class="block mt-5 py-1">Write your review</label>
+                  <label for="" class="block mt-2 py-1">Write your review</label>
                   <textarea name="residential" id="residential" cols="30" rows="5" placeholder="" class="w-full py-2 input-rate rounded-lg focus:ring-0 focus:outline-none  px-2"></textarea>
                   
                   <input type="text" name="review" placeholder="Username" class="w-full py-2 mt-3 input-rate rounded-lg focus:ring-0 focus:outline-none  px-2">
@@ -70,6 +68,7 @@
                   <div class="w-1/2 mx-auto">
         
                     <div class="lg:w-3/5 justify-center">
+
                       <div class="text-center">
                         <h2 class="font-bold text-3xl py-1">5/5</h2>
           

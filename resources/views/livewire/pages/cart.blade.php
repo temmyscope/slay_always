@@ -127,10 +127,34 @@
                 <p>Subtotal ({!! $cart->count() !!} items)</p>
                 <p>&#8358;{!! number_format($cart->sum('price')) !!}</p>
               </div>
+
+              @foreach ($taxes['taxes'] as $tax => $value)
+                @if ($value === '')
+                @else
+                  @if ($tax == 'shipping')
+                    <div class="flex justify-between p-2 mt-5">
+                      <p>{!! ucfirst($tax) !!}</p>
+                      <p>&#8358;{!! $value !!}</p>
+                    </div>
+                  @else
+                    <div class="flex justify-between p-2 mt-5">
+                      <p>{!! ucfirst($tax) !!}</p>
+                      <p>{!! $value !!}%</p>
+                    </div>
+                  @endif
+                @endif
+              @endforeach
+
               <div class="p-2 text-center">
+                @if ($deliveryAddressSet)
                 <p class="font-bold">Use my delivery address or 
                   <a href="{!! route('edit-address') !!}" class="text-slayText font-bold underline">update address</a>
                 </p>
+                @else
+                <p class="font-bold">
+                  <a href="{!! route('edit-address') !!}" class="text-slayText font-bold underline">update address</a>
+                </p>
+                @endif
               </div>
               <div class="p-2">
                 <a href="#">

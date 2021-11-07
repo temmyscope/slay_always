@@ -15,6 +15,7 @@ trait Payment{
   public bool $couponIsActive;
   public bool $creatingRecharge = false;
   public string $reference; 
+  public $taxes;
   public float $sub_total; //before tax and coupon
   public float $total; //after tax and coupon
 
@@ -50,6 +51,16 @@ trait Payment{
       });
   }
 
+  public function changeQty($id, $qty)
+  {
+      $this->cart->transform(function($item, $key) use($id, $qty){
+        if ($item->id == $id) {
+          $item->metadata->qty = $qty;
+        }
+        return $item;
+      });
+  }
+
   public function changeSize($id, $size)
   {
       $this->cart->transform(function($item, $key) use($id, $size){
@@ -74,57 +85,72 @@ trait Payment{
   
   public function checkout()
   {
-      $order = Order::where('id', $id)->where('user_id', auth()->user()->id)->first();
-      $order->txn_id = $this->reference;
-      $order->status = 'pending';
+    if (empty($this->cart)) {
+      return;
+    }
 
-      $productsMetaData = json_decode($order->metadata, true)['products'];
-      $products = Product::whereIn( 'id', array_keys($productsMetaData) )->get();
-  
-      $order->total = $products->sum(function ($product) use ($cartItems) {
-          //multiply price of each product with the qty available in the cart session
-          return $product->price * $cartItems[$product->id];
-      });
+    $order = new Order();
+    $order->user_id = auth()->user()->id;
 
-      $productsDetails = [];
+    $order->total = $this->cart->sum('price');
+    $order->txn_id = $this->reference;
+    $order->status = 'pending';
 
-      $total = $this->applyCoupon();
-      $discount = $this->discount;
+    $order->total = $this->cart->sum(function ($product){
+      //multiply price of each product with the qty available
+      return $product->price * $product->metadata->qty;
+    });
 
-      //loop over products and insert into $productDetails
-      $products->each(function($item, $key) use (
-          &$productsDetails, $productsMetaData, $discount
-      ) {
-          $productsDetails[$item->id] = [
-            'price' => $item->price, 'metadata' => $item->metadata,
-            'image' => $item->images[0]->src, 'name' => $item->name,
-            'activePrice' => percentageDecrease($item->price, $dicount),
-          ];
-      });
-      $orderMetaData = [
-        'products' => $productsDetails, 'paymentData' => [], 'taxesApplied'=> [],
-        'discount' => $discount * $this->cart->sum('price'), //total amount discounted
+
+    $total = $this->applyCoupon();
+    $discount = $this->discount;
+
+    $productsDetails = [];
+    //loop over products and insert into $productDetails
+    $products->each(function($item, $key) use (
+      $dicount, &$productsDetails,
+    ) {
+      $productsDetails[$item->id] = [
+        'price' => $item->price, 'metadata' => $item->metadata,
+        'image' => $item->images[0]->src, 'name' => $item->name,
+        'activePrice' => percentageDecrease($item->price, $dicount),
       ];
-  
-      //search for taxes applicable in metadata table and apply as necessary
-      $metadata = DB::table('metadata')->whereNotNull('taxes')->first();
-      $taxes = (empty($metadata)) ? [] : json_decode($metadata->meta);
+    });
 
-      if (!empty($taxes)) {
-          /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
-          foreach ($taxes as $key => $taxPercent) {
-              $total = percentageIncrease($total, $taxPercent);
-              $orderMetaData['taxesApplied'][$key] = $taxPercent;
+    $orderMetaData = [
+      'products' => $productsDetails, 'paymentData' => [], 'taxesApplied'=> [],
+      'discount' => (($discount * $this->cart->sum('price'))/100), //total amount discounted
+    ];
+
+    //search for taxes applicable in metadata table and apply as necessary
+    $metadata = DB::table('metadata')->whereNotNull('meta->taxes')->first();
+    $taxes = (empty($metadata)) ? [] : json_decode($metadata->meta);
+
+    $taxedTotal = 0;
+    if (!empty($taxes)) {
+      /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
+      foreach ($taxes as $key => $taxPercent) {
+        if ($key !== '') {
+          if ($key == 'shipping') {//for shipping, the amount is not in percent
+            $taxedTotal += (float)$taxPercent; 
+          }else{
+            $taxedTotal += percentageIncrease($total, $taxPercent);
           }
+          $orderMetaData['taxesApplied'][$key] = $taxPercent;
+        }
       }
+    }
 
-      $order->metadata = json_encode(
-          array_merge( json_decode($order->metadata, true), $orderMetaData )
-      );
-      $this->total = $order->total = $total;
-      $order->save();
-      session()->forget('user-cart');
-      $this->emit('checkoutWithPaystack');
+    $order->metadata = json_encode(
+        array_merge( json_decode($order->metadata, true), $orderMetaData )
+    );
+    $this->total = $order->total = $taxedTotal;
+
+    $order->save();
+
+    $this->clearCart();
+
+    $this->emit('checkoutWithPaystack');
   }
 
 }

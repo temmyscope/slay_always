@@ -20,7 +20,7 @@
   <main class="w-full mt-16 overflow-x-auto lg:overflow-hidden flex">
     <div class="lg:w-3/4 mx-auto flex gap-6 w-full">
       
-      @includeIf('layouts.sidebar', ['active' => 'edit-profile'])
+      @includeIf('layouts.sidebar', ['active' => 'profile'])
         
       <div class="bg-white rounded-md min-w-profie flex-shrink-0">
 

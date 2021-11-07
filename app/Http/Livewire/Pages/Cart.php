@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pages;
 use Livewire\Component;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\{ DB };
 use StaySlay\Traits\{ Payment, Reusables };
 use App\Models\{ Order, Product, Profile, Promotion };
 
@@ -14,6 +15,7 @@ class Cart extends Component
 
     protected $listeners = ['deleteItem'];
     public bool $deliveryAddressSet;
+    public array $address;
 
     //the recharge context mean that we're trying to use the paystack_token to charge a user
     public function mount()
@@ -35,32 +37,22 @@ class Cart extends Component
         }
 
         $promo = Promotion::currentlyRunning();
+        $profile = auth()->user()->profile;
         $this->fill([
             'couponIsActive' => ($promo !== false)? true : false, 
             'coupon' => ($promo !== false)? $promo->coupon : '',
+            'deliveryAddressSet' => ($profile->address)? true : false,
+            'address'=> [
+                'address' => $profile?->address, 'state' => $profile?->state, 
+                'country' => $profile?->country, 'zip_code' => $profile?->zip_code
+            ],
             'discount' => ($promo !== false)? $promo->discount : 0, 'total' => ($promo !== false)? 
-            percentageDecrease($this->cart->sum('price'), $promo->coupon) : $this->cart->sum('price')
+            percentageDecrease($this->cart->sum('price'), $promo->coupon) : $this->cart->sum('price'),
+            'taxes' => json_decode(
+                DB::table('metadata')->whereNotNull('meta->taxes')->first()->meta, true
+            )
         ]);
-        $this->reference = strtoupper(Str::uuid()->toString());
-        
-        if (!empty($this->cart) ) {
-            $metadata = [
-                'products' => $this->cart, 'paymentData' => []
-            ];
-            $order = new Order();
-            $order->user_id = auth()->user()->id;
-            $order->metadata = json_encode($metadata);
-            $order->total = $this->cart->sum('price');
-            $order->txn_id = $this->reference;
-            $profile = auth()->user()->profile;
-            if ($profile->address) {
-                $this->deliveryAddressSet = false;
-            }
-            $order->delivery_address = (
-                $profile->address.', '.$profile->state.', '.$profile->country.'; '.$profile->zip_code
-            );
-            $order->save();
-        }
+        $this->reference = strtoupper(str_replace('-','', Str::uuid()->toString()));
     }
 
     public function deleteItem($product)
