@@ -46,7 +46,10 @@
               <p class="font-semibold capitalize">{!! $user->name !!}</p>
               <p class="text-gray-500">{!! $user->email !!}</p>
 
-              <a class="mt-12 text-slayText font-bold hover:bg-slay hover:text-gray-200 p-1 rounded-md">
+              <a 
+                href="{!! route('change-password') !!}" 
+                class="mt-12 text-slayText font-bold hover:bg-slay hover:text-gray-200 p-1 rounded-md"
+              >
                 Change Password
               </a>
             </div>
@@ -91,8 +94,8 @@
               <h3 class="capitalize text-xl">stay slay voucher</h3>
             </div>
             <div class="p-3">
-              <p class="font-semibold">Voucher code:</p>
-              <p class="text-gray-500">currently you've no voucher</p>
+              <p class="font-semibold">Voucher Balance:</p>
+              <p class="text-gray-500">{!! $user->voucher? '&#8358;'.$user->voucher->value: 'currently you\'ve no voucher' !!}</p>
             </div>
           </div>
 

@@ -1,3 +1,5 @@
+@section('title', 'Review')
+
 <div>
 
   <nav class="w-full">
@@ -57,9 +59,6 @@
                 <div>
                   <label for="" class="block mt-2 py-1">Write your review</label>
                   <textarea name="residential" id="residential" cols="30" rows="5" placeholder="" class="w-full py-2 input-rate rounded-lg focus:ring-0 focus:outline-none  px-2"></textarea>
-                  
-                  <input type="text" name="review" placeholder="Username" class="w-full py-2 mt-3 input-rate rounded-lg focus:ring-0 focus:outline-none  px-2">
-                  <input type="email" name="review" placeholder="Enter email" class="w-full py-2 mt-3 input-rate rounded-lg focus:ring-0 focus:outline-none  px-2">
                 </div>
               <button type="submit" class="bg-black text-white font-bold text-base w-full rounded-lg mt-3 outline-none focus:outline-none py-3 hover:bg-slay">Submit Review</button>
             </div>

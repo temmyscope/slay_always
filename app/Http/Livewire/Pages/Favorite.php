@@ -13,7 +13,8 @@ class Favorite extends Component
 
     public function clear()
     {
-        Favorite::where('user_id', auth()->user()->id)->delete();
+        FavoriteModel::where('user_id', auth()->user()->id)->delete();
+        $this->emitTo('search', 'refreshFavoriteCount');
     }
 
     public function mount()

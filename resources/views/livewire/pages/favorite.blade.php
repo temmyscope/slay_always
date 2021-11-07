@@ -30,12 +30,12 @@
       </div>
     </main>
   @else
-    <main class="w-full">
+    <main class="w-full mb-10">
       
       <div class="w-navWidth mx-auto">
-          <div class="w-full flex justify-between mt-7 py-4 text-xl">
-            <p>{!! $favorites->count() !!} items</p>
-            <button type="button" class="underline">clear all</button>
+          <div class="w-full flex justify-between mt-4 py-4 text-xl">
+            <p>{!! $favorites->count() ?? 0 !!} items</p>
+            <button wire:click="clear" type="button" class="underline">clear all</button>
           </div>
       </div>
 

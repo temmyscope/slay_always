@@ -2,13 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\{
-  Cart, Favorite, Recent, Profile, EditProfile, OrderHistory, Review,
+  Cart, Favorite, Recent, Profile, EditProfile, OrderHistory, Review, ChangePassword,
   Invoice, Notification, Search, Rating, Product, Order, EditAddress, PendingReview
 };
 
 Route::get('rate/{code}', Rating::class)->name('rate-orders');
 
 Route::get('favorites', Favorite::class)->name('user-favorites');
+
+Route::get('profile/change-password', ChangePassword::class)->name('change-password');
 
 Route::get('profile/me', Profile::class)->name('user-profile');//->middleware('verified');
 

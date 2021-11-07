@@ -3,14 +3,16 @@
 namespace App\Http\Livewire\Pages;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\{ Hash, Password };
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\{ Hash, Password };
 
 class ChangePassword extends Component
 {
     public $oldPassword;
 
     public $newPassword, $confirmPassword;
+
     protected $rules = [
         'oldPassword' => 'required|min:8',
         'newPassword' => 'required|min:8',
@@ -26,7 +28,8 @@ class ChangePassword extends Component
         $user->forceFill([
             'password' => Hash::make($this->newPassword) 
         ])->setRememberToken(Str::random(60));
-        $user->save();
+        if($user->save()) session()->flash('message', 'Your Password was updated');
+            //H9R8BSDP8czSM3d
     }
 
     public function mount()
@@ -38,6 +41,7 @@ class ChangePassword extends Component
 
     public function render()
     {
-        return view('livewire.pages.change-password');
+        return view('livewire.pages.change-password')
+        ->extends('layouts.app')->section('content');
     }
 }

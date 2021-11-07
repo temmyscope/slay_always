@@ -174,6 +174,7 @@
           <div class="w-full">
 
               <div class="">
+
                 <span class="pr-3 cursor-pointer ">
                   <span class="fas fa-star text-2xl"></span>
                   <span class="fas fa-star text-2xl"></span>
@@ -192,12 +193,14 @@
         </div>
         <!-- comment -->
         <div class="">
-          <p class="font-bold capitalize text-xl">so nice</p>
-          <div class="mt-3">
-            <p>Size purchased: True to size</p>
-            <p>The top is so so pretty and i love it</p>
-          </div>
+            <div class="mt-1">
+                <p>Size purchased: XXL</p>
+                <P>How did it fit: True to size</P>
+                <p>Comment: The top is so so pretty and i love it </p>
+            </div>
         </div>
+
+        
         
       </div>
 

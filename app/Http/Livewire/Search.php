@@ -21,7 +21,9 @@ class Search extends Component
     }
     public function refreshFavoriteCount()
     {
-        $this->favorites = Favorite::where('user_id', auth()->user()->id)->count()+1;
+        $this->favorites = Favorite::where(
+            'user_id', auth()->user()->id
+        )->count();
     }
 
     public function searchForQuery()
