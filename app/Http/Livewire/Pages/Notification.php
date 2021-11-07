@@ -8,6 +8,6 @@ class Notification extends Component
 {
     public function render()
     {
-        return view('livewire.pages.notification');
+        return view('livewire.pages.notification')->extends('layouts.app');
     }
 }

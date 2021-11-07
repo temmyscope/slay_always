@@ -25,9 +25,10 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "StaySlay\\Traits\\": "app/Http/Traits/"
         },
-        "files": ["app/Helpers/route.php"]
+        "files": ["app/Helpers/Helper.php"]
     },
     "autoload-dev": {
         "psr-4": {

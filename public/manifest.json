@@ -1,0 +1,18 @@
+{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "StaySlay Fashion",
+  "scope": "/",
+  "display": "standalone",
+  "start_url": "./",
+  "short_name": "StaySlay",
+  "gcm_sender_id": " ",
+  "theme_color": "#00d169",
+  "description": "",
+  "orientation": "any",
+  "background_color": "transparent",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+  ]
+}

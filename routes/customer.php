@@ -2,26 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\{
-  Cart, Favorite, Recent, Profile, EditProfile, OrderHistory,
-  Order, Invoice, Notification, Chat, Search,
+  Cart, Favorite, Recent, Profile, EditProfile, OrderHistory, Review, ChangePassword,
+  Invoice, Notification, Search, Rating, Product, Order, EditAddress, PendingReview
 };
 
-Route::get('cart', Cart::class);
+Route::get('rate/{code}', Rating::class)->name('rate-orders');
 
-Route::get('favorites', Favorite::class);
+Route::get('favorites', Favorite::class)->name('user-favorites');
 
-Route::get('recent', Recent::class);
+Route::get('profile/change-password', ChangePassword::class)->name('change-password');
 
-Route::get('profile/me', Profile::class);
+Route::get('profile/me', Profile::class)->name('user-profile');//->middleware('verified');
 
-Route::get('profile/edit', EditProfile::class);
+Route::get('profile/edit', EditProfile::class)->name('edit-profile');//->middleware('verified');
 
-Route::get('order-history', OrderHistory::class);
+Route::get('profile/edit-address', EditAddress::class)->name('edit-address');//->middleware('verified');
 
-Route::get('order/{id}', Order::class);
+Route::get('order-history', OrderHistory::class)->name('order-history');//->middleware('verified');
 
-Route::get('invoice/{id}', Invoice::class);
+Route::get('order/{id}', Order::class)->name('each-order');
 
-Route::get('notifications', Notification::class);
+Route::get('review/{id}', Review::class)->name('review-product');
 
-Route::get('chat', Chat::class);
+Route::get('pending-reviews', PendingReview::class)->name('pending-reviews');
+
+//Route::get('invoice/{txn_id}', Invoice::class)->name('invoice');
+
+Route::get('notifications', Notification::class)->name('notifications');
