@@ -3,6 +3,7 @@
 @section('keywords', 'Stay, Slay, Fashion')
 
 <div>
+
   <!-- video background -->
   <section class="w-full bg-gray-900 relative overflow-hidden flex justify-center items-center lg:h-vid h-smVid">
     <div class="z-10 text-white relative p-5 bg-bgPry rounded-md bg-opacity-50 text-2xl text-center">
@@ -58,22 +59,9 @@
 
   
   <!-- categories section -->
-  @if( !empty($categories) )
-  <main class="w-full my-8">
-    <div class="w-navWidth mx-auto">
-      <h1 class="text-center text-4xl font-bold">Categories</h1>
-
-      <div class="grid grid-cols-2 lg:grid-cols-4 my-5 gap-4  w-full">
-        @foreach ($categories as $name => $category)
-
-          @livewire('category-card', ['category' => $category, 'name' => $name ], key($name))
-            
-        @endforeach
-
-      </div>
-    </div>
-  </main>
-  @endif
+  @php 
+  //@livewire('category-card')
+  @endphp
 
   <!-- section for gram shopping -->
   <div class="w-full mt-5">

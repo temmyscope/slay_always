@@ -15,9 +15,19 @@ class Product extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public static function recommend($column, $range, $category)
+    {
+        return Product::where('deleted', 'false')->whereBetween("$column", $range)
+        ->where(function($query) use($category){
+            $query->whereRaw("MATCH(description) AGAINST(?)", [$category])
+            ->orWhereRaw("MATCH(tags) AGAINST(?)", [$category]);
+        })->inRandomOrder()->take(5)->get();
+    }
+
     public static function search(string $search)
     {
-        return Product::whereRaw("MATCH(description) AGAINST(?)", [$search])
+        return Product::where('deleted', 'false')
+        ->whereRaw("MATCH(description) AGAINST(?)", [$search])
         ->orWhereRaw("MATCH(tags) AGAINST(?)", [$search])
         ->orWhere("name", 'like', "%$search%")
         ->get();
@@ -25,14 +35,15 @@ class Product extends Model
 
     public static function searchOne(string $search)
     {
-        return Product::whereRaw("MATCH(description) AGAINST(?)", [$search])
+        return Product::where('deleted', 'false')
+        ->whereRaw("MATCH(description) AGAINST(?)", [$search])
         ->orWhereRaw("MATCH(tags) AGAINST(?)", [$search])
         ->orWhere("name", 'like', "%$search%")->first();
     }
 
     public static function liked($id): bool
     {
-        $liked = Favorite::where('user_id', auth()->user()->id)
+        $liked = Favorite::where('user_id', auth()->user()->id ?? '')
         ->where('product_id', $id)->get()->all();
         if (empty($liked)) {
             return false;

@@ -24,7 +24,8 @@ class Cart extends Component
         $products = null;
         if (!empty($cartItems)) {
             $productIds = array_keys($cartItems);
-            $products = Product::whereIn('id', $productIds)->get();
+            $products = Product::where('deleted', 'false')
+            ->whereIn('id', $productIds)->get();
             $products->transform(function($item, $key) use ($cartItems){
                 $item->qty = $cartItems[$item->id];
                 $item->color = '';
