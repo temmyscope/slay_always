@@ -33,7 +33,6 @@ class ResetPassword extends Component
                 event(new PasswordReset($user));
             }
         );
-
         return $status === Password::PASSWORD_RESET ? 
         redirect()->route('login')->with('status', __($status)) : session()->flash('email', __($status) );
     }
