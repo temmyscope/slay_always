@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewsLetter extends Notification
+class UserNotification extends Notification
 {
     use Queueable;
 
@@ -16,7 +16,7 @@ class NewsLetter extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(protected $note)
     {
         //
     }
@@ -41,7 +41,9 @@ class NewsLetter extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)->view(
-            'emails.order-completed', []
+            'emails.notification', [ 
+                'name' => $this->note->user, 'msg' => $this->note->msg
+            ]
         );
     }
 

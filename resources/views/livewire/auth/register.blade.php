@@ -34,10 +34,10 @@
                 @endif
             </p>
 
-            <input type="text" id="fname" wire:model="firstname" placeholder="first name" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
+            <input type="text" id="fname" wire:model="firstname" placeholder="first name" required class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
             @error('firstname') <span class="alert-danger">{{ $message }}</span> @enderror
 
-            <input type="text" id="lname" wire:model="lastname" id="" placeholder="last name" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
+            <input type="text" id="lname" wire:model="lastname" id="" placeholder="last name" required class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
             @error('lastname') <span class="alert-danger">{{ $message }}</span> @enderror
 
             <input type="email" id="email" wire:model="email" id="" placeholder="email" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200">
@@ -46,8 +46,8 @@
             <input type="password" id="pass" wire:model="password" id="" placeholder="password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
             @error('password') <span class="alert-danger">{{ $message }}</span> @enderror
 
-            <input type="password" id="confirmpass" wire:model="password_confirmation" id="" placeholder="confirm password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
-            @error('password_confirmation') <span class="alert-danger">{{ $message }}</span> @enderror
+            <input type="password" id="confirmpass" wire:model="password_confirm" id="" placeholder="confirm password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
+            @error('password_confirm') <span class="alert-danger">{{ $message }}</span> @enderror
             
             <span class="flex w-full">
                 <input type="checkbox" name="agree" id="agree" class="mr-1 inline-block relative top-2 w-4" checked disabled>
@@ -57,8 +57,8 @@
             </span>
             <button type="submit"
                 class="w-3/5 my-6 rounded-md block p-2 bg-bgSec font-medium text-white cursor-pointer hover:bg-gray-400 hover:text-black"
-            ><span wire:loading.remove>Create Account</span>
-            <span wire:loading wire:target="save">Creating <i class="fa fa-spinner faa-spin animated"></i></span>
+            ><span wire:loading.remove wire:target="save">Create Account</span>
+            <span wire:loading wire:target="save">Registering <i class="fa fa-spinner faa-spin animated"></i></span>
             </button>
             
         </form>

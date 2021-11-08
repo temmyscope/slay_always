@@ -26,7 +26,10 @@ class CategoryCard extends Component
             }
         });
 
-        $this->fill([ 'category' => $availableCategories ]);
+        $this->fill([ 
+            'category' => empty($availableCategories)? 
+            [] : (collect($availableCategories)->take(5))->all()
+        ]);
     }
 
     public function render()

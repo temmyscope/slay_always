@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\{Order as OrderModel, Image, Voucher};
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\{ DeliveryCompleted, UserNotification };
 
 class Order extends Component
 {
@@ -22,9 +23,23 @@ class Order extends Component
 
     public function cancelOrder($id, $ref)
     {
-        OrderModel::where('id', $id)
-        ->update(['status' => 'canceled']);
+        $order = OrderModel::find($id);
+        $user = $order->user;
+        $note = new \StdClass();
+        $note->name = explode(' ', $user->name);
+        $note->note = "We are sorry, Your order was canceled.".
+        "Your refund has already been processed and should arrive within the next 72hrs.<br/> Thanks.";
+        $user->notify(new UserNotification($note));
+
+        OrderModel::where('id', $id)->update(['status' => 'canceled']);
         createRefund($ref);
+    }
+
+    public function markOrderHasDelivered($id)
+    {
+        $order = OrderModel::find($id);
+        $user = $order->user;
+        $user->notify( new DeliveryCompleted($order) );
     }
 
     public function removeItem($product)
@@ -48,6 +63,13 @@ class Order extends Component
         $voucher->user_id = $this->order->user_id;
         $voucher->value = $voucherPrice;
         $voucher->save();
+
+        $user = $this->order->user;
+        $note = new \StdClass();
+        $note->name = explode(' ', $user->name);
+        $note->note = "Some items in your order are currently unavailable and have been removed. <br/>".
+        "We've converted the value for you to StaySlay Voucher; You can use it on your next purchase.";
+        $user->notify(new UserNotification($note));
     }
 
     public function render()

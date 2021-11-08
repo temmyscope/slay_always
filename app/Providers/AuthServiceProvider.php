@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
+use App\Notifications\ResetPasswordNotification;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +28,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new MailMessage)->view(
+                'emails.registration', [ 'url' => $url ]
+            );
+        });
+        
     }
 }

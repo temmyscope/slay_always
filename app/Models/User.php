@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\PasswordReset as ResetPasswordNotification;
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
@@ -72,5 +73,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     public function voucher()
     {
         return $this->hasOne(Voucher::class);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $url = trim(env('APP_URL'), '/').'/reset-password?token='.$token;
+        $this->notify(new ResetPasswordNotification($url));
     }
 }

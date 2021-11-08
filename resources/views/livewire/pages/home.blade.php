@@ -59,10 +59,8 @@
 
   
   <!-- categories section -->
-  @php 
-  //@livewire('category-card')
-  @endphp
-
+  @livewire('category-card')
+  
   <!-- section for gram shopping -->
   <div class="w-full mt-5">
     <div class="w-navWidth mx-auto text-center lg:text-4xl font-extrabold p-3 text-2xl">
@@ -97,16 +95,12 @@
 
   <!-- chat section -->
   <div>
-    <script>
-      function openWhatsapp(url) {
-        window.location.href=url;
-      }
-    </script>
+    <a href="{!! $instagram->external_url !!}" target="_blank" >
     <button 
       class="bg-slay text-gray-50 py-3 px-5 cursor-pointer fixed bottom-10 right-14 w-72 text-2xl rounded" 
-      onclick="openWhatsapp('{!! $instagram->external_url !!}');"
     > Chat <span class="fas fa-comments text-2xl"></span>
     </button>
+    </a>
   </div>
   <!-- chat section -->
 

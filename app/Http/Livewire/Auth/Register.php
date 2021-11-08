@@ -6,18 +6,18 @@ use Livewire\Component;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Auth\Events\Registered;
 
 class Register extends Component
 {
-    public $firstname, $lastname, $email, $password, $confirm_pass;
+    public $firstname, $lastname, $email, $password, $password_confirm;
 
     protected $rules = [
         'firstname' => 'required|string',
         'lastname' => 'required|string',
         'email' => 'required|email|unique:users',
         'password' => 'required|min:8',
-        'password_confirmation' => 'required|same:password'
+        'password_confirm' => 'required|same:password'
     ];
 
     public function save()
@@ -30,6 +30,7 @@ class Register extends Component
         $user->password = Hash::make($this->password);
         $user->acl = 'customer';
         if ($user->save()) {
+            event(new Registered($user));
             session()->flash('message', 'Your account has been created successfully. Email Verification Link Sent.');
         }
     }
