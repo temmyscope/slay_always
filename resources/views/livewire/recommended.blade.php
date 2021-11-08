@@ -7,7 +7,6 @@
 
 
     <div class="grid lg:grid-cols-5 gap-3">
-
-
     </div>
+    
 </div>

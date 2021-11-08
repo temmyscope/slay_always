@@ -32,9 +32,10 @@ class Home extends Component
         //dd($gramFeed);
         
         return view('livewire.pages.home', [
-            'popular' => Product::whereIn(
+            'popular' => Product::where('deleted', 'false')->whereIn(
                 'id', array_values($favoriteProducts)
             )->get()->unique(),
+            'random' => Product::where('deleted', 'false')->inRandomOrder()->take(5)->get(),
             'categories' => (New Category())->categories(),
             'instagram' => $gramFeed->graphql->user
         ])->extends('layouts.app')->section('content');

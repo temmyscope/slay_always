@@ -13,7 +13,7 @@ class Cart extends Component
 {
     use Payment, Reusables;
 
-    protected $listeners = ['deleteItem'];
+    protected $listeners = ['deleteItem','clearCart','removeOrder'];
     public bool $deliveryAddressSet;
     public array $address;
 
@@ -48,10 +48,10 @@ class Cart extends Component
         $this->fill([
             'couponIsActive' => ($promo !== false)? true : false, 
             'coupon' => ($promo !== false)? $promo->coupon : '',
-            'deliveryAddressSet' => ($profile->address)? true : false,
+            'deliveryAddressSet' => ($profile && $profile->address)? true : false,
             'address'=> [
-                'address' => $profile?->address, 'state' => $profile?->state, 
-                'country' => $profile?->country, 'zip_code' => $profile?->zip_code
+                'address' => $profile?->address ?? '', 'state' => $profile?->state ?? '', 
+                'country' => $profile?->country ?? '', 'zip_code' => $profile?->zip_code ?? '',
             ], 'discount' => ($promo !== false)? $promo->discount : 0, 
             'total' => $this->applyCoupon(),
             'taxes' => json_decode(
@@ -64,8 +64,8 @@ class Cart extends Component
     public function deleteItem($product)
     {
         $this->cart = ($this->cart->filter(
-            fn($item, $key) => !($item->id == $product)
-        ))->get();
+            fn($item, $key) => !(($item->id ?? $item['id']) == $product)
+        ))->collect();
         $this->deleteFromCart($product);
     }
 
@@ -73,5 +73,10 @@ class Cart extends Component
     {
         return view('livewire.pages.cart')
         ->extends('layouts.app')->section('content');
+    }
+
+    public function removeOrder($transactionId)
+    {
+        Order::where('txn_id', $transactionId)->delete();
     }
 }

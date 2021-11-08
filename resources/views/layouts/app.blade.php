@@ -47,9 +47,10 @@
 
     <!-- End Content -->
 
+    @includeIf('livewire.footer')
+
     @livewireScripts
 
-    @livewire('footer')
   </body>
   {!! App\Models\PageScript::foot() !!}
   <script src="{!! asset('assets/script/product.js') !!}"></script>

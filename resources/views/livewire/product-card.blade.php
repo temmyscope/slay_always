@@ -16,7 +16,7 @@
      
     </div>
   </a>
-  <div class="py-5 px-2">
+  <div class="py-5 px-2 mb-2">
     @if (!is_null($dicountPercent))
     <p class="text-red-700 font-bold uppercase mb-2">{!! $dicountPercent !!}% off! no code needed prices as marked</p>
     @endif
@@ -32,10 +32,9 @@
     <span>
       @if (!empty($colors))
         @foreach ($colors as $index => $item)
-
         <input 
           type="radio" name="slide" id="slide{!!$product->id.'-'.$item!!}" 
-          class="hidden" {!! ($index==0)?'checked':'' !!} wire:model="selctedColor"
+          class="hidden" {!! ($index==0)?'checked':'' !!} wire:model="selectedColor"
         >
         <label for="slide{!!$product->id.'-'.$item!!}" 
           class="p-2 border-solid border-2 border-gray-400 check{!!$product->id.'-'.$item!!} inline-block cursor-pointer rounded-full">

@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Pages;
 use Livewire\Component;
 use App\Models\Product as ProductModel;
 use Illuminate\Http\Request;
-use App\Http\Livewire\Traits\Reusables;
+use StaySlay\Traits\{ Reusables };
 
 class Recent extends Component
 {

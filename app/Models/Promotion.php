@@ -12,7 +12,7 @@ class Promotion extends Model
     public static function currentlyRunning($coupon=''): bool | self
     {
         $running = [];
-        if ($coupon !== '') {
+        if ($coupon && $coupon !== '') {
             $running = Promotion::where('coupon', $coupon)
             ->where(['end_date', '>', date('Y-m-d')])->first();
         } else {

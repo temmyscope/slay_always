@@ -16,7 +16,7 @@
     </video>
   </section>
   <!-- card images in slide -->
-  @if ( !$popular->empty() )
+  @if ( $popular && isset($popular[0]) )
 
     <div class="w-full my-14">
       <div class="w-navWidth mx-auto">
@@ -24,20 +24,39 @@
         
         <div class="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
 
-          @foreach ([ 0, 1,2, 3, 4 ] as $item)
+          @foreach ($popular as $i => $pop)
 
             <!---- livewire product component ----->
-            @livewire('product-card')
+            @livewire('product-card', ['product' => $pop ], key('pop-'.$i.'-'.$pop->id))
 
           @endforeach
 
         </div>
       </div>
     </div>
+  @else
+    @if ( $random && isset($random[0]) )
+      <div class="w-full my-14">
+        <div class="w-navWidth mx-auto">
+          <h1 class="text-3xl text-center font-bold my-9">Hot Picks For You</h1>
+          
+          <div class="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
 
+            @foreach ($random as $index => $item)
+
+              <!---- livewire product component ----->
+              @livewire('product-card', ['product' => $item ], key('random'.$index.'-'.$item->id))
+
+            @endforeach
+
+          </div>
+        </div>
+      </div>
+
+    @endif
   @endif
 
-
+  
   <!-- categories section -->
   @if( !empty($categories) )
   <main class="w-full my-8">

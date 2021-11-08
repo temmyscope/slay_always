@@ -11,6 +11,7 @@ class ProductCard extends Component
     public Product $product;
     public ?float $dicountPercent;
     public $colors;
+    public $selectedColor;
 
     use Reusables;
 
@@ -19,7 +20,7 @@ class ProductCard extends Component
         $metadata = json_decode($product->metadata);
         $this->fill([
             'product' => $product, 'dicountPercent' => $dicountPercent,
-            'colors' => $metadata->colors,
+            'colors' => $metadata->colors, 'selectedColor' => ''
         ]);
     }
 

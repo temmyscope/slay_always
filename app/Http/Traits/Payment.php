@@ -10,7 +10,7 @@ trait Payment{
   public $cart;
   public float $amount; //coupons and promotions must be applied at the point of checkout, not before
   public int $orderId;
-  public float $dicount;
+  public float $discount;
   public string $coupon;
   public bool $couponIsActive;
   public bool $creatingRecharge = false;
@@ -90,6 +90,8 @@ trait Payment{
   public function getTotalPrice(): float
   {
     $total = $this->applyCoupon();
+    
+    /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
     if (!empty($this->taxes['taxes'])) {
       foreach ($this->taxes['taxes'] as $key => $taxPercent) {
         if ($key !== '') {
@@ -121,11 +123,13 @@ trait Payment{
 
     $productsDetails = [];
     //loop over products and insert into $productDetails
-    $products->each(function($item, $key) use ($discount, &$productsDetails) {
-      $productsDetails[$item->id] = [
-        'price' => $item->price, 'metadata' => $item->metadata,
-        'image' => $item->images[0]->src, 'name' => $item->name,
-        'activePrice' => percentageDecrease($item->price, $discount),
+    $this->cart->each(function($item, $key) use ($discount, &$productsDetails) {
+      $productsDetails[ $item->id ?? $item['id'] ] = [
+        'price' => $item->price ?? $item['price'], 'qty' => $item->qty ?? $item['qty'] ?? 1,
+        'metadata' => $item->metadata ?? $item['metadata'], 'size' => $item->size ?? $item['size'] ?? 'XL',
+        'color' => $item->color ?? $item['color'] ?? '',
+        'image' => $item->images[0]->src ?? '', 'name' => $item->name ?? $item['name'],
+        'activePrice' => percentageDecrease(($item->price ?? $item['price']), $discount),
       ];
     });
 
@@ -136,34 +140,29 @@ trait Payment{
 
     $taxedTotal = 0;
     if (!empty($this->taxes['taxes'])) {
-      /** taxes = [ 'vat' => value, tax => '', shipping => ''] */
       foreach ($this->taxes['taxes'] as $key => $taxPercent) {
         if ($key !== '') {
-          if ($key == 'shipping') {//for shipping, the amount is not in percent
-            $taxedTotal += (float)$taxPercent; 
-          }else{
-            $taxedTotal += percentageIncrease($total, $taxPercent);
-          }
           $orderMetaData['taxesApplied'][$key] = $taxPercent;
         }
       }
     }
 
-    $order->metadata = json_encode(
-      array_merge( json_decode($order->metadata, true), $orderMetaData )
+    $order->delivery_address = (
+      $this->address['address'].' - '. $this->address['state'].', '.$this->address['country'].
+      ' - '.$this->address['zip_code']
     );
-    $this->total = $order->total = $taxedTotal;
+
+    $order->metadata = json_encode($orderMetaData);
+    $this->total = $order->total = $this->getTotalPrice();
 
     if ($this->voucher) {
-      $this->total = $order->total = $taxedTotal - $this->voucher->value;
+      $this->total = $order->total = $order->total - $this->voucher->value;
       Voucher::where('id', $this->voucher->id)->delete();
     }
-
+    
     $order->save();
 
-    $this->clearCart();
-
-    $this->emit('checkoutWithPaystack', $this->total);
+    $this->dispatchBrowserEvent('checkoutWithPaystack', [ 'total' => $this->total ]);
   }
 
 }
