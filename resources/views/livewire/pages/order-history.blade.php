@@ -44,8 +44,7 @@
                     <!-- -->
                     <div class="p-3  grid grid-cols-9 gap-3">
                       <div class="col-span-1 p-1 img-width">
-                        <!--<img src="{!! cdnizeURL($order->products[0]->images[0]?->src ?? '') !!}" alt=""> -->
-                        <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+                        <img src="{!! cdnizeURL($order->products[0]->images[0]?->src ?? '') !!}" alt="">
                       </div>
                       <div class="col-span-7 leading-7">
                         <p class="font-semibold capitalize">
