@@ -1,45 +1,52 @@
-.rating input { display: none; }
-.rating { display: flex; align-items: center; justify-content: center; }
-.rating > label {
-  display: block; width: 20px; height: 20px; font-size: 20px; 
-  color: #ff0000; font-family: sans-serif; opacity: 0.33; transition: opacity .2s; 
-}
 .star-rating {
-  color: rgb(151, 155, 151);
+  color: rgb(151, 155, 151); opacity: 0.33;
 }
-#star-1:checked ~ label[for="star-1"],
-#star-1:hover ~ label[for="star-1"],
+.hide-box {
+  display: none;
+}
+/* For the checked state for 1 */
+#star1:checked ~ .star-rate1,
+/* For the checked state from 1 */
+#star1:hover ~ .star-rate1,
 
-#star-2:checked ~ label[for="star-1"],
-#star-2:checked ~ label[for="star-2"],
-#star-2:hover ~ label[for="star-1"],
-#star-2:hover ~ label[for="star-2"],
+/* For the checked state from 1-2 */
+#star2:checked ~ .star-rate1,
+#star2:checked ~ .star-rate2,
+/* For the hover state from 1-2 */
+#star2:hover ~ .star-rate1,
+#star2:hover ~ .star-rate2,
 
-#star-3:checked ~ label[for="star-1"],
-#star-3:checked ~ label[for="star-2"],
-#star-3:checked ~ label[for="star-3"],
-#star-3:hover ~ label[for="star-1"],
-#star-3:hover ~ label[for="star-2"],
-#star-3:hover ~ label[for="star-3"],
+/* For the checked state from 1-3 */
+#star3:checked ~ .star-rate1,
+#star3:checked ~ .star-rate2,
+#star3:checked ~ .star-rate3,
+/* For the hover state from 1-3 */
+#star3:hover ~ .star-rate1,
+#star3:hover ~ .star-rate2,
+#star3:hover ~ .star-rate3,
 
-#star-4:checked ~ label[for="star-1"],
-#star-4:checked ~ label[for="star-2"],
-#star-4:checked ~ label[for="star-3"],
-#star-4:checked ~ label[for="star-4"],
-#star-4:hover ~ label[for="star-1"],
-#star-4:hover ~ label[for="star-2"],
-#star-4:hover ~ label[for="star-3"],
-#star-4:hover ~ label[for="star-4"],
+/* For the checked state from 1-4 */
+#star4:checked ~ .star-rate1,
+#star4:checked ~ .star-rate2,
+#star4:checked ~ .star-rate3,
+#star4:checked ~ .star-rate4,
+/* For the hover state from 1-4 */
+#star4:hover ~ .star-rate1,
+#star4:hover ~ .star-rate2,
+#star4:hover ~ .star-rate3,
+#star4:hover ~ .star-rate4,
 
-#star-5:checked ~ label[for="star-1"],
-#star-5:checked ~ label[for="star-2"],
-#star-5:checked ~ label[for="star-3"],
-#star-5:checked ~ label[for="star-4"],
-#star-5:checked ~ label[for="star-5"],
-#star-5:hover ~ label[for="star-1"],
-#star-5:hover ~ label[for="star-2"],
-#star-5:hover ~ label[for="star-3"],
-#star-5:hover ~ label[for="star-4"],
-#star-5:hover ~ label[for="star-5"] {
-  opacity: 1;
+/* For the checked state from 1-5 */
+#star5:checked ~ .star-rate1,
+#star5:checked ~ .star-rate2,
+#star5:checked ~ .star-rate3,
+#star5:checked ~ .star-rate4,
+#star5:checked ~ .star-rate5,
+/* For the hover state from 1-5 */
+#star5:hover ~ .star-rate1,
+#star5:hover ~ .star-rate2,
+#star5:hover ~ .star-rate3,
+#star5:hover ~ .star-rate4,
+#star5:hover ~ .star-rate5 {
+  color: #ff0000; opacity: 1;
 }

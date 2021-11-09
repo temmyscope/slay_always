@@ -20,28 +20,6 @@ trait Payment{
   public float $sub_total; //before tax and coupon
   public float $total; //after tax and coupon
 
-  //the recharge context mean that we're trying to use the paystack_token to charge a user
-  public function createRecharge()
-  {
-      $this->creatingRecharge = true;
-      $this->validate([
-          'amount'=>'required|numeric'
-      ]);
-      $profile = Profile::where('id',  Auth::id())->first();
-      $response = createRecharge(
-          amount: $this->amount, 
-          authCode: $profile->paystack_token,
-          email: $profile->metadata->customer->email
-      );
-      $this->creatingRecharge = false;
-      if ($response['status'] === 'success') {
-          $user_id = auth()->user()->id();
-          curl("https://stayslayfashion.com/api/transaction/verify/$reference/{$user_id}")
-          ->setMethod('GET')->send();
-      }
-      return redirect()->to('/order-history');
-  }
-
   public function changeColor($id, $color)
   {
     $this->cart->transform(function($item, $key) use($id, $color){
@@ -146,7 +124,10 @@ trait Payment{
         }
       }
     }
-
+    if (empty($this->address['address']) || empty($this->address['state']) || empty($this->address['country']) ) {
+      session()->flash('error', 'Please update your address');
+      return;
+    }
     $order->delivery_address = (
       $this->address['address'].' - '. $this->address['state'].', '.$this->address['country'].
       ' - '.$this->address['zip_code']

@@ -37,7 +37,6 @@ Route::prefix('api')->get('/transaction/verify/{ref}/{user_id}', function (Reque
             Order::where('id', $order->id)->update([
                 'status' => 'completed', 'metadata->paymentData' => json_encode($response)
             ]);
-            
             if (strtolower($response['data']['channel']) === 'card') {
                 DB::table('profile')->where('user_id', $user_id)->update([
                     'paystack_token' => $response['authorization']['authorization_code']
@@ -47,8 +46,4 @@ Route::prefix('api')->get('/transaction/verify/{ref}/{user_id}', function (Reque
         return response()->json([ 'status' => 200, 'data' => $response ]);
     }
     return;
-});
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
 });

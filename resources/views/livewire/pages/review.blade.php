@@ -82,17 +82,19 @@
 
                       <div class="text-center">
                         <h2 class="font-bold text-3xl py-1">{!!$stars!!}/5</h2>
-                        <span class="pr-3 cursor-pointer rating">
-                          <input wire:model="stars" type="radio" name="star" id="star-1" value="1">
-                          <input wire:model="stars"  type="radio" name="star" id="star-2" value="2">
-                          <input wire:model="stars"  type="radio" name="star" id="star-3" value="3">
-                          <input wire:model="stars"  type="radio" name="star" id="star-4" value="4">
-                          <input wire:model="stars"  type="radio" name="star" id="star-5" value="5">
-                          <label for="star-1" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
-                          <label for="star-2" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
-                          <label for="star-3" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
-                          <label for="star-4" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
-                          <label for="star-5" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
+                        
+                        <span class="pr-3 cursor-pointer">
+                          <input wire:model="stars" type="radio" name="stars" id="star1" class="hide-box" value="1">
+                          <input wire:model="stars" type="radio" name="stars" id="star2" class="hide-box" value="2">
+                          <input wire:model="stars" type="radio" name="stars" id="star3" class="hide-box" value="3">
+                          <input wire:model="stars" type="radio" name="stars" id="star4" class="hide-box" value="4">
+                          <input wire:model="stars" type="radio" name="stars" id="star5" class="hide-box" value="5">
+                          ​
+                          <label for="star1" class="fas fa-star star-rate1 star-rating"></label>
+                          <label for="star2" class="fas fa-star star-rate2 star-rating"></label>
+                          <label for="star3" class="fas fa-star star-rate3 star-rating"></label>
+                          <label for="star4" class="fas fa-star star-rate4 star-rating"></label>
+                          <label for="star5" class="fas fa-star star-rate5 star-rating"></label>
                         </span>
 
                         

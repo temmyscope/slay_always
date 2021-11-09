@@ -24,7 +24,7 @@
                 @foreach ($product->images as $key => $image)
                     <div class="mb-4 image-btn {!! ($key === 0) ? 'active-images' : '' !!} w-3/4 float-right">
                         <label for="" class="cursor-pointer" onclick="currentImage({!! $key!!})">
-                            <img src="{!! cdnizeURL($item->src) !!}" alt="{!! $product->name !!}" class="h-full">
+                            <img src="{!! cdnizeURL($image->src) !!}" alt="{!! $product->name !!}" class="h-full">
                         </label>
                     </div>
                 @endforeach
@@ -108,7 +108,6 @@
                     </div>
 
                     <div class="mt-6 inline-block">
-                      <!-- <div> -->
                         <input type="radio" name="sizing" id="size1" class="hidden">
                         <input type="radio" name="sizing" id="size2" class="hidden">
                         <input type="radio" name="sizing" id="size3" class="hidden">
@@ -119,7 +118,6 @@
                         <label for="size1" class="w-10 inline-block p-1 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-1 mr-1 chart2 m-1">XL</label>
                         <label for="size1" class="w-10 inline-block p-1 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-1 mr-1 chart3 m-1">L</label>
                         <label for="size1" class="w-10 inline-block p-1 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-1 mr-1 chart4 m-1">S</label>
-                      <!-- </div> -->
                     </div>
 
                     <div class="flex justify-between py-4">

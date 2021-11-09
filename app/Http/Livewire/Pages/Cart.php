@@ -24,8 +24,7 @@ class Cart extends Component
         $products = null;
         if (!empty($cartItems)) {
             $productIds = array_keys($cartItems);
-            $products = Product::where('deleted', 'false')
-            ->whereIn('id', $productIds)->get();
+            $products = Product::where('deleted', 'false')->whereIn('id', $productIds)->get();
             $products->transform(function($item, $key) use ($cartItems){
                 $item->qty = $cartItems[$item->id];
                 $item->color = '';
@@ -36,14 +35,14 @@ class Cart extends Component
             });
         }
         $this->cart = $products ? $products->collect() : $products;
-        
+
         if (is_null($this->cart)) {
             return;
         }
 
         $promo = Promotion::currentlyRunning();
         $profile = auth()->user()->profile;
-
+    
         $this->coupon = ($promo !== false) ? $promo->coupon : '';
 
         $this->fill([
@@ -54,8 +53,7 @@ class Cart extends Component
                 'address' => $profile?->address ?? '', 'state' => $profile?->state ?? '', 
                 'country' => $profile?->country ?? '', 'zip_code' => $profile?->zip_code ?? '',
             ], 'discount' => ($promo !== false)? $promo->discount : 0, 
-            'total' => $this->applyCoupon(),
-            'taxes' => json_decode(
+            'total' => $this->applyCoupon(), 'taxes' => json_decode(
                 DB::table('metadata')->whereNotNull('meta->taxes')->first()->meta, true
             ), 'voucher' => Voucher::where('user_id', auth()->user()->id)->first(),
             'reference' => strtoupper(str_replace('-','', Str::uuid()->toString()))

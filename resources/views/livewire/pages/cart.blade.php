@@ -233,6 +233,9 @@
                 </span>
               </button>
             </div>
+            <div class="p-2 text-center" style="color: red">
+              {!! session('error') !!}
+            </div>
           </div>
         </div>
   
