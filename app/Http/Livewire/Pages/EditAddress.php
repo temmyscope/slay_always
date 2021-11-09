@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use Livewire\Component;
 
-use App\Models\User;
+use App\Models\{User, Profile};
 
 class EditAddress extends Component
 {
@@ -43,57 +43,27 @@ class EditAddress extends Component
         "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"
     ];
 
-    public function saveState()
+    public function updateAddress()
     {
-        if ($this->profile) {
-            $this->profile->state = $this->state;
-            $this->profile->save();
-        } else {
-            $profile = new Profile();
-            $profile->user_id = auth()->user()->id;
-            $profile->state = $this->state;
-            $profile->save();
-        }
-        redirect('profile/edit-address');
-    }
-
-    public function saveAddress()
-    {
-        if ($this->profile) {
-            $this->profile->address = $this->address;
-            $this->profile->save();
-        } else {
-            $profile = new Profile();
-            $profile->user_id = auth()->user()->id;
-            $profile->address = $this->address;
-            $profile->save();
-        }
-        redirect('profile/edit-address');
-    }
-
-    public function saveCountry()
-    {
-        if ($this->profile) {
-            $this->profile->country = $this->country;
-            $this->profile->save();
-        } else {
-            $profile = new Profile();
-            $profile->user_id = auth()->user()->id;
+        $this->validate([
+            'country' => 'required|string',
+            'state' => 'required|string',
+            'address' => 'required|string',
+        ]);
+        if ($this->profile && isset(this->profile->user_id)) {
+            Profile::where('user_id', auth()->user()->id)->update([
+                'country' => $this->country,
+                'state' => $this->state,
+                'address' => $this->address,
+                'zip_code' => $this->zip_code
+            ]);
+        }else{
+            $profile =new Profile();
             $profile->country = $this->country;
-            $profile->save();
-        }
-        redirect('profile/edit-address');
-    }
-
-    public function saveZip()
-    {
-        if ($this->profile) {
-            $this->profile->zip_code = $this->zip_code;
-            $this->profile->save();
-        } else {
-            $profile = new Profile();
-            $profile->user_id = auth()->user()->id;
+            $profile->state = $this->state;
+            $profile->address = $this->address;
             $profile->zip_code = $this->zip_code;
+            $profile->user_id = auth()->user()->id;
             $profile->save();
         }
         redirect('profile/edit-address');
@@ -101,12 +71,13 @@ class EditAddress extends Component
 
     public function mount()
     {
-        $this->profile = User::find(auth()->user()->id)->profile;
+        $profile = User::find(auth()->user()->id)->profile;
         $this->fill([
-            'address' => $this->profile->address ?? '', 
-            'state' => $this->profile->state ?? '', 
-            'country' => $this->profile->country ?? '', 
-            'zip_code' => $this->profile->zip_code ??''
+            'address' => $profile->address ?? '', 
+            'state' => $profile->state ?? '', 
+            'country' => $profile->country ?? '', 
+            'zip_code' => $profile->zip_code ??'',
+            'profile' => $profile
         ]);
     }
 

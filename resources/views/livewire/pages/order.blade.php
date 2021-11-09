@@ -13,45 +13,36 @@
                     <a>Profile</a>
                 </li>
             </ul>
-    
-            <div class="flex items-center p-1">
-                <p class="px-2 text-2xl">Hello</p>
-                <div class="py-4 px-4 rounded-full bg-bgSec text-gray-200 text-center">
-                <p class="uppercase text-2xl">sd</p>
-                </div>
-            </div>
-    
         </div>
     </nav>
 
-    <main class="w-full mt-16 overflow-x-scroll lg:overflow-hidden flex">
+    <main class="w-full mt-16 mb-4 overflow-x-scroll lg:overflow-hidden flex">
         <div class="lg:w-3/4 mx-auto flex gap-6 min-w-full">
   
             @includeIf('layouts.sidebar', ['active' => 'orders'])
 
-            <!-- payWithPaystack() on payment button -->
             <div class="bg-white rounded-md min-w-profie flex-shrink-0">
-                <div class="p-3 border-b-2 border-gray-200 border-solid w-full flex items-center" 
-                    style="justify-content: space-between"
+                <div class="p-2 border-b-2 border-gray-200 border-solid w-full flex items-center justify-between"
                 >
-                    <a href="" onclick="window.history.back();" class="px-2 text-xl">
-                        <span class="fas fa-arrow-left"></span>
-                        <h3 class="capitalize text-2xl">Orders details</h3>
+                    <a class="cursor-pointer px-2 text-xl mr-2" onclick="window.history.back();" 
+                        style="display:flex;flex-direction: row;justify-content:space-between;"
+                    >
+                        <span class="fas fa-arrow-left mr-4"></span>
+                        <h5 class="capitalize text-xl">Order details</h5>
                     </a>
-
                     <div class="p-1 py-3 px-4">
                         <p class="font-semibold capitalize text-white bg-green-300 w-20 p-1 rounded-lg">
-                          Delivered
+                          {!! ucfirst($order->delivery_status) !!}
                         </p>
                     </div>
                 </div>
 
-                <div class=" p-3 w-full">
+                <div class="p-3 w-full">
                     <div>
-                        <h2>Order No 321379517</h2>
-                        <p>1 item</p>
-                        <p>Placed: {!! date('Y-m-d h:ia') !!}</p>
-                        <p>Sub Total: &#8358; 25,000</p>
+                        <h2>Order ID: {!! strtolower($order->txn_id) !!}</h2>
+                        <p>{!! count($products) !!} items</p>
+                        <p>Placed: {!! date('g:i a, l M jS, Y', strtotime($order->created_at)) !!}</p>
+                        <p>Total: &#8358;{!! number_format($order->total, 2) !!}</p>
                     </div>
 
                     <div class="my-7 border-2 border-solid border-gray-200 rounded-lg w-full py-2 p-1">
@@ -60,27 +51,26 @@
       
                     <div class="border-2 border-solid border-gray-200 rounded-lg">
                         
-                        @foreach ($orderItems=[0,1,2,3] as $item)
+                        @foreach ($products as $item)
                         <div class="p-3  grid grid-cols-9 gap-3 w-full">
                             <div class="col-span-1 p-1 img-width">
                                 <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="">
                             </div>
                             <div class="col-span-8 leading-7">
+
                                 <p class="font-semibold capitalize">
-                                    Watches Men Luxury Brand Digital LED Display
+                                    {!! $item['name'] !!}
                                 </p>
                                 <p class="font-semibold text-gray-500">
-                                    order AK4767890
+                                    Qty: {!! $item['qty'] !!}
                                 </p>
                                 <p class="font-semibold text-gray-500">
-                                    Qty: 2
+                                    Size:  {!! $item['size'] !!}
                                 </p>
                                 <p class="font-semibold text-gray-500">
-                                    Size: XL
+                                    Amount:  &#8358;{!! number_format($item['price']) !!}
                                 </p>
-                                <p class="font-semibold text-gray-500">
-                                    Amount:  &#8358;35,000
-                                </p>
+
                             </div>
                         </div>
                         @endforeach
@@ -98,9 +88,13 @@
                                 <p class="font-semibold">Payment Method:</p>
                                 <p class="text-gray-500">Paystack</p>
                                 <h2 class="mt-5">Payment Details:</h2>
-                                <p class="text-gray-500">items total: &#8358;60,000</p>
-                                <p class="text-gray-500">shipping fee: &#8358;1,000</p>
-                                <p class="text-gray-500">Total: &#8358;61,000</p>
+                                <p class="text-gray-500">
+                                    VAT: &#8358;
+                                    {!! number_format(($order->total*(7.5/100))) !!}
+                                </p>
+                                <p class="text-gray-500">
+                                    shipping fee: &#8358;{!! number_format($metadata['taxesApplied']['shipping']) !!}
+                                </p>
                             </div>
 
                         </div>

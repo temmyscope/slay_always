@@ -1,3 +1,7 @@
+@section('title', 'Orders')
+@section('description', 'Welcome to StaySlay - Fashion. Order')
+@section('keywords', 'Stay, Slay, Fashion, Order')
+
 <div>
     <nav class="w-full">
         <div class="lg:w-3/4 flex mx-auto justify-between bg-white items-center h-auto p-1">
@@ -34,13 +38,14 @@
             </div>
 
             <div class=" p-3 w-full">
-              @if (!$orders->empty())
+              @if (!empty($orders))
                 @foreach ($orders as $order)
                   <div class="border-2 border-solid border-gray-200 rounded-lg mt-2">
                     <!-- -->
                     <div class="p-3  grid grid-cols-9 gap-3">
                       <div class="col-span-1 p-1 img-width">
-                        <img src="{!! cdnizeURL($order->products[0]->images[0]->src) !!}" alt="">
+                        <!--<img src="{!! cdnizeURL($order->products[0]->images[0]?->src ?? '') !!}" alt=""> -->
+                        <img src="https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
                       </div>
                       <div class="col-span-7 leading-7">
                         <p class="font-semibold capitalize">
@@ -51,7 +56,7 @@
                         </p>
                         
                         <p class="font-semibold text-gray-500">
-                          {!! ucfirst($order->updated_at) !!}
+                          {!! date('g:i a, l M jS, Y', strtotime($order->updated_at)) !!}
                         </p>
                       </div>
                       <div class="col-span-1 text-right">

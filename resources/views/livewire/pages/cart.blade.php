@@ -214,7 +214,7 @@
             <div class="p-2 text-center">
               @if ($deliveryAddressSet)
               <p class="font-bold">Use my delivery address or 
-                <a href="{!! route('edit-address') !!}" class="text-slayText font-bold underline">update address</a>
+                <a href="{!! route('edit-address') !!}" class="text-slayText font-bold underline">change address</a>
               </p>
               @else
               <p class="font-bold">

@@ -11,7 +11,7 @@ use App\Http\Livewire\Auth\{
 };
 use App\Http\Livewire\Pages\{
     Cart, Recent, Search, Product
-  };
+};
 
 Route::get('/', Home::class)->name('welcome')->middleware('guest');
 
@@ -34,6 +34,12 @@ Route::get('/email/verify', VerifyEmail::class)->middleware('auth')->name('verif
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
 
     $request->fulfill();
+
+    $profile = new \App\Models\Profile();
+    $profile->user_id = auth()->user()->id;
+    if (is_numeric($profile->user_id) && $profile->user_id > 0) {
+        $profile->save();
+    }
 
     return redirect('/home');
 

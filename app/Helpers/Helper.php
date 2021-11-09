@@ -135,29 +135,16 @@ function fetchRefunds(): array | object
   ])->send();
   return json_decode($response, true);
 }
-/*
-//charge a customer using previous token
-if (!function_exists('createRecharge')) {
-  function createRecharge(string $authCode, string $email, float $amount): array | object
-  {
-    $response = curl('https://api.paystack.co/transaction/charge_authorization')
-    ->setMethod('POST')->setData([
-      'authorization_code'=> $authCode, 'email' => $email, 'amount' => $amount*100 //amount in kobo
-    ])->setHeaders([ 
-      'Authorization: key=' . env('PAYSTACK_SECRET_KEY'), 'content-type: application/json'
-    ])->send();
-    return json_decode($response, true);
-  }
-}
-*/
+
 function percentageIncrease(float $value, float $percent): float{
     return $value + ($value * ($percent/100));
 }
+
 function percentageDecrease(float $value, float $percent): float{
     return $value - ($value * ($percent/100));
 }
-function cdnizeURL(string $image): string
-{
+
+function cdnizeURL(string $image): string{
   return env('APP_CDN').$image;
 }
 

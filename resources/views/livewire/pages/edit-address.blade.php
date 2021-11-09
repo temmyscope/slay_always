@@ -35,25 +35,19 @@
                             class="w-9/12 text-gray-800 input-bod py-1 focus:ring-0 focus:outline-none  px-2"
                         >
                             <option value="male">Please select one</option>
-                            @foreach ($countries as $country)
-                                <option value="{!! $country !!}">{!! $country !!}</option>
+                            @foreach ($countries as $cty)
+                                <option value="{!! $cty !!}">{!! $cty !!}</option>
                             @endforeach
                         </select>
-                        <a href="" wire:click="saveCountry" class="text-slayText font-bold">
-                            Save<span wire:loading wire:target="saveCountry"><i class="fa fa-spinner faa-spin animated"></i></span>
-                        </a>
                     </div>
 
                     <div class="py-2">
                         <label for="state" class="w-full block mb-3">State</label>
                         <span>
                             <input 
-                                type="text" name="state" id="state" placeholder="enter your state" wire:model="state"
+                                type="text" id="state" placeholder="enter your state" wire:model="state"
                                 class="w-9/12 py-1 input-bod focus:ring-0 focus:outline-none  px-2"
                             />
-                            <a href="" wire:click="saveState" class="text-slayText font-bold">
-                                Save<span wire:loading wire:target="saveState"><i class="fa fa-spinner faa-spin animated"></i></span>
-                            </a>
                         </span>
                     </div>
 
@@ -61,12 +55,9 @@
                         <label for="zip" class="w-full block">Zip code</label>
                         <span>
                             <input 
-                                type="text" name="zip" id="zip"  pattern="[0-9]{5}" placeholder="enter your zip code" 
+                                type="text" id="zip" placeholder="enter your zip code" 
                                 class="w-9/12 py-1 input-bod focus:ring-0 focus:outline-none  px-2" wire:model="zip_code"
                             />
-                            <a href="" wire:click="saveZip" class="text-slayText font-bold">
-                                Save<span wire:loading wire:target="saveZip"><i class="fa fa-spinner faa-spin animated"></i></span>
-                            </a>
                         </span>
                     </div>
 
@@ -78,11 +69,15 @@
                                 class="w-9/12 py-1 input-bod focus:ring-0 focus:outline-none  px-2"
                             >
                             </textarea>
-                            <a href="" wire:click="saveAddress" class="text-slayText font-bold">
-                                Save
-                                <span wire:loading wire:target="saveAddress"><i class="fa fa-spinner faa-spin animated"></i></span>
-                            </a>
                         </span>
+                    </div>
+
+                    <div class="col-span-2 text-center mt-4">
+                        <button 
+                          class="bg-bgSec text-white active:bg-purple-600 font-bold uppercase text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-lg w-1/2" 
+                          type="submit" wire:click="updateAddress"
+                        >Update Address<span wire:loading wire:target="updateAddress"><i class="fa fa-spinner faa-spin animated"></i></span>
+                        </button>
                     </div>
 
                 </div>

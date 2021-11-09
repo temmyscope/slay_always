@@ -86,6 +86,7 @@
               >Update<span wire:loading wire:target="updateUserProfile"><i class="fa fa-spinner faa-spin animated"></i></span>
               </button>
             </div>
+            
           </div>
         </form>
         

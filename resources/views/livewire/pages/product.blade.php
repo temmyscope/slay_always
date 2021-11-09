@@ -52,7 +52,7 @@
                     <div class="w-4/5">
                         <p class="text-red-700 text-sm uppercase font-bold">{!! $promotion?->discount ?? 0 !!}% off! no code needed &#128293; price as marked</p>
                     </div>
-                    <a href="">
+                    <a class="cursor-pointer" id="share-icon-id">
                         <span class="fas fa-share-alt"></span>  share
                     </a>
                 </div>
@@ -62,7 +62,7 @@
                         {!! $product->name !!}
                     </h2>
                     <div class="flex py-3">
-                        <span class="pr-3 cursor-pointer">
+                        <span class="pr-3">
                             @php
                                 $rating = $product->reviews->avg('rating');
                                 $intRate = floor($rating);
@@ -89,14 +89,14 @@
                         <p class="cursor-pointer underline">{!! $product->reviews->count() !!} Reviews</p>
                     </div>
                     <div class="py-2">
-                        <p class="font-bold mb-2">
+                        <p class="font-bold">
                             <span class="line-through text-gray-500">
                                 &#8358;{!! number_format($product->price) !!}
                             </span>&nbsp; 
                             <span class="text-red-700">
                             {!! '&#8358;'.number_format( percentageDecrease($product->price, $promotion?->discount ?? 0) ) !!}
-                            </span></p>
-                        <p>Color Blue</p>
+                            </span>
+                        </p>
                     </div>
 
                     <div class="mt-8">
@@ -107,25 +107,15 @@
                         </div>
                     </div>
 
-                    <div class="mt-6 inline-block">
-                        <input type="radio" name="sizing" id="size1" class="hidden">
-                        <input type="radio" name="sizing" id="size2" class="hidden">
-                        <input type="radio" name="sizing" id="size3" class="hidden">
-                        <input type="radio" name="sizing" id="size4" class="hidden">
-                        <input type="radio" name="sizing" id="size5" class="hidden">
-        
-                        <label for="size1" class="w-10 inline-block p-1 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-1 mr-1 chart1 m-1">XXL</label>
-                        <label for="size1" class="w-10 inline-block p-1 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-1 mr-1 chart2 m-1">XL</label>
-                        <label for="size1" class="w-10 inline-block p-1 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-1 mr-1 chart3 m-1">L</label>
-                        <label for="size1" class="w-10 inline-block p-1 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-md font-bold py-1 mr-1 chart4 m-1">S</label>
-                    </div>
-
                     <div class="flex justify-between py-4">
-                        <button class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-4/5 hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 hover:bg-slay hover:text-gray-100 " type="button">
+                        <button wire:click="addToCart({!! $product->id !!})"
+                            class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-4/5 hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 hover:bg-slay hover:text-gray-100 " type="button">
                             Add to bag
                         </button>
-                        <button class="border-2 border-solid border-gray-500 p-1 px-2">
-                            <span id="likeCounter" class="far fa-heart top-1 text-slayText text-3xl right-2 block" onclick="toggleHeart(this)"></span>
+                        <button class="border-2 border-solid border-gray-500 p-1 px-2" wire:click="addToFavorite({!! $product->id !!})">
+                            <span
+                                class="far fa-heart top-1 text-slayText text-3xl right-2 block"
+                            ></span>
                         </button>
                     </div>
 
@@ -140,23 +130,21 @@
 
                     <div class="mt-7">
                         <h4 class="uppercase py-4 text-gray-800 font-bold product">Product details</h4>
-                        <ul class="capitalize list-disc px-4 text-gray-800 product-details block">
-                            <li>Available in blue</li>
-                            <li>4 piece halloween custume set</li>
-                            <li>style with black heeels for the perfect look!</li>
-                        </ul>
+                        <p class="capitalize list-disc px-4 text-gray-800 product-details block">
+                            {!! $product->description !!}
+                        </p>
                         <div>
-                            <h4 class="uppercase py-4 text-gray-800 font-bold shipping">returns: store credit</h4>
+                            <h4 class="uppercase py-4 text-gray-800 font-bold shipping">returns: StaySlay Voucher</h4>
                             <div class="shipping-details">
                             <p class="py-3">
-                                With limited exceptions, valid returns are refunded in the form of store credit. 
-                                Damaged/defective items will be subject to an exchange if in stock.
+                                With limited exceptions, valid returns are refunded in the form of stayslay voucher. 
+                                Damaged/defective items will also be refunded in the form of stayslay voucher.
                             </p>
                             <p class="py-3">
-                                All store credit, refunds, and/or exchanges that are due will be issued within 3 to 5 business days after the return is processed.
+                                All stayslay vouchers, refunds, and/or exchanges that are due will be issued within 1 to 5 business days after the return is processed.
                             </p>
                             <p class="py-3">
-                                All final sale items are marked as such and cannot be returned for store credit.
+                                All final sale items are marked as such and cannot be returned.
                             </p>
                             </div>
                         </div>
@@ -210,6 +198,49 @@
         @endif
 
     </section>
-    
+    <script>
+    let shareButton = document.getElementById('share-icon-id');
+    shareButton.addEventListener('click', async () => {
+        try {
+            const shareData = {
+                url: '{!! url()->current() !!}',
+                title: 'StaySlay-fashion: {!! $product->name !!}',
+                text: '{!! $product->description !!}'.substring(0, 30),
+            };
+            const data = await fetch('{!! $product->images[0]?->src ?? "" !!}');
+            const blob = await data.blob();
+            if (navigator.canShare({ files: [blob] })) {
+                shareData['files'] = [blob];
+            }
+            await navigator.share(shareData);
+        } catch(err) {
+            await navigator.clipboard.writeText('{!! url()->current() !!}');
+            shareButton.innerHTML="Link Copied!";
+        }
+    });/*
+        async function share () {
+            console.log(navigator.share);
+            if (!navigator.share) {
+                await navigator.clipboard.writeText('{!! url()->current() !!}');
+            }else{
+                const data = await fetch('{!! $product->images[0]?->src ?? "" !!}');
+                const blob = await data.blob();
+                if (navigator.canShare({ files: [blob] })) {
+                    return await navigator.share({
+                        url: '{!! url()->current() !!}',
+                        files: [blob],
+                        title: 'StaySlay-fashion: {!! $product->name !!}',
+                        text: '{!! $product->description !!}'.substring(0, 30),
+                    });
+                }else{
+                    return await navigator.share({
+                        url: '{!! url()->current() !!}',
+                        title: 'StaySlay-fashion: {!! $product->name !!}',
+                        text: '{!! $product->description !!}'.substring(0, 30),
+                    });
+                }
+            }
+        }*/
+    </script>
 
 </div>

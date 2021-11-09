@@ -9,6 +9,8 @@ use StaySlay\Traits\Reusables;
 
 class Product extends Component
 {
+    use Reusables;
+    
     public int $productId;
     protected $product;
 
