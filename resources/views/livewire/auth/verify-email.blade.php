@@ -14,7 +14,7 @@
                         type="submit" wire:click="resendVerificationLink" 
                         class="w-full my-6 rounded-md p-2 bg-bgSec font-medium text-white cursor-pointer hover:bg-gray-400 hover:text-black"
                     >
-                        <span wire:loading.remove>Resend Verification Link</span>
+                        <span wire:loading.remove wire:target="resendVerificationLink">Resend Verification Link</span>
                         <span wire:loading.delay wire:target="resendVerificationLink"><i class="fa fa-spinner faa-spin animated"></i></span>
                     </button>
                 </span>

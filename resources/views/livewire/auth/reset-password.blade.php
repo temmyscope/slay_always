@@ -32,7 +32,7 @@
             
             <button type="submit"
                 class="w-3/5 my-6 rounded-md block p-2 bg-bgSec font-medium text-white cursor-pointer hover:bg-gray-400 hover:text-black"
-            ><span wire:loading.remove>Update My Password</span>
+            ><span wire:loading.remove wire.target="save">Update My Password</span>
             <span wire:loading wire:target="save">Updating <i class="fa fa-spinner faa-spin animated"></i></span>
             </button>
             

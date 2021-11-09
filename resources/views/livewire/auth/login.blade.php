@@ -49,7 +49,7 @@
         <a class="w-full underline" href="{!! route('forgot-password') !!}">Forgot your password?</a>
 
         <button type="submit" class="w-full my-6 rounded-md p-2 bg-bgSec font-medium text-white cursor-pointer hover:bg-slay  hover:text-gray-100">
-          <span wire:loading.remove>LogIn</span>
+          <span wire:loading.remove wire:target="logMeIn">LogIn</span>
           <span wire:loading wire:target="logMeIn">Authenticating <i class="fa fa-spinner faa-spin animated"></i></span>
         </button>
       </form>

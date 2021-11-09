@@ -11,14 +11,16 @@ class DeliveryCompleted extends Notification
 {
     use Queueable;
 
+    protected $order;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(protected $order)
+    public function __construct($order)
     {
-        //
+        $this->order = $order;
     }
 
     /**

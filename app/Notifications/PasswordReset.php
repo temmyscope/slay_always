@@ -11,14 +11,16 @@ class PasswordReset extends Notification
 {
     use Queueable;
 
+    protected string $url;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(protected string $url)
+    public function __construct($url)
     {
-        //
+        $this->url = $url;
     }
 
     /**

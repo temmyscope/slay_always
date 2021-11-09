@@ -1,7 +1,7 @@
 @section('title', 'Review')
 
 <div>
-
+  <link href="{!! asset('assets/css/5-star-rating.css') !!}" rel="stylesheet" />
   <nav class="w-full">
     <div class="lg:w-3/4 flex mx-auto justify-between bg-white items-center h-auto p-1">
       <ul class="flex">
@@ -30,26 +30,29 @@
 
         <!-- review page -->
     
-          <form class="">
+          <form wire:submit.prevent="submitReview">
             <div class="px-2 lg:flex bg-gray-200 py-1 rounded-lg">
               <div class="lg:w-1/2">
                 <div class="py-3">
                   <label for="country" class="w-full block mb-4">What size did you purchase?</label>
-                  <select name="country" id="country" class="w-full text-gray-800 input-rate py-3 rounded-lg focus:ring-0 focus:outline-none  px-2">
-                    <option value="male">Please select one</option>
-                    <option value="male">XL</option>
-                    <option value="female">XXL</option>
-                    <option value="rather not say">sm</option>
-                    <option value="rather not say">m</option>
-                    <option value="rather not say"> L</option>
+                  <select 
+                    name="sizePurchase" id="country" wire:model="sizePurchased"
+                    class="w-full text-gray-800 input-rate py-3 rounded-lg focus:ring-0 focus:outline-none  px-2"
+                  >
+                    <option>Please select one</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                    <option value="Sm">sm</option>
+                    <option value="M">M</option>
+                    <option value="L"> L</option>
                   </select>
                 </div>
 
                 <div class="py-3 inline-block w-full">
                   <p class="mb-5">Did it fit exactly?</p>
-                  <input type="radio" name="rating" id="rating1" class="hidden">
-                  <input type="radio" name="rating" id="rating2" class="hidden">
-                  <input type="radio" name="rating" id="rating3" class="hidden">
+                  @foreach ($availableFittings as $index => $item)
+                  <input wire:model="fitting" type="radio" name="rating" id="rating{!!$index+1!!}" class="hidden" value="{!! $item !!}">
+                  @endforeach
 
                   <label for="rating1" class="w-28 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-3xl font-bold py-3 lg:mr-3 mr-1 rate1 m-1">True to size</label>
                   <label for="rating2" class="w-28 inline-block p-2 text-center border-solid border-2 border-gray-400 text-gray-700 cursor-pointer rounded-3xl font-bold py-3 lg:mr-3 mr-1 rate2 m-1">Runs small</label>
@@ -58,9 +61,18 @@
 
                 <div>
                   <label for="" class="block mt-2 py-1">Write your review</label>
-                  <textarea name="residential" id="residential" cols="30" rows="5" placeholder="" class="w-full py-2 input-rate rounded-lg focus:ring-0 focus:outline-none  px-2"></textarea>
+                  <textarea 
+                    name="residential" id="residential" cols="30" rows="5" placeholder="" wire:model="comment"
+                    class="w-full py-2 input-rate rounded-lg focus:ring-0 focus:outline-none  px-2"
+                  ></textarea>
                 </div>
-              <button type="submit" class="bg-black text-white font-bold text-base w-full rounded-lg mt-3 outline-none focus:outline-none py-3 hover:bg-slay">Submit Review</button>
+              <button 
+                type="submit"
+                class="bg-black text-white font-bold text-base w-full rounded-lg mt-3 outline-none focus:outline-none py-3 hover:bg-slay"
+              >
+                Submit Review 
+                <span wire:loading wire:target="submitReview"> <i class="fa fa-spinner faa-spin animated"></i></span>
+              </button>
             </div>
                 
                 <div class="lg:w-1/2 lg:mt-0 mt-5">
@@ -69,17 +81,22 @@
                     <div class="lg:w-3/5 justify-center">
 
                       <div class="text-center">
-                        <h2 class="font-bold text-3xl py-1">5/5</h2>
-          
-                        <span class="pr-3 cursor-pointer ">
-                          <span class="fas fa-star lg:text-2l text-xs"></span>
-                          <span class="fas fa-star lg:text-2l text-xs"></span>
-                          <span class="fas fa-star lg:text-2l text-xs"></span>
-                          <span class="fas fa-star lg:text-2l text-xs"></span>
-                          <span class="fas fa-star lg:text-2l text-xs"></span>
+                        <h2 class="font-bold text-3xl py-1">{!!$stars!!}/5</h2>
+                        <span class="pr-3 cursor-pointer rating">
+                          <input wire:model="stars" type="radio" name="star" id="star-1" value="1">
+                          <input wire:model="stars"  type="radio" name="star" id="star-2" value="2">
+                          <input wire:model="stars"  type="radio" name="star" id="star-3" value="3">
+                          <input wire:model="stars"  type="radio" name="star" id="star-4" value="4">
+                          <input wire:model="stars"  type="radio" name="star" id="star-5" value="5">
+                          <label for="star-1" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
+                          <label for="star-2" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
+                          <label for="star-3" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
+                          <label for="star-4" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
+                          <label for="star-5" class="fas fa-star star-rate1 star-rating cursor-pointer"></label>
                         </span>
-          
-                        <p class="py-2">1 review</p>
+
+                        
+                        <p class="py-2">{!! $product->reviews->count() !!} review</p>
                       </div>
                       
                     </div>
@@ -87,48 +104,6 @@
                     <div class="lg:w-8/12 rounded-lg h-auto">
                       <table class="w-full">
                         <tbody>
-                          <th>
-                            <tr class="w-full inline-table rounded-lg">
-                              <td class="pb-2">5</td>
-                              <td class="w-10/12">
-                                <div class="w-full bg-gray-100 mb-2 rounded-lg">
-                                  <div class="w-full bg-gray-400 lg:py-2 py-1 rounded-lg"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr class="w-full inline-table ">
-                              <td class="pb-2">4</td>
-                              <td class="w-10/12">
-                                <div class="w-full bg-gray-100 mb-2 rounded-lg">
-                                  <div class="w-3/5 bg-gray-400 lg:py-2 py-1 rounded-lg"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr class="w-full inline-table ">
-                              <td class="pb-2">3</td>
-                              <td class="w-10/12">
-                                <div class="w-full bg-gray-100 mb-2 rounded-lg">
-                                  <div class="w-2/5 bg-gray-400 lg:py-2 py-1 rounded-lg"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr class="w-full inline-table ">
-                              <td class="pb-2">2</td>
-                              <td class="w-10/12">
-                                <div class="w-full bg-gray-100 mb-2 rounded-lg">
-                                  <div class="w-1/5 bg-gray-400 lg:py-2 py-1 rounded-lg"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr class="w-full inline-table ">
-                              <td class="pb-2">1</td>
-                              <td class="w-10/12">
-                                <div class="w-full bg-gray-100 mb-2 rounded-lg">
-                                  <div class="w-1 bg-gray-400 lg:py-2 py-1 rounded-lg"></div>
-                                </div>
-                              </td>
-                            </tr>
-                          </th>
                         </tbody>
                       </table>
                     </div>

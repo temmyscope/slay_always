@@ -65,25 +65,22 @@
                         <span class="pr-3 cursor-pointer">
                             @php
                                 $rating = $product->reviews->avg('rating');
+                                $intRate = floor($rating);
+                                $decRate = $rating-$intRate;
+                                $emptyRates = 5-ceil($rating);
                             @endphp
 
-                            @for ($i = 0; $i < $rating; $i++)
+                            @for ($i = 0; $i < $intRate; $i++)
                                 <i class="fas fa-star"></i>
                             @endfor
 
-                            @php
-                                $remnant = 5-$rating;
-                            @endphp
-
-                            @if ($remnant > 0 && $remnant%2 === 0 )
-                                @for ($i = 0; $i < $remnant; $i++)
-                                    <i class="far fa-star"></i>
-                                @endfor
+                            @if ($decRate > 0)
+                                <i class="fas fa-star-half-alt"></i>
                             @endif
 
-                            @if ($remnant > 0 && $remnant%2 !== 0 )
-                                @for ($i = 0; $i < $remnant; $i++)
-                                    <i class="fas fa-star-half-alt"></i>
+                            @if ($emptyRates > 0)
+                                @for ($i = 0; $i < $emptyRates; $i++)
+                                    <i class="far fa-star"></i>
                                 @endfor
                             @endif
 

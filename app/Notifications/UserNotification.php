@@ -11,14 +11,15 @@ class UserNotification extends Notification
 {
     use Queueable;
 
+    protected $note;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(protected $note)
+    public function __construct($note)
     {
-        //
+        $this->note = $note;
     }
 
     /**

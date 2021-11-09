@@ -1,0 +1,45 @@
+.rating input { display: none; }
+.rating { display: flex; align-items: center; justify-content: center; }
+.rating > label {
+  display: block; width: 20px; height: 20px; font-size: 20px; 
+  color: #ff0000; font-family: sans-serif; opacity: 0.33; transition: opacity .2s; 
+}
+.star-rating {
+  color: rgb(151, 155, 151);
+}
+#star-1:checked ~ label[for="star-1"],
+#star-1:hover ~ label[for="star-1"],
+
+#star-2:checked ~ label[for="star-1"],
+#star-2:checked ~ label[for="star-2"],
+#star-2:hover ~ label[for="star-1"],
+#star-2:hover ~ label[for="star-2"],
+
+#star-3:checked ~ label[for="star-1"],
+#star-3:checked ~ label[for="star-2"],
+#star-3:checked ~ label[for="star-3"],
+#star-3:hover ~ label[for="star-1"],
+#star-3:hover ~ label[for="star-2"],
+#star-3:hover ~ label[for="star-3"],
+
+#star-4:checked ~ label[for="star-1"],
+#star-4:checked ~ label[for="star-2"],
+#star-4:checked ~ label[for="star-3"],
+#star-4:checked ~ label[for="star-4"],
+#star-4:hover ~ label[for="star-1"],
+#star-4:hover ~ label[for="star-2"],
+#star-4:hover ~ label[for="star-3"],
+#star-4:hover ~ label[for="star-4"],
+
+#star-5:checked ~ label[for="star-1"],
+#star-5:checked ~ label[for="star-2"],
+#star-5:checked ~ label[for="star-3"],
+#star-5:checked ~ label[for="star-4"],
+#star-5:checked ~ label[for="star-5"],
+#star-5:hover ~ label[for="star-1"],
+#star-5:hover ~ label[for="star-2"],
+#star-5:hover ~ label[for="star-3"],
+#star-5:hover ~ label[for="star-4"],
+#star-5:hover ~ label[for="star-5"] {
+  opacity: 1;
+}
