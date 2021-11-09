@@ -9,10 +9,10 @@ use App\Models\Product;
 class Search extends Component
 {
     public $searchResult;
-    public $filtered;
+    public bool $filtered;
     public $category;
     public $isCategory;
-    public array $filters;
+    public $filterResult, $gender, $color, $size, $price;
     protected $listeners = [
         'applyColorsFilter','searchOnPage','applySizesFilter',
         'applyCategoryFilter','applyGenderFilter','applyPriceFilter'
@@ -20,7 +20,8 @@ class Search extends Component
     
     public function clearFilters()
     {
-        $this->filters = [];
+        $this->gender = ''; $this->color = '';
+        $this->size = ''; $this->price = '';
     }
 
     public function searchOnPage(string $query)
@@ -28,14 +29,12 @@ class Search extends Component
         $this->searchResult = Product::search($query);
     }
 
-    //update search result object based on this filter
-    public function filter($filterName, $value)
+    public function filterCount()
     {
-        if(array_key_exists($filterName, $this->filters) && $this->filters[$filterName] == $value){
-            unset($this->filters[$filterName]);
-        }else{
+        if (!$this->filtered) {
+            return 0;
         }
-        $this->emitSelf("apply{$filterName}Filter");
+        return 1;
     }
 
     public function mount(Request $request, $category = null)
@@ -50,11 +49,20 @@ class Search extends Component
                 $query = $request->input('query');
             }
         }
-
         $this->fill([
-            'category' => $query, 'filters' => [], 'filtered' => [], 
+            'category' => $query, 'filteredResult' => [], 'filtered' => false,
             'isCategory' => $category !== null, 'searchResult' => Product::search($query)
         ]);
+    }
+
+    public function updated($name, $value)
+    {
+        $this->filter = match($name){
+            'price' => $this->applyPriceFilter($value),
+            'category' => $this->applyCategoryFilter($value),
+            'gender', 'size', 'color' => $this->applyOtherFilter($value),
+            default => null
+        };
     }
 
     public function render()
@@ -63,25 +71,45 @@ class Search extends Component
         ->extends('layouts.app')->section('content');
     }
 
-    public function applyColorsFilter()
+    public function applyOtherFilter($filter)
     {
-        $this->filtered = $this->searchResult->filter()->all();
+        if (is_null($this->searchResult)) return;
+
+        if (!empty($filter)) {
+            $this->filterResult = $this->searchResult->filter(function ($value, $key) use($filter) {
+                return str_contains($value->metadata, $filter);
+            })->all();
+            $this->filtered = true;
+        }
     }
 
-    public function applySizesFilter()
+    public function applyCategoryFilter($filter)
     {
+        if (is_null($this->searchResult)) return;
+        
+        if (!empty($filter)) {
+            $this->filterResult = $this->searchResult->filter(function ($value, $key) use($filter) {
+                return str_contains($value->tags, $filter);
+            })->all();
+            $this->filtered = true;
+        }
     }
 
-    public function applyCategoryFilter()
+    public function applyPriceFilter($filter)
     {
-    }
+        if (is_null($this->searchResult)) return;
 
-    public function applyGenderFilter()
-    {
-    }
-
-    public function applyPriceFilter()
-    {
+        if (!empty($filter)) {
+            //process string value of e.g. 1000:10000 into [1000.00, 10000.00]
+            $filter = array_map(
+                'floatval', explode(':', $filter)
+            );
+            [$min, $max] = $filter; $this->filtered = true;
+            $this->filterResult = $this->searchResult->filter(function ($value, $key) 
+            use($min, $max) {
+                return ($min < $value->price && $max > $value->price);
+            })->all();
+        }
     }
 
 }

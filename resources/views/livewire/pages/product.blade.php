@@ -20,14 +20,15 @@
         <div class="lg:w-4/6 w-navWidth mx-auto  lg:grid  lg:grid-cols-6 gap-4">
         
             <div id="imagesHeader" class="lg:block hidden">
-          
-                @foreach ($product->images as $key => $image)
-                    <div class="mb-4 image-btn {!! ($key === 0) ? 'active-images' : '' !!} w-3/4 float-right">
-                        <label for="" class="cursor-pointer" onclick="currentImage({!! $key!!})">
-                            <img src="{!! cdnizeURL($image->src) !!}" alt="{!! $product->name !!}" class="h-full">
-                        </label>
-                    </div>
-                @endforeach
+                @if (!empty($product->images))
+                    @foreach ($product->images as $key => $image)
+                        <div class="mb-4 image-btn {!! ($key === 0) ? 'active-images' : '' !!} w-3/4 float-right">
+                            <label for="" class="cursor-pointer" onclick="currentImage({!! $key!!})">
+                                <img src="{!! cdnizeURL($image->src) !!}" alt="{!! $product->name !!}" class="h-full">
+                            </label>
+                        </div>
+                    @endforeach
+                @endif
             
             </div>
             @php
@@ -36,11 +37,13 @@
 
             <div class="col-span-3">
                 <div class="relative">
-                    @foreach ($product->images as $image)
-                        <div class="imagex">
-                            <img src="{!! cdnizeURL($image->src ?? '') !!}" alt="{!! $product->name !!} image" class="h-full">
-                        </div>
-                    @endforeach
+                    @if (!empty($product->images))
+                        @foreach ($product->images as $image)
+                            <div class="imagex">
+                                <img src="{!! cdnizeURL($image->src ?? '') !!}" alt="{!! $product->name !!} image" class="h-full">
+                            </div>
+                        @endforeach
+                    @endif
                     <span class="fas fa-chevron-left absolute lg:hidden block left-6 py-2 px-3 bg-slay cursor-pointer nextt text-gray-100 text-2xl" onclick="plusImages(-1)"></span>
                     <span class="fas fa-chevron-right absolute lg:hidden block -right-4 py-2 px-3 bg-slay cursor-pointer nextt text-gray-100 text-2xl" onclick="plusImages(1)"></span>
                 </div>
@@ -114,7 +117,7 @@
                         </button>
                         <button class="border-2 border-solid border-gray-500 p-1 px-2" wire:click="addToFavorite({!! $product->id !!})">
                             <span
-                                class="far fa-heart top-1 text-slayText text-3xl right-2 block"
+                                class="{!! (App\Models\Product::liked($product->id))? 'fa fa-heart':'far fa-heart' !!} top-1 text-slayText text-3xl right-2 block"
                             ></span>
                         </button>
                     </div>

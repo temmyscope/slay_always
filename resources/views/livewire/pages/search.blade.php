@@ -12,9 +12,11 @@
         </li>
       </ul>
       <span class="w-full lg:text-center">
+        @if (!is_null($category))
         <h1 class="text-4xl font-bold text-yellow-900 px-5">
           {!! ($isCategory)? $category :'Search Results: "'.$category.'"' !!}
         </h1>
+        @endif
       </span>
     </nav>
   
@@ -40,7 +42,7 @@
         <div class="w-auto flex justify-end md:justify-start">
           <div class="lg:block clear">
             <button wire:click="clearFilters" class="p-2 w-32 bg-bgSec text-gray-100 text-lg rounded-3xl focus:border-4 border-indigo-300 mb-3 hover:bg-slay">
-              clear ({!! count(array_keys($filters)) !!})
+              clear ({!! $this->filterCount() !!})
             </button>
           </div>
           <div class="close w-full">
@@ -57,59 +59,51 @@
             
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('gender', 'women')" type="checkbox" name="" 
-                  id="" checked class="mr-1 inline-block relative top-0 w-4"
+                  type="radio" name="" id="" wire:model="gender" 
+                  class="mr-1 inline-block relative top-0 w-4"
                 />
                 <label for="">Women</label>
               </div>
-            
-              <div class="w-full py-1">
-                <input 
-                  wire:click="filter('gender', 'men')" type="checkbox" name="" 
-                  id="" class="mr-1 inline-block relative top-0 w-4"
-                />
-                <label for="">Men</label>
-              </div>
           </div>
           <!-- categories section -->
-          <h4 class="accord py-3 mt-5 font-bold text-xl mr-2">Cat. & Fabrics</h4>
+          <h4 class="accord py-3 mt-5 font-bold text-xl mr-2">Fabrics</h4>
             
           <div id="side-panel" class="block py-4">
             
             <div class="w-full py-1">
               <input 
-                wire:click="filter('category', 'sweaters')" type="checkbox" name="" 
-                id="" class="mr-1 inline-block relative top-0 w-4"
+                type="radio" value="sweater" id="" 
+                class="mr-1 inline-block relative top-0 w-4" wire:model="category"
               />
               <label for="">Sweaters</label>
             </div>
             <div class="w-full py-1">
               <input 
-                wire:click="filter('category', 'women')" type="checkbox" name="" 
-                id="" class="mr-1 inline-block relative top-0 w-4"
+                value="vintage" type="radio" name="" 
+                id="" class="mr-1 inline-block relative top-0 w-4" wire:model="category"
               />
               <label for="">Vintage</label>
             </div>
             <div class="w-full py-1">
               <input 
-                wire:click="filter('category', 'knit')" type="checkbox" name="" 
-                id="" class="mr-1 inline-block relative top-0 w-4"
+                value="knit top" type="radio" name="" 
+                id="" class="mr-1 inline-block relative top-0 w-4" wire:model="category"
               />
               <label for="">Knit top</label>
             </div>
             
             <div class="w-full py-1">
               <input 
-                wire:click="filter('tags', 'denim')"type="checkbox" name="" 
-                id="" class="mr-1 inline-block relative top-0 w-4"
+                value="denim" type="radio" name="" 
+                id="" class="mr-1 inline-block relative top-0 w-4" wire:model="category"
               />
               <label for="">Denim</label>
             </div>
           
             <div class="w-full py-1">
               <input 
-                wire:click="filter('tags', 'lace')" type="checkbox" name="" id="" 
-                class="mr-1 inline-block relative top-0 w-4"
+                value="lace" type="radio" name="" id="" 
+                class="mr-1 inline-block relative top-0 w-4" wire:model="category"
               />
               <label for="">Lace</label>
             </div>
@@ -122,7 +116,7 @@
             
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('sizes', 'XL')" type="checkbox"
+                  value="XL" type="radio" wire:model="size"
                   class="mr-1 inline-block relative top-0 w-4" name="" id=""
                 />
                 <label for="">XL</label>
@@ -130,32 +124,32 @@
             
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('sizes', 'XS')" type="checkbox" name="" id="" 
-                  class="mr-1 inline-block relative top-0 w-4"
+                  value="XS" type="radio" name="" id="" 
+                  class="mr-1 inline-block relative top-0 w-4" wire:model="size"
                 />
                 <label for="">XS</label>
               </div>
     
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('sizes', 'XXL')" type="checkbox" name="" id="" 
-                  class="mr-1 inline-block relative top-0 w-4"
+                  value="XXL" type="radio" name="" id="" 
+                  class="mr-1 inline-block relative top-0 w-4" wire:model="size"
                 />
                 <label for="">XXL</label>
               </div>
     
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('sizes', 'L')" type="checkbox" name="" id="" 
-                  class="mr-1 inline-block relative top-0 w-4"
+                  value="L" type="radio" name="" id="" 
+                  class="mr-1 inline-block relative top-0 w-4" wire:model="size"
                 />
                 <label for="">L</label>
               </div>
               
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('sizes', 'S')" type="checkbox" name="" id="" 
-                  class="mr-1 inline-block relative top-0 w-4"
+                  value="S" type="radio" name="" id="" 
+                  class="mr-1 inline-block relative top-0 w-4" wire:model="size"
                 />
                 <label for="">S</label>
               </div>
@@ -168,34 +162,34 @@
           
             <div class="w-full py-1">
               <input 
-                wire:click="filter('colors', 'green')" type="checkbox" id="green" 
-                class="mr-1 inline-block relative top-0 w-4 bg-green-600"
+                value="green" type="radio" id="green" 
+                class="mr-1 inline-block relative top-0 w-4 bg-green-600" wire:model="color"
               />
               <label for="green">Green</label>
             </div>
           
             <div class="w-full py-1">
               <input 
-                wire:click="filter('colors', 'blue')" type="checkbox" id="blue" 
-                class="mr-1 inline-block relative top-0 w-4 bg-blue-600"
+                value="blue" type="radio" id="blue" 
+                class="mr-1 inline-block relative top-0 w-4 bg-blue-600" wire:model="color"
               />
               <label for="blue">Blue</label>
             </div>
           
             <div class="w-full py-1">
               <input 
-                wire:click="filter('colors', 'red')" type="checkbox" id="green" 
-                class="mr-1 inline-block relative top-0 w-4 bg-red-600"
+                value="red" type="radio" id="red" 
+                class="mr-1 inline-block relative top-0 w-4 bg-red-600" wire:model="color"
               />
               <label for="red">Red</label>
             </div>
           
             <div class="w-full py-1">
               <input 
-                wire:click="filter('colors', 'yellow')" type="checkbox" id="yellow" 
-                class="mr-1 inline-block relative top-0 w-4 bg-yellow-500"
+                value="black" type="radio" id="black"  wire:model="color"
+                class="mr-1 inline-block relative top-0 w-4" style=":checked: background-color: black;"
               />
-              <label for="green">Yellow</label>
+              <label for="black">Black</label>
             </div>
 
           </div>
@@ -208,22 +202,22 @@
             
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('price', [1000, 10000])" type="checkbox" name="" 
+                  value="1000:10000" type="radio" name="" wire:model="price"
                   id="" class="mr-1 inline-block relative top-0 w-4"
                 /> <label for="" class="">&#8358;1000 - 10,000</label>
               </div>
 
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('price', [10000, 100000])" type="checkbox" name="" 
-                  id="" class="mr-1 inline-block relative top-0 w-4"
+                  value="10000:100000" type="radio" name="" 
+                  id="" class="mr-1 inline-block relative top-0 w-4" wire:model="price"
                 /> <label for="" class="">&#8358;10,000 - 100,000</label>
               </div>
               
               <div class="w-full py-1">
                 <input 
-                  wire:click="filter('price', [10000, 1000000])" type="checkbox" name="" 
-                  id="" class="mr-1 inline-block relative top-0 w-4"
+                  value="100000:1000000" type="radio" name="" 
+                  id="" class="mr-1 inline-block relative top-0 w-4" wire:model="price"
                 /> <label for="" class="">&#8358;100,000 - above</label>
               </div>
               
@@ -233,7 +227,7 @@
             <button wire:click="clearFilters" 
               class="p-2 w-40 text-gray-100 text-lg rounded border-2 border-gray-200 hover:bg-bgSec"
             >
-              clear ({!! count(array_keys($filters)) !!})
+              clear ({!! $this->filterCount() !!})
             </button>
             <button class="p-2 w-40 text-gray-100 text-lg rounded border-2 border-gray-200 hover:bg-bgSec">
               Apply
@@ -249,11 +243,12 @@
 
           @if ( !empty($searchResult) )
 
-            @if (!empty($filtered))
-
-              @foreach ($filtered as $index => $product)
-                <livewire:product-card :product="$product" :wire:key="'filtered-'.$index.'-'.$product->id" >
-              @endforeach
+            @if ($filtered === true)
+              @if (!empty($filteredResult))
+                @foreach ($filtered as $index => $product)
+                  <livewire:product-card :product="$product" :wire:key="'filtered-'.$index.'-'.$product->id" >
+                @endforeach
+              @endif
 
             @else
 
@@ -270,4 +265,5 @@
       </div>
 
     </main>
+
 </div>

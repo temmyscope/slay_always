@@ -1,4 +1,9 @@
-<div class="shadow-lg rounded-lg w-full">
+<div class="shadow-lg rounded-lg w-full"  style="">
+  <style>
+    @media (min-width: 480px) {
+      div.shadow-lg { max-height: 50%; }
+    }
+  </style>
   <a href="{!! route('user-product', ['id' => $product->id ]) !!}">
     <!--<img 
       class="w-full" alt="{!! $product->name !!} Image"
@@ -7,7 +12,7 @@
     <div class="relative m-w-full max-h-full con">
       <div id="slide1" class="slide slide1 w-full">
         <img src="https://images.pexels.com/photos/1689731/pexels-photo-1689731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" 
-          alt="" class="w-full" style="object-fit:contain;"
+          alt="" class="w-full"  style="object-fit:contain;"
         />
         <button id="heart" wire:click.prevent="addToFavorite({!! $product->id !!})"
         class="{!! (App\Models\Product::liked($product->id))? 'fa fa-heart':'far fa-heart' !!} absolute top-1 text-yellow-800 text-3xl right-2 block">
@@ -16,7 +21,7 @@
      
     </div>
   </a>
-  <div class="py-5 px-2 mb-2">
+  <div class="py-2 px-2 mb-1">
     @if (!is_null($dicountPercent))
     <p class="text-red-700 font-bold uppercase mb-2">{!! $dicountPercent !!}% off! no code needed prices as marked</p>
     @endif
@@ -52,7 +57,7 @@
     wire:click="addToCart({!! $product->id !!})"
     class="bg-black text-white active:bg-purple-600 font-bold uppercase text-base w-full hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 py-3 font-bold"
   >
-    <span wire:loading.remove>Add to bag <i class="fas fa-shopping-bag"></i></span>
+    <span wire:loading.remove wire:target="addToCart">Add to bag <i class="fas fa-shopping-bag"></i></span>
     <span wire:loading wire:target="addToCart">
       <i class="fa fa-spinner faa-spin animated"></i>
     </span>

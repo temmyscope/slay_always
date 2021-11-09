@@ -33,6 +33,17 @@ class Product extends Model
         ->get();
     }
 
+    public static function perPageLimit(?string $search, ?int $limit)
+    {
+        $products = Product::where('deleted', 'false');
+        if (!is_null($search)) {
+            $products = $products->whereRaw("MATCH(description) AGAINST(?)", [ $search ])
+            ->orWhereRaw("MATCH(tags) AGAINST(?)", [$search])
+            ->orWhere("name", 'like', "%$search%");
+        }
+        return $products->paginate($limit);
+    }
+
     public static function searchOne(string $search)
     {
         return Product::where('deleted', 'false')

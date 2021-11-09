@@ -10,9 +10,9 @@ use StaySlay\Traits\Reusables;
 class Product extends Component
 {
     use Reusables;
-    
+
     public int $productId;
-    protected $product;
+    public $product;
 
     public function mount(Request $request, $id)
     {
@@ -40,9 +40,6 @@ class Product extends Component
 
     public function render()
     {
-        //₦
-        return view('livewire.pages.product', [
-            'product' => $this->product
-        ])->extends('layouts.app')->section('content');
+        return view('livewire.pages.product')->extends('layouts.app')->section('content');
     }
 }
