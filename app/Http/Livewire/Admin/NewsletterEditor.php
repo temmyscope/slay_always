@@ -4,50 +4,56 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\{Newsletter as NewsletterModel, User};
-use App\Notifications\NewsLetter;
+use App\Notifications\{ NewsLetter, UserNotification };
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 class NewsletterEditor extends Component
 {
-    public string $recipient;
-    public string $email;
-    public string $title;
-    public string $news;
-    public string $newsType; 
-    public string $group;
+    public $recipient, $email, $title, $news, $newsType, $group;
     public array $newsTypesEnum = ['email'];
     public array $groups = [ 'all',  'specific',];
 
     //send mail or push to newsletter subscribers; users are subscribed by default
     public function send()
     {
-        $users = User::where('subscribed', 'true')->get();
+        $users = match(true){
+            //!empty($this->email) => User::where('email', $this->email)->first(),
+            !empty($this->recipient) => User::find('id', $this->recipient),
+            default => User::where('subscribed', 'true')->get()
+        };
 
-        if ($recipient) {
-            $users = User::where('id', $recipient)->get();
-        }
-        if ($email) {
-            $users = User::where('email', $email)->get();
+        if (empty($users)) {
+            session()->flash('message', 'No user with this email on the database');
         }
 
         $news = New NewsletterModel();
         $news->title = $this->title;
         $news->content = $this->news;
         $news->type = $this->newsType;
-        $news->recipients = $this->group;//all subscribed users
+        $news->recipients = json_encode([
+            'users' => $users->id ?? $users
+        ]);
         $news->admin = Auth::id();
-        $news->reach = $users->count();
         $news->save();
 
-        Notification::send($users, new Newsletter($news));
-        redirect();
+        if ( $users->email ) {
+            $note = new \Stdclass();
+            $note->note = $this->news;
+            $note->user = $users->name;
+            Notification::send($users, new UserNotification($note));
+        } else {
+            Notification::send($users, new Newsletter($news));
+        }
+        session()->flash('message', 'Your Newsletter has been sent');
     }
 
     public function mount($user = null)
     {
         $this->fill([
-            'recipient' => $user, 'newsType' => 'email'
+            'recipient' => $user, 'newsType' => 'email',
+            'email' => User::find($user)?->email, 'title' => '', 
+            'group' => $user ? 'specific' : '', 'news' => '',
         ]);
     }
     

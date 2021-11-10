@@ -17,7 +17,7 @@ Route::prefix('admin')->group(function () {
   Route::get('/product/{id}', Product::class)->name('product');
   Route::get('/orders', OrderHistory::class)->name('orders');
   Route::get('/announce', Announcement::class)->name('announcement');
-  Route::get('/scripts', Scripts::class)->name('scripts');
+  Route::get('/scripts/{id?}', Scripts::class)->name('scripts');
 //  Route::get('/order/{id}', Order::class)->name('order');
   
 //this route will be pointed to from orders on completed orders

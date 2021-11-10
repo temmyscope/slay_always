@@ -42,7 +42,6 @@
           <h1 class="text-3xl text-center font-bold my-9">Hot Picks For You</h1>
           
           <div class="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
-
             @foreach ($random as $index => $item)
 
               <!---- livewire product component ----->

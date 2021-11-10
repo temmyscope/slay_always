@@ -16,9 +16,9 @@ class NewsLetter extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($newsletter)
     {
-        //
+        $this->newsletter = $newsletter;
     }
 
     /**
@@ -41,7 +41,9 @@ class NewsLetter extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)->view(
-            'emails.order-completed', []
+            'emails.newsletter', [
+                'msg' => $this->newsletter->news
+            ]
         );
     }
 

@@ -19,11 +19,10 @@ class Search extends Component
     {
         $this->cartItemsCount = $this->cartCount();
     }
+
     public function refreshFavoriteCount()
     {
-        $this->favorites = Favorite::where(
-            'user_id', auth()->user()->id
-        )->count();
+        $this->favorites = Favorite::where('user_id', auth()->user()->id)->count();
     }
 
     public function searchForQuery()

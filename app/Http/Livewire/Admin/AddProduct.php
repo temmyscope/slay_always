@@ -18,14 +18,19 @@ class AddProduct extends Component
     public function save()
     {
         $this->validate([
-            'product' => 'required|min:6',
+            'product' => 'required|min:4',
             'desc' => 'required|string',
             'price' => 'required|numeric',
-            'tags' => "required",
+            'tags' => 'required|string|max:300',
         ]);
 
         $sizes = array_map('trim', explode(',', $this->sizes));
         $colors = array_map('trim', explode(',', $this->colors));
+
+        $gendered = (
+            str_contains($this->tags,'women') || str_contains($this->tags,'ladies')
+            || str_contains($this->desc,'women') || str_contains($this->desc,'ladies')
+        )? true : false;
         
         $product = New ProductModel();
         $product->user_id = auth()->user()->id;
@@ -37,6 +42,7 @@ class AddProduct extends Component
         $product->metadata = json_encode([ 
             'colors' => empty($this->colors) ? $this->colorOptions : $colors, 
             'sizes' => empty($this->sizes) ? $this->sizeOptions : $sizes, 
+            'gendered' => $gendered
         ]);
         if ($product->save()) {
             redirect()->route('list-products');

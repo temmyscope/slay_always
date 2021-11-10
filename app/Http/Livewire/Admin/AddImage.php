@@ -24,7 +24,7 @@ class AddImage extends Component
             $img->src = $image;
             $img->save();
         }
-        redirect->route("list-products");
+        redirect()->route("list-products");
     }
 
     public function mount($id, $type)

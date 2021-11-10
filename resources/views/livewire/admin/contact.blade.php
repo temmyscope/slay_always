@@ -68,23 +68,11 @@
 	                                                <label>Message</label>
 	                                                <textarea id="text-box" name="text-box" cols="10" rows="2"> </textarea>
 	                                            </div>
-	                                            <div class="form-group">
-	                                                <div class="dropzone digits text-center" id="singleFileUpload" action="/upload.php">
-	                                                    <div class="dz-message needsclick">
-	                                                        <i class="icon-cloud-up"></i>
-	                                                        <h6>Drop files here or click to upload.</h6>
-	                                                        <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
 	                                        </form>
 	                                        <div class="action-wrapper">
 	                                            <ul class="actions">
                                                     <li>
                                                             <a class="btn btn-secondary" href="javascript:void(0)"><i class="fa fa-paper-plane me-2"></i>send </a>
-                                                    </li>
-                                                    <li>
-                                                            <a class="btn btn-danger" href="javascript:void(0)"> <i class="fa fa-times me-2"></i>cancel</a>
                                                     </li>
 	                                            </ul>
 	                                        </div>

@@ -1,9 +1,4 @@
 <div class="shadow-lg rounded-lg w-full"  style="">
-  <style>
-    @media (min-width: 480px) {
-      div.shadow-lg { max-height: 50%; }
-    }
-  </style>
   <a href="{!! route('user-product', ['id' => $product->id ]) !!}">
     <!--<img 
       class="w-full" alt="{!! $product->name !!} Image"
@@ -34,7 +29,7 @@
         &#8358;{!! number_format(percentageDecrease($product->price, $dicountPercent ?? 0)) !!}
       </span>
     </p>
-    <span>
+    <span class="p-2">
       @if (!empty($colors))
         @foreach ($colors as $index => $item)
         <input 

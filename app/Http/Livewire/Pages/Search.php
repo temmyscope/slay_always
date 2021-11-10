@@ -60,7 +60,8 @@ class Search extends Component
         $this->filter = match($name){
             'price' => $this->applyPriceFilter($value),
             'category' => $this->applyCategoryFilter($value),
-            'gender', 'size', 'color' => $this->applyOtherFilter($value),
+            'gender' => $this->applyGenderFilter($value), 
+            'size', 'color' => $this->applyOtherFilter($value),
             default => null
         };
     }
@@ -90,6 +91,19 @@ class Search extends Component
         if (!empty($filter)) {
             $this->filterResult = $this->searchResult->filter(function ($value, $key) use($filter) {
                 return str_contains($value->tags, $filter);
+            })->all();
+            $this->filtered = true;
+        }
+    }
+
+    public function applyGenderFilter($filter)
+    {
+        if (is_null($this->searchResult)) return;
+        
+        if (!empty($filter)) {
+            $this->filterResult = $this->searchResult->filter(function ($value, $key) use($filter) {
+                $gender = json_decode($value->metadata, true);
+                return array_key_exists('gendered', $gender) && $gender['gendered'] === true;
             })->all();
             $this->filtered = true;
         }

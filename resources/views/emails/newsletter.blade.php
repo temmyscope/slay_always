@@ -244,8 +244,8 @@
                     </td>
     
                     <td align="left"class="table-data text" style="padding-bottom: 10px;color: #808080;word-wrap: break-word;font-size: 15px;line-height: 27px;">
-                      <span style="font-weight: bold;font-size: 18px;">Hi Slayer,</span> <br><br> Thank you for signing up on Stay_Slay
-                      Fashion. We are delighted to get you started right away. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque adipisci possimus tempore enim cupiditate hic voluptatum recusandae quas eaque animi ex nisi voluptas consequuntur, distinctio veritatis? Hic tenetur delectus minima. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque enim beatae ut quibusdam obcaecati quod similique sunt deserunt dolorum expedita nisi modi sapiente, velit voluptatum dolore quisquam quae? Ad, recusandae. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem cumque, sint quos temporibus commodi perspiciatis ea optio quibusdam, esse maiores aut, modi repudiandae numquam error vero accusantium molestiae vitae dolor. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione fuga dicta obcaecati distinctio dolores necessitatibus nobis dolorum suscipit ipsam perspiciatis eum quos illo quod minima, expedita maiores commodi quaerat molestias.
+                      <span style="font-weight: bold;font-size: 18px;">Hi Slayer,</span> <br><br>
+                      {!! $msg !!}
                     </td>
                   </tr>
                 </tbody>

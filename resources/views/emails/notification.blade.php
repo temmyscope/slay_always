@@ -247,7 +247,7 @@
                     </td>
     
                     <td align="center"class="table-data text" style="padding-bottom: 10px;color: #ffffff;word-wrap: break-word;font-size: 15px;line-height: 27px;">
-                      Hi {!! $name !!}!!, {!! $msg !!}
+                      {!! $name ? "Hi $name!!," : "" !!} {!! $msg !!}
                     </td>
     
                   

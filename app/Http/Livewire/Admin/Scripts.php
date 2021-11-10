@@ -9,20 +9,31 @@ use Illuminate\Support\Str;
 class Scripts extends Component
 {
     public $script, $scripts, $snippet, $position;
+    public $visibility = false;
 
-    public function saveCode($id)
+    public function switchVisibility()
     {
-        if ($id = null) {
+        $this->visibility = !$this->visibility;
+    }
+
+    public function saveCode()
+    {
+        $this->validate([
+            'script' => 'required|string',
+            'position' => 'required|string|in:head,foot,body'
+        ]);
+        if ($this->script = null) {
             $code = New PageScript();
-            $code->script_id = Str::random(43).Str::uuid();
+            $code->script_id = Str::random(4).((Str::uuid())->toString());
             $code->code = $this->snippet;
             $code->position = $this->position;
             $code->save();
+            session()->flash('message', 'Your srcipt has been created.');
         }else{
-            PageScript::where('id', $id)->update([
-                'code' => $this->snippet,
-                'position' => $this->position
+            PageScript::where('id', $this->script)->update([
+                'code' => $this->snippet, 'position' => $this->position
             ]);
+            session()->flash('message', 'Your update has been made.');
         }
     }
 
@@ -35,7 +46,7 @@ class Scripts extends Component
     {
         $this->fill([
             'scripts' => PageScript::where('deleted', 'false')->get()->all(),
-            'script' => $id, 'snippet' => PageScript::find($id)?->code
+            'script' => $id, 'snippet' => PageScript::find($id)?->code ?? ''
         ]);
     }
 

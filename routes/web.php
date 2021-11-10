@@ -10,12 +10,12 @@ use App\Http\Livewire\Auth\{
     Login, Register, ForgotPassword, ResetPassword, VerifyEmail
 };
 use App\Http\Livewire\Pages\{
-    Cart, Recent, Search, Product
+    Cart, Recent, Search, Product, AboutUs
 };
 
 Route::get('/', Home::class)->name('welcome')->middleware('guest');
 
-Route::view('about-us', 'about')->name('about-us');
+Route::view('about-us', AboutUs::class)->name('about-us');
 
 Route::view('terms', 'terms')->name('terms');
 
