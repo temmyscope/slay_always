@@ -34,6 +34,9 @@ module.exports = {
         cartWb: '72%',
         cartWs: '25%'
       },
+      backgroundImage: {
+        banner: "url('./public/assets/family.jpg')"
+      },
       fontFamily: {
         slayFont: ['Nunito']
       },
