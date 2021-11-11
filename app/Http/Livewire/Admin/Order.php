@@ -9,7 +9,7 @@ use App\Notifications\{ DeliveryCompleted, UserNotification };
 
 class Order extends Component
 {
-    public OrderModel $order;
+    public $order;
     public $products;
     public $images;
 
@@ -17,7 +17,7 @@ class Order extends Component
     
     public function mount($id)
     {
-        $this->order = OrderModel::with('user:name')->find($id);
+        $this->order = OrderModel::find($id);
         $this->products = json_decode($this->order->metadata, true)['products'];
     }
 
@@ -35,7 +35,7 @@ class Order extends Component
         createRefund($ref);
     }
 
-    public function markOrderHasDelivered($id)
+    public function markOrderAsDelivered($id)
     {
         $order = OrderModel::find($id);
         $user = $order->user;
@@ -67,16 +67,14 @@ class Order extends Component
         $user = $this->order->user;
         $note = new \StdClass();
         $note->name = explode(' ', $user->name);
-        $note->note = "Some items in your order are currently unavailable and have been removed. <br/>".
+        $note->note = "Some items in your order are currently unavailable and have been removed from your order. <br/>".
         "We've converted the value for you to StaySlay Voucher; You can use it on your next purchase.";
         $user->notify(new UserNotification($note));
     }
 
     public function render()
     {
-        return view('livewire.admin.order', [
-            'order' => $this->order
-        ])->extends('layouts.admin.master');
+        return view('livewire.admin.order')->extends('layouts.admin.master');
     }
 
 }

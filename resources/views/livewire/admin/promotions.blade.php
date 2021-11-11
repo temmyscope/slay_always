@@ -83,7 +83,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="text-end">
-                                    <a class="btn btn-secondary me-3" wire:click="save">Add</a>
+                                    <a class="btn btn-secondary me-3" wire:click="save">Create</a>
                                     <a class="btn btn-danger" wire:click="unhideForm" >Cancel</a></div>
                             </div>
                         </div>

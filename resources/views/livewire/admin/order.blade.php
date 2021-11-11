@@ -44,7 +44,7 @@
 	                    <div class="card-body">
 	                        <div class="pro-group pt-0 border-0">
 	                            <div class="product-page-details mt-0">
-	                                <h3>Customer's Name.</h3>
+	                                <h3>{!! $order->user->name !!}</h3>
 	                                <div class="pro-review">
 	                                    <div class="d-flex">
 	                                        <select id="u-rating-fontawesome" name="rating" autocomplete="off">
@@ -59,15 +59,19 @@
 	                                </div>
 	                            </div>
 	                            <div class="product-price">
-	                                $260.00
-	                                <del>$350.00 </del>
+	                                {!!$order->total!!}
+	                                <del>{!! array_reduce(fn($v, $k)=> $v+$k['price'], $products) !!} </del>
 	                            </div>
 	                        </div>
 
 	                        <div class="pro-group pb-0">
 	                            <div class="pro-shop">
-	                                <a class="btn btn-primary m-r-10" href="cart"> <i class="fa fa-shopping-basket me-2"></i>Confirm Order</a>
-	                                <a class="btn btn-danger" href="list-wish"><i class="fa fa-cancel me-2"></i>Remove From Order</a>
+	                                <a class="btn btn-primary m-r-10" href="cart" wire:click.prevent="markOrderAsDelivered">
+																		<i class="fa fa-shopping-basket me-2"></i>Mark Order as Delivered
+																	</a>
+	                                <a class="btn btn-danger" href="list-wish" wire:click.prevent="">
+																		<i class="fa fa-cancel me-2"></i>Remove Checked Items
+																	</a>
 	                            </div>
 	                        </div>
 	                        

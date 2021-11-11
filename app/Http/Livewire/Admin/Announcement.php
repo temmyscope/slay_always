@@ -23,11 +23,11 @@ class Announcement extends Component
         ]);
         DB::table('notes')->insert([
             'note' => $this->note,
-            'created_at' => date('Y-m-d h:is'),
-            'active_at' => date('Y-m-d h:i:s', strtotime("$this->expiry"))
+            'created_at' => date('Y-m-d h:i:s'),
+            'active_at' => date('Y-m-d h:i:s', strtotime($this->expiry))
         ]);
-        $this->fill(['note' => '']);
         session()->flash('message', 'Your announcement has been published.');
+        $this->fill(['note' => '']);
     }
     public function render()
     {

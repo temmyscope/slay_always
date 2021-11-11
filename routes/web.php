@@ -15,9 +15,9 @@ use App\Http\Livewire\Pages\{
 
 Route::get('/', Home::class)->name('welcome')->middleware('guest');
 
-Route::view('about-us', AboutUs::class)->name('about-us');
+Route::get('about-us', AboutUs::class)->name('about-us');
 
-Route::view('terms', 'terms')->name('terms');
+//Route::view('terms', 'terms')->name('terms');
 
 Route::view('privacy', 'privacy-policy')->name('privacy');
 

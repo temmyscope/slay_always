@@ -14,17 +14,35 @@ class ContactUs extends Component
         $this->validate([
             'type' => 'required|string|in:complaint,enquiry,suggestion',
             'subject' => 'required|string|in:order,products,website,others',
-            'name' => 'required|string', 'email' => 'required|string|email',
-            'feedback' => 'required|string|max:300', 
+            'nameOfSender' => 'required|string', 'feedback' => 'required|string|max:300',
+            'emailOfSender' => 'required|string|email',
         ]);
+
         $fdb = new ContactUsModel;
         $fdb->type = $this->type;
         $fdb->subject = $this->subject;
         $fdb->feedback = $this->feedback;
-        $fdb->sendername = $this->nameOfSender;
+        $fdb->sender_name = $this->nameOfSender;
         $fdb->email = $this->emailOfSender;
         $fdb->save();
-        session()->flash('message', 'Thanks for your feedback, we will reach back as soon as we can. stay slaying.');
+        session()->flash(
+            'message', 'Thanks for your feedback, we will reach out as soon as we can. Stay slaying!'
+        );
+        $this->reset(['nameOfSender', 'emailOfSender', 'type', 'subject', 'feedback']);
+    }
+
+    public function mount()
+    {
+        $properties = [
+            'type' => '', 'subject' => '', 'feedback' => '',
+            'nameOfSender' => '', 'emailOfSender' => '',
+        ];
+        $user = auth()->user();
+        if ($user->id) {
+            $properties['nameOfSender'] = $user->name;
+            $properties['emailOfSender'] = $user->email;
+        }
+        $this->fill($properties);
     }
 
     public function render()

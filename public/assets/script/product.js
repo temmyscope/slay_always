@@ -1,27 +1,29 @@
 let slideTextIndex = 0;
 
 function showTextSlides() {
-let textSlides = document.querySelectorAll("#slides");
-for (let firstText = 0; firstText < textSlides.length; firstText++) {
-  textSlides[firstText].style.display = "none";
-}
-slideTextIndex++;
-if (slideTextIndex > textSlides.length) {
-  slideTextIndex = 1
-}    
-textSlides[slideTextIndex-1].style.display = "block";  
-setTimeout(showTextSlides, 2000); // Change image every 2 seconds
+  let textSlides = document.querySelectorAll("#slides");
+  for (let firstText = 0; firstText < textSlides.length; firstText++) {
+    textSlides[firstText].style.display = "none";
+  }
+  slideTextIndex++;
+  if (slideTextIndex > textSlides.length) {
+    slideTextIndex = 1
+  }    
+  textSlides[slideTextIndex-1].style.display = "block";  
+  setTimeout(showTextSlides, 4500); // Change image every 4.5 seconds
 }
 showTextSlides();
 
 // accordion for the side nav on shoes page
 const sideNavAccordions = document.querySelectorAll(".accord");
+if (sideNavAccordions) {
   for (let sideAccordion = 0; sideAccordion < sideNavAccordions.length; sideAccordion++) {
-  sideNavAccordions[sideAccordion].addEventListener("click", function(){
-    this.classList.toggle("chev");
-    let sidePanel = this.nextElementSibling;
-    sidePanel.style.display === `none` ? sidePanel.style.display = `block` : sidePanel.style.display = `none`;
-  })
+    sideNavAccordions[sideAccordion].addEventListener("click", function(){
+      this.classList.toggle("chev");
+      let sidePanel = this.nextElementSibling;
+      sidePanel.style.display === `none` ? sidePanel.style.display = `block` : sidePanel.style.display = `none`;
+    })
+  }
 }
 
   // active image
@@ -49,6 +51,7 @@ const sideNavAccordions = document.querySelectorAll(".accord");
       modal.style.display = "flex";
     }
   }
+  
   if (closeModal) {
     closeModal.onclick = function() {
       modal.style.display = "none";

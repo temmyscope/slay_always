@@ -27,14 +27,16 @@
         <div class="mb-10 text-gray-600 p-1 input-bod w-full">
           <h2 class="text-xl font-medium capitalize">details</h2>
         </div>
+
         <!-- <div class="w-4/5"> -->
         <p class="row text-center mt-3">
-          @if (session()->has('message'))
-              <div class="alert-success">
-                  {!! session('message') !!}
-              </div>
+          @if( session()->has('message') )
+            <div class="alert-success text-center">
+              {!! session('message') !!}
+            </div>
           @endif
         </p>
+
         <form class="p-3" wire:submit.prevent="updateUserProfile">
           <div class="grid grid-cols-2 gap-6  justify-between">
             <div class="py-2">
@@ -71,7 +73,8 @@
               <div class="py-1">
                 <input 
                   type="checkbox" wire:model="subscribed"  name="slay" id="slay" 
-                  class="mr-1 inline-block relative top-0 w-4" {!! $subscribed === 'true' ? 'checked':'' !!}
+                  value= "{!! $subscribed === 'true' ? 'false' : 'true' !!}"
+                  class="mr-1 inline-block relative top-0 w-4" {!! $subscribed === 'true' ? 'checked': '' !!}
                 >
                 <label for="slay" class="text-gray-900 capitalize">
                   How to Stay Slay (Fashion Tips)

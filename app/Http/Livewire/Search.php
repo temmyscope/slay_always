@@ -12,7 +12,7 @@ class Search extends Component
     use Reusables;
 
     public string $searchQuery;
-    public $favorites, $cartItemsCount;
+    public $notes, $favorites, $cartItemsCount;
     protected $listeners = ['refreshCartCount', 'refreshFavoriteCount'];
 
     public function refreshCartCount()

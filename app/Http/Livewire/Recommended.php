@@ -24,16 +24,18 @@ class Recommended extends Component
             $poolIds = array_keys($pool);
             $dataPool = Product::whereIn('id', $poolIds)->get();
             
-            $priceRange = [];
+            $priceRangeOne = $dataPool->avg('price');
             $categories = "";
+            if (empty($dataPool)) {
+                return [];
+            }
             
             $dataPool->each(
-                function($item, $key) use(&$priceRange, &$categories){
-                    array_push($priceRange, $item->price);
+                function($item, $key) use(&$categories){
                     $categories .= $item->tags;
                 }
             );
-            sort($priceRange);
+            $priceRange = [ $priceRangeOne, $priceRangeOne*2 ];
 
             return Product::recommend('price', $priceRange, $categories);
         });

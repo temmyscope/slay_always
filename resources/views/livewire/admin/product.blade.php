@@ -74,8 +74,7 @@
 														<div class="col">
 																<div class="text-end">
 																	<button class="btn btn-secondary me-3 sweet-8" type="submit">
-																		Add
-																		<span wire:loading wire:target="save"><i class="fa fa-spinner faa-spin animated"></i>
+																		Add <span wire:loading wire:target="save"><i class="fa fa-spinner faa-spin animated"></i></span>
 																	</button>
 																</div>
 														</div>

@@ -5,34 +5,23 @@
     <!-- footer section -->
     <footer class="bg-bgSec w-full text-white py-10">
       <div class="w-navWidth mx-auto flex justify-around flex-wrap">
-        <div class="capitalize lg:order-1 order-2 w-full lg:w-auto borderr">
-          <h5 class="footer-accordion uppercase font-medium text-lg">Get Help</h5>
-          <ul class="footer-panel py-1">
-            <li class="py-2">
-              <a href="#">
-                track order
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="lg:order-2 order-3 w-full lg:w-auto borderr">
+        <div class="lg:order-1 order-1 w-full lg:w-auto borderr">
           <h5 class="footer-accordion uppercase font-medium text-lg">Company</h5>
           <ul class="footer-panel py-1">
             
             <li class="py-2">
               <a href="{!! route('about-us') !!}">
-                about
+                about us
               </a>
             </li>
           </ul>
         </div>
 
-        <div class="lg:order-3 order-4 w-full lg:w-auto borderr">
+        <div class="lg:order-2 order-2 w-full lg:w-auto borderr">
           <h5 class="footer-accordion uppercase font-medium text-lg">Quick Links</h5>
           <ul class="footer-panel py-1">
             <li class="py-2">
-              <a href="#">
+              <a href="{!! route('about-us') !!}#theContact">
                 contact us
               </a>
             </li>
@@ -41,7 +30,9 @@
         
         <div class="lg:w-2/6 lg:order-4 order-1 w-full lg:block flex flex-wrap">
           
-          <small class="text-gray-400 order-3">By using our website, you agree to StaySlay Fashion's <a href="{!! route('terms') !!}" class="underline">Terms of Service </a>and <a href="#" class="underline">Privacy policy</a></small>
+          <small class="text-gray-400 order-3">By using our website, you agree to StaySlay Fashion's Terms of Service and 
+            <a href="{!! route('privacy') !!}" class="underline">Privacy policy</a>
+          </small>
           <!-- icons -->
           <div class="flex my-7 order-1 lg:order-4 w-full lg:w-3/4 justify-around">
             <span class="px-2">

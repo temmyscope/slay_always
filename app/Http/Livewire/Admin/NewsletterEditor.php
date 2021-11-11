@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Notification;
 class NewsletterEditor extends Component
 {
     public $recipient, $email, $title, $news, $newsType, $group;
+    public $pastNewsLetters, $newsLetterIndex;
     public array $newsTypesEnum = ['email'];
     public array $groups = [ 'all',  'specific',];
 
@@ -18,7 +19,7 @@ class NewsletterEditor extends Component
     public function send()
     {
         $users = match(true){
-            //!empty($this->email) => User::where('email', $this->email)->first(),
+            !empty($this->email) => User::where('email', $this->email)->first(),
             !empty($this->recipient) => User::find('id', $this->recipient),
             default => User::where('subscribed', 'true')->get()
         };
@@ -48,12 +49,26 @@ class NewsletterEditor extends Component
         session()->flash('message', 'Your Newsletter has been sent');
     }
 
+    public function next()
+    {
+        $this->newsLetterIndex = (isset($this->pastNewsLetters[$this->newsLetterIndex+4])) ?
+        $this->newsLetterIndex + 4 : $this->newsLetterIndex;
+    }
+
+    public function previous()
+    {
+        $this->newsLetterIndex = (isset($this->pastNewsLetters[$this->newsLetterIndex-4])) ?
+        $this->newsLetterIndex - 4 : $this->newsLetterIndex;
+    }
+
     public function mount($user = null)
     {
         $this->fill([
             'recipient' => $user, 'newsType' => 'email',
             'email' => User::find($user)?->email, 'title' => '', 
             'group' => $user ? 'specific' : '', 'news' => '',
+            'pastNewsLetters' => NewsletterModel::all(),
+            'newsLetterIndex' => 0,
         ]);
     }
     

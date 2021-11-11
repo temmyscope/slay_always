@@ -28,7 +28,41 @@
 																					</a>
 																					
 																				</li>
+																				
+																				@php
+																						$upperLimit = $newsLetterIndex + 4;
+																				@endphp
 
+																				@for ($i = $newsLetterIndex; $i < $upperLimit; $i++)
+																				<li class="nav-item mb-2" style="display:flex;flex-direction:column;justify-content:space-between;align-items:space-between;">
+																					@if (isset($pastNewsLetters[$i]))
+																					<p style="align-self: flex-start; margin:2px">
+																					{!! substr($pastNewsLetters[$i]->title, 0, 50) !!}
+																					</p>
+																					<p style="align-self: flex-end">
+																					{!! date('g:i a, l M jS, Y', strtotime($pastNewsLetters[$i]->created_at) ) !!}
+																					</p>
+																					@endif
+																				</li>
+																				@endfor
+
+																				<li style="display:flex;justify-content: space-between;">
+																				@if (!empty($pastNewsLetters[$newsLetterIndex]))
+																				<a  
+																					wire:click.prevent="previous" class="btn-primary btn-block btn-mail" 
+																					data-bs-toggle="pill" style="display: flex;justify-content: space-between; cursor: pointer;"
+																				>
+																					Prev
+																				</a>
+																				<a  
+																					wire:click.prevent="next" class="btn-primary btn-block btn-mail" data-bs-toggle="pill" 
+																					style="display: flex;justify-content: space-between; cursor: pointer;"
+																				>
+																					Next
+																				</a>
+																				@else
+																				@endif
+																			</li>
 																			</ul>
 																	</div>
 															</div>
