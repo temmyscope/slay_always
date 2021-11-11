@@ -1,3 +1,7 @@
+@section('title', 'Pending Reviews')
+@section('description', 'Welcome to StaySlay - Fashion. Pending review')
+@section('keywords', 'Stay, Slay, Fashion, Pending review')
+
 <div>
 
   <nav class="w-full">

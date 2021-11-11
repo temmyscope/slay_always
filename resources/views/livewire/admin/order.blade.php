@@ -17,9 +17,9 @@
 	                        <div class="row">
 	                            <div class="col-xl-9 product-main">
 	                                <div class="pro-slide-single">
-																		@foreach ($products as $item)
+																		@foreach ($products as $key => $item)
 																		<div>
-																			<img class="img-fluid" src="{!! cdnizeURL($item->images[0]->src) !!}" alt="" />
+																			<img class="img-fluid" src="{!! cdnizeURL($item['image']) !!}" alt="" />
 																		</div>
 																		@endforeach
 	                                </div>
@@ -29,7 +29,7 @@
 																			@foreach ($products as $item)
 	                                    <div>
 	                                        <div class="slide-box">
-																						<img src="{!! cdnizeURL($item->images[0]->src) !!}" alt="" />
+																						<img src="{!! cdnizeURL($item['image']) !!}" alt="" />
 																					</div>
 	                                    </div>
 																			@endforeach
@@ -44,35 +44,28 @@
 	                    <div class="card-body">
 	                        <div class="pro-group pt-0 border-0">
 	                            <div class="product-page-details mt-0">
-	                                <h3>{!! $order->user->name !!}</h3>
-	                                <div class="pro-review">
-	                                    <div class="d-flex">
-	                                        <select id="u-rating-fontawesome" name="rating" autocomplete="off">
-	                                            <option value="1">1</option>
-	                                            <option value="2">2</option>
-	                                            <option value="3">3</option>
-	                                            <option value="4">4</option>
-	                                            <option value="5">5</option>
-	                                        </select>
-	                                        <span>(250 review)</span>
-	                                    </div>
-	                                </div>
+	                              <h3>{!! $order->user->name !!}</h3>
 	                            </div>
 	                            <div class="product-price">
-	                                {!!$order->total!!}
-	                                <del>{!! array_reduce(fn($v, $k)=> $v+$k['price'], $products) !!} </del>
+																&#8358;{!!number_format($order->total)!!}
+																<del>SubTotal (Before Tax): &#8358;{!! array_reduce($products, fn($v, $k)=> $v+$k['price']) !!} </del>
 	                            </div>
 	                        </div>
 
 	                        <div class="pro-group pb-0">
+														@if($order->delivery_status !== 'completed')
 	                            <div class="pro-shop">
 	                                <a class="btn btn-primary m-r-10" href="cart" wire:click.prevent="markOrderAsDelivered">
 																		<i class="fa fa-shopping-basket me-2"></i>Mark Order as Delivered
 																	</a>
-	                                <a class="btn btn-danger" href="list-wish" wire:click.prevent="">
-																		<i class="fa fa-cancel me-2"></i>Remove Checked Items
+	                                <a 
+																		class="btn btn-danger" href="list-wish" 
+																		wire:click.prevent="cancelOrder({!! $order->id !!}, {!! $order->txn_id !!})"
+																	>
+																		<i class="fa fa-ban me-2"></i>Delete Order
 																	</a>
 	                            </div>
+														@endif
 	                        </div>
 	                        
 	                    </div>
@@ -83,16 +76,16 @@
 	                    <div class="card-body">
 	                        <!-- side-bar colleps block stat-->
 	                        <div class="filter-block">
-														<h4>Ordererd Products</h4>
+														<h4>Ordered Products</h4>
 
 														<ul>
 
-															@foreach ($products as $item)
+															@foreach ($products as $key => $item)
 															<li>
 																<div class="form-check">
-																	<label class="form-check-label" for="Raymond">{!! $item->name !!}</label>
-																	<a class="btn btn-danger" wire:click="removeItem({!! $item->id !!})" href="list-wish">
-																		<i class="fa fa-cancel me-2"></i>Remove From Order
+																	<label class="form-check-label" for="{!! $item['name'] !!}">{!! $item['name'] !!}</label>
+																	<a class="btn btn-danger" wire:click.prevent="removeItem({!! $key !!})">
+																		<i class="fa fa-ban me-2"></i>Remove Order
 																	</a>
 																</div>
 															</li>
@@ -100,19 +93,6 @@
 
 														</ul>
 
-														<div class="pro-group pb-0">
-
-															<div class="pro-shop">
-																<button class="btn btn-danger" wire:click="cancelOrder({!! $order->id !!}, {!! $order->txn_id !!})">
-																	<i class="fa fa-cancel me-2"></i>Cancel Order
-																</button>
-																<a class="btn btn-danger" wire:click="removeCheckedItems()" href="list-wish">
-																	<i class="fa fa-cancel me-2"></i>Update Order
-																</a>
-															</div>
-															
-														</div>
-														
 	                        </div>
 	                    </div>
 	                </div>
@@ -124,8 +104,8 @@
 	                                    <div class="media">
 	                                        <i data-feather="truck"></i>
 	                                        <div class="media-body">
-	                                            <h5>Free Shipping</h5>
-	                                            <p>Free Shipping World Wide</p>
+	                                            <h5>Delivery</h5>
+	                                            <p>{!! ucfirst($order->delivery_status) !!}</p>
 	                                        </div>
 	                                    </div>
 	                                </li>
@@ -133,8 +113,8 @@
 	                                    <div class="media">
 	                                        <i data-feather="clock"></i>
 	                                        <div class="media-body">
-	                                            <h5>24 X 7 Service</h5>
-	                                            <p>Online Service For New Customer</p>
+	                                            <h5>Payment</h5>
+	                                            <p>{!! ucfirst($order->status) !!}</p>
 	                                        </div>
 	                                    </div>
 	                                </li>

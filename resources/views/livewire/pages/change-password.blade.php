@@ -1,5 +1,5 @@
-@section('title', 'Edit Profile')
-@section('description', 'Welcome to StaySlay - Fashion. Edit Profile')
+@section('title', 'Change Password')
+@section('description', 'Welcome to StaySlay - Fashion. Change Password')
 @section('keywords', 'Stay, Slay, Fashion')
 
 <div>

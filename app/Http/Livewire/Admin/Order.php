@@ -39,7 +39,9 @@ class Order extends Component
     {
         $order = OrderModel::find($id);
         $user = $order->user;
-        $user->notify( new DeliveryCompleted($order) );
+        $order->delivery_status = 'completed';
+        $user->notify(new DeliveryCompleted($order) );
+        $order->save();
     }
 
     public function removeItem($product)

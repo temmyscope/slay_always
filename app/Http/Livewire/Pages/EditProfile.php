@@ -13,7 +13,7 @@ class EditProfile extends Component
     public $user;
     public $name, $mobile, $email, $subscribed;
 
-    public function updateProfile()
+    public function updateMobile()
     {
         if($this->user->profile === null){
             $profile = new Profile();
@@ -32,7 +32,7 @@ class EditProfile extends Component
     public function updateUserProfile()
     {
         $this->user->name = $this->name;
-        $this->user->subscribed = $this->subscribed;
+        $this->user->subscribed = $this->subscribed === 'true'? 'true' : 'false';
         $this->user->save();
         session()->flash('message', 'Profile Updated.');
     }

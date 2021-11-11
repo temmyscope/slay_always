@@ -26,7 +26,8 @@ class Cart extends Component
             $productIds = array_keys($cartItems);
             $products = Product::where('deleted', 'false')->whereIn('id', $productIds)->get();
             $products->transform(function($item, $key) use ($cartItems){
-                $item->qty = $cartItems[$item->id];
+                $item->id = $item->id;
+                $item->qty = $cartItems[$item->id ?? $item['id']];
                 $item->color = '';
                 $item->size = 'XL';
                 $item->metadata = json_decode($item->metadata);

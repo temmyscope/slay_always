@@ -11,7 +11,7 @@ use App\Http\Livewire\Admin\{
 Route::prefix('admin')->group(function () {
 
   Route::get('/home', Home::class)->name('index');
-  Route::get('/order/{id}', Order::class)->name('order');
+  Route::get('/order/{id}', Order::class)->name('admin-order');
   Route::get('/orders', OrderHistory::class)->name('orders');
   Route::get('/product/{id}', Product::class)->name('product');
   Route::get('/scripts/{id?}', Scripts::class)->name('scripts');

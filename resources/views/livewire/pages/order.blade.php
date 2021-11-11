@@ -1,6 +1,6 @@
-@section('title', 'Checkout')
-@section('description', 'Welcome to StaySlay - Fashion. Checkout')
-@section('keywords', 'Stay, Slay, Fashion')
+@section('title', 'Order')
+@section('description', 'Welcome to StaySlay - Fashion. Order')
+@section('keywords', 'Stay, Slay, Fashion, Each Order')
 
 <div>
     <nav class="w-full">

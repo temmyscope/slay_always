@@ -23,15 +23,18 @@
 	                                    <th scope="col">Order Ref.</th>
 	                                    <th scope="col">User</th>
 	                                    <th scope="col">Order status</th>
-	                                    <th scope="col">Price</th>
+	                                    <th scope="col">Price (&#8358;)</th>
 	                                    <th scope="col">Action</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-																@forelse ($orders as $order)
+															@if(!empty($orders))
+																@foreach ($orders as $order)
 																<tr>
 																	<td>
-																		<a href="/order/{!! $order->id !!}">{!! $order->txn_id !!} </a>
+																		<a href="{!! route('admin-order', ['id' => $order->id]) !!}">
+																			{!! substr($order->txn_id, 0, 16) !!} 
+																		</a>
 																	</td>
 
 																	<td>
@@ -46,30 +49,18 @@
 																		</div>
 																	</td>
 																	
-																	<td>{!! $order->total !!}</td>
+																	<td>{!! number_format($order->total) !!}</td>
 
 																	<td>
-																		@if ( $order->status === 'completed' )
-																			<a 
-																				class="badge badge-secondary" data-bs-toggle="tooltip" 
-																				data-bs-placement="bottom" title="view invoice" 
-																				href="{!! route('invoice', [ 'orderId' => $order->id ]) !!}"
-																			>
-																				<i data-feather="eye"></i>
-																			</a>
-																		@else
-																			<a 
-																				class="badge badge-secondary" data-bs-toggle="tooltip" 
-																				data-bs-placement="bottom" title="view order" href="{!! route('order', [ 'id' => $order->id ]) !!}">
-																				<i data-feather="eye"></i>
-																			</a>
-																		@endif
-																		
+																		<a 
+																			class="badge badge-secondary" data-bs-toggle="tooltip" 
+																			data-bs-placement="bottom" title="view order" href="{!! route('admin-order', [ 'id' => $order->id ]) !!}">
+																			<i data-feather="eye"></i>
+																		</a>
 																	</td>
 																</tr>
-																@empty
-																		
-																@endforelse
+																@endforeach
+															@endif
 	                            </tbody>
 	                        </table>
 	                    </div>

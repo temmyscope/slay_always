@@ -63,8 +63,8 @@
                 type="tel" name="num" id="num" placeholder="+234 8012345678" 
                 class="w-9/12 py-1 input-bod focus:ring-0 focus:outline-none px-2" wire:model="mobile"
               >
-              <a href="" wire:click.prevent="updateProfile" class="text-slayText font-bold">
-                Save<span wire:loading wire:target="updateProfile"><i class="fa fa-spinner faa-spin animated"></i></span>
+              <a href="" wire:click.prevent="updateMobile" class="text-slayText font-bold">
+                Save<span wire:loading wire:target="updateMobile"><i class="fa fa-spinner faa-spin animated"></i></span>
               </a>
             </div>
 
@@ -72,8 +72,7 @@
               <h3 class="font-bold">Newsletter preferences</h3>
               <div class="py-1">
                 <input 
-                  type="checkbox" wire:model="subscribed"  name="slay" id="slay" 
-                  value= "{!! $subscribed === 'true' ? 'false' : 'true' !!}"
+                  type="checkbox" wire:model="subscribed"  name="slay" id="slay"
                   class="mr-1 inline-block relative top-0 w-4" {!! $subscribed === 'true' ? 'checked': '' !!}
                 >
                 <label for="slay" class="text-gray-900 capitalize">
