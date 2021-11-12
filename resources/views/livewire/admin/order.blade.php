@@ -22,9 +22,7 @@
 													<div class="col-xl-9 product-main">
 														<div class="pro-slide-single">
 															@foreach ($products as $key => $item)
-															<div>
-																<img class="img-fluid" src="{!! cdnizeURL($item['image']) !!}" alt="" />
-															</div>
+															<div> <img class="img-fluid" src="{!! cdnizeURL($item['image']) !!}" alt="" /> </div>
 															@endforeach
 														</div>
 													</div>

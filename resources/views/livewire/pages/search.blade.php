@@ -42,7 +42,7 @@
         <div class="w-auto flex justify-end md:justify-start">
           <div class="lg:block clear">
             <button wire:click="clearFilters" class="p-2 w-32 bg-bgSec text-gray-100 text-lg rounded-3xl focus:border-4 border-indigo-300 mb-3 hover:bg-slay">
-              clear ({!! $this->filterCount() !!})
+              clear
             </button>
           </div>
           <div class="close w-full">
@@ -227,7 +227,7 @@
             <button wire:click="clearFilters" 
               class="p-2 w-40 text-gray-100 text-lg rounded border-2 border-gray-200 hover:bg-bgSec"
             >
-              clear ({!! $this->filterCount() !!})
+              clear
             </button>
             <button class="p-2 w-40 text-gray-100 text-lg rounded border-2 border-gray-200 hover:bg-bgSec">
               Apply

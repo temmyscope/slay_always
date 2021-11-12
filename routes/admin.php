@@ -16,13 +16,13 @@ Route::prefix('admin')->group(function () {
   Route::get('/product/{id}', Product::class)->name('product');
   Route::get('/scripts/{id?}', Scripts::class)->name('scripts');
   Route::get('/announce', Announcement::class)->name('announcement');
+  Route::get('/add-product', AddProduct::class)->name('productcreate');
   Route::get('/add-image/{id}/{type}', AddImage::class)->name('add-image');
-  Route::get('/product/add-product', AddProduct::class)->name('productcreate');
-  Route::get('/product/list-products', ProductsList::class)->name('list-products');
+  Route::get('/list-products', ProductsList::class)->name('list-products');
   
  //this route will be pointed to from orders on completed orders
-  Route::get('/settings', Settings::class)->name('settings');
-  Route::get('/feedbacks', Contact::class)->name('contacts');
+  Route::get('/settings', Settings::class)->name('admin-settings');
+  Route::get('/feedbacks', Contact::class)->name('admin-contact');
   Route::get('/promotions/{id?}', Promotions::class)->name('promos');
   Route::get('/invoice/{orderId}', Invoice::class)->name('invoice-template');
 

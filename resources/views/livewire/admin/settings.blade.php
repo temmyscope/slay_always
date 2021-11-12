@@ -1,6 +1,9 @@
 @section('title', 'MetaData Settings')
 
 <div>
+    @push('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.css') }}">
+    @endpush
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -79,6 +82,17 @@
 
                 <div class="card-body">
                     <div class="row">
+                        <div class="mb-2">
+                            <label class="col-form-label">Default Placeholder</label>
+                            <select class="js-example-placeholder-multiple col-sm-12" multiple="multiple">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="WY">Coming</option>
+                                <option value="WY">Hanry Die</option>
+                                <option value="WY">John Doe</option>
+                            </select>
+                        </div>
+
                         <div class="col-6">
                             <label class="form-label">Colors: (Use comma to separate the colors)</label>
                             <div class="input-group">
@@ -148,5 +162,10 @@
             </div>
 
         </div>
+
+        @push('scripts')
+        <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+        <script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script>
+        @endpush
     </div>    
 </div>

@@ -40,7 +40,10 @@ class NewsLetter extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->view(
+        return (new MailMessage)
+        ->subject(
+            ucfirst($this->newsletter->title)
+        )->view(
             'emails.newsletter', [
                 'msg' => $this->newsletter->news
             ]

@@ -1,99 +1,112 @@
-@extends('layouts.admin.master')
+@section('title', 'Feedback')
 
-@section('title', 'Email Composer')
+<div>
+    <style>
+    .feedback-card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px; width: 100%;
+        margin: auto; text-align: center;
+        font-family: arial; max-height: 300px; height: 100%;
+    }
 
-@push('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/dropzone.css')}}">
-@endpush
+    .price {
+        color: grey;
+        font-size: 14px;
+    }
 
-@section('content')
-	
-	{!! "<!-- this would be to send newsletters to multiple people -->" !!}
-	
+    .feedback-card .tag {
+        border: none;
+        outline: 0;
+        padding: 10px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .feedback-card button:hover {
+        opacity: 0.7;
+    }
+    </style>
 	<div class="container-fluid">
-	    <div class="email-wrap">
-	        <div class="row">
-	            <div class="col-xl-3 col-md-6 xl-40">
-	                <div class="email-sidebar">
-	                    <a class="btn btn-primary email-aside-toggle" href="javascript:void(0)">email filter</a>
-	                    <div class="email-left-aside">
-	                        <div class="card">
-	                            <div class="card-body">
-	                                <div class="email-app-sidebar">
-	                                    <div class="media">
-	                                        <div class="media-size-email"><img class="me-3 rounded-circle" src="{{asset('assets/images/user/user.png')}}" alt="" /></div>
-	                                        <div class="media-body">
-	                                            <h6 class="f-w-600">MARKJENCO</h6>
-	                                            <p>Markjecno@gmail.com</p>
-	                                        </div>
-	                                    </div>
-	                                    <ul class="nav main-menu" role="tablist">
-	                                        <li class="nav-item">
-	                                            <a class="btn-primary btn-block btn-mail" id="pills-darkhome-tab" data-bs-toggle="pill">
-																								<i class="icofont icofont-envelope me-2"></i>Contact Us Message
-																							</a>
-	                                        </li>
-																					{!! "<!-- contact us message -->" !!}
-	                                        
-	                                    </ul>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-xl-9 col-md-12 xl-60">
-	                <div class="email-right-aside">
-	                    <div class="card email-body">
-	                        <div class="email-profile">
-	                            <div class="email-body">
-	                                <div class="email-compose">
-	                                    <div class="email-top compose-border">
-	                                        <div class="compose-header">
-	                                            <h4 class="mb-0">New Message</h4>
-	                                            <button class="btn btn-primary" type="button"><i class="fa fa-file me-2"></i> save</button>
-	                                        </div>
-	                                    </div>
-	                                    <div class="email-wrapper">
-	                                        <form class="theme-form">
-	                                            <div class="form-group">
-	                                                <label class="col-form-label pt-0" for="exampleInputEmail1">To</label>
-	                                                <input class="form-control" id="exampleInputEmail1" type="email" />
-	                                            </div>
-	                                            <div class="form-group">
-	                                                <label for="exampleInputPassword1">Subject</label>
-	                                                <input class="form-control" id="exampleInputPassword1" type="text" />
-	                                            </div>
-	                                            <div class="form-group">
-	                                                <label>Message</label>
-	                                                <textarea id="text-box" name="text-box" cols="10" rows="2"> </textarea>
-	                                            </div>
-	                                        </form>
-	                                        <div class="action-wrapper">
-	                                            <ul class="actions">
-                                                    <li>
-                                                            <a class="btn btn-secondary" href="javascript:void(0)"><i class="fa fa-paper-plane me-2"></i>send </a>
-                                                    </li>
-	                                            </ul>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+		<div class="row project-cards">
 
-	
-	@push('scripts')
-	<script src="{{asset('assets/js/editor/ckeditor/ckeditor.js')}}"></script>
-    <script src="{{asset('assets/js/editor/ckeditor/adapters/jquery.js')}}"></script>
-    <script src="{{asset('assets/js/dropzone/dropzone.js')}}"></script>
-    <script src="{{asset('assets/js/dropzone/dropzone-script.js')}}"></script>
-    <script src="{{asset('assets/js/email-app.js')}}"></script>
-	@endpush
+			<div class="col-md-12 project-list">
+                <div class="card">
+                    <div class="row">
 
-@endsection
+                        <div class="col-md-6 p-0">
+                            <h5 class="nav nav-tabs border-tab" id="top-tab" role="tablist">
+                                FeedBacks
+                            </h5>
+						</div>
+
+                    </div>
+                </div>
+			</div>
+
+            <div class="col-sm-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="tab-content" id="top-tabContent">
+                            <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+                                <div class="row" style="display: flex;justify-content:center;align-items:center;">
+
+                                    <div 
+                                        class="col-xxl-4 col-lg-6" 
+        style="display: flex;justify-content:space-evenly;flex-wrap:wrap;align-items:center;align-content:center;margin:30px;"
+                                    >
+                                        @if ( !empty($feedbacks) )
+                                            @foreach ($feedbacks as $feedback)
+                                            <div class="feedback-card" style="margin-bottom: 10px; padding-bottom:10px;">
+                                                <h1>{!! $feedback->name !!}</h1>
+                                                <p class="price" style="display: flex;justify-content: space-between; margin:10px;">
+                                                    <a href="{!! route('editor').'?email='.$feedback->email.'&name='.$feedback->sender_name !!}">
+                                                        <i class="fa fa-envelope"></i>
+                                                    </a>
+                                                    @if ( $feedback->responded === 'true' )
+                                                    <span class="badge badge-primary">
+                                                        Responded
+                                                    </span>
+                                                    @else
+                                                    <span
+                                                        wire:click="markAsResponded({!! $feedback->id !!})" 
+                                                        class="badge badge-primary" style="cursor: pointer"
+                                                    >
+                                                        Mark as Responded
+                                                        <span wire:loading wire:target="markAsResponded">
+                                                            <i class="fa fa-spinner faa-spin animated"></i>
+                                                        </span>
+                                                    </span>
+                                                    @endif
+                                                </p>
+                                                <p>{!! $feedback->sender_name !!}</p>
+                                                <p>{!! $feedback->feedback !!}</p>
+                                                <hr>
+                                                <p>
+                                                    <span class="badge badge-primary tag" style="width: 38%">
+                                                        {!! $feedback->type !!}
+                                                    </span>
+                                                    <span>about<span>
+                                                    <span class="badge badge-primary tag" style="width: 38%">
+                                                        {!! $feedback->subject !!}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            @endforeach
+
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

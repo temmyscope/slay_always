@@ -23,8 +23,7 @@ class Product extends Component
         "DarkBlue", "DarkCyan", "DarkGoldenRod", "DarkGray", "DarkGrey", "DarkGreen", "DarkKhaki", "DarkMagenta",
         "DarkOliveGreen", "DarkOrange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSeaGreen",
         "DarkSlateBlue", "DarkSlateGray", "DarkSlateGrey", "DarkTurquoise", "DarkViolet", "DeepPink",
-        "DeepSkyBlue", "DimGray","DimGrey", "DodgerBlue", 
-        "FireBrick","FloralWhite","ForestGreen","Fuchsia",
+        "DeepSkyBlue", "DimGray","DimGrey", "DodgerBlue", "FireBrick","FloralWhite","ForestGreen","Fuchsia",
         "Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow",
         "HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki",
         "Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue",
@@ -33,39 +32,39 @@ class Product extends Component
         "LightSlateGrey","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen",
         "Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple",
         "MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue",
-        "MintCream","MistyRose","Moccasin",
-        "NavajoWhite","Navy",
-        "OldLace","Olive","OliveDrab","Orange","OrangeRed",
-        "PaleGoldenRod","PaleGreen",
-        "PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple",
-        "RebeccaPurple","Red","RosyBrown","RoyalBlue",
+        "MintCream","MistyRose","Moccasin", "NavajoWhite","Navy", "OldLace","Olive","OliveDrab","Orange","OrangeRed",
+        "PaleGoldenRod","PaleGreen", "PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum",
+        "PowderBlue","Purple", "RebeccaPurple","Red","RosyBrown","RoyalBlue",
         "SaddleBrown","Salmon", "SandyBrown", "SeaGreen", "SeaShell", "Sienna", "Silver",
         "SkyBlue","SlateBlue","SlateGray","SlateGrey","Snow","SpringGreen","SteelBlue",
-        "Tan","Teal","Thistle","Tomato","Turquoise",
-        "Violet",
-        "Wheat","White","WhiteSmoke",
-        "Yellow","YellowGreen"
+        "Tan","Teal","Thistle","Tomato","Turquoise", "Violet", "Wheat","White","WhiteSmoke", "Yellow","YellowGreen"
     ];
 
-    public function mount($id)
+    public function mount($id = null)
     {
-        
-        $this->product = ProductModel::with('images')->find($id);
+        $this->product = ($id) ? ProductModel::find($id) : null;
 
         $metadata = json_decode($this->product->metadata);
 
         $this->fill([
-            'name' => $this->product->name, 'description' => $this->product->description,
-            'tags' => $this->product->tags, 'others' => json_decode($this->product->metadata),
-            'price' => $this->product->price, 'quantity' => $this->product->quantity,
-            'colors' => $metadata->colors, 
-            'sizes' => $metadata->sizes
+            'name' => $this->product?->name, 'description' => $this->product?->description,
+            'tags' => $this->product?->tags, 'price' => $this->product?->price, 
+            'others' => json_decode($this->product->metadata ?? []),
+            'quantity' => $this->product?->quantity,
+            'colors' => $metadata?->colors, 'sizes' => $metadata?->sizes
         ]);
         
     }
 
     public function save()
     {
+        $this->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'tags' => 'required|string',
+            'quantity' => 'required|number',
+            'colors' => 'required|string',
+        ]);
         $product = $this->product;
         if( !$this->product instanceof ProductModel){
             $product = New ProductModel();

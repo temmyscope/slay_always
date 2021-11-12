@@ -42,7 +42,9 @@ class DeliveryCompleted extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->view(
+        return (new MailMessage)
+        ->subject('Order Delivered')
+        ->view(
             'emails.delivery-completed', [ 'order' => $this->order ]
         );
     }

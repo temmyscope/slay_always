@@ -15,33 +15,22 @@
 				<div class="col-md-6 col-lg-6 col-xl-4 box-col-6">
 					<div class="card custom-card">
 						<div class="ribbon ribbon-primary ribbon-space-bottom" style="color: white;">{!! $user->acl !!}</div>
-						<div class="card-profile"><img class="rounded-circle" src="{!! asset('assets/images/dashboard/1.png') !!}" alt="" /></div>
-
-						@if ($user->acl === 'admin' && $user->id < 5)
-								
-						@else
-						<div style="display:flex;flex-direction:row;justify-content:space-evenly; align-items:center;">
-							Change Role:
-							<button class="badge rounded-pill badge-info" wire:click="updateRole({!! $user->id !!}, 'user')">
-								Customer
-								@if($user->acl === 'customer')
-									<i class="icofont icofont-star me-2"></i>
-								@endif
-							</button>
-							<button class="badge rounded-pill badge-danger sweet-11" wire:click="updateRole({!! $user->id !!}, 'admin')">
-								Admin
-								@if($user->acl === 'admin')
-									<i class="icofont icofont-star me-2"></i>
-								@endif
-							</button>
+						<div class="card-profile">
+							<img class="rounded-circle" src="{!! asset('assets/images/dashboard/1.png') !!}" alt="" />
 						</div>
-						@endif
+
+						
+						<div style="display:flex;flex-direction:row;justify-content:space-evenly; align-items:center;">
+							<span class="badge rounded-pill badge-info">
+								{!! ucfirst($user->acl) !!}
+							</span>
+						</div>
 
 						<ul class="card-social">
 							<li>
 									<a href="{!! route('editor', ['user' => $user->id]) !!}"><i class="fa fa-envelope"></i></a>
 							</li>
-							@if ( $user->profile && $user->profile->mobile )
+							@if ( $user->profile?->mobile )
 							<li>
 								<a href="https://web.whatsapp.com/send?phone={!! $user->profile->mobile !!}&text=Hello!">
 									<i class="fa fa-comments"></i>

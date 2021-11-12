@@ -48,7 +48,9 @@ class OrderCompleted extends Notification
             $sub_total += $product->price;
         }
 
-        return (new MailMessage)->view(
+        return (new MailMessage)
+        ->subject("Order Processed")
+        ->view(
             'emails.order-processed', [
                 'order' => $this->order,
                 'products' => $metadata->products,

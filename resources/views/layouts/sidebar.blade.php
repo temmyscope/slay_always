@@ -37,9 +37,18 @@
       <li class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4">
         <a href="{!! route('user-recent') !!}">
           <span class="fas fa-history lg:px-3 px-1"></span>
-        recently viewed
+          Recently viewed
         </a>
       </li>
+      
+      @if( strtolower(auth()->user()->acl) === 'admin')
+      <li class="lg:pl-5 pl-1 cursor-pointer hover:bg-slay hover:text-gray-200 py-4">
+        <a href="{!! route('index') !!}">
+          <span class="fas fa-lock lg:px-3 px-1"></span>
+          Admin Area
+        </a>
+      </li>
+      @endif
 
       <div class="cursor-pointer hover:bg-gray-300 py-3 text-center text-xl border-t-2 border-gray-200 border-solid text-slayText font-bold mt-16">
         <a href="{!! route('logout') !!}">

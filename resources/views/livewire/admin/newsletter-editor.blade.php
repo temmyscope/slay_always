@@ -21,6 +21,7 @@
 																					</div>
 																			</div>
 																			<ul class="nav main-menu" role="tablist">
+
 																				<li class="nav-item">
 																					<a  wire:click="changeNewsType('email')" class="btn-primary btn-block btn-mail" id="pills-darkhome" data-bs-toggle="pill" href="#pills-darkhome" style="display: flex;justify-content: space-between">
 																						<span><i class="icofont icofont-envelope me-2"></i>MAIL</span>
@@ -37,7 +38,11 @@
 																				<li class="nav-item mb-2" style="display:flex;flex-direction:column;justify-content:space-between;align-items:space-between;">
 																					@if (isset($pastNewsLetters[$i]))
 																					<p style="align-self: flex-start; margin:2px">
-																					{!! substr($pastNewsLetters[$i]->title, 0, 50) !!}
+																						{!! substr($pastNewsLetters[$i]->title, 0, 50) !!}
+
+																						<span wire:click="useMail({!! $pastNewsLetters[$i]->id !!})" style="cursor: pointer;">
+																							Reuse Mail
+																						</span>
 																					</p>
 																					<p style="align-self: flex-end">
 																					{!! date('g:i a, l M jS, Y', strtotime($pastNewsLetters[$i]->created_at) ) !!}
@@ -93,7 +98,7 @@
 																								<div class="radio radio-primary">
 																									<input 
 																										id="radioinline1" type="radio" name="radio1" value="specific" 
-																										wire:model="group" {!! ($recipient !== null)? 'checked' : '' !!}
+																										wire:model="group" {!! (!is_null($email) && !empty($email) )? 'checked' : '' !!}
 																									>
 																									<label class="mb-0" for="radioinline1">Specific User</label>
 																								</div>
@@ -104,7 +109,7 @@
 
 																							</div>
 																							@if($group !== 'all')
-																								@if (!is_null($recipient) && is_numeric($recipient))
+																								@if ( !is_null($email) && !empty($email) )
 																									<label class="mb-0" for="radioinline2">Recipient Email</label>
 																									<input class="form-control" id="exampleInputEmail1" wire:model="email" type="email" disabled />
 																								@else

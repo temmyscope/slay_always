@@ -41,7 +41,10 @@ class UserNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->view(
+        return (new MailMessage)
+        ->subject(
+            $this->note?->subeject ?? "StaySlay Fashion Alert"
+        )->view(
             'emails.notification', [ 
                 'name' => $this->note->user, 'msg' => $this->note->msg
             ]
