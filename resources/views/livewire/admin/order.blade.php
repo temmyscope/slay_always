@@ -3,7 +3,6 @@
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/slick.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/slick-theme.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/rating.css')}}">
 @endpush
 
 <div>
@@ -14,28 +13,33 @@
 	            <div class="col-xl-5 col-md-6 box-col-12 xl-50">
 	                <div class="card">
 	                    <div class="card-body">
-	                        <div class="row">
-	                            <div class="col-xl-9 product-main">
-	                                <div class="pro-slide-single">
-																		@foreach ($products as $key => $item)
-																		<div>
-																			<img class="img-fluid" src="{!! cdnizeURL($item['image']) !!}" alt="" />
-																		</div>
-																		@endforeach
-	                                </div>
-	                            </div>
-	                            <div class="col-xl-3 product-thumbnail">
-	                                <div class="pro-slide-right">
-																			@foreach ($products as $item)
-	                                    <div>
-	                                        <div class="slide-box">
-																						<img src="{!! cdnizeURL($item['image']) !!}" alt="" />
-																					</div>
-	                                    </div>
-																			@endforeach
-	                                </div>
-	                            </div>
-	                        </div>
+
+												<div class="row" style="display: flex; justify-content:center;">
+													<span class="alert-danger" style="text-align: center">{!! session('') ?? '' !!}</span>
+												</div>
+
+												<div class="row">
+													<div class="col-xl-9 product-main">
+														<div class="pro-slide-single">
+															@foreach ($products as $key => $item)
+															<div>
+																<img class="img-fluid" src="{!! cdnizeURL($item['image']) !!}" alt="" />
+															</div>
+															@endforeach
+														</div>
+													</div>
+													<div class="col-xl-3 product-thumbnail">
+														<div class="pro-slide-right">
+															@foreach ($products as $item)
+															<div>
+																<div class="slide-box">
+																	<img src="{!! cdnizeURL($item['image']) !!}" alt="" />
+																</div>
+															</div>
+															@endforeach
+														</div>
+													</div>
+												</div>
 	                    </div>
 	                </div>
 	            </div>
@@ -85,7 +89,7 @@
 																<div class="form-check">
 																	<label class="form-check-label" for="{!! $item['name'] !!}">{!! $item['name'] !!}</label>
 																	<a class="btn btn-danger" wire:click.prevent="removeItem({!! $key !!})">
-																		<i class="fa fa-ban me-2"></i>Remove Order
+																		<i class="fa fa-ban me-2"></i>Remove Item
 																	</a>
 																</div>
 															</li>
@@ -131,8 +135,6 @@
 </div>
 
 @push('scripts')
-<script src="{{asset('assets/js/rating/jquery.barrating.js')}}"></script>
-	<script src="{{asset('assets/js/rating/rating-script.js')}}"></script>
 	<script src="{{asset('assets/js/slick-slider/slick.min.js')}}"></script>
 	<script src="{{asset('assets/js/slick-slider/slick-theme.js')}}"></script>
 @endpush

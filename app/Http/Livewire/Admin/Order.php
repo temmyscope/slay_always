@@ -27,7 +27,7 @@ class Order extends Component
         $user = $order->user;
         $note = new \StdClass();
         $note->name = explode(' ', $user->name);
-        $note->note = "We are sorry, Your order was canceled.".
+        $note->note = "We are sorry to inform you that your order was canceled.".
         "Your refund has already been processed and should arrive within the next 72hrs.<br/> Thanks.";
         $user->notify(new UserNotification($note));
 
@@ -46,21 +46,20 @@ class Order extends Component
 
     public function removeItem($product)
     {
-        $this->checkedItemsId[] = $product;
-    }
 
-    public function removeCheckedItems()
-    {
-        $voucherPrice = 0;
-        foreach($this->checkedItemsId as $productId){
-            $this->order->total -= $this->products[$productId]->activePrice;
-            $voucherPrice += $this->products[$productId]->activePrice;
-            unset($this->products[$productId]);
-        }
+        $this->order->total -= $this->products[$product]['activePrice'];
+        
+        $voucherPrice = $this->products[$product]['activePrice'];
+        unset(
+            $this->products[$product]
+        );
+    
+        
         OrderModel::where('id', $this->order->id)->update([
             'total' => $this->order->total,
             'metadata->products' => json_encode($this->products),
         ]);
+
         $voucher = new Voucher();
         $voucher->user_id = $this->order->user_id;
         $voucher->value = $voucherPrice;
@@ -68,11 +67,13 @@ class Order extends Component
 
         $user = $this->order->user;
         $note = new \StdClass();
-        $note->name = explode(' ', $user->name);
-        $note->note = "Some items in your order are currently unavailable and have been removed from your order. <br/>".
+        $note->name = explode(' ', $user->name)[0];
+        $note->note = "An item in your order is currently unavailable and have been removed from your order. <br/>".
         "We've converted the value for you to StaySlay Voucher; You can use it on your next purchase.";
         $user->notify(new UserNotification($note));
+        session()->flash('message', 'Item has been removed from order and user has been informed.');
     }
+
 
     public function render()
     {
