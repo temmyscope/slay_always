@@ -3,13 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="viho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities." />
-        <meta name="keywords" content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app" />
-        <meta name="author" content="pixelstrap" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+        <meta name='description' content="Unisex Ready To Wear brand & custom made;" />
+        <meta name='keywords' content="Stay, Slay, Fashion, Clothing," />
+        <meta name='author' content='Elisha Temiloluwa a.k.a TemmyScope'/>
         <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon" />
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon" />
-        <title>viho - Premium Admin Template</title>
+        <title>StaySlay Fashion - Order Processsed</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/fontawesome.css') }}" />
         <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
@@ -329,7 +329,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p style="font-size: 18px;"><b>Hi John Doe,</b></p>
+                                        <p style="font-size: 18px;"><b>Hi {!! $user->name !!},</b></p>
                                         <p style="font-size: 14px; color: #aba8a8;">Order Is Successfully Processsed And Your Order Is On The Way,</p>
                                         <p style="font-size: 14px; color: #aba8a8;">Transaction ID : {!! $order->txn_id !!},</p>
                                     </td>
@@ -371,19 +371,19 @@
                                 <tr>
                                     <td><img src="{!! $item->image !!}" alt="" width="80" /></td>
                                     <td valign="top" style="padding-left: 15px;">
-                                        <h5 style="margin-top: 15px;">{!! $item->name !!}</h5>
+                                        <h5 style="margin-top: 15px;">{!! $item['name'] !!}</h5>
                                     </td>
                                     <td valign="top" style="padding-left: 15px;">
                                         <h5 style="font-size: 14px; color: #444; margin-top: 15px; margin-bottom: 0px;">
-                                            Size : <span>{!! $item->metadata->size !!}</span>
+                                            Size : <span>{!! $item['metadata']['size'] !!}</span>
                                         </h5>
                                         <h5 style="font-size: 14px; color: #444; margin-top: 10px;">
-                                            QTY : <span>{!! $item->metadata->qty !!}</span>
+                                            QTY : <span>{!! $item['metadata']['qty'] !!}</span>
                                         </h5>
                                     </td>
                                     <td valign="top" style="padding-left: 15px;">
                                         <h5 style="font-size: 14px; color: #444; margin-top: 15px;">
-                                            <b>₦{!! $item->price !!}</b>
+                                            <b>₦{!! $item['price'] !!}</b>
                                         </h5>
                                     </td>
                                 </tr>
@@ -403,7 +403,7 @@
                                         <p style="font-size: 14px;">{!! strtoupper($tax) !!} :</p>
                                     </td>
                                     @if ($tax == 'shipping')
-                                    <td colspan="2" align="right"><b>₦{!! $charge * $order->total !!}</b></td>
+                                    <td colspan="2" align="right"><b>₦{!! $charge !!}</b></td>
                                     @else
                                     <td colspan="2" align="right"><b>{!! $charge !!}%</b></td>
                                     @endif
@@ -411,13 +411,13 @@
                                 @endforeach
                                 <tr class="pad-left-right-space">
                                     <td colspan="2" align="left">
-                                        <p style="font-size: 14px;">Discount :</p>
+                                        <p style="font-size: 14px;">Discount: </p>
                                     </td>
                                     <td colspan="2" align="right"><b> ₦{!! $order->metadata->discount !!}</b></td>
                                 </tr>
                                 <tr class="pad-left-right-space">
                                     <td class="m-b-5" colspan="2" align="left">
-                                        <p style="font-size: 14px;">Total :</p>
+                                        <p style="font-size: 14px;">Total: </p>
                                     </td>
                                     <td class="m-b-5" colspan="2" align="right"><b>₦{!! $order->total !!}</b></td>
                                 </tr>
@@ -434,7 +434,9 @@
                                             <tbody>
                                                 <tr class="temp-social">
                                                     <td>
-                                                        <a href=""><i class="fa fa-twitter"></i></a>
+                                                        <a href="https://web.whatsapp.com/send?phone=2349075620497">
+                                                            <i class="fa fa-whatsapp"></i>
+                                                        </a>
                                                     </td>
                                                     <td>
                                                         <a href="https://www.instagram.com/stayslay_fashion/"><i class="fa fa-instagram"> </i></a>

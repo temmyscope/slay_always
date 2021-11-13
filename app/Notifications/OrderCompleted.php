@@ -45,7 +45,7 @@ class OrderCompleted extends Notification
         $metadata = json_decode($this->order->metadata);
         $subTotal = 0;
         foreach ($metadata->products as $key => $product) {
-            $sub_total += $product->price;
+            $subTotal += $product['price'];
         }
 
         return (new MailMessage)
@@ -55,7 +55,7 @@ class OrderCompleted extends Notification
                 'order' => $this->order,
                 'products' => $metadata->products,
                 'charges' => $metadata->taxesApplied,
-                'user' => $notifiable,
+                'user' => $this->order->user,
                 'subTotal' =>$subTotal
             ]
         );
