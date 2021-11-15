@@ -107,7 +107,9 @@ trait Reusables{
     if (Auth::check()) {
       CartModel::where('user_id', auth()->user()->id)->delete();
     }else{
-      session()->remove('user-cart');
+      if (session()->has('user-cart')) {
+        session()->remove('user-cart');
+      }
     }
     $this->emitTo('search', 'refreshCartCount');
   }

@@ -2,15 +2,19 @@ let slideTextIndex = 0;
 
 function showTextSlides() {
   let textSlides = document.querySelectorAll("#slides");
-  for (let firstText = 0; firstText < textSlides.length; firstText++) {
-    textSlides[firstText].style.display = "none";
+  if (textSlides) {
+    for (let firstText = 0; firstText < textSlides.length; firstText++) {
+      textSlides[firstText].style.display = "none";
+    }
+    slideTextIndex++;
+    if (slideTextIndex > textSlides.length) {
+      slideTextIndex = 1
+    }
+    if ( textSlides[slideTextIndex-1] ) {
+      textSlides[slideTextIndex-1].style.display = "block";  
+    }
+    setTimeout(showTextSlides, 4500); // Change image every 4.5 seconds
   }
-  slideTextIndex++;
-  if (slideTextIndex > textSlides.length) {
-    slideTextIndex = 1
-  }    
-  textSlides[slideTextIndex-1].style.display = "block";  
-  setTimeout(showTextSlides, 4500); // Change image every 4.5 seconds
 }
 showTextSlides();
 

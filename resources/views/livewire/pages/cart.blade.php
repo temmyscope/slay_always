@@ -15,7 +15,7 @@
   </nav>
 
   @if (empty($cart))
-    <main class="w-full mt-10">
+    <main class="w-full mt-10 mb-10">
       <div class="w-4/5 mx-auto">
 
         <div class="w-full">

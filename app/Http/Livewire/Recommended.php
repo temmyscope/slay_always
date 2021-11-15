@@ -16,10 +16,9 @@ class Recommended extends Component
     public function mount()
     {
         //cache is valid for 3 days
-        $recommendations = Cache::remember('recommendations', $seconds=259200, function () {
+        $recommendations = Cache::remember('recommendations', $seconds=777600, function () {
             $cart = $this->fetchCart();
             $recent = session('recently-viewed');
-
             $pool = array_merge($cart ?? [], $recent ?? []);
             $poolIds = array_keys($pool);
             $dataPool = Product::whereIn('id', $poolIds)->get();
@@ -39,7 +38,10 @@ class Recommended extends Component
 
             return Product::recommend('price', $priceRange, $categories);
         });
-        $this->fill([ 'products' => $recommendations ]);
+
+        $this->fill([ 
+            'products' =>  $recommendations
+        ]);
     }
 
     public function render()

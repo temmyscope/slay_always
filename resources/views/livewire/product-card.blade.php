@@ -1,4 +1,4 @@
-<div class="shadow-lg rounded-lg w-full"  style="">
+<div class="shadow-lg rounded-lg w-full">
   <a href="{!! route('user-product', ['id' => $product->id ]) !!}">
     <!--<img 
       class="w-full" alt="{!! $product->name !!} Image"
@@ -16,12 +16,12 @@
      
     </div>
   </a>
-  <div class="py-2 px-2 mb-1">
+  <div class="py-5 px-2">
     @if (!is_null($dicountPercent))
-    <p class="text-red-700 font-bold uppercase mb-2">{!! $dicountPercent !!}% off! no code needed prices as marked</p>
+    <p class="text-red-700 font-bold uppercase mb-2 text-xs">{!! $dicountPercent !!}% off! no code needed prices as marked</p>
     @endif
-    <p class="mb-1 text-gray-500 font-bold">{!! $product->name !!}</p>
-    <p class="font-bold mb-1">
+    <p class="mb-2 text-gray-500 font-bold">{!! $product->name !!}</p>
+    <p class="font-bold mb-2">
       @if (!is_null($dicountPercent))
       <span class="line-through text-gray-500">&#8358;{!! number_format($product->price) !!}&nbsp;</span>
       @endif

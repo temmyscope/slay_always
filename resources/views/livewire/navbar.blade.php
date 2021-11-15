@@ -1,5 +1,4 @@
-<div>
-  <header class="w-full bg-bgSec py-3 sticky top-0 z-30 border-b-2 border-gray-300">
+<div class="w-full bg-bgSec py-3 sticky top-0 z-30 border-b-2 border-gray-300">
     <div class="flex flex-wrap lg:w-navWidth mx-auto justify-between items-center h-full w-smWidth">
       <!-- logo -->
       <div class="w-1/2 lg:w-2/5 flex lg:order-1 order-1">
@@ -79,5 +78,4 @@
     </div>
     
     <!--- End of slide --->
-  </header>
-</div>
+  </div>
