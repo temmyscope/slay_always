@@ -14,7 +14,7 @@ class Cart extends Component
     use Payment, Reusables;
 
     protected $listeners = ['deleteItem','clearCart','removeOrder'];
-    public bool $deliveryAddressSet;
+    public bool $deliveryAddressSet, $isLoggedIn;
     public array $address;
 
     //the recharge context mean that we're trying to use the paystack_token to charge a user
@@ -41,13 +41,14 @@ class Cart extends Component
         }
 
         $promo = Promotion::currentlyRunning();
-        $profile = auth()->user()->profile;
+        $profile = auth()->user()?->profile;
     
         $this->coupon = ($promo !== false) ? $promo->coupon : '';
 
         $this->fill([
             'couponIsActive' => ($promo !== false)? true : false, 
             'coupon' => ($promo !== false)? $promo->coupon : '',
+            'isLoggedIn' => (is_null(auth()->user())) ? false : true,
             'deliveryAddressSet' => ($profile && $profile->address)? true : false,
             'address'=> [
                 'address' => $profile?->address ?? '', 'state' => $profile?->state ?? '', 
@@ -55,8 +56,8 @@ class Cart extends Component
             ], 'discount' => ($promo !== false)? $promo->discount : 0, 
             'total' => $this->applyCoupon(), 'taxes' => json_decode(
                 DB::table('metadata')->whereNotNull('meta->taxes')->first()->meta, true
-            ), 'voucher' => Voucher::where('user_id', auth()->user()->id)->first(),
-            'reference' => strtoupper(str_replace('-','', Str::uuid()->toString()))
+            ), 'voucher' => Voucher::where('user_id', auth()->user()?->id)->first(),
+            'reference' => strtolower(str_replace('-','', Str::uuid()->toString()))
         ]);
     }
 
@@ -77,5 +78,14 @@ class Cart extends Component
     public function removeOrder($transactionId)
     {
         Order::where('txn_id', $transactionId)->delete();
+    }
+
+    public function signInToContinue()
+    {
+        session()->remove('url.intended');
+        session([
+            'url.intended' => env('APP_URL').'/cart' 
+        ]);
+        redirect()->route('login');
     }
 }

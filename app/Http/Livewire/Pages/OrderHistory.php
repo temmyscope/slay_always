@@ -11,7 +11,7 @@ class OrderHistory extends Component
 
     public function mount()
     {
-        $orders = Order::where('user_id', auth()->user()->id )->get();
+        $orders = Order::where('user_id', auth()->user()?->id )->get();
         $this->fill([
             'orders' => $orders
         ]);

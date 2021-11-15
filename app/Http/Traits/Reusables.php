@@ -38,7 +38,10 @@ trait Reusables{
     if (Auth::check()) {
       //decode  json encoded cart, get array keys and return count if not empty
       $cart = CartModel::where('user_id', auth()->user()->id)->first();
-      return (!empty($cart)) ? json_decode($cart->items, true) : null;
+      if (empty($cart)) {
+        return session('user-cart');
+      }
+      return json_decode($cart->items, true);
     }else{
       return session('user-cart');
     }

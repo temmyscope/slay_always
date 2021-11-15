@@ -29,7 +29,6 @@ class Home extends Component
         $gramFeed = fetchGramFeed(
             json_decode($socials->meta)->socials->instagram
         );
-        //dd($gramFeed);
         
         return view('livewire.pages.home', [
             'popular' => Product::where('deleted', 'false')->whereIn(

@@ -64,7 +64,6 @@ class Chat extends Component
             ])->orWhere([
                 [ 'user_id', $this->user->id ], [ 'recipient_id', $this->user->id ]
             ])->orderBy('created_at')->get();
-            dd($this->chatInFocus->sender);
         }
         
     }

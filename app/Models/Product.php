@@ -54,7 +54,7 @@ class Product extends Model
 
     public static function liked($id): bool
     {
-        $liked = Favorite::where('user_id', auth()->user()->id ?? '')
+        $liked = Favorite::where('user_id', auth()->user()?->id ?? '')
         ->where('product_id', $id)->get()->all();
         if (empty($liked)) {
             return false;

@@ -20,7 +20,7 @@ class Profile extends Component
 
     public function mount()
     {
-        $user = User::find( auth()->user()->id );
+        $user = User::find( auth()->user()?->id );
         $avatar = array_map(
             fn($name) => strtoupper($name[0]), 
             $name = array_map('trim', explode(' ', $user->name))

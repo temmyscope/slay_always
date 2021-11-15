@@ -69,7 +69,6 @@ class Settings extends Component
                 $properties[ $k[0] ] = $v[0];
             }
         });
-        //dd([$taxes, $properties, $socials]);
 
         unset($properties['visits']);
         $this->fill([

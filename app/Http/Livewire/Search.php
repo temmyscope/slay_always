@@ -36,7 +36,7 @@ class Search extends Component
         $cartItemsCount = $this->cartCount();
 
         $favorites = Favorite::where(
-            'user_id', auth()->user()->id ?? null
+            'user_id', auth()->user()?->id ?? null
         )->count();
         
         $notes = DB::table('notes')->where('active_at', '>', date('Y-m-d h:i:s'))->get();

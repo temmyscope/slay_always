@@ -14,7 +14,7 @@
     </ul>
   </nav>
 
-  @if (empty($cart))
+  @if (empty($cart) && !isset($cart[0]))
     <main class="w-full mt-10 mb-10">
       <div class="w-4/5 mx-auto">
 
@@ -31,7 +31,7 @@
       </div>
     </main>
   @else
-    <main class="w-full mt-10 overflow-x-auto lg:overflow-hidden flex">
+    <main class="w-full mt-10 overflow-x-auto lg:overflow-hidden flex mb-5">
       <div class="lg:w-4/5 mx-auto p-2 bg-white">
   
         <div class="flex justify-between gap-1 w-full flex-wrap">
@@ -167,12 +167,14 @@
                 type="text" name="name" id="name" placeholder="Coupon code" wire:model="coupon"
                 class="w-9/12 py-1 increment focus:ring-0 focus:outline-none px-2"
               >
+              @if ($isLoggedIn)
               <button 
                 class="bg-bgSec text-white w-28 text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md " 
                 type="button" wire:click=""
               >
                 Apply
               </button>
+              @endif
             </div>
 
             <div class="flex justify-between p-2 mt-2">
@@ -222,18 +224,32 @@
               </p>
               @endif
             </div>
-            <div class="p-2">
+            @if ( $isLoggedIn )
+            <div class="p-1">
               <button 
                 wire:click="checkout" id="paymentButton"
                 class="bg-bgSec text-white w-full text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md"
               >
-                Checkout
+                <span wire:loading.remove wire:target="checkout">Checkout</span>
                 <span wire:loading wire:target="checkout">
                   Please wait... <i class="fa fa-spinner faa-spin animated"></i>
                 </span>
               </button>
             </div>
-            <div class="p-2 text-center" style="color: red">
+            @else
+            <div class="p-1">
+              <button 
+                id="paymentButton" wire:click="signInToContinue"
+                class="bg-bgSec text-white w-full text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-md"
+              > Sign In To Continue 
+                <span wire:loading wire:target="signInToContinue">
+                  <i class="fa fa-spinner faa-spin animated"></i>
+                </span>
+              </button>
+            </div>
+            @endif
+
+            <div class="p-1 text-center" style="color: red">
               {!! session('error') !!}
             </div>
           </div>
@@ -252,11 +268,11 @@
   <script>
   window.addEventListener('checkoutWithPaystack', async(event) => {
     let total = event.detail.total;
-    var user_id = {!! auth()->user()->id !!};
+    var user_id = {!! auth()->user()?->id !!};
     await (new PaystackPop).checkout({
       key: "{!! env('PAYSTACK_PUBLIC_KEY') !!}", 
-      currency: 'NGN', ref: '{!! $reference !!}',
-      email: '{!! auth()->user()->email !!}', 
+      currency: 'NGN', ref: '{!! $reference ?? "" !!}',
+      email: '{!! auth()->user()?->email !!}', 
       amount: total * 100, //amount in kobo
       style: { theme: "dark" },
       onSuccess: async function(response) {
@@ -268,7 +284,7 @@
         }).catch(err => console.log(err));
       },
       onCancel: function() {
-        Livewire.emit('removeOrder', '{!! $reference !!}');
+        Livewire.emit('removeOrder', '{!! $reference ?? "" !!}');
       },
     });
   });

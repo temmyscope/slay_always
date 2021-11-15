@@ -57,7 +57,7 @@ class Promotions extends Component
             $promotion->start_date = $this->start_date;
             $promotion->end_date = $this->end_date;
             $promotion->user_id = auth()->user()->id;
-            //dd($promotion);
+            
             if($promotion->save()){
                 session()->flash('message', 'Promotion & Coupon has been created.');
             }
@@ -69,9 +69,9 @@ class Promotions extends Component
             ]);
             session()->flash('message', 'Promotion & Coupon has been updated.');
         }
-        //$this->reset([
-        //    'promotionId', 'name', 'discount', 'start_date', 'end_date', 'coupon', 'description'
-        //]);
+        $this->reset([
+            'promotionId', 'name', 'discount', 'start_date', 'end_date', 'coupon', 'description'
+        ]);
     }
 
     public function delete($id)
