@@ -18,6 +18,7 @@ module.exports = {
     }),
     minWidth: {
       profie: '80%',
+      size: '96%',
       odd: '19%',
       cartWb: '72%',
       cartWs: '25%'
