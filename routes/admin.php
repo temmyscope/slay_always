@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\{
   Settings, Favorite, EditProfile, OrderHistory, NewsletterEditor,
-  Order, Invoice, Notification, Search,Contact, Announcement, Scripts,
-  Home, AddProduct, ProductsList, Product, Users, Promotions, AddImage, 
+  Order, Invoice, Notification, Search,Contact, Announcement, Scripts, Home, 
+  AddProduct, ProductsList, Product, Users, Promotions, AddImage, AddInstagram
 };
 
 Route::prefix('admin')->group(function () {
@@ -23,6 +23,7 @@ Route::prefix('admin')->group(function () {
  //this route will be pointed to from orders on completed orders
   Route::get('/settings', Settings::class)->name('admin-settings');
   Route::get('/feedbacks', Contact::class)->name('admin-contact');
+  Route::get('/add-gram/{id?}', AddInstagram::class)->name('add-instagram');
   Route::get('/promotions/{id?}', Promotions::class)->name('promos');
   Route::get('/invoice/{orderId}', Invoice::class)->name('invoice-template');
 

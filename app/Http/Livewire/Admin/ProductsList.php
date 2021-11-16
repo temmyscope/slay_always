@@ -18,6 +18,11 @@ class ProductsList extends Component
         Product::where('id', $id)->update(['deleted' => 'false']);
     }
 
+    public function flush($id)
+    {
+        Product::where('id', $id)->delete();
+    }
+
     public function switchVisibility()
     {
         $this->binVisibility = !$this->binVisibility;

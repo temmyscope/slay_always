@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'profile' => 'App\Models\Profile', 'order' => 'App\Models\Order',
             'product' => 'App\Models\Product', 'user' => 'App\Models\User',
-            'favorite' => 'App\Models\Favorite', ''
+            'favorite' => 'App\Models\Favorite', 'image' => 'App\Models\Image',
+            'instagram' => 'App\Models\Instagram'
         ]);
     }
 }

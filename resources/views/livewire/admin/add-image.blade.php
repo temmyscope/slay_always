@@ -14,8 +14,8 @@
                         style="display:flex;justify-content:center;align-items:stretch;cursor: pointer;"
                         onclick="document.getElementById('product-image').click()"
                     >
-                        <h6>Drop files here or click to upload.</h6>
-                        @error('photos.*') <span class="error">{{ $message }}</span> @enderror
+                        <h6>Click here to upload files.</h6>
+                        @error('images.*') <span class="error">{{ $message }}</span> @enderror
                         @if ($images && !empty($images))
                             <div style="display: flex;justify-content:space-between;align-items:flex-end;">
                                 @foreach ($images as $item)

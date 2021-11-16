@@ -42,6 +42,7 @@
                         <ul class="nav-submenu menu-content" style="display: {{ prefixBlock('/blog') }};">
                             <li><a href="{{ route('list-products') }}" class="{{routeActive('list-products')}}">Product list</a></li>
                             <li><a href="{{ route('productcreate') }}" class="{{routeActive('productcreate')}}">Add new Product</a></li>
+                            <li><a href="{{ route('add-instagram') }}" class="{{routeActive('add-instagram')}}">Instagram Gallery</a></li>
                         </ul>
                     </li>
 

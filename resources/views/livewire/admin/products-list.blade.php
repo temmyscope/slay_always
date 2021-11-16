@@ -60,36 +60,30 @@
 																			</a>
 																		</td>
 																		<td>
-																				<a href=""> <h6>{!! $product->name !!}</h6></a>
-																				<span>{!! $product->description !!}</span>
+																			<a href=""> <h6>{!! $product->name !!}</h6></a>
+																			<span>{!! $product->description !!}</span>
 																		</td>
-																		<td>₦{!! $product->price !!}</td>
+																		<td style="margin-right: 10px;">₦{!! number_format($product->price) !!}</td>
 																		@if ( $product->quantity > 0 )
 																			<td class="font-success">In Stock ({!! $product->quantity !!})</td>
 																		@else
-																			<td class="font-danger">out of stock</td>
+																			<td class="font-danger">Out of stock</td>
 																		@endif
 																		<td 
-																			style="display:flex;flex-direction:column;justify-content:space-evenly;align-items:stretch;align-content:space-between"
+																			style="display:flex;flex-direction:column;flex-wrap:wrap;
+																			justify-content:space-evenly;align-items:stretch;align-content:space-between"
 																		>
 																			<button 
-																				wire:click="delete({!! $product->id !!})" class="btn btn-danger btn-xs" type="button" 
-																				data-original-title="btn btn-danger btn-xs" title=""
-																			>Delete
+																				wire:click="restore({!! $product->id !!})" class="btn btn-danger btn-xs" type="button" 
+																				data-original-title="btn btn-danger btn-xs" title="" style="margin: 0.5px;"
+																			>Restore
 																			<span wire:loading wire:target="delete"><i class="fa fa-spinner faa-spin animated"></i></span>
 																			</button>
-																				<hr/>
-																				<a class="btn btn-primary btn-xs" data-original-title="btn btn-danger btn-xs" 
-																					href="{!! route('product', ['id' => $product->id]) !!}"
+																			<button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs"
+																					wire:click="flush({!! $product->id !!})" style="margin: 0.5px;"
 																				>
-																					Edit
-																				</a>
-																				<hr/>
-																				<a class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs"
-																					href="{!! route('add-image', ['id' => $product->id, 'type' => 'product']) !!}"
-																				>
-																					Add Image(s)
-																				</a>
+																					Delete Permanently
+																			</button>
 																		</td>
 																	</tr>
 																	@endforeach
@@ -108,7 +102,7 @@
 																				<a href=""> <h6>{!! $product->name !!}</h6></a>
 																				<span>{!! $product->description !!}</span>
 																		</td>
-																		<td>₦{!! $product->price !!}</td>
+																		<td style="margin-right: 10px;">₦{!! number_format($product->price) !!}</td>
 																		@if ( $product->quantity > 0 )
 																			<td class="font-success">In Stock ({!! $product->quantity !!})</td>
 																		@else

@@ -23,7 +23,7 @@
       <div class="w-navWidth mx-auto">
         <h1 class="text-3xl text-center font-bold my-9">Customer Favourites</h1>
         
-        <div class="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 w-full">
 
           @foreach ($popular as $i => $pop)
 
@@ -41,7 +41,7 @@
         <div class="w-navWidth mx-auto">
           <h1 class="text-3xl text-center font-bold my-9">Hot Picks For You</h1>
           
-          <div class="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
+          <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 w-full">
             @foreach ($random as $index => $item)
 
               <!---- livewire product component ----->
@@ -60,47 +60,6 @@
   <!-- categories section -->
   @livewire('category-card')
   
-  <!-- section for gram shopping -->
-  <div class="w-full mt-5">
-    <div class="w-navWidth mx-auto text-center lg:text-4xl font-extrabold p-3 text-2xl">
-      <h1>Our 'gram<i class="fab fa-instagram gram"></i> Shopping</h1>
-    </div>
-    <div class="grid grid-cols-4 my-5 gap-4  w-full ">
-
-      @foreach ([1,2,3,4,5,6,7,8] as $item)
-      <div class=" shadow-md max-w-full rounded-sm text-center relative cont">
-        <a href="">
-          <img src="{!! asset('/assets/assets/gram'.$item.'.PNG') !!}" alt="" style="width: 100%;object-fit:contain;">
-          <div class="overlay">
-            <div class="text">
-              <span>
-                <i class="fab fa-instagram"></i>
-              </span>
-              <a href="{!! $instagram->external_url !!}" target="_blank">
-                <button 
-                  class="w-28 lg:w-3/4 bg-gray-700 text-white opacity-100 font-extrabold lg:text-xl mt-7 rounded-lg lg:p-3 p-1"
-                >
-                  Shop
-                </button>
-              </a>
-            </div>
-          </div>
-        </a>
-      </div>
-      @endforeach
-
-    </div>
-  </div>
-
-  <!-- chat section -->
-  <div>
-    <a href="{!! $instagram->external_url !!}" target="_blank" >
-    <button 
-      class="bg-slay text-gray-50 py-3 px-5 cursor-pointer fixed bottom-10 right-14 w-72 text-2xl rounded" 
-    > Chat <span class="fas fa-comments text-2xl"></span>
-    </button>
-    </a>
-  </div>
-  <!-- chat section -->
+  @livewire('instagram')
 
 </div>

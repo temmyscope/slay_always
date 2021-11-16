@@ -25,18 +25,13 @@ class Home extends Component
         ->groupBy('product_id')->take(10)->get())?->sortByDesc('frequency'))->values()->all();
         
         $favoriteProducts = !empty($favorites) ? array_map( fn($item) => $item->id, $favorites) : [];
-        $socials = DB::table('metadata')->whereNotNull('meta->socials')->first();
-        $gramFeed = fetchGramFeed(
-            json_decode($socials->meta)->socials->instagram
-        );
         
         return view('livewire.pages.home', [
             'popular' => Product::where('deleted', 'false')->whereIn(
                 'id', array_values($favoriteProducts)
             )->get()->unique(),
             'random' => Product::where('deleted', 'false')->inRandomOrder()->take(5)->get(),
-            'categories' => (New Category())->categories(),
-            'instagram' => $gramFeed->graphql->user
+            'categories' => (New Category())->categories()
         ])->extends('layouts.app')->section('content');
     }
 

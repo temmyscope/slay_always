@@ -29,8 +29,7 @@ class Product extends Model
         return Product::where('deleted', 'false')
         ->whereRaw("MATCH(description) AGAINST(?)", [$search])
         ->orWhereRaw("MATCH(tags) AGAINST(?)", [$search])
-        ->orWhere("name", 'like', "%$search%")
-        ->get();
+        ->orWhere("name", 'like', "%$search%")->get();
     }
 
     public static function perPageLimit(?string $search, ?int $limit)
