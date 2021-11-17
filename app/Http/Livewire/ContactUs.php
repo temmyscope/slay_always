@@ -38,7 +38,7 @@ class ContactUs extends Component
             'nameOfSender' => '', 'emailOfSender' => '',
         ];
         $user = auth()->user();
-        if ($user->id) {
+        if (!is_null($user) && is_numeric($user->id)) {
             $properties['nameOfSender'] = $user->name;
             $properties['emailOfSender'] = $user->email;
         }
