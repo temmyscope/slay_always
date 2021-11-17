@@ -13,7 +13,7 @@ use App\Http\Livewire\Pages\{
     Cart, Recent, Search, Product, AboutUs
 };
 
-Route::get('/', Home::class)->name('welcome')->middleware('guest');
+Route::get('/', Home::class)->name('welcome');
 
 Route::get('about-us', AboutUs::class)->name('about-us');
 

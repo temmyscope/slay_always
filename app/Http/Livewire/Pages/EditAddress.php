@@ -66,6 +66,7 @@ class EditAddress extends Component
             $profile->user_id = auth()->user()->id;
             $profile->save();
         }
+        session()->flash('message', 'Your profile has been updated.');
         redirect('profile/edit-address');
     }
 

@@ -15,27 +15,29 @@
   </nav>
 
   @if (empty($cart) && !isset($cart[0]))
-    <main class="w-full mt-10 mb-10">
-      <div class="w-4/5 mx-auto">
+  <main class="w-full mt-10 mb-10">
+    <div class="w-4/5 mx-auto">
 
-        <div class="w-full">
-          <h1 class="text-center uppercase text-3xl">shopping bag</h1>
-        </div>
-        <div class="w-full text-center mt-24">
-          <h4 class="text-center  text-xl">Your shopping bag is empty</h4>
-          <a href="{!! route('welcome') !!}">
-            <button class=" lg:w-1/5 bg-black text-white lg:text-xl mt-7 rounded-md lg:p-3 p-1 hover:bg-slay">Continue shopping</button>
-          </a>
-        </div>
-    
+      <div class="w-full">
+        <h1 class="text-center uppercase text-3xl">shopping bag</h1>
       </div>
-    </main>
+      <div class="w-full text-center mt-24">
+        <h4 class="text-center  text-xl">Your shopping bag is empty</h4>
+        <a href="{!! route('welcome') !!}">
+          <button class=" lg:w-1/5 bg-black text-white lg:text-xl mt-7 rounded-md lg:p-3 p-1 hover:bg-slay">Continue shopping</button>
+        </a>
+      </div>
+  
+    </div>
+  </main>
   @else
     <main class="w-full mt-10 overflow-x-auto lg:overflow-hidden flex mb-5">
-      <div class="lg:w-4/5 mx-auto p-2 bg-white">
+      <div class="lg:w-4/5 mx-auto p-2">
   
         <div class="flex justify-between gap-1 w-full flex-wrap">
+
           <div class="lg:w-cartWb flex-shrink-0">
+
             <div class="flex justify-between ">
               <div class="w-3/5">
                 <p class="font-bold">Item</p>
@@ -49,7 +51,7 @@
             </div>
 
             @foreach($cart as $product)
-            <div class="flex justify-between gap-4 py-3 increment px-2">
+            <div class="flex justify-between gap-4 py-3 increment px-2 mt-2">
               <div class="w-3/5 flex gap-4">
                 <div class="w-1/5">
                   <img src="https://images.pexels.com/photos/2010812/pexels-photo-2010812.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
@@ -140,8 +142,10 @@
                 </div>
               </div>
   
-              <div class="text-center w-1/5">
-                <p>&#8358;{!! number_format($product->price ?? $product['price']) !!}</p>
+              <div class="w-1/5">
+                <p class="text-center">
+                  &#8358;{!! number_format($product->price ?? $product['price']) !!}
+                </p>
                 <div class="mt-9 flex gap-1 items-center justify-center">
                   <button 
                     wire:click="addToFavorite({!! $product->id ?? $product['id'] !!})" 
@@ -277,7 +281,7 @@
       style: { theme: "dark" },
       onSuccess: async function(response) {
         Livewire.emit('clearCart');
-        fetch(`https://stayslayfashion.com/api/transaction/verify/${response.reference}/${user_id}`, {
+        fetch(`{!! env('APP_URL') !!}/api/transaction/verify/${response.reference}/${user_id}`, {
             method: "GET", headers: { 'Accept': 'application/json' },
         }).then(res => res.json()).then(data => {
           window.location.href= "{!! env('APP_URL').'/order-history' !!}";
