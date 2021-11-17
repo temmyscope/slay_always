@@ -101,10 +101,9 @@ class Search extends Component
         if (is_null($this->searchResult)) return;
         
         if (!empty($filter)) {
-            $this->filterResult = $this->searchResult->filter(function ($value, $key) use($filter) {
-                $gender = json_decode($value->metadata, true);
-                return array_key_exists('gendered', $gender) && $gender['gendered'] === true;
-            })->all();
+            $this->filterResult = Product::where(
+                'tags', 'like', "%$this->category%"
+                )->whereJsonContains('metadata', 'gendered')->get();
             $this->filtered = true;
         }
     }
@@ -118,11 +117,11 @@ class Search extends Component
             $filter = array_map(
                 'floatval', explode(':', $filter)
             );
-            [$min, $max] = $filter; $this->filtered = true;
-            $this->filterResult = $this->searchResult->filter(function ($value, $key) 
-            use($min, $max) {
-                return ($min < $value->price && $max > $value->price);
-            })->all();
+            [$min, $max] = $filter;
+            $this->filterResult = Product::whereBetween(
+                'price', [$min, $max]
+            )->get();
+            $this->filtered = true;
         }
     }
 
