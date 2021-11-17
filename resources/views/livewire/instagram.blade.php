@@ -1,4 +1,5 @@
 <div>
+  @if($instagramPosts && isset($instagramPosts[0]) )
     <!-- section for gram shopping -->
     <div class="w-full mt-5">
         <div class="w-navWidth mx-auto text-center lg:text-4xl font-extrabold p-3 text-2xl">
@@ -28,7 +29,7 @@
 
         </div>
     </div>
-
+    @endif
   <!-- chat section -->
   <div>
     <a href="https://web.whatsapp.com/send?phone=2349075620497&text=Hello!%20I%want%20to%20o%20make%20an%20order" target="_blank" >
