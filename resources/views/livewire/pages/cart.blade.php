@@ -272,7 +272,6 @@
   <script>
   window.addEventListener('checkoutWithPaystack', async(event) => {
     let total = event.detail.total;
-    var user_id = {!! auth()->user()?->id !!};
     await (new PaystackPop).checkout({
       key: "{!! env('PAYSTACK_PUBLIC_KEY') !!}", 
       currency: 'NGN', ref: '{!! $reference ?? "" !!}',
@@ -281,7 +280,9 @@
       style: { theme: "dark" },
       onSuccess: async function(response) {
         Livewire.emit('clearCart');
-        window.location.href= `{!! env('APP_URL') !!}/api/transaction/verify/${response.reference}/${user_id}`;
+        setTimeout(() => {
+        window.location.href= `{!! env('APP_URL') !!}/order-history?reference=${response.reference}`;
+        }, 3000);
       },
       onCancel: function() {
         Livewire.emit('removeOrder', '{!! $reference ?? "" !!}');
