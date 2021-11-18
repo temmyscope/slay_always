@@ -68,7 +68,7 @@
           @else
           @foreach ($notes as $note)
           <div id="slides" class="w-full h-full hidden ">
-            <p>{!! $note->note !!}</p>
+            <p>{!! $note->note ?? $note['note'] !!}</p>
           </div>
           @endforeach
           @endif

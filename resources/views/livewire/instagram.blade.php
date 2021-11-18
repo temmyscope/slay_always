@@ -1,5 +1,5 @@
 <div>
-  @if($instagramPosts && isset($instagramPosts[0]) )
+    @if($instagramPosts && isset($instagramPosts[0]) )
     <!-- section for gram shopping -->
     <div class="w-full mt-5">
         <div class="w-navWidth mx-auto text-center lg:text-4xl font-extrabold p-3 text-2xl">

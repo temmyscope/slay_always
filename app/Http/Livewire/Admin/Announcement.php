@@ -7,12 +7,27 @@ use Illuminate\Support\Facades\{ DB };
 
 class Announcement extends Component
 {
-
     public string $note, $expiry;
+    public bool $formVisibility;
 
     public function mount()
     {
-        $this->fill([ 'note' => '', 'expiry' => '' ]);
+        $this->fill([ 
+            'note' => '', 'expiry' => '',
+            'formVisibility' => false
+        ]);
+    }
+
+    public function unhideForm()
+    {
+        $this->formVisibility = !$this->formVisibility;
+    }
+    
+    public function delete($id)
+    {
+        DB::table('notes')->where('id', $id)->update([
+            'active_at' => date("Y-m-d h:i:s", strtotime('yesterday'))
+        ]);
     }
 
     public function save()
@@ -27,11 +42,15 @@ class Announcement extends Component
             'active_at' => date('Y-m-d h:i:s', strtotime($this->expiry))
         ]);
         session()->flash('message', 'Your announcement has been published.');
-        $this->fill(['note' => '']);
+        $this->fill(['note' => '', 'expiry' => '']);
     }
+    
     public function render()
     {
-        return view('livewire.admin.announcement')
-        ->extends('layouts.admin.master')->section('content');
+        return view('livewire.admin.announcement', [
+            'notes' => DB::table('notes')->where(
+                'active_at', '>', date('Y-m-d h:i:s', strtotime('today'))
+            )->get()
+        ])->extends('layouts.admin.master')->section('content');
     }
 }

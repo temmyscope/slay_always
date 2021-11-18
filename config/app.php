@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'StaySlay Fashion'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://stayslayfashion.com'),
 
-    'asset_url' => env('ASSET_URL', 'http://localhost/stay_slay/public'),
+    'asset_url' => env('ASSET_URL', 'https://stayslayfashion.com/public'),
 
     /*
     |--------------------------------------------------------------------------

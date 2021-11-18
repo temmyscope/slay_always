@@ -53,11 +53,11 @@
       <label for="slide{!!$product->id.'-'.'blue'!!}" 
         class="p-2 border-solid border-2 border-gray-400 check{!!$product->id.'-'.'blue'!!} inline-block cursor-pointer rounded-full">
       </label>
-    <style>
-    #slide{!!$product->id.'-'.'blue'!!}:checked ~ .check{!!$product->id.'-'.'blue'!!}  {
-      background: blue;
-    }
-    </style>
+      <style>
+      #slide{!!$product->id.'-'.'blue'!!}:checked ~ .check{!!$product->id.'-' .'blue'!!}  {
+       background: blue;
+      }
+      </style>
       @endif
     </span>
   </div>

@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'http://localhost/stay_slay',
+    'asset_url' => 'https://stayslayfashion.com',
 
     /*
     |--------------------------------------------------------------------------

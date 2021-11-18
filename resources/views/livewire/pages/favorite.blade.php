@@ -15,7 +15,7 @@
     </ul>
   </nav>
 
-  @if ($favorites && empty($favorites))
+  @if ($favorites && !isset($favorites[0]))
     <main class="w-full mt-14">
       <div class="w-full">
         <h1 class="text-center uppercase text-3xl">Favorites</h1>
@@ -34,7 +34,7 @@
       
       <div class="w-navWidth mx-auto">
           <div class="w-full flex justify-between mt-4 py-4 text-xl">
-            <p>{!! $favorites->count() ?? 0 !!} items</p>
+            <p>{!! $favorites?->count() ?? 0 !!} items</p>
             <button wire:click="clear" type="button" class="underline">clear all</button>
           </div>
       </div>

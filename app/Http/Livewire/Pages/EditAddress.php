@@ -50,7 +50,7 @@ class EditAddress extends Component
             'state' => 'required|string',
             'address' => 'required|string',
         ]);
-        if ($this->profile && isset(this->profile->user_id)) {
+        if ($this->profile && isset($this->profile->user_id)) {
             Profile::where('user_id', auth()->user()->id)->update([
                 'country' => $this->country,
                 'state' => $this->state,

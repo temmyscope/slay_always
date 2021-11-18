@@ -31,7 +31,7 @@ class Register extends Component
         $user->acl = 'customer';
         if ($user->save()) {
             event(new Registered($user));
-            session()->flash('message', 'Your account has been created. Email Verification Link Sent.');
+            session()->flash('message', 'Your account has been created successfully. Email Verification Link Sent.');
         }
     }
 

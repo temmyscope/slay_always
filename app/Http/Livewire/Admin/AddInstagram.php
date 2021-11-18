@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
-use App\models\{Instagram, Image};
+use App\Models\{ Instagram, Image };
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use StaySlay\Traits\Reusables;
@@ -18,7 +18,7 @@ class AddInstagram extends Component
     public $instagramId;
     public $link;
 
-    public bool $formVisibility = false;
+    public bool $formVisibility;
     protected $rules = [
         'link' => 'required|string',
     ];
@@ -27,11 +27,6 @@ class AddInstagram extends Component
     public function unhideForm()
     {
         $this->formVisibility = !$this->formVisibility;
-    }
-
-    public function generateCoupon()
-    {
-        $this->coupon = strtoupper(Str::random(random_int(6, 16)));
     }
 
     public function save()

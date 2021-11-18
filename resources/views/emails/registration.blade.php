@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 
-  <title>Registration</title>
+  <title>Account Registration</title>
 
   <!--[if mso]>
     <noscript>
@@ -243,7 +243,7 @@
 
                     <td class="table-data" style="padding-bottom: 30px;line-height: 27px;display: block;padding-left: 0;padding-right: 0;word-wrap: break-word;" align="center">
                       <h2 style="text-align: center;color: #eb822a;line-height: 42px;font-size: 37px;font-weight: 600;font-family: 'Roboto', sans-serif;">
-                        Welcome to <br> Stay Slay Fashion!
+                        Welcome to <br> StaySlay Fashion!
                       </h2>
                     </td>
     
@@ -251,9 +251,9 @@
                       <img src="https://res.cloudinary.com/dslkhklbl/image/upload/v1636027211/wepik-2021104-125851-removebg-preview_fwgzgg.png" alt="" width="70%" border="0" style="max-width: 70%;display: block;">
                     </td>
                     <td align="left"class="table-data text" style="padding-bottom: 10px;color: #ffffff;word-wrap: break-word;font-size: 18px;line-height: 33px;width: 90%;">
-                      Hello {!!  !!}, 
+                      Hello There, 
                        <br>
-                    We are delighted to welcome you to Stay Slay Fashion, your number one online plug for both luxury and affordable wearable shopping.
+                    We are delighted to welcome you to StaySlay Fashion, your number one online plug for both luxury and affordable wearable shopping.
                     </td>
     
                     <td align="left" class="table-data text" style="margin-bottom: 20px;padding-bottom: 20px;word-wrap: break-word;font-size: 16px;line-height: 27px;margin-top: 20px;width: 90%;">

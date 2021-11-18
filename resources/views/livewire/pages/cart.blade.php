@@ -281,11 +281,7 @@
       style: { theme: "dark" },
       onSuccess: async function(response) {
         Livewire.emit('clearCart');
-        fetch(`{!! env('APP_URL') !!}/api/transaction/verify/${response.reference}/${user_id}`, {
-            method: "GET", headers: { 'Accept': 'application/json' },
-        }).then(res => res.json()).then(data => {
-          window.location.href= "{!! env('APP_URL').'/order-history' !!}";
-        }).catch(err => console.log(err));
+        window.location.href= `{!! env('APP_URL') !!}/api/transaction/verify/${response.reference}/${user_id}`;
       },
       onCancel: function() {
         Livewire.emit('removeOrder', '{!! $reference ?? "" !!}');

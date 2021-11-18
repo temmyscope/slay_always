@@ -1,4 +1,6 @@
 @section('title', 'Categories')
+@section('description', "StaySlay - Fashion. Our Category Section; $category")
+@section('keywords', "Wearables, Categories, Search,$category")
 
 <div>
     <!-- nav section -->
@@ -33,11 +35,12 @@
         </div>
       </div>
     </div>
+    
     <!-- -->
 
     <!-- side nav -->
     <main class="lg:w-navWidth w-full mx-auto flex md:gap-10">
-      <div class="lg:w-1/5  side-nav w-3/4 overflow-scroll lg:overflow-hidden ">
+      <div class="lg:w-1/5  side-nav w-3/4 overflow-scroll lg:overflow-hidden">
         <!-- button will be displayed on medium to large screen -->
         <div class="w-auto flex justify-end md:justify-start">
           <div class="lg:block clear">
@@ -252,8 +255,8 @@
         @if ( !empty($searchResult) )
 
           @if ($filtered === true)
-            @if (!empty($filteredResult))
-              @foreach ($filtered as $index => $product)
+            @if (!empty($filterResult))
+              @foreach ($filterResult as $index => $product)
                 <livewire:product-card :product="$product" :wire:key="'filtered-'.$index.'-'.$product->id" >
               @endforeach
             @endif
