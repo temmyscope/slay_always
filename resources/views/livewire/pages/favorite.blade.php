@@ -39,7 +39,7 @@
           </div>
       </div>
 
-      <div class="grid grid-cols-3 lg:grid-cols-5 mt-4 mb-2 ml-2 gap-4 w-full">
+      <div class="grid grid-cols-2 lg:grid-cols-5 mt-4 mb-2 ml-2 gap-4 w-full">
       @foreach ($favorites as $item)
         <livewire:product-card :product="$item->product" :wire:key="'faves-'.$item->product->id" >
       @endforeach
