@@ -25,6 +25,7 @@
 
     <div class="nav-right col pull-right right-menu p-0">
       <ul class="nav-menus">
+        <li> <a href="{!! route('home') !!}"><i class="fa fa-home"></i></a></li>
         <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
         
         <li>

@@ -46,7 +46,7 @@
             <input type="password" id="pass" wire:model="password" id="" placeholder="password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
             @error('password') <span class="alert-danger">{{ $message }}</span> @enderror
 
-            <input type="password" id="confirmpass" wire:model="password_confirm" id="" placeholder="confirm password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
+            <input type="password" id="password_confirm" wire:model="password_confirm" id="" placeholder="confirm password" class="w-full my-2 p-2 focus:ring-0 focus:outline-none rounded-md border-gray-200 mb-3">
             @error('password_confirm') <span class="alert-danger">{{ $message }}</span> @enderror
             
             <span class="flex w-full">
@@ -57,8 +57,7 @@
             </span>
             <button type="submit"
                 class="w-3/5 my-6 rounded-md block p-2 bg-bgSec font-medium text-white cursor-pointer hover:bg-gray-400 hover:text-black"
-            ><span wire:loading.remove wire:target="save">Create Account</span>
-            <span wire:loading wire:target="save">Registering <i class="fa fa-spinner faa-spin animated"></i></span>
+            > Register<span wire:loading wire:target="save">ing <i class="fa fa-spinner faa-spin animated"></i></span>
             </button>
             
         </form>
