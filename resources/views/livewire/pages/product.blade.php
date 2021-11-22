@@ -220,30 +220,7 @@
             await navigator.clipboard.writeText('{!! url()->current() !!}');
             shareButton.innerHTML="Link Copied!";
         }
-    });/*
-        async function share () {
-            console.log(navigator.share);
-            if (!navigator.share) {
-                await navigator.clipboard.writeText('{!! url()->current() !!}');
-            }else{
-                const data = await fetch('{!! $product->images[0]?->src ?? "" !!}');
-                const blob = await data.blob();
-                if (navigator.canShare({ files: [blob] })) {
-                    return await navigator.share({
-                        url: '{!! url()->current() !!}',
-                        files: [blob],
-                        title: 'StaySlay-fashion: {!! $product->name !!}',
-                        text: '{!! $product->description !!}'.substring(0, 30),
-                    });
-                }else{
-                    return await navigator.share({
-                        url: '{!! url()->current() !!}',
-                        title: 'StaySlay-fashion: {!! $product->name !!}',
-                        text: '{!! $product->description !!}'.substring(0, 30),
-                    });
-                }
-            }
-        }*/
+    });
     </script>
 
 </div>

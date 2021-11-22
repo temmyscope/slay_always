@@ -34,7 +34,7 @@
   <div>
     <a href="https://web.whatsapp.com/send?phone=2349075620497&text=Hello!%20I%want%20to%20o%20make%20an%20order" target="_blank" >
       <button class="bg-bgSec text-gray-50 py-3 px-4 cursor-pointer fixed lg:bottom-10 bottom-5 lg:right-9 right-5 rounded-full">
-        <span class="fab fa-whatsapp text-5xl text-slayText"></span>
+        <span style="color: #25D366;" class="fab fa-whatsapp text-5xl text-slayText"></span>
       </button>
     </a>
   </div>

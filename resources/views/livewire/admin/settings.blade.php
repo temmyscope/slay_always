@@ -82,7 +82,7 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="mb-2">
+                        <!--<div class="mb-2">
                             <label class="col-form-label">Default Placeholder</label>
                             <select class="js-example-placeholder-multiple col-sm-12" multiple="multiple">
                                 <option value="AL">Alabama</option>
@@ -91,7 +91,7 @@
                                 <option value="WY">Hanry Die</option>
                                 <option value="WY">John Doe</option>
                             </select>
-                        </div>
+                        </div> -->
 
                         <div class="col-6">
                             <label class="form-label">Colors: (Use comma to separate the colors)</label>
@@ -151,11 +151,26 @@
                         </div>
 
                     </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary m-r-15" type="submit">
-                            Save
+                    
+                    <div class="row" style="margin-top:7px;">
+                        <div class="col-6">
+                            <label class="form-label">Youtube:</label>
+                            <div class="input-group">
+                            <input 
+                                class="form-control" type="text" 
+                                wire:model="youtube" 
+                                placeholder="E.g. https://youtube.com/v/VXRT4th7s" 
+                            /> 
+                            </div>
+                        </div>
+
+                        <div class="col-6" style="margin-top:7px;">
+                            <button class="btn btn-primary m-r-15" type="submit">
+                            Save Social Media Info
                             <span wire:loading wire:target="saveSocials"><i class="fa fa-spinner faa-spin animated"></i></span>
-                        </button>
+                            </button>
+                        </div>
+
                     </div>
                     </form>
                 </div>

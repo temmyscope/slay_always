@@ -12,7 +12,10 @@
       </a>
     </div>
     <video autoplay loop muted class=" w-full absolute z-10 h-full">
-      <source src="{{ asset('assets/assets/sss.mp4') }}" type="video/mp4">
+      <source src="{{ 
+        empty($youtube)? asset('assets/assets/sss.mp4') : $youtube }}" 
+        type="video/mp4"
+      >
       your browswer does not support this type of video
     </video>
   </section>

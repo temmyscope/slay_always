@@ -4,7 +4,7 @@
 
 <div>
     
-    <!-- nav section -->
+     <!-- nav section -->
     <nav class="w-full mt-6">
         <ul class="w-navWidth flex mx-auto">
         <li class="underline p-3 font-bold text-xl">

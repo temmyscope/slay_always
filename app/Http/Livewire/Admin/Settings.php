@@ -11,7 +11,7 @@ class Settings extends Component
 
     public $colors, $sizes, $categories, $socials;
 
-    public $whatsapp, $instagram;
+    public $whatsapp, $instagram, $youtube;
 
     protected $settings;
 
@@ -42,7 +42,11 @@ class Settings extends Component
     {
         DB::table('metadata')->where('id', 3)->update([
             'meta' =>  json_encode([
-                'socials' => [ 'instagram' => $this->instagram, 'whatsapp' => $this->whatsapp ]
+                'socials' => [ 
+                    'instagram' => $this->instagram, 
+                    'whatsapp' => $this->whatsapp ,
+                    'youtube' => $this->youtube
+                ]
             ]), 'updated_at' => date('Y-m-d h:i:s')
         ]);
     }
@@ -75,7 +79,9 @@ class Settings extends Component
             'vat' => $taxes['vat'] ?? null, 'shipping' => $taxes['shipping'] ?? null, 
             'others' => $taxes['others'] ?? null, 'colors' => $properties['colors'] ?? "", 
             'sizes' => $properties['sizes'] ?? "", 'categories' => $properties['categories'] ?? "", 
-            'whatsapp' => $socials['whatsapp'] ?? null, 'instagram' => $socials['instagram'] ?? null
+            'whatsapp' => $socials['whatsapp'] ?? null, 
+            'instagram' => $socials['instagram'] ?? null,
+            'youtube' => $socials['youtube'] ?? null
         ]);
     }
 

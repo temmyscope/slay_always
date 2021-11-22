@@ -17,7 +17,7 @@ trait Reusables{
   {
     $this->validate([
       'image' => 'image|max:5096'
-    ]); //5MB Max
+    ]);
     return $this->image->store('images');
   }
 

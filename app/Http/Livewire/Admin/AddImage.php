@@ -24,7 +24,12 @@ class AddImage extends Component
             $img->src = $image;
             $img->save();
         }
-        redirect()->route("list-products");
+        
+        $href = route('list-products');
+        session()->flash(
+            'message', 
+            "Image(s) have been uploaded. <a href='{$href}'>Go Back</a>"
+        );
     }
 
     public function mount($id, $type)

@@ -31,7 +31,10 @@ class Home extends Component
                 'id', array_values($favoriteProducts)
             )->get()->unique(),
             'random' => Product::where('deleted', 'false')->inRandomOrder()->take(5)->get(),
-            'categories' => (New Category())->categories()
+            'categories' => (New Category())->categories(),
+            'youtube' => json_decode(
+                DB::table('metadata')->where('id', 3)->first()?->meta, true
+            )['youtube'] ?? ''
         ])->extends('layouts.app')->section('content');
     }
 

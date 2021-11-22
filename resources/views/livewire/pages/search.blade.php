@@ -243,26 +243,31 @@
       <!-- main cards will be displayed here-->
 
       <div class="grid lg:grid-cols-4 mt-4 gap-3 mb-6 w-full">
-        
-        <style>
-          @media (min-width: 480px) {
-            div.shadow-lg { 
-              max-height: 50%;
-            }
-          }
-        </style>
 
         @if ( !empty($searchResult) )
 
           @if ($filtered === true)
             @if (!empty($filterResult))
+            <style>
+              @media (min-width: 480px) {
+                div.shadow-lg { 
+                  max-height:  {!! isset($filterResult[5]) ? '67%' : '53%' !!};
+                }
+              }
+            </style>
               @foreach ($filterResult as $index => $product)
                 <livewire:product-card :product="$product" :wire:key="'filtered-'.$index.'-'.$product->id" >
               @endforeach
             @endif
 
           @else
-
+            <style>
+              @media (min-width: 480px) {
+                div.shadow-lg { 
+                  max-height: {!! isset($searchResult[5]) ? '67%' : '53%' !!};
+                }
+              }
+            </style>
             @foreach ($searchResult as $index => $product)
               <livewire:product-card :product="$product" :wire:key="'searched-'.$index.'-'.$product->id" >
             @endforeach

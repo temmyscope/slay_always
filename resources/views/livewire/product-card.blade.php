@@ -29,7 +29,7 @@
         &#8358;{!! number_format(percentageDecrease($product->price, $dicountPercent ?? 0)) !!}
       </span>
     </p>
-    <span class="p-2">
+    <span class="py-2">
       @if (!empty($colors))
         @foreach ($colors as $index => $item)
         <input 

@@ -38,7 +38,7 @@ class ProductsList extends Component
     public function render()
     {
         return view('livewire.admin.products-list', [
-            'products' => Product::where('deleted', 'false')->get(), 
+            'products' => Product::where('deleted', 'false')->latest()->get(), 
             'bin' => Product::with('images')->where('deleted', 'true')->get()
         ])->extends('layouts.admin.master')->section('content');
     }

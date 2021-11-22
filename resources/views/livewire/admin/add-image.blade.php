@@ -5,16 +5,23 @@
 @endpush
 
 <div>
-	<div class="container-fluid list-products">    
+	<div class="container-fluid list-products">
+	    <div class="row">
+            <span class="alert-success">
+            {!! session('message') ?? '' !!}
+            </span>
+        </div>
         <div class="row">
             <div class="col">
                 <div class="mb-3">
                     <label>Upload product images</label>
                     <div class="dropzone dz-message" 
-                        style="display:flex;justify-content:center;align-items:stretch;cursor: pointer;"
+                        style="display:flex;justify-content:space-evenly;cursor: pointer;justify-items:center;"
                         onclick="document.getElementById('product-image').click()"
                     >
-                        <h6>Click here to upload files.</h6>
+                        <h6 wire:loading.remove wire:target="images">
+                            Click here to upload files.
+                        </h6>
                         @error('images.*') <span class="error">{{ $message }}</span> @enderror
                         @if ($images && !empty($images))
                             <div style="display: flex;justify-content:space-between;align-items:flex-end;">
@@ -23,6 +30,10 @@
                                 @endforeach
                             </div>
                         @endif
+                        <span wire:loading wire:target="images">
+                            Click "Save Images" to Complete Uploads
+                            <i class="fa fa-spinner faa-spin animated"></i>
+                        </span>
                     </div>
                     <input type="file" wire:model="images" multiple style="display: none;" id="product-image" />
                 </div>

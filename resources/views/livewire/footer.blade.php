@@ -41,7 +41,7 @@
               </a>
             </span>
             <span class="px-2">
-              <a href="https://web.whatsapp.com/send?phone=2349075620497&text=Hello!%20I%want%20to%20o%20make%20an%20order" target="_blank">
+              <a href="https://web.whatsapp.com/send?phone=+2349038363997&text=Hello!%20I%want%20to%20o%20make%20an%20order" target="_blank">
                 <i class="fab fa-whatsapp footer-gram"></i>
               </a>
             </span>
