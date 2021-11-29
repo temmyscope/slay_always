@@ -11,12 +11,11 @@ class Home extends Component
 
     public function mount()
     {
-        $visited = session('visited');
-        $visitedAt = date('Y-m-d');
-        if(!$visited || $visited !== $visitedAt){
-            session('visited', $visitedAt);
-            DB::table('metadata')->where('id', 1)->increment('meta->visits');
-        }
+    }
+    
+    public function newVisitorToday()
+    {
+        DB::table('metadata')->where('id', 1)->increment('meta->visits');
     }
 
     public function render()
@@ -34,7 +33,9 @@ class Home extends Component
             'categories' => (New Category())->categories(),
             'youtube' => json_decode(
                 DB::table('metadata')->where('id', 3)->first()?->meta, true
-            )['youtube'] ?? ''
+            )['youtube'] ?? '',
+            'announcements' => DB::table('notes')->where('is_modal', 'true')
+            ->where('active_at', '>', date('Y-m-d h:i:s'))->take(4)->get()
         ])->extends('layouts.app')->section('content');
     }
 

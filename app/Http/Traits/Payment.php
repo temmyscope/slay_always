@@ -17,6 +17,7 @@ trait Payment{
   public string $reference; 
   public $taxes;
   public $voucher;
+  public $sizingWithId;
   public float $sub_total; //before tax and coupon
   public float $total; //after tax and coupon
 
@@ -39,9 +40,19 @@ trait Payment{
       return $item;
     });
   }
+  
+  public function updated($name, $value){
+        $result = match($name){
+            'sizingWithId' => $this->changeSize($value),
+            default => null
+        };
+  }
 
-  public function changeSize($id, $size)
+  public function changeSize($value)
   {
+    [$id, $size] = explode(':', $value);
+    if( empty($value) ) return;
+    
     $this->cart->transform(function($item, $key) use($id, $size){
       if ($item['id'] == $id) {
         $item['size'] = $size;

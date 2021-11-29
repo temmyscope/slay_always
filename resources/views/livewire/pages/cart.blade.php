@@ -86,31 +86,17 @@
                     @endforeach
                   </p>
                   @endif
-                  <p>Choose size:
-                    <div class="mt-2 inline-block">
-
-                      @if( !empty($sizes) )
-                        @foreach ($sizes as $index => $item)
-                        <input type="radio" name="sizing" class="hidden" 
-                          wire:click="changeSize({!!$product->id ?? $product['id']!!}, '{!! $item !!}')"
-                          id="size-{!!($product->id ?? $product['id']).'-'.$index!!}"
-                        >
-                        <label for="size-{!!($product->id ?? $product['id']).'-'.$index!!}" 
-                          class="w-10 inline-block p-1 text-center border-solid border-2 border-gray-400 text-gray-700 
-                          cursor-pointer rounded-md font-bold py-1 mr-1 chart-{!!($product->id ?? $product['id']).'-'.$index!!} m-1"
-                        >{!! strtoupper($item) !!}
-                        </label>
-                        <style>
-                          #size-{!!($product->id ?? $product['id']).'-'.$index!!}:checked 
-                          ~ .chart-{!!($product->id ?? $product['id']).'-'.$index!!}{
-                            background-color: #010101;
-                            color: #f1f1f1;
-                          }
-                        </style>
-                        @endforeach
-                      @endif
+                  <p>Choose size: &nbsp;
+                    <select name="sizing" wire:model="sizingWithId">
+                    @foreach ([6,8,10,12,14,16,18,20,22,24,26] as $item)
+                    <option 
+                value="{!! ($product->id ?? $product['id']).':'.$item !!}"
+                    />
+                    Size {!! $item !!}
+                    </option>
+                    @endforeach
+                    </select>
                         
-                    </div>
                   </p>
                   <a href="{!! route('category', ['category' => $product->category ?? $product['category'] ]) !!}" class="font-bold text-slayText">
                     continue shopping

@@ -15,7 +15,7 @@
                                 <a class="btn btn-secondary me-3" 
                                     wire:click="unhideForm"
                                 >
-            {!! ($formVisibility === true) ? 'Hide' : 'Show' !!} Announcements 
+            {!! ($visibility === true) ? 'Hide' : 'Show' !!} Announcements 
                                 </a>
                             </div>
                         </div>
@@ -44,6 +44,17 @@
                                 <label>Announcement Expiry</label>
                                 <input wire:model="expiry" type="datetime-local" class="form-control" style="max-width: 250px" />
                                 @error('expiry') <span class="alert-danger">{{ $message }}</span> @enderror
+                            </div>
+                            
+                            <div class="col">
+                                <label>
+                                    Click on the checkbox to show on Pop-up
+                                </label><br/>
+                                <input 
+                                wire:model="isAnnouncement" 
+                                type="checkbox" value="true" 
+                                />
+                            </div>
 
                                 <div class="text-end mr-4">
                                     <button class="btn btn-secondary me-3 sweet-8" type="submit" wire:click="save">
@@ -53,13 +64,15 @@
                                 </div>
                             </div>
                         </div>
-                        @if( $formVisibility === true )
+                        
+                        @if( $visibility === true )
                         <div class="data-table table-responsive">
                             <table class="table table-bordernone display" id="basic-1">
                                 <thead>
                                     <tr>
                                         <th scope="col">Announcement</th>
                                         <th scope="col">Expires On</th>
+                                        <th scope="col">Show On Pop-up</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -78,6 +91,11 @@
                 {!!  date('g:i a, l M jS, Y', strtotime($item->active_at)) !!} 
                                             </span>
                                             </div>
+                                        </td>
+                                        <td>
+                                            <span>
+                {!! $item->is_modal === 'false' ? 'No' : 'Yes' !!}
+                                            </span>
                                         </td>
                                         <td>
                 <a class="btn btn-secondary me-3" wire:click="delete({!! $item->id!!})"> Delete

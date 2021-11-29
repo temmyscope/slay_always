@@ -8,19 +8,21 @@ use Illuminate\Support\Facades\{ DB };
 class Announcement extends Component
 {
     public string $note, $expiry;
-    public bool $formVisibility;
+    public bool $visibility;
+    public $isAnnouncement;
 
     public function mount()
     {
         $this->fill([ 
+            'visibility' => false,
+            'isAnnouncement' => '',
             'note' => '', 'expiry' => '',
-            'formVisibility' => false
         ]);
     }
 
     public function unhideForm()
     {
-        $this->formVisibility = !$this->formVisibility;
+        $this->visibility = !$this->visibility;
     }
     
     public function delete($id)
@@ -37,8 +39,8 @@ class Announcement extends Component
             'expiry' => 'required'
         ]);
         DB::table('notes')->insert([
-            'note' => $this->note,
-            'created_at' => date('Y-m-d h:i:s'),
+            'note' => $this->note, 'created_at' => date('Y-m-d h:i:s'),
+            'is_modal' => empty($this->isAnnouncement)? 'false': 'true',
             'active_at' => date('Y-m-d h:i:s', strtotime($this->expiry))
         ]);
         session()->flash('message', 'Your announcement has been published.');

@@ -25,10 +25,11 @@ class CategoryCard extends Component
                 unset($availableCategories [ "$tags[0]" ]);
             }
         });
-
+        
+        
         $this->fill([ 
             'category' => empty($availableCategories)? 
-            [] : (collect($availableCategories)->take(5))->all()
+            [] : (collect($availableCategories)->take(5))->all(),
         ]);
     }
 

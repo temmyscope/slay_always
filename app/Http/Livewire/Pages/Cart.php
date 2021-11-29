@@ -49,7 +49,7 @@ class Cart extends Component
             'couponIsActive' => ($promo !== false)? true : false, 
             'coupon' => ($promo !== false)? $promo->coupon : '',
             'isLoggedIn' => (is_null(auth()->user())) ? false : true,
-            'deliveryAddressSet' => ($profile && $profile->address)? true : false,
+            'deliveryAddressSet' => ($profile && $profile->address)? true : false, 'sizingWithId' => '',
             'address'=> [
                 'address' => $profile?->address ?? '', 'state' => $profile?->state ?? '', 
                 'country' => $profile?->country ?? '', 'zip_code' => $profile?->zip_code ?? '',

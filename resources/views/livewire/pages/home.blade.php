@@ -13,9 +13,8 @@
     </div>
     <video autoplay loop muted class=" w-full absolute z-10 h-full">
       <source src="{{ 
-        empty($youtube)? asset('assets/assets/sss.mp4') : $youtube }}" 
-        type="video/mp4"
-      >
+      empty($youtube)? asset('assets/assets/sss.mp4') : $youtube }}" 
+      type="video/mp4">
       your browswer does not support this type of video
     </video>
   </section>
@@ -64,5 +63,62 @@
   @livewire('category-card')
   
   @livewire('instagram')
+  
+    <!--- modal announcement --->
+    <div id="popup" class="home-modal">
+        <div class="home-modal-content bg-white">
+            <span id="closeMod" class="fas fa-times close-modal"></span>
+            <div class="w-11/12 mx-auto">
+                <h1 class="capitalize text-center text-xl my-4 font-bold" style="margin-top:5px;">
+                    discounts, promotions & deals
+                </h1>
+                <ul class="text-center mx-3">
+                    @if(isset($announcements[0]))
+                        @foreach($announcements as $each)
+                          <li>{!! $each->note !!}</li><br/>
+                        @endforeach
+                    @endif
+                </ul>
+            </div>
+            
+            <div class="w-11/12 mx-auto py-7">
+                <button id="closeMod" class="bg-bgSec text-white active:bg-purple-600 font-bold uppercase text-base hover:bg-slay outline-none focus:outline-none py-2 rounded-lg w-full" type="button">Contine Shopping</button>
+            </div>
+        </div>
+    </div>
+    <!--- modal announcement --->
+  
+    <script>
+    let currentTime = Math.floor((new Date().getTime())/1000);
+    if(localStorage.last_logged && 
+        (currentTime-localStorage.last_logged) <= 86400
+    ){
+    }else{
+        let homeModal = document.getElementById("popup");
+        let showHomeModal = document.getElementById("displayModal")
+        let spans = document.querySelectorAll("#closeMod");
+        
+        showHomeModal.onload = function() {
+          homeModal.style.display = "block";
+        }
+        
+        for (let mod = 0; mod < spans.length; mod++) {
+          spans[mod].addEventListener('click', function(){
+            homeModal.style.display = "none";
+          });
+        
+        }
+        
+        window.onclick = function(event) {
+          if (event.target == homeModal) {
+            homeModal.style.display = "none";
+          }
+        }
+        window.addEventListener('load', () => {
+            Livewire.emit('newVisitorToday');
+        });
+    }
+    localStorage.last_logged = currentTime;
+    </script>
 
 </div>
